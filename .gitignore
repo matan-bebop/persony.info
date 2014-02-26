@@ -1,4 +1,3 @@
-lib-cov
 *.seed
 *.log
 *.csv
@@ -6,10 +5,16 @@ lib-cov
 *.out
 *.pid
 *.gz
+npm-debug.log
 
 pids
 logs
 results
 
-npm-debug.log
 node_modules
+public
+.idea
+.tmp
+.sass-cache
+app/bower_components
+heroku
