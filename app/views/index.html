@@ -1,28 +1,74 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <base href="/">
-    <title>Persony</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/bootstrap.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="personyApp" ng-controller="PageCtrl"> <!--<![endif]-->
+<head>
+
+  <base href="/">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="title" content="{{Page.getTitle()}}" />
+  <meta name="description" content="{{Page.getDescription()}}"/>
+  <meta name="keywords" content="{{Page.getKeywords()}}"/>
+  <meta name="viewport" content="width=device-width">
+
+  <meta property="og:url" content="{{Page.getUrl()}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{Page.getTitle()}}" />
+  <meta property="og:description" content="{{Page.getDescription()}}" />
+  <meta property="og:image" content="{{Page.getImage()}}" />
+
+  <title ng-bind="Page.getTitle()"></title>
+
+  <!-- build:css({.tmp,app}) styles/main.css -->
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+
 </head>
-<body ng-app="personyApp">
+
+<body>
 
     <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
+    <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="logo pull-left">
+          <a href="/"><img src="images/logo.png" height="40px"/></a>
+        </div>
+        <ul class="nav navbar-right navbar-nav">
+          <li ng-class="{'active':getClass('/all')}"><a ng-href="/all">ВСІ</a></li>
+          <li ng-class="{'active':getClass('/about')}"><a href="/about">ПРО ПРОЕКТ</a></li>
+          <!--
+          <li ng-class="{'active':getClass('/contact')}"><a href="/contact">ДОПИСУВАЧУ</a></li>
+          <li ng-class="{'active':getClass('/sign-up')}"><a href="/sign-up">Реєстрація</a></li>
+          <li ng-class="{'active':getClass('/sign-in')}"><a href="/sign-in">Вхід</a></li>
+          -->
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </nav>
     <div class="container" ng-view=""></div>
 
     <script src="bower_components/jquery/jquery.js"></script>
@@ -34,7 +80,11 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/services/page.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/all.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/page.js"></script>
     <!-- endbuild -->
 
 </body>

@@ -1,11 +1,11 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: PageCtrl', function () {
 
   // load the controller's module
   beforeEach(module('personyApp'));
 
-  var MainCtrl,
+  var PageCtrl,
     scope,
     $httpBackend;
 
@@ -15,7 +15,7 @@ describe('Controller: MainCtrl', function () {
     $httpBackend.expectGET('/api/awesomeThings')
       .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    PageCtrl = $controller('PageCtrl', {
       $scope: scope
     });
   }));
