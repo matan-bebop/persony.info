@@ -16,5 +16,6 @@ public
 .idea
 .tmp
 .sass-cache
+.vagrant
 app/bower_components
 heroku
