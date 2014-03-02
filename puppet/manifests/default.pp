@@ -8,6 +8,7 @@ stage { 'preinstall':
 class tools {
   package { "mc": ensure => "installed" }
   package { "htop": ensure => "installed" }
+  package { "git": ensure => "installed" }
 }
 
 # Define the apt_get_update class
@@ -32,6 +33,16 @@ class { 'tools':
 class { 'nodejs':
   version => 'v0.10.26'
 }
+
+class bower {
+  package { 'bower':
+    ensure => present,
+    provider => 'npm',
+    require => Class["nodejs"],
+  }
+}
+
+include bower
 
 # --- MySQL --- #
 
