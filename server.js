@@ -1,21 +1,11 @@
 'use strict';
-
 // Module dependencies.
-var express = require('express'),
-    path = require('path'),
-    fs = require('fs');
-
-var app = express();
-
-// Connect to database
-//var db = require('./lib/db/mongo');
-
-// Bootstrap models
-/*var modelsPath = path.join(__dirname, 'lib/models');
-fs.readdirSync(modelsPath).forEach(function (file) {
-  require(modelsPath + '/' + file);
-});*/
-
+var settings = require('./conf/settings').settings,
+    express = require('express'),
+    app = express(),
+    urls = require('./conf/urls'),
+    models,
+    path = require('path');
 
 // Express Configuration
 app.configure('development', function(){
@@ -25,7 +15,6 @@ app.configure('development', function(){
   app.use(express.errorHandler());
   app.set('views', __dirname + '/app/views');
 });
-
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, 'public')));
@@ -38,19 +27,13 @@ app.configure(function(){
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-
-  // Router needs to be last
-	app.use(app.router);
 });
 
-// Controllers
-var api = require('./lib/controllers/api'),
-    controllers = require('./lib/controllers');
+/* Database setup !important to be before url definition */
+models = require("./utils/register_models")(app);
 
-
-// Angular Routes
-app.get('/partials/*', controllers.partials);
-app.get('/*', controllers.index);
+/* Init URL dispatcher */
+urls.handle(app);
 
 // Start server
 var port = process.env.PORT || 3000;

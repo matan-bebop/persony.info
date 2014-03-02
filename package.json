@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "dependencies": {
     "express": "~3.4.3",
-    "mongoose": "~3.5.5",
     "async": "~0.2.9",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "passport": "~0.2.0",
+    "orm" : "~2.4.1",
+    "mysql" : "~2.1.0",
+    "sql-ddl-sync" : "~0.1.4"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
