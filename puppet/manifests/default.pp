@@ -4,17 +4,17 @@ stage { 'preinstall':
   before => Stage['main']
 }
 
-# Handy tools good to have in dev environment
-class tools {
-  package { "mc": ensure => "installed" }
-  package { "htop": ensure => "installed" }
-  package { "git": ensure => "installed" }
-}
-
 # Define the apt_get_update class
 class apt_get_update {
   exec { 'apt-get -y update':
     path => ['/usr/sbin', '/usr/bin', '/sbin', '/bin']
+  }
+}
+
+# Handy tools good to have in dev environment
+class tools {
+  package {['mc', 'htop', 'git']:
+    ensure => "installed"
   }
 }
 
@@ -25,7 +25,8 @@ class { 'apt_get_update':
 
 # Install tools
 class { 'tools':
-  stage => preinstall
+  stage => preinstall,
+  require => Class['apt_get_update']
 }
 
 # --- NodeJS --- #
@@ -34,15 +35,18 @@ class { 'nodejs':
   version => 'v0.10.26'
 }
 
-class bower {
-  package { 'bower':
+class node_tools {
+  package {['xdg-utils']:
+    ensure => "installed"
+  }
+  package { ['bower', 'grunt-cli']:
     ensure => present,
     provider => 'npm',
     require => Class["nodejs"],
   }
 }
 
-include bower
+include node_tools
 
 # --- MySQL --- #
 
