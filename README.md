@@ -5,6 +5,7 @@ main repo for persony.info
 Basic requirements:
 
 Node (+npm, bower, grunt)
+
 Mysql
 
 Local deploy:
