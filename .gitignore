@@ -19,3 +19,4 @@ public
 .vagrant
 app/bower_components
 heroku
+conf/settings.js

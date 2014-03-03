@@ -1,3 +1,16 @@
+.navbar {
+    margin: 0;
+}
+
+.navbar-inverse {
+    background: #080808;
+}
+
 .logo img {
-    margin-top: 4px;
+    margin: 4px 50px 0 0;
+}
+
+.person-info-container {
+    height: 200px;
+    background: #eee;
 }

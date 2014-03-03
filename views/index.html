@@ -24,7 +24,7 @@
 
   <title ng-bind="Page.getTitle()"></title>
 
-  <link rel="stylesheet" href="styles/2c7caabc.main.css"/>
+  <link rel="stylesheet" href="styles/3bf4aae9.main.css"/>
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
@@ -54,26 +54,24 @@
         <div class="logo pull-left">
           <a href="/"><img src="images/c11b26f6.logo.png" height="40px"></a>
         </div>
+        <ul class="nav navbar-left navbar-nav">
+          <li ng-class="{'active':getClass('/people')}"><a ng-href="/people">Люди</a></li>
+          <li ng-class="{'active':getClass('/about')}"><a href="/about">Про проект</a></li>
+        </ul>
         <ul class="nav navbar-right navbar-nav">
-          <li ng-class="{'active':getClass('/all')}"><a ng-href="/all">ВСІ</a></li>
-          <li ng-class="{'active':getClass('/about')}"><a href="/about">ПРО ПРОЕКТ</a></li>
-          <!--
-          <li ng-class="{'active':getClass('/contact')}"><a href="/contact">ДОПИСУВАЧУ</a></li>
-          <li ng-class="{'active':getClass('/sign-up')}"><a href="/sign-up">Реєстрація</a></li>
-          <li ng-class="{'active':getClass('/sign-in')}"><a href="/sign-in">Вхід</a></li>
-          -->
+          <li><a ng-href="#">Увійти</a></li>
         </ul>
         <div class="clearfix"></div>
       </div>
     </nav>
-    <div class="container" ng-view=""></div>
+    <div ng-view=""></div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
     <script src="scripts/7a359f8c.modules.js"></script>
 
-    <script src="scripts/918962e1.scripts.js"></script>
+    <script src="scripts/ecd4ba5d.scripts.js"></script>
 
 </body>
 </html>

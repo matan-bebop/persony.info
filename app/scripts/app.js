@@ -9,9 +9,12 @@ angular.module('personyApp', [
       .when('/', {
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
-      }).when('/all', {
-        templateUrl: 'partials/all',
-        controller: 'AllCtrl'
+      }).when('/people', {
+        templateUrl: 'partials/people',
+        controller: 'PeopleCtrl'
+      }).when('/people/:name', {
+        templateUrl: 'partials/detailsPerson',
+        controller: 'DetailsPersonCtrl'
       })
       .when('/about', {
         templateUrl: 'partials/about',

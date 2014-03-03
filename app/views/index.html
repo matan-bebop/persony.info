@@ -26,6 +26,7 @@
 
   <!-- build:css({.tmp,app}) styles/main.css -->
   <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/font-awesome.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 
@@ -57,19 +58,17 @@
         <div class="logo pull-left">
           <a href="/"><img src="images/logo.png" height="40px"/></a>
         </div>
+        <ul class="nav navbar-left navbar-nav">
+          <li ng-class="{'active':getClass('/people')}"><a ng-href="/people">Люди</a></li>
+          <li ng-class="{'active':getClass('/about')}"><a href="/about">Про проект</a></li>
+        </ul>
         <ul class="nav navbar-right navbar-nav">
-          <li ng-class="{'active':getClass('/all')}"><a ng-href="/all">ВСІ</a></li>
-          <li ng-class="{'active':getClass('/about')}"><a href="/about">ПРО ПРОЕКТ</a></li>
-          <!--
-          <li ng-class="{'active':getClass('/contact')}"><a href="/contact">ДОПИСУВАЧУ</a></li>
-          <li ng-class="{'active':getClass('/sign-up')}"><a href="/sign-up">Реєстрація</a></li>
-          <li ng-class="{'active':getClass('/sign-in')}"><a href="/sign-in">Вхід</a></li>
-          -->
+          <li><a ng-href="#">Увійти</a></li>
         </ul>
         <div class="clearfix"></div>
       </div>
     </nav>
-    <div class="container" ng-view=""></div>
+    <div ng-view=""></div>
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -82,7 +81,8 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/services/page.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/all.js"></script>
+    <script src="scripts/controllers/people.js"></script>
+    <script src="scripts/controllers/detailsPerson.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/page.js"></script>
     <!-- endbuild -->

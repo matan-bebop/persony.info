@@ -15,9 +15,7 @@ Create database and set appropriate settings in ./conf/settings.js database sect
 
 > npm install
 
-> npm install .\dist\orm
-
-> bower install angular
+> bower install
 
 > node .\utils\syncdb
 
@@ -27,4 +25,12 @@ Create database and set appropriate settings in ./conf/settings.js database sect
 
 Run
 
-> node server
+> grunt server
+
+Build
+
+> grunt build
+
+Test
+
+> grunt test
