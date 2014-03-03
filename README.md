@@ -26,6 +26,7 @@ Run
 
 for development (inside vm will fail on xdg-open, so force should be used)
 > grunt serve --force
+
 for production
 > npm start
 
