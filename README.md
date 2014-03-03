@@ -1,10 +1,10 @@
-persomy.info
+persony.info
 ============
 
 main repo for persony.info
 Basic requirements:
 
-Node
+Node (+npm, bower, grunt)
 Mysql
 
 Local deploy:
@@ -12,20 +12,22 @@ Local deploy:
 Create database and set appropriate settings in ./conf/settings.js database section
 
 
-
 > npm install
 
 > bower install
 
-> node .\utils\syncdb
+> node ./utils/syncdb
 
-> node .\utils\import_data
+> node ./utils/import_data
 
 
 
 Run
 
-> grunt server
+for development (inside vm will fail on xdg-open, so force should be used)
+> grunt serve --force
+for production
+> npm start
 
 Build
 
