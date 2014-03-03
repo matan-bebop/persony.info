@@ -1,7 +1,6 @@
 'use strict';
 // Module dependencies.
-var settings = require('./conf/settings').settings,
-    express = require('express'),
+var express = require('express'),
     app = express(),
     urls = require('./conf/urls'),
     models,
