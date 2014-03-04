@@ -15,6 +15,29 @@ ul, ol {
     text-decoration: none;
 }
 
+.search-form {
+    width: 200px;
+    margin-top: 11px;
+}
+
+.search-form .search-input,
+.search-form .input-group-addon {
+    border: 0;
+    height: 27px;
+    color: #999;
+    background: #666;
+
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+}
+
+.search-form .search-input {
+    font-style: italic;
+    padding-left: 0;
+    font-size: 12px;
+}
+
 .navbar-inverse {
     background: #080808;
 }
@@ -51,10 +74,11 @@ ul, ol {
     border: 5px solid #DDD;
     font-size: 25px;
     position: relative;
+    z-index: 2;
+
     -webkit-border-radius:35px;
     -moz-border-radius:35px;
     border-radius:35px;
-    z-index: 2;
 }
 
 .person-data {
@@ -94,6 +118,7 @@ ul, ol {
     margin-right: 4px;
     border: 1px solid #DDD;
     padding: 0px 4px;
+
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:3px;
