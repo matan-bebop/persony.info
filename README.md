@@ -4,7 +4,7 @@ persony.info
 main repo for persony.info
 Basic requirements:
 
-Node (+npm, bower, grunt)
+Node (+npm, bower [npm install bower], grunt [npm install grunt])
 
 Mysql
 
