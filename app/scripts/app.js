@@ -12,7 +12,7 @@ angular.module('personyApp', [
       }).when('/people', {
         templateUrl: 'partials/people',
         controller: 'PeopleCtrl'
-      }).when('/people/:name', {
+      }).when('/people/:id', {
         templateUrl: 'partials/detailsPerson',
         controller: 'DetailsPersonCtrl'
       })

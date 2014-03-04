@@ -1,6 +1,11 @@
 'use strict';
 
-angular.module('personyApp').controller('DetailsPersonCtrl', ['Page', '$routeParams', '$scope', function (Page, $routeParams, $scope) {
-  $scope.name = $routeParams.name;
-  Page.setTitle('Персони | ' + $scope.name);
-}]);
+angular.module('personyApp').controller('DetailsPersonCtrl', ['Page', '$routeParams', '$http', '$scope',
+  function (Page, $routeParams, $http, $scope) {
+    $http.get('/api/person/get/' + $routeParams.id).success(function(data) {
+      $scope.person = data;
+      Page.setTitle('Персони | ' + $scope.person.name);
+    }).error(function() {
+      console.log(arguments);
+    });
+  }]);

@@ -110,7 +110,6 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.views %>/*',
             '<%= yeoman.dist %>/*',
             '!<%= yeoman.dist %>/.git*'
           ]
@@ -175,8 +174,8 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.views %>/{,*/}*.html',
-             '<%= yeoman.views %>/{,*/}*.jade'],
+      html: ['<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.html',
+             '<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.jade'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
@@ -220,7 +219,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/<%= yeoman.views %>',
           src: ['*.html', 'partials/*.html'],
-          dest: '<%= yeoman.views %>'
+          dest: '<%= yeoman.dist %>/<%= yeoman.views %>'
         }]
       }
     },
@@ -241,7 +240,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.views %>/*.html']
+        html: ['<%= yeoman.dist %>/<%= yeoman.views %>/*.html']
       }
     },
 
@@ -264,8 +263,8 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>/<%= yeoman.views %>',
-          dest: '<%= yeoman.views %>',
-          src: '**/*.jade',
+          dest: '<%= yeoman.dist %>/<%= yeoman.views %>',
+          src: '**/*.jade'
         }, {
           expand: true,
           cwd: '.tmp/images',
@@ -282,7 +281,7 @@ module.exports = function (grunt) {
           dest: 'heroku',
           src: [
             '<%= yeoman.dist %>/**',
-            '<%= yeoman.views %>/**'
+            '<%= yeoman.dist %>/<%= yeoman.views %>/**'
           ]
         }, {
           expand: true,

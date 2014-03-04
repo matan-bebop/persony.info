@@ -1,3 +1,5 @@
 <div class="container">
-  <a href="/people/naiem">Мустафа Найєм</a>
+  <ul ng-repeat="person in people">
+    <li><a ng-href="/people/{{person.id}}">{{person.name}}</a></li>
+  </ul>
 </div>
