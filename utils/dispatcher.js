@@ -28,7 +28,6 @@ var settings = require("../conf/settings"),
 
 exports.dispatch = function(app){
     var URLS = collectURLS(),app_URL,patterns,pattern,path,methods;
-
     for(var i= 0,l=URLS.length;i<l;i++){
         app_URL = URLS[i];
         patterns = app_URL.dispatch();

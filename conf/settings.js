@@ -17,7 +17,7 @@ var settings = {
         host     : "127.0.0.1",
         database : "personDB",
         user     : "root",
-        password : ""
+        password : "ketekl"
     },
     security_key : "GcDesWWD5cHcuN1TYJwv,dWW+IE7LNgS0UTRD4EAlSdo==",
     installed_apps : [
@@ -32,5 +32,4 @@ var localConfigFile = __dirname + '/settings.local.js';
 if (require('fs').existsSync(localConfigFile)) {
     require('node.extend')(true, settings, require(localConfigFile));
 }
-
 module.exports = settings;

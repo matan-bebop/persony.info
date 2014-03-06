@@ -1,7 +1,6 @@
 var path = require('path');
 
-
-var views = {
+exports.views = {
     partials : function(req, res) {
         var stripped = req.url.split('.')[0];
         var requestedView = path.join('./', stripped);
@@ -14,4 +13,3 @@ var views = {
         });
     }
 };
-exports.views = views;

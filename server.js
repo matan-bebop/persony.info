@@ -2,9 +2,9 @@
 // Module dependencies.
 var express = require('express'),
     app = express(),
-    urls = require('./conf/urls'),
-    models,
-    path = require('path');
+    urls = require('./utils/urls'),
+    path = require('path'),
+    models;
 
 // Express Configuration
 app.configure('development', function(){
@@ -14,6 +14,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
   app.set('views', __dirname + '/app/views');
 });
+
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, 'public')));
