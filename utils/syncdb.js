@@ -30,6 +30,7 @@ var Sequelize = require("sequelize"),
 
     for(var i= 0,l=app_models.length;i<l;i++){
         try{
+            console.log(app_models[i])
             _app_models = require(app_models[i]).sync(seq);
         }catch (e){
             if(settings.DEBUG){

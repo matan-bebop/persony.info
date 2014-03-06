@@ -1,73 +1,61 @@
-var fs = require('fs'), file,
-    orm = require('orm'),
-    settings = require("../conf/settings"),
-    collectModels = function () {
+
+var templates = {
+    event : require("../testdata/templates/event"),
+    person : require("../testdata/templates/person"),
+    source : require("../testdata/templates/source"),
+    image: require("../testdata/templates/image")
+};
+
+var Faker = require('Faker');
+var Sequelize = require("sequelize");
+var settings = require("../conf/settings"),
+    collectModels = function(){
         var apps = settings.installed_apps, app,
             models = [];
-        for (var i = 0, l = apps.length; i < l; i++) {
+        for(var i= 0,l=apps.length;i<l;i++){
             app = apps[i];
-            models.push(app);
+            models.push("../components/" + app + "/models");
         }
         return models
-    },
-    importEntity = function (Entity, name, finalise) {
-        file = './testdata/' + name + '.json';
-        fs.readFile(file, 'utf8', function (err, data) {
-            var item, finished, processed = 0;
-            if (err) {
-                console.log('Error: ' + err);
-                return;
+    }, dbs = settings.database,
+        fillDB = function(seq, app_model, m, items, arg){
+            var template = templates[m],
+                item;
+            for(var i=0;i<items;i++){
+                item = template(Faker, items);
+                app_model.add(seq, m, item);
             }
-            data = JSON.parse(data);
+        };
 
-            finished = function () {
-                processed += 1;
-                if (processed == data.length) {
-                    console.log(name, " processed");
-                    if (typeof finalise == 'function') {
-                        finalise();
-                    }
-                }
-            };
 
-            for (var i = 0, l = data.length; i < l; i++) {
-                item = data[i];
-
-                delete item.id;
-                Entity.create(item, function (err, results) {
-                    if (err) {console.log(err)}
-                    finished();
-                });
-            }
-        });
-    };
-
-var connection = null;
-
-function setup(db, cb) {
-    var models = collectModels(), finished, processed = 0;
-
-    finished = function () {
-        processed += 1;
-        if (processed == models.length) {
-            console.log("data imported");
-            // it seem to not work
-            connection.close();
-            process.exit();
-        }
-    };
-
-    for (var i = 0, l = models.length; i < l; i++) {
-        try {
-            var Entity = require("../components/" + models[i] + "/models").register(orm, db);
-            cb(Entity, models[i], finished);
-        } catch (e) {
-            console.log(e.message);
-            finished();
+module.exports.run = function (model, cb) {
+    console.log("Import Started")
+    var seq = new Sequelize(dbs.database, dbs.user, dbs.password, {
+        host: dbs.host,
+        port: dbs.port,
+        dialect: dbs.protocol,
+        define: {
+            underscored: false,
+            freezeTableName: false,
+            syncOnAssociation: true,
+            charset: 'utf8',
+            collate: 'utf8_general_ci',
+            timestamps: true
+        },
+        sync: { force: true },
+        pool: { maxConnections: 5, maxIdleTime: 30}
+    }), _app_models;
+    app_models = collectModels();
+    for(var i= 0,l=app_models.length;i<l;i++){
+        try{
+            console.log("-----")
+            console.log(model)
+            console.log(app_models[i])
+            _app_models = require(app_models[i]);
+            fillDB(seq, _app_models, model, 100);
+        }catch (e){
+            console.log(e)
         }
     }
-}
-connection = orm.connect(settings.database, function (err, db) {
-    db.settings.set('instance.returnAllErrors', true);
-    setup(db, importEntity);
-});
+    if(cb)cb();
+};

@@ -2,8 +2,15 @@ var views = require("./views").views;
 
 exports.dispatch = function(app){
     return [
-        {"/*" :  {
-            "get": views.index
-        }}
+        {
+            "/import/:model" :  {
+                "get": views.importData
+            }
+        },
+        {
+            "/*" :  {
+                "get": views.index
+            }
+        }
     ]
 };

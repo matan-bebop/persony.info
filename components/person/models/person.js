@@ -3,8 +3,10 @@ module.exports = function(seq, DataTypes) {
     var Person = seq.define("persona",
         {
             name : { type: DataTypes.STRING, allowNull: false},
-            photo: {type: DataTypes.STRING, unique: true},
-            info: { type: DataTypes.TEXT, allowNull: true }
+            photo: {type: DataTypes.STRING, unique: false},
+            info: { type: DataTypes.TEXT, allowNull: true },
+            facebook: { type: DataTypes.STRING, allowNull: false},
+            twitter: { type: DataTypes.STRING, allowNull: false}
         },
         {
         instanceMethods: {

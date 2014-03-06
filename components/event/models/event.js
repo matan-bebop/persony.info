@@ -4,14 +4,16 @@ module.exports = function(seq, DataTypes) {
     var Person = require(".."+ path.sep + ".."+ path.sep + "person"+ path.sep + "models"+ path.sep + "person")(seq, DataTypes),
         Event = seq.define("event",
         {
-            name : { type: DataTypes.STRING, allowNull: false},
-            photo: {type: DataTypes.STRING, unique: true},
-            info: { type: DataTypes.TEXT, allowNull: true }
+            "eventUri": { type: DataTypes.STRING, allowNull: false},                                                       // ідентифікатор події щоб була змога в майбутньому перейти по урл типу http://persony.info/naiem/#interview
+            "start": { type: DataTypes.DATE, allowNull: false},                     // Дата події (початок)
+            "end": { type: DataTypes.DATE, allowNull: true},                       // Дата події (кінець)
+            "title": { type: DataTypes.STRING, allowNull: false},                 // Заголовок події
+            "fulltext": { type: DataTypes.TEXT, allowNull: true }               // Детальний опис події а PML форматі
         },
         {
             instanceMethods: {
                 getInfo: function() {
-                    return this.info
+                    return this.fulltext
                 }
             }
         });

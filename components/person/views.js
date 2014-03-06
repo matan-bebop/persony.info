@@ -1,52 +1,50 @@
-var orm = require('orm'),
-     _ = require('lodash'),
-    Entity;
-
+var Entity;
 var views = {
     getEntity: function(req, res, next){
-        Entity = req.models.person;
+        Entity = req.app.get("models").person;
         res.setHeader('Content-Type', 'application/json');
         /* */
         if(req.params.id){
-            Entity.get(req.params.id, function (err, entity) {
-                if (err) {
-                    if (err.code == orm.ErrorCodes.NOT_FOUND) {
-                        res.send(404, "Nothing found");
-                    } else {
-                        return next(err);
-                    }
+            Entity.find({ where: {id: req.params.id} }).success(function(entity) {
+                if(entity){
+                    res.end(JSON.stringify(entity));
+                }else{
+                    res.send(404, "Nothing found");
                 }
-                res.end(JSON.stringify(entity));
-            })
-        }else{
-
-            Entity.all(function (err, entities) {
-                if (err) {
-                    if (err.code == orm.ErrorCodes.NOT_FOUND) {
-                        res.send(404, "Nothing found");
-                    } else {
-                        return next(err);
-                    }
-                }
-                res.end(JSON.stringify(entities));
             })
         }
-
     },
-    createEntity: function(req, res){
+    updateEntity: function(req, res){
+        Entity = req.app.get("models").person;
         res.setHeader('Content-Type', 'application/json');
         /* */
-        res.end(JSON.stringify({}));
-    },
-    editEntity: function(req, res){
-        res.setHeader('Content-Type', 'application/json');
-        /* */
-        res.end(JSON.stringify({}));
+        Entity.findOrCreate({ where: {id: req.params.id}}).success(function(entity) {
+            var form_data = {};
+            (req.param('name')?form_data.name = req.param('name'):"");
+            (req.param('photo')?form_data.photo = req.param('photo'):"");
+            (req.param('info')?form_data.info = req.param('info'):"");
+            (req.param('facebook')?form_data.facebook = req.param('facebook'):"");
+            (req.param('twitter')?form_data.twitter = req.param('twitter'):"");
+            if(entity){
+                entity.updateAttributes(form_data).success(function() {
+                   res.end(JSON.stringify({status: "ok"}));
+                })
+            }
+        })
     },
     removeEntity: function(req, res){
+        Entity = req.app.get("models").person;
         res.setHeader('Content-Type', 'application/json');
-        /* */
-        res.end(JSON.stringify({}));
+        Entity.find({ where: {id: req.params.id}}).success(function(entity) {
+            if(entity){
+                entity.destroy().success(function() {
+                    res.end(JSON.stringify({status: "ok"}));
+                })
+            }else{
+                res.end(JSON.stringify({status: "error"}));
+            }
+        })
     }
 };
+
 exports.views = views;
