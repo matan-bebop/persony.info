@@ -13,7 +13,7 @@ module.exports = function (app) {
             syncOnAssociation: true,
             charset: 'utf8',
             collate: 'utf8_general_ci',
-            timestamps: true
+            timestamps: false
         },
         sync: { force: true },
         pool: { maxConnections: 5, maxIdleTime: 30}

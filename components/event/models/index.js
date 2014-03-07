@@ -3,6 +3,7 @@ var path = require("path");
 var models = [
     'event',
     'source'
+
 ];
 
 // register app models
@@ -26,10 +27,10 @@ module.exports.sync = function(seq){
 // sync models with DB
 module.exports.add = function(seq, m, item){
     var _models = {};
-    models.forEach(function(model){
-        _models[model] = seq.import(__dirname + path.sep + model);
-        if(model==m){
-            _models[model].create(item).success(function(item) {if(item){console.log("|");}})
-        }
-    });
+        models.forEach(function(model){
+            _models[model] = seq.import(__dirname + path.sep + model);
+            if(model==m){
+                _models[model].create(item).success(function(item) {if(item){console.log("|");}})
+            }
+        });
 };

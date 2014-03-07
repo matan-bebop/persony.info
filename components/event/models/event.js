@@ -17,7 +17,7 @@ module.exports = function(seq, DataTypes) {
                 }
             }
         });
-    Event.hasOne(Person);
+    Event.hasMany(Person);
     Person.hasMany(Event);
     return Event
 };

@@ -22,7 +22,7 @@ var Sequelize = require("sequelize"),
             syncOnAssociation: true,
             charset: 'utf8',
             collate: 'utf8_general_ci',
-            timestamps: true
+            timestamps: false
         },
         sync: { force: true },
         pool: { maxConnections: 5, maxIdleTime: 30}
@@ -30,13 +30,8 @@ var Sequelize = require("sequelize"),
 
     for(var i= 0,l=app_models.length;i<l;i++){
         try{
-            console.log(app_models[i])
             _app_models = require(app_models[i]).sync(seq);
-        }catch (e){
-            if(settings.DEBUG){
-                console.log(e)
-            }
-        }
+        }catch (e){}
     }
 
 })();

@@ -19,9 +19,11 @@ var settings = require("../conf/settings"),
         fillDB = function(seq, app_model, m, items){
             var template = templates[m],
                 item;
-            for(var i=0;i<items;i++){
-                item = template(Faker, 20);
-                app_model.add(seq, m, item);
+            if(typeof items == "number"){
+                for(var i=0;i<items;i++){
+                    item = template(Faker, 20);
+                    app_model.add(seq, m, item);
+                }
             }
         };
 
@@ -36,7 +38,7 @@ module.exports.run = function (model, items, cb) {
             syncOnAssociation: true,
             charset: 'utf8',
             collate: 'utf8_general_ci',
-            timestamps: true
+            timestamps: false
         },
         sync: { force: true },
         pool: { maxConnections: 5, maxIdleTime: 30}
