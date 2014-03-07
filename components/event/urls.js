@@ -5,6 +5,11 @@ exports.dispatch = function(app){
         {"/event/person/:personid" :  {
             "get": views.getRelatedEntity
         }},
+        {"/event/" :  {
+            "post": views.updateEntity,
+            "put" : views.updateEntity,
+            "delete" : views.removeEntity
+        }},
         {"/event/:id" :  {
             "get": views.getEntity,
             "post": views.updateEntity,

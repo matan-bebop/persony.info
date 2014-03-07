@@ -1,7 +1,7 @@
-var Entity;
+var path = require("path");
 var views = {
     getEntity: function(req, res, next){
-        Entity = req.app.get("models").person;
+        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
         /* */
         if(req.params.id){
@@ -33,7 +33,7 @@ var views = {
         })
     },
     removeEntity: function(req, res){
-        Entity = req.app.get("models").person;
+        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
         Entity.find({ where: {id: req.params.id}}).success(function(entity) {
             if(entity){

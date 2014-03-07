@@ -2,8 +2,7 @@
 var path = require("path");
 var models = [
     'event',
-    'source',
-    'image'
+    'source'
 ];
 
 // register app models
@@ -30,9 +29,7 @@ module.exports.add = function(seq, m, item){
     models.forEach(function(model){
         _models[model] = seq.import(__dirname + path.sep + model);
         if(model==m){
-            _models[model].create(item).success(function(item) {
-                console.log("Added instance of " + m );
-            })
+            _models[model].create(item).success(function(item) {if(item){console.log("|");}})
         }
     });
 };

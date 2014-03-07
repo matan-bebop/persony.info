@@ -30,7 +30,7 @@ app.configure(function(){
 });
 
 /* Database setup !important to be before url definition */
-models = require("./utils/register_models")(app);
+app.set('models', require("./utils/connectdb")(app));
 
 /* Init URL dispatcher */
 urls.handle(app);

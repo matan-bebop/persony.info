@@ -1,9 +1,7 @@
-
 var templates = {
     event : require("../testdata/templates/event"),
     person : require("../testdata/templates/person"),
-    source : require("../testdata/templates/source"),
-    image: require("../testdata/templates/image")
+    source : require("../testdata/templates/source")
 };
 
 var Faker = require('Faker');
@@ -18,18 +16,16 @@ var settings = require("../conf/settings"),
         }
         return models
     }, dbs = settings.database,
-        fillDB = function(seq, app_model, m, items, arg){
+        fillDB = function(seq, app_model, m, items){
             var template = templates[m],
                 item;
             for(var i=0;i<items;i++){
-                item = template(Faker, items);
+                item = template(Faker, 20);
                 app_model.add(seq, m, item);
             }
         };
 
-
-module.exports.run = function (model, cb) {
-    console.log("Import Started")
+module.exports.run = function (model, items, cb) {
     var seq = new Sequelize(dbs.database, dbs.user, dbs.password, {
         host: dbs.host,
         port: dbs.port,
@@ -48,14 +44,9 @@ module.exports.run = function (model, cb) {
     app_models = collectModels();
     for(var i= 0,l=app_models.length;i<l;i++){
         try{
-            console.log("-----")
-            console.log(model)
-            console.log(app_models[i])
             _app_models = require(app_models[i]);
-            fillDB(seq, _app_models, model, 100);
-        }catch (e){
-            console.log(e)
-        }
+            fillDB(seq,_app_models, model, items);
+        }catch (e){}
     }
     if(cb)cb();
 };

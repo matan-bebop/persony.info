@@ -1,16 +1,21 @@
-var views = require("./views").views;
+var views = require("./views").views,
+    settings = require("../../conf/settings");
 
 exports.dispatch = function(app){
-    return [
-        {
-            "/import/:model" :  {
+    var URLS = [
+            {
+                "/*" :  {
+                    "get": views.index
+                }
+            }
+        ],
+        DEV_URLS = [{
+            "/import/" :  {
                 "get": views.importData
             }
-        },
-        {
-            "/*" :  {
-                "get": views.index
-            }
-        }
-    ]
+        }];
+    if(settings.DEBUG){
+        URLS = DEV_URLS.concat(URLS);
+    }
+    return URLS;
 };
