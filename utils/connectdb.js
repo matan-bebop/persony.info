@@ -8,7 +8,7 @@ module.exports = function (app) {
         port: dbs.port,
         dialect: dbs.protocol,
         define: {
-            underscored: false,
+            underscored: true,
             freezeTableName: false,
             syncOnAssociation: true,
             charset: 'utf8',

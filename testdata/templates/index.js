@@ -2,5 +2,13 @@
 module.exports = {
     'event': 100,
     'person':20,
-    'source':200
+    'source':200,
+    'associations' : [
+        {
+            from : {name : "event", items : 100, as : "event_id" },
+            to : {name :  "person", items : 20, as : "person_id"},
+            type : "ManyToMany",
+            url : "http://localhost:3000/event/relation/"
+        }
+    ]
 };

@@ -1,4 +1,5 @@
-var path = require("path");
+var path = require("path"),
+    _ = require("lodash");
 var views = {
     getEntity: function(req, res, next){
         Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
@@ -16,12 +17,30 @@ var views = {
     },
     getRelatedEntity: function(req, res, next){
         Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        Person = Event.Person;
+
+        Event.hasMany(Person, {as: "Persons", foreignKey: 'event_id', through : "person_events"});
+        Person.hasMany(Event, {as: "Events", foreignKey: 'person_id', through : "person_events"});
+
         res.setHeader('Content-Type', 'application/json');
         /* */
-        if(req.params.personid){
-            Event.getPersons({ where: { limit: 100 }}).success(function(entities) {
-                res.end(JSON.stringify(entities));
-            })
+
+        if(req.params.person_id){
+            Person.find(req.params.person_id).success(function(person) {
+                if(person){
+                    person.getEvents().success(function(entities) {
+                        if(entities){
+                            res.end(JSON.stringify(entities));
+                        }else{
+                            res.end(JSON.stringify({}));
+                        }
+                    });
+                }else{
+                    res.end(JSON.stringify({}));
+                }
+            });
+        }else{
+            res.end(JSON.stringify({}));
         }
     },
     updateEntity: function(req, res){
@@ -37,17 +56,17 @@ var views = {
         (req.param('fulltext')?form_data.fulltext = req.param('fulltext'):"");
         if(req.param('id')){
             Entity.find({ where: {id: req.param('id')},  limit: 100 }).success(function(entity) {
-                entity.updateAttributes(form_data).success(function(entity) {
-                    res.end(JSON.stringify({status: "ok"}));
-                });
+                if(entity){
+                    entity.updateAttributes(form_data).success(function(entity) {
+                        res.end(JSON.stringify({status: "ok"}));
+                    });
+                }
             })
         }else{
             Entity.create(form_data).success(function(entity) {
                 res.end(JSON.stringify({status: "ok"}));
             })
         }
-
-
     },
     removeEntity: function(req, res){
         Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
@@ -58,63 +77,60 @@ var views = {
                     res.end(JSON.stringify({status: "ok"}));
                 })
             }else{
-                res.end(JSON.stringify({status: "error"}));
+                res.end(JSON.stringify({}));
             }
         })
     },
     updateRelation : function(req, res){
         Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
-        Person = req.app.get("models").import(".."+ path.sep + "person"+ path.sep + "models"+ path.sep + "person");
-
-        Event.hasMany(Person, {as : "Person"});
-        Person.hasMany(Event);
+        Person = Event.Person;
 
         res.setHeader('Content-Type', 'application/json');
         /* form TODO Add forms */
-
         var form_data = {};
-        (req.param('eventId')?form_data.eventId = req.param('eventId'):"");
-        (req.param('personaId')?form_data.personaId = req.param('personaId'):"");
+        (req.param('event_id')?form_data.event_id = req.param('event_id'):"");
+        (req.param('person_id')?form_data.person_id = req.param('person_id'):"");
 
-        if(form_data.eventId && form_data.personaId){
-            Event.find(form_data.eventId).success(function(event) {
+        if(form_data.event_id && form_data.person_id){
+            Event.find(form_data.event_id).success(function(event) {
                 if(event){
-                    Person.find(form_data.personaId).success(function(person) {
+                    Person.find(form_data.person_id).success(function(person) {
                         if(person){
-                            event.addPersona(person).success(function(person) {
+                            event.addPerson(person).success(function(person) {
                                 res.end(JSON.stringify({status: "ok"}));
-                            })
+                            });
+                        }else{
+                            res.end(JSON.stringify({}));
                         }
                     });
+                }else{
+                    res.end(JSON.stringify({}));
                 }
             });
+        }else{
+            res.end(JSON.stringify({}));
         }
     },
-    /* TODO FIX REMOVE RELATION */
     removeRelation: function(req, res){
         Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
-        Person = req.app.get("models").import(".."+ path.sep + "person"+ path.sep + "models"+ path.sep + "person");
-
-        Event.hasMany(Person, {as : "Person"});
-        Person.hasMany(Event);
-
         res.setHeader('Content-Type', 'application/json');
         var form_data = {};
-        (req.param('eventId')?form_data.eventId = req.param('eventId'):"");
-        (req.param('personaId')?form_data.personaId = req.param('personaId'):"");
+        (req.param('event_id')?form_data.event_id = req.param('event_id'):"");
+        (req.param('person_id')?form_data.person_id = req.param('person_id'):"");
 
-        if(form_data.eventId && form_data.personaId){
-            Event.find(form_data.eventId).success(function(event) {
+        if(form_data.event_id && form_data.person_id){
+            Event.find(form_data.event_id).success(function(event) {
                 if(event){
-                    Person.find(form_data.personaId).success(function(person) {
-                        if(person){
-                            event.removePerson({ where: {id : form_data.personaId}}).success(function(person) {
-                                res.end(JSON.stringify({status: "removed"}));
-                            })
-                        }
+                    event.getPersons().success(function(persons) {
+                        var _persons = _.filter(persons, function(person){
+                            return person.id != form_data.person_id;
+                        });
+                        event.setPersons(_persons).success(function(person) {
+                            res.end(JSON.stringify({status: "ok"}));
+                        });
                     });
-
-
+                }else{
+                    res.end(JSON.stringify({}));
                 }
             });
         }

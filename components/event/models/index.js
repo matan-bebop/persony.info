@@ -3,7 +3,6 @@ var path = require("path");
 var models = [
     'event',
     'source'
-
 ];
 
 // register app models

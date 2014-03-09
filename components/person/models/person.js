@@ -1,6 +1,6 @@
 var path = require("path");
 module.exports = function(seq, DataTypes) {
-    var Person = seq.define("persona",
+    var Person = seq.define("Person",
         {
             name : { type: DataTypes.STRING, allowNull: false},
             photo: {type: DataTypes.STRING, unique: false},
@@ -12,7 +12,8 @@ module.exports = function(seq, DataTypes) {
         instanceMethods: {
             getInfo: function() {
                 return this.info
-            }
+            },
+            tableName: 'persons'
         }
     });
     return Person

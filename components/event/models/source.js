@@ -7,14 +7,9 @@ module.exports = function(seq, DataTypes) {
             "title": { type: DataTypes.STRING, allowNull: false},
             "link":{ type: DataTypes.STRING, allowNull: false}
         },
-        {
-            instanceMethods: {
-                getInfo: function() {
-                    return this.info
-                }
-            }
-        });
-    Event.hasMany(Source);
-    Source.hasOne(Event);
+        {});
+    Event.hasMany(Source, {as: "Sources", foreignKey : "event_id"});
+    Source.hasOne(Event, {as: "Event"});
+    Source.Event = Event;
     return Source
 };

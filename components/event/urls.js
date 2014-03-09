@@ -2,12 +2,13 @@ var views = require("./views").views;
 
 exports.dispatch = function(app){
     return [
-        {"/event/person/" :  {
+        {"/event/relation/" :  {
+            "post": views.updateRelation,
             "put": views.updateRelation,
             "delete": views.removeRelation
         }},
 
-        {"/event/person/:personid" :  {
+        {"/event/person/:person_id" :  {
             "get": views.getRelatedEntity
         }},
         {"/event/" :  {
