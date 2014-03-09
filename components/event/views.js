@@ -2,13 +2,17 @@ var path = require("path"),
     _ = require("lodash");
 var views = {
     getEntity: function(req, res, next){
-        Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var models = req.app.get("models")
+        Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
+        Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
         res.setHeader('Content-Type', 'application/json');
         /* */
         if(req.params.id){
-            Event.findAll({ where: {id: req.params.id},  limit: 100 }).success(function(entity) {
-                if(entity){
-                    res.end(JSON.stringify(entity));
+            Event.findAll({ where: {id: req.params.id},  limit: 100 }).success(function(entities) {
+                if(entities){
+                    Source.getRelatedEvents(entities, function(){
+                        res.end(JSON.stringify(entities));
+                    });
                 }else{
                     res.send(404, "Nothing found");
                 }
