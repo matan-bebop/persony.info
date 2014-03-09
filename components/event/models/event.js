@@ -12,10 +12,8 @@ module.exports = function(seq, DataTypes) {
         },
         {
             instanceMethods: {
-                getSources: function() {
-                    var sourses = require("."+ path.sep + "source")(seq, DataTypes);
-
-                    return this.description
+                addSources: function(sources) {
+                    this.dataValues.sourses = sources[this.id];
                 }
             }
         });
