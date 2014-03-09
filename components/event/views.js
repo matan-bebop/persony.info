@@ -20,33 +20,6 @@ var views = {
         Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
         Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
         Person = Event.Person;
-        var gathcrSources = function(events, cb){
-            var query = 'SELECT * FROM sources where ';
-            events.forEach(function(event, index, arr){
-                if(index != 0){
-                    query += " or ";
-                }
-                query += "event_id='" + event.id + "'";
-                if(index == arr.length-1){
-                    query += ";"
-                }
-            });
-            models.query(query, Source)
-                .success(function(srs){
-                    var sourted = {};
-                    srs.forEach(function(source){
-                        var id = source.event_id;
-                        if(!sourted[id]){
-                            sourted[id] = []
-                        };
-                        sourted[id].push(source);
-                    });
-                    events.forEach(function(event){
-                        event.addSources(sourted);
-                    });
-                    if(cb)cb();
-                });
-        }
         res.setHeader('Content-Type', 'application/json');
         /* */
 
@@ -55,7 +28,7 @@ var views = {
                 if(person){
                     person.getEvents().success(function(entities) {
                         if(entities){
-                            gathcrSources(entities, function(){
+                            Source.getRelatedEvents(entities, function(){
                                 res.end(JSON.stringify(entities));
                             })
                         }else{
