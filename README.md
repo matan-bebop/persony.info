@@ -19,9 +19,6 @@ Create database and set appropriate settings in ./conf/settings.js database sect
 
 > node ./utils/syncdb
 
-> node ./utils/import_data
-
-
 
 Run
 
@@ -38,3 +35,16 @@ Build
 Test
 
 > grunt test
+
+
+Import Fake data
+
+- Set DEBUG to true inside settings(or settings.local)
+
+To import Persons, Events, Sources:
+
+- Open http://localhost:3000/import
+
+To generate relations between models
+
+- Open http://localhost:3000/related/
