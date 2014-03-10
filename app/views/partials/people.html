@@ -1,5 +1,11 @@
 <div class="container">
-  <ul ng-repeat="person in people">
-    <li><a ng-href="/people/{{person.id}}">{{person.name}}</a></li>
+  <ul class="persons-list">
+    <li ng-repeat="person in persons">
+      <a ng-href="/people/{{person.id}}">
+        <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
+        <div class="pull-left">{{person.name}}</div>
+        <div class="clearfix"></div>
+      </a>
+    </li>
   </ul>
 </div>

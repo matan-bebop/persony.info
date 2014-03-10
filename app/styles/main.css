@@ -132,3 +132,18 @@ ul, ol {
 .person-tags li:hover {
     background: #DDD;
 }
+
+.persons-list {
+    margin: 50px auto;
+}
+
+.persons-list li {
+    display: block;
+    width: 200px;
+    margin-bottom: 20px;
+    line-height: 70px;
+}
+
+.persons-list .person-photo {
+    margin-right: 50px;
+}

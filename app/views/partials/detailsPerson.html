@@ -1,10 +1,12 @@
 <div class="person-detail-header">
   <div class="person-container">
-    <div class="person-photo pull-left">
-      <span class="glyphicon glyphicon-user"></span>
-    </div>
+
+    <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
+
     <div class="person-data pull-left">
+
       <h3 class="pull-left person-name">{{person.name}}</h3>
+
       <div class="pull-right">
         <ul class="social-icons">
           <li><i class="fa fa-facebook-square"></i> <span class="count">0</span></li>
@@ -12,17 +14,24 @@
           <li><i class="fa fa-twitter-square"></i> <span class="count">0</span></li>
         </ul>
       </div>
+
       <div class="clearfix"></div>
+
       <div class="person-info">{{person.info}}</div>
-      <div class="person-social">В мережі: <a href="#">Фейсбук</a>, <a href="#">Твіттер</a></div>
-      <ul class="person-tags">
+
+      <web-presence></web-presence>
+
+      <!--<ul class="person-tags">
         <li><a href="#">Журналісти</a></li>
         <li><a href="#">Громадське</a></li>
         <li><a href="#">Публіцисти</a></li>
         <li><a href="#">Майдан</a></li>
-      </ul>
+      </ul>-->
+
     </div>
+
     <div class="clearfix"></div>
+
   </div>
 </div>
 

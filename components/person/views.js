@@ -1,5 +1,16 @@
 var path = require("path");
 var views = {
+    getAll: function(req, res, next){
+        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
+        res.setHeader('Content-Type', 'application/json');
+        Entity.findAll({}).success(function(entity) {
+            if(entity){
+                res.end(JSON.stringify(entity));
+            }else{
+                res.send(404, "Nothing found");
+            }
+        })
+    },
     getEntity: function(req, res, next){
         Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
@@ -11,7 +22,7 @@ var views = {
                 }else{
                     res.send(404, "Nothing found");
                 }
-            })
+            });
         }
     },
     updateEntity: function(req, res){

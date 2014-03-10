@@ -47,4 +47,4 @@ To import Persons, Events, Sources:
 
 To generate relations between models
 
-- Open http://localhost:3000/related/
+- Open http://localhost:3000/related

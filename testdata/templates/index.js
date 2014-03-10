@@ -1,3 +1,5 @@
+var port = process.env.PORT || 3000;
+
 // number of fake items of each model
 module.exports = {
     'event': 100,
@@ -8,7 +10,7 @@ module.exports = {
             from : {name : "event", items : 100, as : "event_id" },
             to : {name :  "person", items : 20, as : "person_id"},
             type : "ManyToMany",
-            url : "http://localhost:3000/event/relation/"
+            url : "http://localhost:" + port + "/event/relation/"
         }
     ]
 };
