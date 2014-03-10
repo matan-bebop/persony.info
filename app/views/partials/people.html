@@ -3,7 +3,7 @@
     <li ng-repeat="person in persons">
       <a ng-href="/people/{{person.id}}">
         <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
-        <div class="pull-left">{{person.name}}</div>
+        <div class="pull-left person-name">{{person.name}}</div>
         <div class="clearfix"></div>
       </a>
     </li>
