@@ -33,7 +33,21 @@ var views = {
                     person.getEvents().success(function(entities) {
                         if(entities){
                             Source.getRelatedEvents(entities, function(){
-                                res.end(JSON.stringify(entities));
+                                var data = {};
+                                entities.forEach(function(event) {
+                                    var date = event.get('start'),
+                                        year = date.getFullYear(),
+                                        month = date.getMonth();
+
+                                    if (!data[year]) {
+                                        data[year] = {};
+                                    }
+                                    if (!data[year][month]) {
+                                        data[year][month] = [];
+                                    }
+                                    data[year][month].push(event);
+                                });
+                                res.end(JSON.stringify(data));
                             })
                         }else{
                             res.end(JSON.stringify({}));
