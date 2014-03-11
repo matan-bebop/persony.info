@@ -30,54 +30,44 @@ var views = {
         res.setHeader('Content-Type', 'application/json');
 
         if(req.params.person_id){
-            Person.find(req.params.person_id).success(function(person) {
-                if(person){
-                    person.getEvents({order: 'start DESC'}).success(function(entities) {
-                        if(entities){
-                            Source.getRelatedEvents(entities, function(){
-                                var data = {}, tmp = [];
-                                entities.forEach(function(event) {
-                                    var date = event.get('start'),
-                                        year = date.getFullYear(),
-                                        month = date.getMonth();
+            Event.getPersonEvents(req.params.person_id, function(entities){
+                Source.getRelatedEvents(entities, function(){
+                    var data = {}, tmp = [];
+                    entities.forEach(function(event) {
+                        var date = event.get('start'),
+                            year = date.getFullYear(),
+                            month = date.getMonth();
 
-                                    if (!data[year]) {
-                                        data[year] = {};
-                                    }
-                                    if (!data[year][month]) {
-                                        data[year][month] = [];
-                                    }
-                                    data[year][month].push(event);
-                                });
-
-                                if (dataResFormat == "array") {
-
-                                    Object.keys(data).forEach(function(year) {
-                                        var monthes = data[year];
-                                        tmp.push({year: year, monthes: []});
-
-                                        Object.keys(monthes).forEach(function(month) {
-                                            var events = monthes[month];
-                                            tmp[tmp.length-1].monthes.push({month: month, events: events.reverse()})
-                                        });
-                                    });
-
-                                    data = tmp;
-                                    data.reverse();
-                                    data.forEach(function(yearData) {
-                                        yearData.monthes.reverse();
-                                    });
-                                }
-
-                                res.end(JSON.stringify(data));
-                            })
-                        }else{
-                            res.end(JSON.stringify({}));
+                        if (!data[year]) {
+                            data[year] = {};
                         }
+                        if (!data[year][month]) {
+                            data[year][month] = [];
+                        }
+                        data[year][month].push(event);
                     });
-                }else{
-                    res.end(JSON.stringify({}));
-                }
+
+                    if (dataResFormat == "array") {
+
+                        Object.keys(data).forEach(function(year) {
+                            var monthes = data[year];
+                            tmp.push({year: year, monthes: []});
+
+                            Object.keys(monthes).forEach(function(month) {
+                                var events = monthes[month];
+                                tmp[tmp.length-1].monthes.push({month: month, events: events.reverse()})
+                            });
+                        });
+
+                        data = tmp;
+                        data.reverse();
+                        data.forEach(function(yearData) {
+                            yearData.monthes.reverse();
+                        });
+                    }
+
+                    res.end(JSON.stringify(data));
+                })
             });
         }else{
             res.end(JSON.stringify({}));

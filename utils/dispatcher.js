@@ -36,7 +36,6 @@ exports.dispatch = function(app){
             pattern = patterns[j];
             path = getPath(pattern);
             methods = pattern[path];
-
             bindMethods(app, methods, path);
         }
 

@@ -15,7 +15,7 @@ module.exports = function (app) {
             collate: 'utf8_general_ci',
             timestamps: false
         },
-        sync: { force: true },
+        sync: { force: false },
         pool: { maxConnections: 5, maxIdleTime: 30}
     });
 };
