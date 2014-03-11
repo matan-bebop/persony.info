@@ -151,3 +151,7 @@ ul, ol {
 .persons-list .person-photo {
     margin-right: 30px;
 }
+
+.events-list {
+    padding-top: 30px;
+}

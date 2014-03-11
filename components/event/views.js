@@ -20,20 +20,22 @@ var views = {
         }
     },
     getRelatedEntity: function(req, res, next){
-        var models = req.app.get("models")
-        Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
-        Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
-        Person = Event.Person;
+        var models = req.app.get("models"),
+            dataResFormat = req.query.data_format || "hash";
+
+        var Event = models.import(__dirname + path.sep + "models" + path.sep +  "event"),
+            Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source"),
+            Person = Event.Person;
+
         res.setHeader('Content-Type', 'application/json');
-        /* */
 
         if(req.params.person_id){
             Person.find(req.params.person_id).success(function(person) {
                 if(person){
-                    person.getEvents().success(function(entities) {
+                    person.getEvents({order: 'start DESC'}).success(function(entities) {
                         if(entities){
                             Source.getRelatedEvents(entities, function(){
-                                var data = {};
+                                var data = {}, tmp = [];
                                 entities.forEach(function(event) {
                                     var date = event.get('start'),
                                         year = date.getFullYear(),
@@ -47,6 +49,26 @@ var views = {
                                     }
                                     data[year][month].push(event);
                                 });
+
+                                if (dataResFormat == "array") {
+
+                                    Object.keys(data).forEach(function(year) {
+                                        var monthes = data[year];
+                                        tmp.push({year: year, monthes: []});
+
+                                        Object.keys(monthes).forEach(function(month) {
+                                            var events = monthes[month];
+                                            tmp[tmp.length-1].monthes.push({month: month, events: events.reverse()})
+                                        });
+                                    });
+
+                                    data = tmp;
+                                    data.reverse();
+                                    data.forEach(function(yearData) {
+                                        yearData.monthes.reverse();
+                                    });
+                                }
+
                                 res.end(JSON.stringify(data));
                             })
                         }else{

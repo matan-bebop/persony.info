@@ -26,4 +26,6 @@ angular.module('personyApp', [
 
     $locationProvider.html5Mode(true).hashPrefix('!');
 
-  });
+  })
+
+  .constant('monthNames', ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Чернвень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень']);
