@@ -20,7 +20,7 @@ var views = {
         }
     },
     getRelatedEntity: function(req, res, next){
-        var models = req.app.get("models")
+        var models = req.app.get("models");
         Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
         Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
         Person = Event.Person;
@@ -28,34 +28,19 @@ var views = {
         /* */
 
         if(req.params.person_id){
-            Person.find(req.params.person_id).success(function(person) {
-                if(person){
-                    person.getEvents().success(function(entities) {
-                        if(entities){
-                            Source.getRelatedEvents(entities, function(){
-                                var data = {};
-                                entities.forEach(function(event) {
-                                    var date = event.get('start'),
-                                        year = date.getFullYear(),
-                                        month = date.getMonth();
-
-                                    if (!data[year]) {
-                                        data[year] = {};
-                                    }
-                                    if (!data[year][month]) {
-                                        data[year][month] = [];
-                                    }
-                                    data[year][month].push(event);
-                                });
-                                res.end(JSON.stringify(data));
-                            })
-                        }else{
-                            res.end(JSON.stringify({}));
-                        }
+            Event.getPersonEvents(req.params.person_id, function(entities){
+                Source.getRelatedEvents(entities, function(){
+                    var data = {};
+                    entities.forEach(function(event) {
+                        var date = event.get('start'),
+                            year = date.getFullYear(),
+                            month = date.getMonth();
+                        if (!data[year]) {data[year] = {};}
+                        if (!data[year][month]) {data[year][month] = [];}
+                        data[year][month].push(event);
                     });
-                }else{
-                    res.end(JSON.stringify({}));
-                }
+                    res.end(JSON.stringify(data));
+                })
             });
         }else{
             res.end(JSON.stringify({}));
