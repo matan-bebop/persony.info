@@ -8,7 +8,9 @@ module.exports = function(seq, DataTypes) {
             "start": { type: DataTypes.DATE, allowNull: false},          // Дата події (початок)
             "end": { type: DataTypes.DATE, allowNull: true},             // Дата події (кінець)
             "title": { type: DataTypes.STRING, allowNull: false},         // Заголовок події
-            "description": { type: DataTypes.TEXT, allowNull: true }      // Детальний опис події а PML форматі
+            "description": { type: DataTypes.TEXT, allowNull: true },      // Детальний опис події а PML форматі
+            "created_by": { type: DataTypes.STRING, allowNull: true},
+            "published": { type: DataTypes.BOOLEAN, allowNull: false}
         },
         {
             classMethods : {

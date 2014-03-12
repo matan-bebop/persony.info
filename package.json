@@ -6,6 +6,8 @@
     "async": "~0.2.9",
     "ejs": "~0.8.4",
     "passport": "~0.2.0",
+    "passport-http-bearer": "~1.0.1",
+    "crypto": "~0.0.3",
     "lodash" : "~2.4.1",
     "mysql" : "~2.1.0",
     "sequelize" : "~1.7.0",

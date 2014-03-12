@@ -27,11 +27,13 @@ var Sequelize = require("sequelize"),
         sync: { force: true },
         pool: { maxConnections: 5, maxIdleTime: 30}
     }), _app_models, app_models = collectModels();
-
     for(var i= 0,l=app_models.length;i<l;i++){
         try{
             _app_models = require(app_models[i]).sync(seq);
-        }catch (e){}
+        }catch (e){
+            console.log(e)
+
+        }
     }
 
 })();

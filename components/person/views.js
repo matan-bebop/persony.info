@@ -26,22 +26,34 @@ var views = {
         }
     },
     updateEntity: function(req, res){
-        Entity = req.app.get("models").person;
+        var models = req.app.get("models");
+        var Entity = models.import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
         /* */
-        Entity.findOrCreate({ where: {id: req.params.id}}).success(function(entity) {
-            var form_data = {};
-            (req.param('name')?form_data.name = req.param('name'):"");
-            (req.param('photo')?form_data.photo = req.param('photo'):"");
-            (req.param('info')?form_data.info = req.param('info'):"");
-            (req.param('facebook')?form_data.facebook = req.param('facebook'):"");
-            (req.param('twitter')?form_data.twitter = req.param('twitter'):"");
-            if(entity){
-                entity.updateAttributes(form_data).success(function() {
-                   res.end(JSON.stringify({status: "ok"}));
-                })
-            }
-        })
+        var id = req.param('id');
+
+        var form_data = {};
+        (req.param('name')?form_data.name = req.param('name'):"");
+        (req.param('photo')?form_data.photo = req.param('photo'):"");
+        (req.param('info')?form_data.info = req.param('info'):"");
+        (req.param('facebook')?form_data.facebook = req.param('facebook'):"");
+        (req.param('twitter')?form_data.twitter = req.param('twitter'):"");
+
+        if(id){
+            Entity.findOrCreate({id : id}, form_data).success(function(entity) {
+                if(entity){
+                    res.end(JSON.stringify({status: "ok"}));
+                }
+            })
+        }else{
+            Entity.create(form_data).success(function(entity) {
+                if(entity){
+                    res.end(JSON.stringify({status: "ok"}));
+                }
+            })
+        }
+
+
     },
     removeEntity: function(req, res){
         Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");

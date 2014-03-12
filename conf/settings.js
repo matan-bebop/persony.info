@@ -24,7 +24,8 @@ var settings = {
         'partials',
         'person',
         'event',
-        'main'
+        'main',
+        'user'
     ]
 };
 

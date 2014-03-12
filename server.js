@@ -4,6 +4,8 @@ var express = require('express'),
     app = express(),
     urls = require('./utils/urls'),
     path = require('path'),
+    passport = require('passport'),
+    secret = require("./conf/settings").security_key,
     models;
 
 // Express Configuration
@@ -27,10 +29,17 @@ app.configure(function(){
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
+    app.use(express.cookieParser());
+    app.use(express.cookieParser(secret));
+    app.use(express.cookieSession({secret:secret}));
 });
 
-/* Database setup !important to be before url definition */
+/* Database setup !important to be before url & pass definition */
 app.set('models', require("./utils/connectdb")(app));
+
+app.configure(function(){
+    app.use(require("./utils/auth"));
+});
 
 /* Init URL dispatcher */
 urls.handle(app);

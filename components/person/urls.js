@@ -3,7 +3,10 @@ var views = require("./views").views;
 exports.dispatch = function(app){
     return [
         {"/api/person" : {
-            "get" : views.getAll
+            "get" : views.getAll,
+            "post": views.updateEntity,
+            "put" : views.updateEntity,
+            "delete" : views.removeEntity
         }},
         {"/api/person/:id" :  {
             "get": views.getEntity,

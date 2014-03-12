@@ -4,6 +4,7 @@ module.exports = function(Faker){
         "start": Faker.Date.past(10, 1),                     // Дата події (початок)
         "end": Faker.Date.past(5, 1),                       // Дата події (кінець)
         "title": Faker.Lorem.sentence(),                 // Заголовок події
-        "description": Faker.Lorem.paragraphs()  // Детальний опис події а PML форматі
+        "description": Faker.Lorem.paragraphs(),  // Детальний опис події а PML форматі
+        "published" : false
     }
 }

@@ -17,10 +17,8 @@ var settings = require("../conf/settings"),
         for(var method in methods){
             if(methods.hasOwnProperty(method)){
                 try{
-                    app[method](path, methods[method])
-                }catch(e){
-                   console.log(method + " not found.")
-                }
+                   app[method](path, methods[method])
+                }catch(e){}
 
             }
         }
@@ -38,7 +36,5 @@ exports.dispatch = function(app){
             methods = pattern[path];
             bindMethods(app, methods, path);
         }
-
     }
-
 };

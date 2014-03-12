@@ -1,8 +1,9 @@
 var path = require("path"),
     _ = require("lodash");
+
 var views = {
     getEntity: function(req, res, next){
-        var models = req.app.get("models")
+        var models = req.app.get("models");
         Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
         Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
         res.setHeader('Content-Type', 'application/json');
@@ -84,6 +85,10 @@ var views = {
         (req.param('end')?form_data.end = req.param('end'):"");
         (req.param('title')?form_data.title = req.param('title'):"");
         (req.param('fulltext')?form_data.fulltext = req.param('fulltext'):"");
+
+        form_data.published = false;
+        form_data.created_by = req.cookies["connect.sess"];
+
         if(req.param('id')){
             Entity.find({ where: {id: req.param('id')},  limit: 100 }).success(function(entity) {
                 if(entity){
