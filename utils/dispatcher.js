@@ -12,19 +12,20 @@ var settings = require("../conf/settings"),
     getPath = function(obj){
         if(!obj){return "";}
         else{for(var p in obj){if(obj.hasOwnProperty(p)){return p}}}
-    },
-    bindMethods = function(app, methods, path){
+    }, auth = require("./auth");
+
+bindMethods = function(app, passport, methods, path){
         for(var method in methods){
             if(methods.hasOwnProperty(method)){
                 try{
-                   app[method](path, methods[method])
+                        app[method](path, auth, methods[method])
                 }catch(e){}
 
             }
         }
     };
 
-exports.dispatch = function(app){
+exports.dispatch = function(app, passport){
     var URLS = collectURLS(),app_URL,patterns,pattern,path,methods;
     for(var i= 0,l=URLS.length;i<l;i++){
         app_URL = URLS[i];
@@ -34,7 +35,7 @@ exports.dispatch = function(app){
             pattern = patterns[j];
             path = getPath(pattern);
             methods = pattern[path];
-            bindMethods(app, methods, path);
+            bindMethods(app, passport, methods, path);
         }
     }
 };

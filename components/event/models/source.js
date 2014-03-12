@@ -10,23 +10,27 @@ module.exports = function(seq, DataTypes) {
         {
             classMethods: {
                 getRelatedEvents: function(events, cb){
-                    var query = 'SELECT * FROM sources where event_id in (';
-                    events.forEach(function(event, index, arr){
-                        if(index != 0){query += ",";}
-                        query += event.id;
-                        if(index == arr.length-1){query += ");"}
-                    });
-                    seq.query(query, Source)
-                        .success(function(srs){
-                            var sourted = {};
-                            srs.forEach(function(source){
-                                var id = source.event_id;
-                                if(!sourted[id]){sourted[id] = []}
-                                sourted[id].push(source);
-                            });
-                            events.forEach(function(event){event.addSources(sourted);});
-                            if(cb)cb();
+                    if(events.length){
+                        var query = 'SELECT * FROM sources where event_id in (';
+                        events.forEach(function(event, index, arr){
+                            if(index != 0){query += ",";}
+                            query += event.id;
+                            if(index == arr.length-1){query += ");"}
                         });
+                        seq.query(query, Source)
+                            .success(function(srs){
+                                var sourted = {};
+                                srs.forEach(function(source){
+                                    var id = source.event_id;
+                                    if(!sourted[id]){sourted[id] = []}
+                                    sourted[id].push(source);
+                                });
+                                events.forEach(function(event){event.addSources(sourted);});
+                                if(cb)cb();
+                            });
+                    }else{
+                        if(cb)cb();
+                    }
                 }
             }
         });

@@ -31,7 +31,8 @@ var views = {
         res.setHeader('Content-Type', 'application/json');
 
         if(req.params.person_id){
-            Event.getPersonEvents(req.params.person_id, function(entities){
+            Event.getPersonEvents(req, function(entities){
+                entities.forEach(function(event){event.clean();});
                 Source.getRelatedEvents(entities, function(){
                     var data = {}, tmp = [];
                     entities.forEach(function(event) {
@@ -49,7 +50,6 @@ var views = {
                     });
 
                     if (dataResFormat == "array") {
-
                         Object.keys(data).forEach(function(year) {
                             var monthes = data[year];
                             tmp.push({year: year, monthes: []});
@@ -66,7 +66,6 @@ var views = {
                             yearData.monthes.reverse();
                         });
                     }
-
                     res.end(JSON.stringify(data));
                 })
             });
@@ -86,8 +85,7 @@ var views = {
         (req.param('title')?form_data.title = req.param('title'):"");
         (req.param('fulltext')?form_data.fulltext = req.param('fulltext'):"");
 
-        form_data.published = false;
-        form_data.created_by = req.cookies["connect.sess"];
+        form_data.created_by_key = req.session_user.created_by_key;
 
         if(req.param('id')){
             Entity.find({ where: {id: req.param('id')},  limit: 100 }).success(function(entity) {
