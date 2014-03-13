@@ -3,8 +3,8 @@ var path = require("path"),
 
 var views = {
     getEntity: function(req, res, next){
-        var models = req.app.get("models");
-        Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
+        var models = req.app.get("models"),
+        Event = models.import(__dirname + path.sep + "models" + path.sep +  "event"),
         Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
         res.setHeader('Content-Type', 'application/json');
         /* */
@@ -74,7 +74,7 @@ var views = {
         }
     },
     updateEntity: function(req, res){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
         /* form TODO Add forms */
         var form_data = {};
@@ -104,7 +104,7 @@ var views = {
         }
     },
     removeEntity: function(req, res){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
         Entity.find({ where: {id: req.params.id}}).success(function(entity) {
             if(entity){
@@ -117,7 +117,7 @@ var views = {
         })
     },
     updateRelation : function(req, res){
-        Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event"),
         Person = Event.Person;
 
         res.setHeader('Content-Type', 'application/json');
@@ -147,7 +147,7 @@ var views = {
         }
     },
     removeRelation: function(req, res){
-        Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
         var form_data = {};
         (req.param('event_id')?form_data.event_id = req.param('event_id'):"");

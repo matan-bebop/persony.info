@@ -1,7 +1,7 @@
 var path = require("path");
 var views = {
     getAll: function(req, res, next){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
         Entity.findAll({}).success(function(entity) {
             if(entity){
@@ -55,7 +55,7 @@ var views = {
         }
     },
     removeEntity: function(req, res){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
         if(req.session_user.is_moderator){
             Entity.find({ where: {id: req.params.id}}).success(function(entity) {
