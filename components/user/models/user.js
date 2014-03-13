@@ -23,7 +23,7 @@ module.exports = function(seq, DataTypes) {
                                     user = User.build();
                                     user.session_key = session_key;
                                     user.save().success(function(user){
-                                        user.updateAttributes({name:"user_" + user.id}).success(function(user) {
+                                        user.updateAttributes({name:"guest"}).success(function(user) {
                                             if(cb)cb(user);
                                         })
                                     });

@@ -85,7 +85,7 @@ var views = {
         (req.param('end')?form_data.end = req.param('end'):"");
         (req.param('title')?form_data.title = req.param('title'):"");
         (req.param('description')?form_data.description = req.param('description'):"");
-        (req.param('published')?form_data.published = req.param('published'):"");
+        (req.param('published')?form_data.published =(req.param('published') === "true"||req.param('published')==="1"):"");
 
         form_data.created_by_key = req.session_user.created_by_key;
 

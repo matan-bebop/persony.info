@@ -12,7 +12,9 @@ var settings = require("../conf/settings"),
     getPath = function(obj){
         if(!obj){return "";}
         else{for(var p in obj){if(obj.hasOwnProperty(p)){return p}}}
-    }, auth = require("./auth");
+    }, auth_mod = require("./auth"),
+       auth = auth_mod.auth,
+       session = auth_mod.session;
 
 bindMethods = function(app, passport, methods, path){
         var handler;
@@ -23,7 +25,7 @@ bindMethods = function(app, passport, methods, path){
                     if(handler && handler[1] == "auth"){
                         app[method](path, auth, handler[0])
                     }else{
-                        app[method](path, handler[0])
+                        app[method](path, session,handler[0])
                     }
                 }catch(e){}
             }
