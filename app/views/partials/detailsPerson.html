@@ -36,25 +36,22 @@
 </div>
 
 <div class="person-timeline">
-  <ul class="events-list">
-    <li ng-repeat="yearData in eventYears">
-      <div style="margin-bottom: 40px">
-        <div class="pull-left">{{yearData.year}}</div>
-        <div class="pull-left" style="margin-left: 40px">
-          <ul>
-            <li ng-repeat="monthesData in yearData.monthes">
-              <div class="pull-left">{{monthNames[monthesData.month]}}</div>
-              <div class="pull-left" style="margin-left: 40px">
-                <ul>
-                  <li ng-repeat="event in monthesData.events">{{event}}</li>
-                </ul>
-              </div>
-              <div class="clearfix"></div>
+  <ul class="event-years-list">
+    <li ng-repeat="yearData in eventYears" class="li-year">
+      <div class="pull-left event-year">{{yearData.year}}</div>
+      <ul class="event-monthes-list">
+        <li ng-repeat="monthesData in yearData.monthes" class="li-month">
+          <div class="event-month">{{monthNames[monthesData.month]}}</div>
+          <ul class="events-list">
+            <li ng-repeat="event in monthesData.events">
+              <div class="event-date">{{event.start | date: "d"}}</div>
+              <div class="event-icon">{{event.sourses[0].icon}}</div>
+              <a class="event-link" href="#">{{event.title}}</a>
             </li>
           </ul>
-        </div>
-        <div class="clearfix"></div>
-      </div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
     </li>
   </ul>
 </div>

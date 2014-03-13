@@ -1,3 +1,7 @@
+body {
+    color: #999;
+}
+
 a {
     text-decoration: underline;
 }
@@ -5,6 +9,10 @@ a {
 ul, ol {
     margin: 0;
     padding: 0;
+}
+
+ul li, ol li {
+    list-style: none;
 }
 
 .navbar {
@@ -24,7 +32,6 @@ ul, ol {
 .search-form .input-group-addon {
     border: 0;
     height: 27px;
-    color: #999;
     background: #666;
 
     -webkit-border-radius:0;
@@ -54,7 +61,6 @@ ul, ol {
 .person-detail-header {
     padding: 30px 0 0;
     background: #eee;
-    color: #999;
 }
 
 .person-data {
@@ -72,7 +78,6 @@ ul, ol {
     text-align: center;
     background: #FFF;
     border: 5px solid #DDD;
-    color: #999;
     font-size: 25px;
     position: relative;
     z-index: 2;
@@ -152,6 +157,51 @@ ul, ol {
     margin-right: 30px;
 }
 
+.persons-list a .person-photo {
+    color: #DDD;
+}
+
+.event-year {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 20px;
+}
+
+.event-years-list > li {
+    border-bottom: 2px solid #DDD;
+    position: relative;
+}
+
+.event-monthes-list {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+.event-month {
+    width: 258px;
+    text-align: center;
+    display: inline-block;
+}
+
 .events-list {
-    padding-top: 30px;
+    display: inline-block;
+    border-left: 2px solid #DDD;
+}
+
+.events-list li {
+    padding: 10px 0;
+}
+
+.event-years-list:first-child .li-month:first-of-type .events-list,
+.event-years-list:first-child .li-month:first-of-type .event-month {
+    padding-top: 40px;
+}
+
+.event-link, .event-icon, .event-date {
+    display: inline-block;
+}
+
+.event-date {
+    font-size: 12px;
 }
