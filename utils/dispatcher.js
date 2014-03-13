@@ -15,12 +15,17 @@ var settings = require("../conf/settings"),
     }, auth = require("./auth");
 
 bindMethods = function(app, passport, methods, path){
+        var handler;
         for(var method in methods){
             if(methods.hasOwnProperty(method)){
                 try{
-                        app[method](path, auth, methods[method])
+                    handler = methods[method];
+                    if(handler && handler[1] == "auth"){
+                        app[method](path, auth, handler[0])
+                    }else{
+                        app[method](path, handler[0])
+                    }
                 }catch(e){}
-
             }
         }
     };
