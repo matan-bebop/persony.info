@@ -78,12 +78,14 @@ var views = {
         res.setHeader('Content-Type', 'application/json');
         /* form TODO Add forms */
         var form_data = {};
+
         (req.param('id')?form_data.id = req.param('id'):"");
-        (req.param('eventUri')?form_data.eventUri = req.param('eventUri'):"");
+        (req.param('event_uri')?form_data.event_uri = req.param('event_uri'):"");
         (req.param('start')?form_data.start = req.param('start'):"");
         (req.param('end')?form_data.end = req.param('end'):"");
         (req.param('title')?form_data.title = req.param('title'):"");
-        (req.param('fulltext')?form_data.fulltext = req.param('fulltext'):"");
+        (req.param('description')?form_data.description = req.param('description'):"");
+        (req.param('published')?form_data.published = req.param('published'):"");
 
         form_data.created_by_key = req.session_user.created_by_key;
 
