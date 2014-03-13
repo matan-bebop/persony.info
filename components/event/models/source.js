@@ -3,7 +3,15 @@ module.exports = function(seq, DataTypes) {
     var Event = require("./event")(seq, DataTypes);
     var Source = seq.define("source",
         {
-            "icon": { type: DataTypes.STRING, allowNull: false},
+            "icon": { type: DataTypes.ENUM('video-camera',
+                                            'microphone',
+                                            'file-text',
+                                            'twitter',
+                                            'facebook',
+                                            'vk',
+                                            'google-plus',
+                                            'paperclip',
+                                            'link'), allowNull: false, defaultValue : "info"},
             "title": { type: DataTypes.STRING, allowNull: false},
             "link":{ type: DataTypes.STRING, allowNull: false}
         },
