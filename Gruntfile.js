@@ -55,17 +55,6 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      livereload: {
-        files: [
-          '<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.{html,jade}',
-          '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
-          '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
-        ],
-        options: {
-          livereload: false
-        }
-      },
       express: {
         files: [
           'server.js',
