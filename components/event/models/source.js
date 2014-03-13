@@ -3,7 +3,8 @@ module.exports = function(seq, DataTypes) {
     var Event = require("./event")(seq, DataTypes);
     var Source = seq.define("source",
         {
-            "icon": { type: DataTypes.ENUM('video-camera',
+            "icon": { type: DataTypes.ENUM('info',
+                                            'video-camera',
                                             'microphone',
                                             'file-text',
                                             'twitter',
