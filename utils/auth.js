@@ -19,5 +19,4 @@ module.exports = function(req, res, next){
     }else{
         findSession(session_key)
     }
-
 };
