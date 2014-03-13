@@ -53,8 +53,6 @@ var views = {
                 }
             })
         }
-
-
     },
     removeEntity: function(req, res){
         Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
