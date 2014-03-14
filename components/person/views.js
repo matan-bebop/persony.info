@@ -57,7 +57,7 @@ var views = {
     removeEntity: function(req, res){
         var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
-        if(req.session_user.is_moderator){
+        if(req.user.is_moderator){
             Entity.find({ where: {id: req.params.id}}).success(function(entity) {
                 if(entity){
                     entity.destroy().success(function() {

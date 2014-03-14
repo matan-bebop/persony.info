@@ -5,7 +5,7 @@ module.exports = {
         var seq = req.app.get("models"),
             findSession = function(session_key){
                 findByToken(session_key, function(user){
-                    req.session_user = user;
+                    req.user = user||{};
                     next();
                 });
             };
@@ -18,4 +18,4 @@ module.exports = {
     session : function(req, res, next){
         sessions.start(req, res, function(session_key){next();});
     }
-}
+};

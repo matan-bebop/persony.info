@@ -16,7 +16,7 @@ var settings = require("../conf/settings"),
        auth = auth_mod.auth,
        session = auth_mod.session;
 
-bindMethods = function(app, passport, methods, path){
+bindMethods = function(app, methods, path){
         var handler;
         for(var method in methods){
             if(methods.hasOwnProperty(method)){
@@ -25,14 +25,14 @@ bindMethods = function(app, passport, methods, path){
                     if(handler && handler[1] == "auth"){
                         app[method](path, auth, handler[0])
                     }else{
-                        app[method](path, session,handler[0])
+                        app[method](path, session, handler[0])
                     }
                 }catch(e){}
             }
         }
     };
 
-exports.dispatch = function(app, passport){
+exports.dispatch = function(app){
     var URLS = collectURLS(),app_URL,patterns,pattern,path,methods;
     for(var i= 0,l=URLS.length;i<l;i++){
         app_URL = URLS[i];
@@ -42,7 +42,7 @@ exports.dispatch = function(app, passport){
             pattern = patterns[j];
             path = getPath(pattern);
             methods = pattern[path];
-            bindMethods(app, passport, methods, path);
+            bindMethods(app, methods, path);
         }
     }
 };

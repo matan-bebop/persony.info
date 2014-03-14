@@ -9,10 +9,10 @@ var views = {
         res.setHeader('Content-Type', 'application/json');
         /* */
         if(req.params.id){
-            Event.findAll({ where: {id: req.params.id},  limit: 100 }).success(function(entities) {
-                if(entities){
-                    Source.getRelatedEvents(entities, function(){
-                        res.end(JSON.stringify(entities));
+            Event.find({ where: {id: req.params.id},  limit: 100 }).success(function(entity) {
+                if(entity){
+                    Source.getRelatedEvents(entity, req.user, function(){
+                        res.end(JSON.stringify(entity));
                     });
                 }else{
                     res.send(404, "Nothing found");
@@ -33,7 +33,7 @@ var views = {
         if(req.params.person_id){
             Event.getPersonEvents(req, function(entities){
                 entities.forEach(function(event){event.clean();});
-                Source.getRelatedEvents(entities, function(){
+                Source.getRelatedEvents(entities, req.user, function(){
                     var data = {}, tmp = [];
                     entities.forEach(function(event) {
                         var date = event.get('start'),
@@ -76,28 +76,41 @@ var views = {
     updateEntity: function(req, res){
         var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
+        var user = req.user;
         /* form TODO Add forms */
-        var form_data = {};
-
-        (req.param('id')?form_data.id = req.param('id'):"");
-        (req.param('event_uri')?form_data.event_uri = req.param('event_uri'):"");
-        (req.param('start')?form_data.start = req.param('start'):"");
-        (req.param('end')?form_data.end = req.param('end'):"");
-        (req.param('title')?form_data.title = req.param('title'):"");
-        (req.param('description')?form_data.description = req.param('description'):"");
-        (req.param('published')?form_data.published =(req.param('published') === "true"||req.param('published')==="1"):"");
-
-        form_data.created_by_key = req.session_user.created_by_key;
-
-        if(req.param('id')){
-            Entity.find({ where: {id: req.param('id')},  limit: 100 }).success(function(entity) {
-                if(entity){
-                    entity.updateAttributes(form_data).success(function(entity) {
-                        res.end(JSON.stringify({status: "ok"}));
-                    });
-                }
-            })
+        var form_data = {}, suff ="";
+        form_data.created_by_key = req.session.sid;
+        if(user.is_moderator){
+            suff = req.param('published')?"":"_draft";
+            (req.param('id')?form_data["id"] = req.param('id'):"");
+            (req.param('start')?form_data["start" + suff] = req.param('start'):"");
+            (req.param('end')?form_data["end" + suff] = req.param('end'):"");
+            (req.param('title')?form_data["title" + suff] = req.param('title'):"");
+            (req.param('description')?form_data["description" + suff] = req.param('description'):"");
+            (req.param('published')?form_data["published"] = req.param('published'):"");
+            if(req.param('id')){
+                Entity.find({ where: {id: req.param('id')}}).success(function(entity) {
+                    if(entity){
+                        entity.updateAttributes(form_data).success(function(entity) {
+                            res.end(JSON.stringify({status: "ok"}));
+                        });
+                    }else{
+                        Entity.create(form_data).success(function(entity) {
+                            res.end(JSON.stringify({status: "ok"}));
+                        })
+                    }
+                })
+            }else{
+                Entity.create(form_data).success(function(entity) {
+                    res.end(JSON.stringify({status: "ok"}));
+                })
+            }
         }else{
+            suff = "_draft";
+            (req.param('start')?form_data["start" + suff] = req.param('start'):"");
+            (req.param('end')?form_data["end" + suff] = req.param('end'):"");
+            (req.param('title')?form_data["title" + suff] = req.param('title'):"");
+            (req.param('description')?form_data["description" + suff] = req.param('description'):"");
             Entity.create(form_data).success(function(entity) {
                 res.end(JSON.stringify({status: "ok"}));
             })

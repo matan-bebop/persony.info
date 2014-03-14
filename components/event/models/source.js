@@ -18,28 +18,32 @@ module.exports = function(seq, DataTypes) {
         },
         {
             classMethods: {
-                getRelatedEvents: function(events, cb){
-                    if(events.length){
-                        var query = 'SELECT * FROM sources where event_id in (';
-                        events.forEach(function(event, index, arr){
-                            if(index != 0){query += ",";}
-                            query += event.id;
-                            if(index == arr.length-1){query += ");"}
-                        });
-                        seq.query(query, Source)
-                            .success(function(srs){
-                                var sourted = {};
-                                srs.forEach(function(source){
-                                    var id = source.event_id;
-                                    if(!sourted[id]){sourted[id] = []}
-                                    sourted[id].push(source);
-                                });
-                                events.forEach(function(event){event.addSources(sourted);});
-                                if(cb)cb();
-                            });
+                getRelatedEvents: function(events, user, cb){
+                    if(!events.length && events){
+                        events = [events]
                     }else{
                         if(cb)cb();
                     }
+                    var query = 'SELECT * FROM sources where event_id in (';
+                    events.forEach(function(event, index, arr){
+                        if(index != 0){query += ",";}
+                        query += event.id;
+                        if(index == arr.length-1){query += ");"}
+                    });
+                    seq.query(query, Source)
+                        .success(function(srs){
+                            var sourted = {};
+                            srs.forEach(function(source){
+                                var id = source.event_id;
+                                if(!sourted[id]){sourted[id] = []}
+                                sourted[id].push(source);
+                            });
+                            events.forEach(function(event){
+                                event.clean(user);
+                                event.addSources(sourted);
+                            });
+                            if(cb)cb();
+                        });
                 }
             }
         });
