@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('personyApp', [
-  'ngRoute'
+  'ngRoute', 'ngResource'
 ])
   .config(function ($routeProvider, $locationProvider) {
 
@@ -11,7 +11,7 @@ angular.module('personyApp', [
         controller: 'MainCtrl'
       }).when('/people', {
         templateUrl: 'partials/people',
-        controller: 'PeopleCtrl'
+        controller: 'controllers.people'
       }).when('/people/:id', {
         templateUrl: 'partials/detailsPerson',
         controller: 'DetailsPersonCtrl'

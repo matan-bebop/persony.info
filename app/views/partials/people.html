@@ -10,13 +10,13 @@ ng-change="filter.exec()"
 <div id="filters_container">
 	<ul id="filters">
 		<li>
-			<a href="#" ng-click="sort.change('name')" ng-class="{active: sort.is('name')}">
+			<a href="" ng-click="sort.change('name')" ng-class="{active: sort.is('name')}">
 				За абеткою
 			</a>
 		</li>
 		<li class="separator">/</li>
 		<li>
-			<a href="#" ng-click="sort.change('lastEvent')" ng-class="{active: sort.is('lastEvent')}">
+			<a href="" ng-click="sort.change('lastEvent')" ng-class="{active: sort.is('lastEvent')}">
 				За останньою подією
 			</a>
 		</li>
@@ -26,7 +26,7 @@ ng-change="filter.exec()"
 <div class="post_persons">
 	<div ng-repeat="person in persons" class="post_pers">
 		<a ng-href="/people/{{person.id}}">
-			<img src="{{person.photo}}" alt="{{person.name}}" />
+			<img ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}" alt="{{person.name}}" />
 		</a>
 		<div class="text">
 			<h5><a ng-href="/people/{{person.id}}">{{person.name}}</a></h5>
