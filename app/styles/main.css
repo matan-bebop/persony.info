@@ -1,10 +1,26 @@
+body {
+    color: #999;
+    font-family: 'Roboto', Arial, Tahoma, sans-serif !important;
+    font-weight: 300 !important;
+    background: url(../images/agsquare.png) repeat #f2f2f2 ! important;
+}
+
 a {
     text-decoration: underline;
+    color: #3e8ffd;
+}
+
+a:hover {
+    color: #005580;
 }
 
 ul, ol {
     margin: 0;
     padding: 0;
+}
+
+ul li, ol li {
+    list-style: none;
 }
 
 .navbar {
@@ -24,7 +40,6 @@ ul, ol {
 .search-form .input-group-addon {
     border: 0;
     height: 27px;
-    color: #999;
     background: #666;
 
     -webkit-border-radius:0;
@@ -54,7 +69,6 @@ ul, ol {
 .person-detail-header {
     padding: 30px 0 0;
     background: #eee;
-    color: #999;
 }
 
 .person-data {
@@ -72,7 +86,6 @@ ul, ol {
     text-align: center;
     background: #FFF;
     border: 5px solid #DDD;
-    color: #999;
     font-size: 25px;
     position: relative;
     z-index: 2;
@@ -152,6 +165,195 @@ ul, ol {
     margin-right: 30px;
 }
 
+.persons-list a .person-photo {
+    color: #DDD;
+}
+
+.event-year {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 20px;
+}
+
+.event-years-list > li {
+    border-bottom: 2px solid #DDD;
+    position: relative;
+}
+
+.event-monthes-list {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+.event-month {
+    width: 258px;
+    text-align: center;
+    display: inline-block;
+}
+
 .events-list {
-    padding-top: 30px;
+    display: inline-block;
+    border-left: 2px solid #DDD;
+}
+
+.events-list li {
+    padding: 10px 0;
+}
+
+.event-years-list:first-child .li-month:first-of-type .events-list,
+.event-years-list:first-child .li-month:first-of-type .event-month {
+    padding-top: 40px;
+}
+
+.event-link, .event-icon, .event-date {
+    display: inline-block;
+}
+
+.event-date {
+    font-size: 12px;
+}
+
+/*All page*/
+.post_persons {
+    margin: 20px 0;
+    width:100%;
+
+}
+
+.post_pers img {
+    display: block;
+    margin: 0 auto;
+    height:182px;
+}
+
+.post_pers {
+    max-width: 300px;
+    text-align: center;
+    float: left;
+    display: block;
+    padding: 10px 0px;
+    margin: 25px;
+    border: 1px solid #f2f2f2;
+}
+
+.post_pers:hover {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.post_pers hr {
+    border: none;
+    background: #cfcfcf;
+    height: 1px;
+}
+
+h5 {
+    font-size: 22px;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+#filters_container li {
+    font-size: 12px;
+    float: left;
+    padding: 0px 5px;
+	list-style-type: none;
+}
+
+input.filter{
+	float: right;
+}
+
+/*All page*/
+.post_persons {
+    margin: 20px 0;
+    width:100%;
+    
+}
+
+.post_pers img {
+    display: block;
+    margin: 0 auto;
+    height:182px;
+}
+
+.post_pers {
+    max-width: 300px;
+    text-align: center;
+    float: left;
+    display: block;
+    padding: 10px 0px;
+    margin: 25px;
+    border: 1px solid #f2f2f2;
+}
+
+.post_pers:hover {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.post_pers hr {
+    border: none;
+    background: #cfcfcf;
+    height: 1px;
+}
+
+h5 {
+    font-size: 22px;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+#filters_container li {
+    font-size: 12px;
+    float: left;
+    padding: 0px 5px;
+	list-style-type: none;
+}
+
+input.filter{
+	float: right;
+}
+
+/*Search*/
+
+.main-search-block{
+	display: block;
+	float:none !important;
+    margin:150px auto 20px !important;
+}
+
+h4 {
+    font: 32px 'Roboto', sans-serif;
+    font-weight: 100;
+    margin: 0;
+}
+
+.interest_person {
+    display: block;
+    float: left;
+    min-height: 185px !important;
+    min-width: 207px;
+    max-width: 207px;
+    padding: 10px;
+    margin:10px;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+}
+
+.interest_person img {
+    display: block;
+    margin: 0 auto;
+    max-width: 120px;
+	max-height: 120px;
+    min-width: 120px;
+}
+
+.interest_person:hover {
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    background: #f8f8f8;
 }

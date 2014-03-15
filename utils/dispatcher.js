@@ -12,14 +12,22 @@ var settings = require("../conf/settings"),
     getPath = function(obj){
         if(!obj){return "";}
         else{for(var p in obj){if(obj.hasOwnProperty(p)){return p}}}
-    },
-    bindMethods = function(app, methods, path){
+    }, auth_mod = require("./auth"),
+       auth = auth_mod.auth,
+       session = auth_mod.session;
+
+bindMethods = function(app, methods, path){
+        var handler;
         for(var method in methods){
             if(methods.hasOwnProperty(method)){
                 try{
-                   app[method](path, methods[method])
+                    handler = methods[method];
+                    if(handler && handler[1] == "auth"){
+                        app[method](path, auth, handler[0])
+                    }else{
+                        app[method](path, session, handler[0])
+                    }
                 }catch(e){}
-
             }
         }
     };

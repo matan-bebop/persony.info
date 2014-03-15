@@ -25,11 +25,8 @@ module.exports.sync = function(seq){
 // sync models with DB
 module.exports.add = function(seq, m, item){
     var _models = {};
-    console.log("------------------")
         models.forEach(function(model){
             _models[model] = seq.import(__dirname + path.sep + model);
-            console.log(m)
-            console.log(model)
             if(model==m){
 
                 _models[model].create(item).success(function(item) {if(item){console.log("|");}})

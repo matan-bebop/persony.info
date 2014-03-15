@@ -3,16 +3,16 @@ var path = require("path"),
 
 var views = {
     getEntity: function(req, res, next){
-        var models = req.app.get("models");
-        Event = models.import(__dirname + path.sep + "models" + path.sep +  "event");
+        var models = req.app.get("models"),
+        Event = models.import(__dirname + path.sep + "models" + path.sep +  "event"),
         Source =  models.import(__dirname + path.sep + "models" + path.sep +  "source");
         res.setHeader('Content-Type', 'application/json');
         /* */
         if(req.params.id){
-            Event.findAll({ where: {id: req.params.id},  limit: 100 }).success(function(entities) {
-                if(entities){
-                    Source.getRelatedEvents(entities, function(){
-                        res.end(JSON.stringify(entities));
+            Event.find({ where: {id: req.params.id},  limit: 100 }).success(function(entity) {
+                if(entity){
+                    Source.getRelatedEvents(entity, req.user, function(){
+                        res.end(JSON.stringify(entity));
                     });
                 }else{
                     res.send(404, "Nothing found");
@@ -31,8 +31,9 @@ var views = {
         res.setHeader('Content-Type', 'application/json');
 
         if(req.params.person_id){
-            Event.getPersonEvents(req.params.person_id, function(entities){
-                Source.getRelatedEvents(entities, function(){
+            Event.getPersonEvents(req, function(entities){
+                entities.forEach(function(event){event.clean();});
+                Source.getRelatedEvents(entities, req.user, function(){
                     var data = {}, tmp = [];
                     entities.forEach(function(event) {
                         var date = event.get('start'),
@@ -49,7 +50,6 @@ var views = {
                     });
 
                     if (dataResFormat == "array") {
-
                         Object.keys(data).forEach(function(year) {
                             var monthes = data[year];
                             tmp.push({year: year, monthes: []});
@@ -66,7 +66,6 @@ var views = {
                             yearData.monthes.reverse();
                         });
                     }
-
                     res.end(JSON.stringify(data));
                 })
             });
@@ -75,36 +74,50 @@ var views = {
         }
     },
     updateEntity: function(req, res){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
+        var user = req.user;
         /* form TODO Add forms */
-        var form_data = {};
-        (req.param('id')?form_data.id = req.param('id'):"");
-        (req.param('eventUri')?form_data.eventUri = req.param('eventUri'):"");
-        (req.param('start')?form_data.start = req.param('start'):"");
-        (req.param('end')?form_data.end = req.param('end'):"");
-        (req.param('title')?form_data.title = req.param('title'):"");
-        (req.param('fulltext')?form_data.fulltext = req.param('fulltext'):"");
-
-        form_data.published = false;
-        form_data.created_by = req.cookies["connect.sess"];
-
-        if(req.param('id')){
-            Entity.find({ where: {id: req.param('id')},  limit: 100 }).success(function(entity) {
-                if(entity){
-                    entity.updateAttributes(form_data).success(function(entity) {
-                        res.end(JSON.stringify({status: "ok"}));
-                    });
-                }
-            })
+        var form_data = {}, suff ="";
+        form_data.created_by_key = req.session.sid;
+        if(user.is_moderator){
+            suff = req.param('published')?"":"_draft";
+            (req.param('id')?form_data["id"] = req.param('id'):"");
+            (req.param('start')?form_data["start" + suff] = req.param('start'):"");
+            (req.param('end')?form_data["end" + suff] = req.param('end'):"");
+            (req.param('title')?form_data["title" + suff] = req.param('title'):"");
+            (req.param('description')?form_data["description" + suff] = req.param('description'):"");
+            (req.param('published')?form_data["published"] = req.param('published'):"");
+            if(req.param('id')){
+                Entity.find({ where: {id: req.param('id')}}).success(function(entity) {
+                    if(entity){
+                        entity.updateAttributes(form_data).success(function(entity) {
+                            res.end(JSON.stringify({status: "ok"}));
+                        });
+                    }else{
+                        Entity.create(form_data).success(function(entity) {
+                            res.end(JSON.stringify({status: "ok"}));
+                        })
+                    }
+                })
+            }else{
+                Entity.create(form_data).success(function(entity) {
+                    res.end(JSON.stringify({status: "ok"}));
+                })
+            }
         }else{
+            suff = "_draft";
+            (req.param('start')?form_data["start" + suff] = req.param('start'):"");
+            (req.param('end')?form_data["end" + suff] = req.param('end'):"");
+            (req.param('title')?form_data["title" + suff] = req.param('title'):"");
+            (req.param('description')?form_data["description" + suff] = req.param('description'):"");
             Entity.create(form_data).success(function(entity) {
                 res.end(JSON.stringify({status: "ok"}));
             })
         }
     },
     removeEntity: function(req, res){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
         Entity.find({ where: {id: req.params.id}}).success(function(entity) {
             if(entity){
@@ -117,7 +130,7 @@ var views = {
         })
     },
     updateRelation : function(req, res){
-        Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event"),
         Person = Event.Person;
 
         res.setHeader('Content-Type', 'application/json');
@@ -147,7 +160,7 @@ var views = {
         }
     },
     removeRelation: function(req, res){
-        Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
+        var Event = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "event");
         res.setHeader('Content-Type', 'application/json');
         var form_data = {};
         (req.param('event_id')?form_data.event_id = req.param('event_id'):"");

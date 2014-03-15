@@ -4,19 +4,19 @@ var views = require("./views").views,
 exports.dispatch = function(app){
     var DEV_URLS = [{
                         "/import" :  {
-                            "get": views.importData
+                            "get": [views.importData, false]
                         }
                      },
                     {
                         "/related" :  {
-                            "get": views.importRelation
+                            "get": [views.importRelation, false]
                         }
                     }
                 ],
         URLS = [
                 {
                     "/*" :  {
-                        "get": views.index
+                        "get": [views.index, false]
                     }
                 }
             ];

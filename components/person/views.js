@@ -1,7 +1,7 @@
 var path = require("path");
 var views = {
     getAll: function(req, res, next){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
         Entity.findAll({}).success(function(entity) {
             if(entity){
@@ -38,11 +38,12 @@ var views = {
         (req.param('info')?form_data.info = req.param('info'):"");
         (req.param('facebook')?form_data.facebook = req.param('facebook'):"");
         (req.param('twitter')?form_data.twitter = req.param('twitter'):"");
-
         if(id){
-            Entity.findOrCreate({id : id}, form_data).success(function(entity) {
+            Entity.findOrCreate({id : id}).success(function(entity) {
                 if(entity){
-                    res.end(JSON.stringify({status: "ok"}));
+                    entity.updateAttributes(form_data).success(function(entity) {
+                        res.end(JSON.stringify({status: "ok"}));
+                    })
                 }
             })
         }else{
@@ -52,21 +53,23 @@ var views = {
                 }
             })
         }
-
-
     },
     removeEntity: function(req, res){
-        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
+        var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
         res.setHeader('Content-Type', 'application/json');
-        Entity.find({ where: {id: req.params.id}}).success(function(entity) {
-            if(entity){
-                entity.destroy().success(function() {
-                    res.end(JSON.stringify({status: "ok"}));
-                })
-            }else{
-                res.end(JSON.stringify({status: "error"}));
-            }
-        })
+        if(req.user.is_moderator){
+            Entity.find({ where: {id: req.params.id}}).success(function(entity) {
+                if(entity){
+                    entity.destroy().success(function() {
+                        res.end(JSON.stringify({status: "ok"}));
+                    })
+                }else{
+                    res.end(JSON.stringify({status: "error"}));
+                }
+            })
+        }else{
+            res.end(JSON.stringify({status: "Unauthorized"}));
+        }
     }
 };
 

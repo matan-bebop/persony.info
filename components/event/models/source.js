@@ -3,13 +3,27 @@ module.exports = function(seq, DataTypes) {
     var Event = require("./event")(seq, DataTypes);
     var Source = seq.define("source",
         {
-            "icon": { type: DataTypes.STRING, allowNull: false},
+            "icon": { type: DataTypes.ENUM('info',
+                                            'video-camera',
+                                            'microphone',
+                                            'file-text',
+                                            'twitter',
+                                            'facebook',
+                                            'vk',
+                                            'google-plus',
+                                            'paperclip',
+                                            'link'), allowNull: false, defaultValue : "info"},
             "title": { type: DataTypes.STRING, allowNull: false},
             "link":{ type: DataTypes.STRING, allowNull: false}
         },
         {
             classMethods: {
-                getRelatedEvents: function(events, cb){
+                getRelatedEvents: function(events, user, cb){
+                    if(!events.length && events){
+                        events = [events]
+                    }else{
+                        if(cb)cb();
+                    }
                     var query = 'SELECT * FROM sources where event_id in (';
                     events.forEach(function(event, index, arr){
                         if(index != 0){query += ",";}
@@ -24,7 +38,10 @@ module.exports = function(seq, DataTypes) {
                                 if(!sourted[id]){sourted[id] = []}
                                 sourted[id].push(source);
                             });
-                            events.forEach(function(event){event.addSources(sourted);});
+                            events.forEach(function(event){
+                                event.clean(user);
+                                event.addSources(sourted);
+                            });
                             if(cb)cb();
                         });
                 }

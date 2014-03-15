@@ -55,17 +55,6 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      livereload: {
-        files: [
-          '<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.{html,jade}',
-          '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
-          '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
-        ],
-        options: {
-          livereload: true
-        }
-      },
       express: {
         files: [
           'server.js',
@@ -73,7 +62,7 @@ module.exports = function (grunt) {
         ],
         tasks: ['express:dev'],
         options: {
-          livereload: true,
+          //livereload: false,
           nospawn: true //Without this option specified express won't be reloaded
         }
       },
