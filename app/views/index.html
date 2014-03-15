@@ -53,13 +53,13 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+    <nav class="navbar navbar-static-top navbar-inverse" role="navigation" ng-controller="controllers.navbar">
       <div class="container">
         <div class="logo pull-left">
           <a href="/"><img src="images/logo.png" height="40px"/></a>
         </div>
         <ul class="nav navbar-left navbar-nav">
-          <li ng-class="{'active':getClass('/people')}"><a ng-href="/people">Люди</a></li>
+          <li ng-class="{'active':getClass('/people')}"><a ng-href="/people" ng-click="search.clear(); search.showResults()">Люди</a></li>
           <li ng-class="{'active':getClass('/about')}"><a href="/about">Про проект</a></li>
         </ul>
         <ul class="nav navbar-right navbar-nav">
@@ -67,8 +67,12 @@
         </ul>
         <form class="navbar-form navbar-right search-form" role="search">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control search-input" placeholder="Шукати">
+            <span class="input-group-addon" ng-click="search.showResults()"><i class="fa fa-search"></i></span>
+            <input
+                    type="text" class="form-control search-input" placeholder="Шукати"
+                    ng-model="search.keyword"
+                    on-enter="search.showResults()"
+                    >
           </div>
         </form>
           <ul class="nav navbar-nav navbar-right">
@@ -188,13 +192,16 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/services/page.js"></script>
     <script src="scripts/services/person.js"></script>
+    <script src="scripts/services/search.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/people.js"></script>
     <script src="scripts/controllers/detailsPerson.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/page.js"></script>
+    <script src="scripts/controllers/navbar.js"></script>
     <script src="scripts/directives/userAvatar.js"></script>
     <script src="scripts/directives/webPresence.js"></script>
+    <script src="scripts/directives/onEnter.js"></script>
     <!-- endbuild -->
 
 </body>

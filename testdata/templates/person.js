@@ -7,6 +7,7 @@ module.exports = function(Faker){
         "photo": avatarsEnum[Faker.random.number(7)] || '',
         "info": Faker.Lorem.paragraph(),
         "facebook": Faker.Internet.domainName(),
-        "twitter": Faker.Internet.domainName()
+        "twitter": Faker.Internet.domainName(),
+        "isFeatured": !Faker.random.number(3)
     }
-}
+};

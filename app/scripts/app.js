@@ -8,7 +8,7 @@ angular.module('personyApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
-        controller: 'MainCtrl'
+        controller: 'controllers.main'
       }).when('/people', {
         templateUrl: 'partials/people',
         controller: 'controllers.people'

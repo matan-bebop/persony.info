@@ -6,7 +6,8 @@ module.exports = function(seq, DataTypes) {
             photo: {type: DataTypes.STRING, unique: false},
             info: { type: DataTypes.TEXT, allowNull: true },
             facebook: { type: DataTypes.STRING, allowNull: false},
-            twitter: { type: DataTypes.STRING, allowNull: false}
+            twitter: { type: DataTypes.STRING, allowNull: false},
+            isFeatured: {type: DataTypes.BOOLEAN, allowNull: false}
         },
         {
         instanceMethods: {
