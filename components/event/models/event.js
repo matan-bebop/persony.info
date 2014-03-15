@@ -58,7 +58,7 @@ module.exports = function(seq, DataTypes) {
                     delete _t.dataValues.created_by_key;
                     if(!user.is_moderator){
                         Object.keys(_t.dataValues).forEach(function(key){
-                            if(key.endsWith("_draft")){
+                           if(key.endsWith("_draft")){
                                 delete _t.dataValues[key];
                             }
                         })

@@ -32,9 +32,9 @@ var views = {
 
         if(req.params.person_id){
             Event.getPersonEvents(req, function(entities){
-                entities.forEach(function(event){event.clean();});
                 Source.getRelatedEvents(entities, req.user, function(){
                     var data = {}, tmp = [];
+
                     entities.forEach(function(event) {
                         var date = event.get('start'),
                             year = date.getFullYear(),
@@ -66,6 +66,9 @@ var views = {
                             yearData.monthes.reverse();
                         });
                     }
+                    entities.forEach(function(event) {
+                        event.clean(req.user);
+                    });
                     res.end(JSON.stringify(data));
                 })
             });

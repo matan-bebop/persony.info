@@ -39,7 +39,6 @@ module.exports = function(seq, DataTypes) {
                                 sourted[id].push(source);
                             });
                             events.forEach(function(event){
-                                event.clean(user);
                                 event.addSources(sourted);
                             });
                             if(cb)cb();
