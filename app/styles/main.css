@@ -5,6 +5,30 @@ body {
     background: url(../images/agsquare.png) repeat #f2f2f2 ! important;
 }
 
+.menu li, a, .interest_person, .post_pers {
+    -webkit-transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -moz-transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -o-transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.nav li:hover {
+    border-bottom: 2px solid #3e8ffd;
+}
+
+.nav a:hover {
+    color: #3e8ffd;
+    text-decoration: none;
+}
+
+.nav a {
+    color: #b2b2b2;
+    text-decoration: none;
+    line-height: 60px;
+    display: block;
+}
+
 a {
     text-decoration: underline;
     color: #3e8ffd;
