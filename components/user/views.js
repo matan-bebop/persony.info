@@ -41,6 +41,17 @@ exports.views = {
                             }));
         }
     },
+    currentUser : function(req, res){
+        res.setHeader('Content-Type', 'application/json');
+        var user = req.user;
+        if(user && user.logged_in){
+            user.clean();
+            res.end(JSON.stringify(user));
+        }else{
+            res.end(JSON.stringify({}));
+        }
+
+    },
     logOut : function(req, res){
         res.setHeader('Content-Type', 'application/json');
         var user = req.user;
@@ -62,29 +73,39 @@ exports.views = {
             var form_data = {};
             (req.param('email')?form_data.email = req.param('email'):"");
             (req.param('password')?form_data.password = req.param('password'):"");
-            (req.param('password_confirm')?form_data.password_confirm = req.param('password_confirm'):"");
 
             if(
                 form_data.email &&
                 form_data.password &&
                 form_data.password == req.param('password_confirm')
                 ){
-                User.create(form_data).success(function(user){
-                    if(user){
+                User.find({where : {email : form_data.email}}).success(function(user){
+                    if(user && user.validPassword(form_data.password, user.password)){
                         user.logIn(session, function(){
                             res.end(JSON.stringify({
-                                action: "signin",
+                                action: "login",
                                 status: "ok"
                             }));
                         });
                     }else{
-                        res.end(JSON.stringify({
-                            action: "login",
-                            status: "error",
-                            errors : ["Unknown error"]
-                        }));
+                        User.create(form_data).success(function(user){
+                            if(user){
+                                user.logIn(session, function(){
+                                    res.end(JSON.stringify({
+                                        action: "signin",
+                                        status: "ok"
+                                    }));
+                                });
+                            }else{
+                                res.end(JSON.stringify({
+                                    action: "login",
+                                    status: "error",
+                                    errors : ["Unknown error"]
+                                }));
+                            }
+                        })
                     }
-                })
+                });
             }else{
                 res.end(JSON.stringify({
                     action: "login",

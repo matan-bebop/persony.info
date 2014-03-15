@@ -16,10 +16,11 @@ body {
 .nav li {
     height: 58px;
     padding: 0 20px;
+    border-bottom: 2px solid transparent;
 }
 
 .nav li:hover {
-    border-bottom: 2px solid #3e8ffd;
+    border-bottom: 2px solid #3E8FFD;
     color: #3e8ffd;
 }
 
