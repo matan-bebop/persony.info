@@ -1,4 +1,5 @@
 var sessions = {};
+var expired = {};
 var key = require("../conf/settings").security_key;
 var crypto = require('crypto'),
     hash = function (key, salt) {
