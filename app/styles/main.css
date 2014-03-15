@@ -1,5 +1,8 @@
 body {
     color: #999;
+    font-family: 'Roboto', Arial, Tahoma, sans-serif;
+    font-weight: 300;
+    background: url(../images/agsquare.png) repeat #f2f2f2;
 }
 
 a {
