@@ -23,6 +23,24 @@ var views = {
                     res.send(404, "Nothing found");
                 }
             });
+        }else{
+            res.end(JSON.stringify({}));
+        }
+    },
+    getEntitySearch: function(req, res, next){
+        Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep +  "person");
+        res.setHeader('Content-Type', 'application/json');
+        /* */
+        if(req.param("query")){
+            Entity.findAndCountAll({ where: ["name LIKE '%"+req.param("query")+"%'"]}).success(function(result) {
+                if(result.rows){
+                    res.end(JSON.stringify(result.rows));
+                }else{
+                    res.end(JSON.stringify([]));
+                }
+            });
+        }else{
+            res.end(JSON.stringify([]));
         }
     },
     updateEntity: function(req, res){
