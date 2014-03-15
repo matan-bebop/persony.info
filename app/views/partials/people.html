@@ -1,38 +1,44 @@
 <div class="container">
-<h4>Всі персони</h4>
-<input
-type="text"
-class="input-large search-query filter"
-placeholder="Фільтр"
-ng-model="filter.search"
-ng-change="filter.exec()"
->
-<div id="filters_container">
-	<ul id="filters">
-		<li>
-			<a href="" ng-click="sort.change('name')" ng-class="{active: sort.is('name')}">
-				За абеткою
-			</a>
-		</li>
-		<li class="separator">/</li>
-		<li>
-			<a href="" ng-click="sort.change('lastEvent')" ng-class="{active: sort.is('lastEvent')}">
-				За останньою подією
-			</a>
-		</li>
-	</ul>
-</div>
-<div class="clearfix"></div>
-<div class="post_persons">
-	<div ng-repeat="person in persons" class="post_pers">
-		<a ng-href="/people/{{person.id}}">
-			<img ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}" alt="{{person.name}}" />
-		</a>
-		<div class="text">
-			<h5><a ng-href="/people/{{person.id}}">{{person.name}}</a></h5>
-			<p class="date">{{person.lastEvent | date:"dd MMM yyyy"}}</p>
-			<p ng-bind-html="person.content">Почесний кролик народународу народу народу народу народу народу народу</p>
-		</div>
-		<a class="plus_wrapper" ng-href="/people/{{person.id}}"></a>
-	</div>
+    <h4>Всі персони</h4>
+    <input
+            type="text"
+            class="input-large search-query filter"
+            placeholder="Фільтр"
+            ng-model="filter.search"
+            ng-change="filter.exec()"
+            >
+
+    <div id="filters_container">
+        <ul id="filters">
+            <li>
+                <a href="" ng-click="sort.change('name')" ng-class="{active: sort.is('name')}">
+                    За абеткою
+                </a>
+            </li>
+            <li class="separator">/</li>
+            <li>
+                <a href="" ng-click="sort.change('lastEvent')" ng-class="{active: sort.is('lastEvent')}">
+                    За останньою подією
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div class="post_persons">
+        <div ng-repeat="person in persons" class="post_pers">
+            <a ng-href="/people/{{person.id}}">
+                <img ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}"
+                     alt="{{person.name}}"/>
+            </a>
+
+            <div class="text">
+                <h5><a ng-href="/people/{{person.id}}">{{person.name}}</a></h5>
+
+                <p class="date">{{person.lastEvent | date:"dd MMM yyyy"}}</p>
+
+                <p ng-bind-html="person.info"></p>
+            </div>
+            <a class="plus_wrapper" ng-href="/people/{{person.id}}"></a>
+        </div>
+    </div>
 </div>
