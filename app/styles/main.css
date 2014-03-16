@@ -409,3 +409,95 @@ h4 {
     border: 1px solid #d9d9d9;
     background: #f8f8f8;
 }
+/*Footer*/
+.wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+#footer {
+	min-height: 120px;
+	background: #252528;
+	color: #fff;
+	
+    margin: 0 auto;
+    max-width: 1260px;
+    border-radius: 10px 10px 0 0;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+#footer .social {
+    margin-top: 0px;
+    text-align: center;
+
+}
+
+#footer .social a {
+    margin: 10px;
+    text-decoration: none;
+}
+
+.social a {
+    margin: 10px;
+    text-decoration: none;
+}
+
+.social a span {
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+}
+
+.social span.ico1,
+.social span.ico1h {
+    background-position: 0px 0px;
+}
+
+.social span.ico2,
+.social span.ico2h {
+    background-position: -37px 0px;
+}
+
+.social span.ico3,
+.social span.ico3h {
+    background-position: -75px 0px;
+}
+
+.social span.ico7,
+.social span.ico7h {
+    background-position: -226px 0px;
+}
+
+.social a:hover span.socialicons {
+    display: none;
+}
+
+.social a:hover span.socialicons_h {
+    display: inline-block !important;
+}
+
+.social span.socialicons_h {
+    display: none;
+}
+
+.socialicons {
+    background: url('../images/socialicons.png') no-repeat;
+    width: 265px;
+    height: 36px;
+}
+
+.socialicons_h {
+    background: url('../images/socialicons_h.png') no-repeat;
+    width: 265px;
+    height: 36px;
+}
+
+#footer .copyright {
+    color: #a6a6a7;
+    font-style: italic;
+    text-align: center;
+    margin-top: 30px;
+}
