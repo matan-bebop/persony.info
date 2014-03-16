@@ -47,6 +47,10 @@ module.exports = function(seq, DataTypes) {
                             "logged_in" : false
                         }
                     ).success(function(){if(cb)cb()});
+                },
+                clean : function(){
+                    delete this.dataValues.session_key;
+                    delete this.dataValues.password;
                 }
             },
             classMethods: {
