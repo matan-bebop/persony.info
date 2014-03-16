@@ -505,3 +505,9 @@ h4 {
     text-align: center;
     margin-top: 30px;
 }
+
+/*Alpha version*/
+.logo_ukr img{
+	display: block;
+	margin: 20px auto;
+}
