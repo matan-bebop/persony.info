@@ -13,26 +13,32 @@ body {
     transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+.navbar-static-top{
+	border-width: 0;
+}
+
 .nav li {
-    height: 58px;
+    height: 50px !important;
     padding: 0 20px;
-    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    border-bottom: 4px solid transparent;
 }
 
-.nav li:hover {
-    border-bottom: 2px solid #3E8FFD;
+.nav li:hover{
+    border-bottom: 4px solid #3E8FFD;
     color: #3e8ffd;
 }
 
-.nav a:hover {
-    color: #3e8ffd;
+.nav a:hover, .nav li:hover a, .navbar-nav>.active>a:hover{
+    color: #3e8ffd !important;
     text-decoration: none;
 }
 
 .nav a {
     color: #b2b2b2;
     text-decoration: none;
-    line-height: 60px;
+    font-weight: 600;
+    line-height: 14px !important;
     display: block;
 }
 
@@ -73,9 +79,15 @@ ul li, ol li {
     height: 27px;
     background: #666;
 
-    -webkit-border-radius:0;
-    -moz-border-radius:0;
-    border-radius:0;
+    -webkit-border-radius: 2px 0px 0px 2px;
+    -moz-border-radius: 2px 0px 0px 2px;
+    border-radius: 2px 0px 0px 2px;
+}
+
+.search-input{
+	-webkit-border-radius: 0px 2px 2px 0px !important;
+    -moz-border-radius: 0px 2px 2px 0px !important;
+    border-radius: 0px 2px 2px 0px !important;
 }
 
 .search-form .search-input {
@@ -250,58 +262,6 @@ ul li, ol li {
 .post_persons {
     margin: 20px 0;
     width:100%;
-
-}
-
-.post_pers img {
-    display: block;
-    margin: 0 auto;
-    height:182px;
-}
-
-.post_pers {
-    max-width: 300px;
-    text-align: center;
-    float: left;
-    display: block;
-    padding: 10px 0px;
-    margin: 25px;
-    border: 1px solid #f2f2f2;
-}
-
-.post_pers:hover {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background: #fff;
-}
-
-.post_pers hr {
-    border: none;
-    background: #cfcfcf;
-    height: 1px;
-}
-
-h5 {
-    font-size: 22px;
-    font-weight: 300;
-    margin: 10px 0;
-}
-
-#filters_container li {
-    font-size: 12px;
-    float: left;
-    padding: 0px 5px;
-	list-style-type: none;
-}
-
-input.filter{
-	float: right;
-}
-
-/*All page*/
-.post_persons {
-    margin: 20px 0;
-    width:100%;
     
 }
 
@@ -313,16 +273,22 @@ input.filter{
 
 .post_pers {
     max-width: 300px;
+    height: 380px;
+    overflow: hidden;
+    position: relative;
     text-align: center;
     float: left;
-    display: block;
-    padding: 10px 0px;
+    display: inline;
+    padding: 10px;
     margin: 25px;
     border: 1px solid #f2f2f2;
 }
 
 .post_pers:hover {
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    
     border: 1px solid #ccc;
     background: #fff;
 }
@@ -348,9 +314,60 @@ h5 {
 
 input.filter{
 	float: right;
+	max-width: 300px;
 }
 
-/*Search*/
+.post_pers .read-more { 
+	position: absolute; 
+	bottom: -10px;
+	padding-top: 35px;
+	left: 0px;
+	height: 65px;
+	width: 100%; 
+	text-align: center; 
+	
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(242,242,242,0)),color-stop(1, rgba(242,242,242,1)));
+	background-image: -webkit-linear-gradient(top, rgba(242,242,242,0), rgba(242,242,242,1));
+	background-image: -moz-linear-gradient(top, rgba(242,242,242,0), rgba(242,242,242,1));
+	background-image: -ms-linear-gradient(top, rgba(242,242,242,0), rgba(242,242,242,1));
+	background-image: -o-linear-gradient(top, rgba(242,242,242,0), rgba(242,242,242,1));
+	
+	border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.post_pers:hover .read-more{
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(255,255,255,0)),color-stop(1, rgba(255,255,255,1)));
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
+	background-image: -moz-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
+	background-image: -o-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+.post_pers .read-more .button{
+	margin-top: 100px;
+	border: 2px solid #0266ec;
+	background: #8abbfe;
+	padding: 2px 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #222;
+	font-weight: 500;
+	font-size: 14px;
+	text-decoration: none;
+	vertical-align: middle;
+} 
+
+
+.post_pers .read-more .button:hover{
+	border-color: #28597a;
+	background: #28597a;
+	color: #eee;
+}
+
+/*Main*/
 
 .main-search-block{
 	display: block;
@@ -386,6 +403,9 @@ h4 {
 
 .interest_person:hover {
     border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
     border: 1px solid #d9d9d9;
     background: #f8f8f8;
 }
