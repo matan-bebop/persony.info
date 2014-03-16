@@ -46,12 +46,14 @@
             <li ng-repeat="event in monthesData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
               <div class="event-icon">{{event.sourses[0].icon}}</div>
-              <div class="event-body">
-                   <div class="short">
-                        <a class="event-link" href="#">{{event.title}}</a>
+              <div class="event-body" default-state="'short'">
+                   <div class="short" ng-show="state.is('short')">
+                       SHORT:
+                        <a class="event-link" href="" ng-click="state.set('detail')">{{event.title}}</a>
                    </div>
-                   <div class="detail">
-                        <a class="event-link" href="#">{{event.title}}</a>
+                   <div class="detail" ng-show="state.is('detail')">
+                       DETAIL:
+                        <a class="event-link" href="" ng-click="state.set('short')">{{event.title}}</a>
                    </div>
               </div>
             </li>
