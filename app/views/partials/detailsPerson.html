@@ -7,13 +7,13 @@
 
       <h3 class="pull-left person-name">{{person.name}}</h3>
 
-      <div class="pull-right">
+      <!--div class="pull-right">
         <ul class="social-icons">
           <li><i class="fa fa-facebook-square"></i> <span class="count">0</span></li>
           <li><i class="fa fa-google-plus"></i> <span class="count">0</span></li>
           <li><i class="fa fa-twitter-square"></i> <span class="count">0</span></li>
         </ul>
-      </div>
+      </div-->
 
       <div class="clearfix"></div>
 
@@ -46,7 +46,14 @@
             <li ng-repeat="event in monthesData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
               <div class="event-icon">{{event.sourses[0].icon}}</div>
-              <a class="event-link" href="#">{{event.title}}</a>
+              <div class="event-body">
+                   <div class="short">
+                        <a class="event-link" href="#">{{event.title}}</a>
+                   </div>
+                   <div class="detail">
+                        <a class="event-link" href="#">{{event.title}}</a>
+                   </div>
+              </div>
             </li>
           </ul>
         </li>
