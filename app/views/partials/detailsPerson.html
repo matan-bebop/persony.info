@@ -50,7 +50,7 @@
                   <div id="tail"></div>
                   <a class="event-title ng-binding" href="" ng-click="state.set('short')">{{event.title}}</a>
 
-                  <div class="event-detail-date">{{event.start | date:"d MMMM"}}</div>
+                  <div class="event-detail-date">{{event.start | date:"d MMMM"}}{{event.end - event.start}}</div>
                   <div class="detail-info">
                     <div class="info-wrap-img" ng-if="event.image">
                       <img ng-src="{{event.getImageSrc()}}"/>
