@@ -8,6 +8,11 @@ exports.dispatch = function(app){
                         }
                      },
                     {
+                        "/import_json" :  {
+                            "get": [views.importJson, false]
+                        }
+                    },
+                    {
                         "/related" :  {
                             "get": [views.importRelation, false]
                         }
