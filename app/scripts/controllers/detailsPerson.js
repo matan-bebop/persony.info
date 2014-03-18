@@ -1,28 +1,19 @@
-'use strict';
+(function () {
+    'use strict';
 
-angular.module('personyApp').controller('DetailsPersonCtrl', ['Page', '$routeParams', '$http', '$scope', 'monthNames',
-    function (Page, $routeParams, $http, $scope, monthNames) {
-        $scope.person = {
-            name: '',
-            info: '',
-            photo: '',
-            facebook: '',
-            twitter: ''
-        };
+    angular.module('personyApp').controller(
+        'DetailsPersonCtrl',
+        ['Page', '$routeParams', 'Person', 'Event', '$scope', 'monthNames',
+         function (Page, $routeParams, Person, Event, $scope, monthNames) {
+             $scope.person = Person.get(
+                 {id: $routeParams.id},
+                 function () {
+                     Page.setTitle('Персони | ' + $scope.person.name);
+                 }
+             );
+             $scope.monthNames = monthNames;
 
-        $scope.monthNames = monthNames;
-
-        $http.get('/api/person/' + $routeParams.id).success(function(data) {
-            $scope.person = data;
-            Page.setTitle('Персони | ' + $scope.person.name);
-        }).error(function() {
-            console.log(arguments);
-        });
-
-        $http.get('/api/event/person/' + $routeParams.id  + '?data_format=array').success(function(data) {
-            $scope.eventYears = data;
-        }).error(function() {
-            console.log(arguments);
-        });
-
-    }]);
+             $scope.eventYears = Event.queryByPerson({entityId: $routeParams.id});
+         }]
+    );
+}());

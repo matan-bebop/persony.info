@@ -6,11 +6,12 @@
     <div class="person-data pull-left">
 
       <h3 class="pull-left person-name">{{person.name}}</h3>
+
       <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
-           <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
-           <div class="twitter" title="Твітнути">Twitter</div>
-           <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
-           <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
+        <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
+        <div class="twitter" title="Твітнути">Twitter</div>
+        <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
+        <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
       </div>
       <div class="clearfix"></div>
 
@@ -33,23 +34,40 @@
           <ul class="events-list">
             <li ng-repeat="event in monthesData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
-              <div class="event-icon"><div class="event-icon-marker">{{event.sourses[0].icon}}i</div></div>
+              <div class="event-icon">
+                <div
+                    class="event-icon-marker"
+                    source="{{event.sourses[0].icon}}"
+                    href="{{event.sourses[0].link}}"
+                    >
+                </div>
+              </div>
               <div class="event-body" default-state="'short'">
-                   <div class="short" ng-show="state.is('short')">
-                        <a class="event-link" href="" ng-click="state.set('detail')">{{event.title}}</a>
-                   </div>
-                   <div class="detail" ng-show="state.is('detail')">
-		        <div id="tail"></div>
-                   	<a class="event-title ng-binding" href="" ng-click="state.set('short')">{{event.title}}</a>
-                        <div class="event-detail-date">{{event.start | date:"dd MMM yyyy"}} (4 лютого)</div>
-                        <div class="detail-info">
-			     <div class="info-wrap-img"><img src="http://www.europarl.europa.eu/the-president/transform/neartext/galaxy-president/content/static/images/flag_of_ukraine.jpg?hash=1395035991408477895471286393223" /></div>
-			     <div class="info-wrap">
-				<p class="description">Хтось щось <a href="#">дико</a> дико зробив текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст тексттекст текст текст текст текст текст текст текст текст текст текст текст</p>
-				<p class="source">Джерело: <a href="#">Фейсбук</a></p>
-                             </div>
-		        </div>
-	           </div>
+                <div class="short" ng-show="state.is('short')">
+                  <a class="event-link" href="" ng-click="state.set('detail')">{{event.title}}</a>
+                </div>
+                <div class="detail" ng-show="state.is('detail')">
+                  <div id="tail"></div>
+                  <a class="event-title ng-binding" href="" ng-click="state.set('short')">{{event.title}}</a>
+
+                  <div class="event-detail-date">{{event.start | date:"dd MMM yyyy"}} (4 лютого)</div>
+                  <div class="detail-info">
+                    <div class="info-wrap-img" ng-if="event.image">
+                      <img ng-src="{{event.getImageSrc()}}"/>
+                    </div>
+                    <div class="info-wrap">
+                      <p class="description">{{event.description}}</p>
+
+
+                      <p class="source">
+                        Джерело:
+                        <span ng-repeat="source in event.sourses">
+                          <a ng-href="{{source.link}}">{{source.icon}}</a>
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </li>
             <div class="clearfix"></div>

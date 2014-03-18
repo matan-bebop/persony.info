@@ -552,10 +552,10 @@ h4 {
 }
 
 .event-icon-marker {
-	
-	width: 40px;
-	height: 40px;
-	background: #bbb;
+    background: url('../images/socicons_h.png') no-repeat;
+	width: 33px;
+	height: 33px;
+	/*background: #bbb;*/
 	text-align: center;
 	font: italic 22px Georgia, Times, serif;
 	font-weight: 600;
@@ -565,6 +565,27 @@ h4 {
 	border-radius: 20px;
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
+    cursor: pointer;
+}
+
+.event-icon-marker.facebook {
+    background-position: 0px 0px;
+}
+
+.event-icon-marker.twitter {
+    background-position: -37px 0px;
+}
+
+.event-icon-marker.google-plus {
+    background-position: -75px 0px;
+}
+
+.event-icon-marker.vkontakte {
+    background-position: -226px 0px;
+}
+
+.event-icon-marker.default {
+    background: #bbb;
 }
 
 .event-body{

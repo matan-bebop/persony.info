@@ -21,9 +21,8 @@ module.exports = function(seq, DataTypes) {
                 getRelatedEvents: function(events, user, cb){
                     if(!events.length && events){
                         events = [events]
-                    }else{
-                        if(cb)cb();
                     }
+
                     var query = 'SELECT * FROM sources where event_id in (';
                     events.forEach(function(event, index, arr){
                         if(index != 0){query += ",";}
