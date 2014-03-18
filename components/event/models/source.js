@@ -19,7 +19,7 @@ module.exports = function(seq, DataTypes) {
         {
             classMethods: {
                 getRelatedEvents: function(events, user, cb){
-                    if(!events.length && events){
+                    if(!events.length && events.id){
                         events = [events]
                     }
 
