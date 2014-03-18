@@ -5,10 +5,14 @@
         return {
             restrict: 'C',
             link: function (scope, element, attrs) {
-                if (attrs.source && ['facebook', 'twitter', 'google-plus', 'vkontakte'].indexOf(attrs.source) !== -1) {
-                    element.addClass(attrs.source).text('');
+                var source = attrs.source;
+                if (source === 'vk') {
+                    source = 'vkontakte';
+                }
+                if (source && ['facebook', 'twitter', 'google-plus', 'vkontakte'].indexOf(source) !== -1) {
+                    element.addClass(source).text('');
                 } else {
-                    element.addClass('default').text(attrs.source[0]);
+                    element.addClass('default').text(source[0]);
                 }
 
                 if (attrs.href) {
