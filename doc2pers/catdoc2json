@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+
+import sys
+import json
+
+from person import Person
+
+
+class HamnoJSONevent(object):
+    def __init__(self, ev):
+        self.start = ev.start
+        self.content = ev.title
+        self.fulltext = ev.body
+        self.sources = ev.sources
+        self.imagesData = [{"uri" : link} for link in ev.images]
+        self.group = "Всі"
+        if ev.tags.count("світ"):
+            self.className = "person-full-world"
+        elif ev.tags.count("біо"):
+            self.className = "person-biography"
+        else:
+            self.className = "person-full"
+
+
+class HamnoJSON(object):
+    def __init__(self, events):
+        self.operatingevents = [HamnoJSONevent(ev).__dict__ for ev in events]
+        self.biography = []
+        self.worldevents = []
+
+
+p = Person()
+p.read_descrition(sys.stdin)
+p.read_events(sys.stdin)
+
+print(json.dumps(HamnoJSON(p.events).__dict__))

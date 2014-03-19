@@ -1,4 +1,5 @@
 var import_data = require("../../utils/importdata"),
+    import_json = require("../../utils/importJson"),
     import_models = require("../../testdata/templates");
 
 exports.views = {
@@ -35,5 +36,11 @@ exports.views = {
                 })
             }
         }
+    },
+    importJson : function(req, res) {
+        console.log("JSON Data import::");
+        import_json.run(function(){
+            res.end('Test relations import for models completed')
+        })
     }
 };

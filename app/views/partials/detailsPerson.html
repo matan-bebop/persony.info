@@ -34,6 +34,15 @@
           <ul class="events-list">
             <li ng-repeat="event in monthsData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
+              <!--div ng-if="{{numberOfDays(event.start, event.end)}} < '29'" class="event-icon">
+                <div
+                    class="event-icon-marker"
+                    source="{{event.sourses[0].icon}}"
+                    href="{{event.sourses[0].link}}"
+                    >
+                </div>
+              </div>
+              <div ng-if="{{numberOfDays(event.start, event.end)}} > '29'" class="event-icon"><div class="event-icon-marker event-icon-durable">D</div></div-->
               <div class="event-icon">
                 <div
                     class="event-icon-marker"

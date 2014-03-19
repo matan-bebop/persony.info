@@ -14,6 +14,16 @@
                 );
 
                 $scope.eventYears = Event.queryByPerson({entityId: $routeParams.id});
+
+                $scope.numberOfDays = function(startDate, endDate) {
+                    if (startDate && endDate) {
+                        var millisecondsPerDay = 1000 * 60 * 60 * 24;
+                        var millisBetween = endDate.getTime() - startDate.getTime();
+                        var days = millisBetween / millisecondsPerDay;
+
+                        return Math.floor(days);
+                    }
+                };
             }
         ]
     );
