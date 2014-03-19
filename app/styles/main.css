@@ -225,12 +225,12 @@ ul li, ol li {
     position: relative;
 }
 
-.event-monthes-list > li {
+.event-months-list > li {
     border-bottom: 1px dashed #DDD;
     position: relative;
 }
 
-.event-monthes-list {
+.event-months-list {
     margin: 0 auto;
     width: 1024px;
 }

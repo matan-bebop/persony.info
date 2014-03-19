@@ -13,7 +13,7 @@
             return this.value;
         };
         State.prototype.is = function (value) {
-            return value == this.value;
+            return value === this.value;
         };
 
         return {

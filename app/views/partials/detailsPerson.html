@@ -28,17 +28,17 @@
   <ul class="event-years-list">
     <li ng-repeat="yearData in eventYears" class="li-year">
       <div class="pull-left event-year">{{yearData.year}}</div>
-      <ul class="event-monthes-list">
-        <li ng-repeat="monthesData in yearData.monthes" class="li-month">
-          <div class="event-month">{{monthNames[monthesData.month]}}</div>
+      <ul class="event-months-list">
+        <li ng-repeat="monthsData in yearData.months" class="li-month">
+          <div class="event-month">{{monthsData.month | monthName}}</div>
           <ul class="events-list">
-            <li ng-repeat="event in monthesData.events">
+            <li ng-repeat="event in monthsData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
               <div class="event-icon">
                 <div
                     class="event-icon-marker"
-                    source="{{event.sourses[0].icon}}"
-                    href="{{event.sourses[0].link}}"
+                    source="{{event.sources[0].icon}}"
+                    href="{{event.sources[0].link}}"
                     >
                 </div>
               </div>
@@ -61,7 +61,7 @@
 
                       <p class="source">
                         Джерело:
-                        <span ng-repeat="source in event.sourses">
+                        <span ng-repeat="source in event.sources">
                           <a ng-href="{{source.link}}">{{source.icon}}</a>
                         </span>
                       </p>
