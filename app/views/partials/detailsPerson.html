@@ -34,7 +34,7 @@
           <ul class="events-list">
             <li ng-repeat="event in monthesData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
-              <div ng-if="event.end - event.start !== '365'" class="event-icon">
+              <div ng-if="{{numberOfDays(event.start, event.end)}} !== '365'" class="event-icon">
                 <div
                     class="event-icon-marker"
                     source="{{event.sourses[0].icon}}"
@@ -42,7 +42,7 @@
                     >
                 </div>
               </div>
-              <div ng-if="event.end - event.start === '365'" class="event-icon-durable">D</div>
+              <div ng-if="{{numberOfDays(event.start, event.end)}} === '365'" class="event-icon-durable">D</div>
               <div class="event-body" default-state="'short'">
                 <div class="short" ng-show="state.is('short')">
                   <a class="event-link" href="" ng-click="state.set('detail')">{{event.title}}</a>
@@ -51,7 +51,7 @@
                   <div id="tail"></div>
                   <a class="event-title ng-binding" href="" ng-click="state.set('short')">{{event.title}}</a>
 
-                  <div class="event-detail-date">{{event.start | date:"d MMMM"}}{{event.end | date:"d MMMM"}}{{event.end}}{{numberOfDays(event.start, event.end)}}</div>
+                  <div class="event-detail-date">{{event.start | date:"d MMMM"}}{{numberOfDays(event.start, event.end)}}</div>
                   <div class="detail-info">
                     <div class="info-wrap-img" ng-if="event.image">
                       <img ng-src="{{event.getImageSrc()}}"/>
