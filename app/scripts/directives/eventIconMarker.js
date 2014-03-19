@@ -11,7 +11,7 @@
                 }
                 if (source && ['facebook', 'twitter', 'google-plus', 'vkontakte'].indexOf(source) !== -1) {
                     element.addClass(source).text('');
-                } else {
+                } else if (source) {
                     element.addClass('default').text(source[0]);
                 }
 

@@ -15,11 +15,15 @@
 
                 $scope.eventYears = Event.queryByPerson({entityId: $routeParams.id});
 
-                $scope.numberOfDays = function(startDate, endDate) {
+                $scope.Event = new Event;
+
+                $scope.numberOfDays = function (startDate, endDate) {
+                    startDate = new Date(startDate);
+                    endDate = new Date(endDate);
                     if (startDate && endDate) {
-                        var millisecondsPerDay = 1000 * 60 * 60 * 24;
-                        var millisBetween = endDate.getTime() - startDate.getTime();
-                        var days = millisBetween / millisecondsPerDay;
+                        var millisecondsPerDay = 1000 * 60 * 60 * 24,
+                            millisBetween = endDate.getTime() - startDate.getTime(),
+                            days = millisBetween / millisecondsPerDay;
 
                         return Math.floor(days);
                     }
