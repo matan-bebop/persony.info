@@ -34,7 +34,7 @@
           <ul class="events-list">
             <li ng-repeat="event in monthesData.events">
               <div class="event-date">{{event.start | date: "d"}}</div>
-              <div ng-if="{{numberOfDays(event.start, event.end)}} !== '365'" class="event-icon">
+              <!--div ng-if="{{numberOfDays(event.start, event.end)}} !== '365'" class="event-icon">
                 <div
                     class="event-icon-marker"
                     source="{{event.sourses[0].icon}}"
@@ -42,6 +42,7 @@
                     >
                 </div>
               </div>
+              <div ng-if="{{numberOfDays(event.start, event.end)}} === '365'" class="event-icon-durable">D</div-->
               <div ng-if="{{numberOfDays(event.start, event.end)}} === '365'" class="event-icon-durable">D</div>
               <div class="event-body" default-state="'short'">
                 <div class="short" ng-show="state.is('short')">
