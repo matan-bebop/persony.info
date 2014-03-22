@@ -20,3 +20,4 @@ public
 app/bower_components
 heroku
 conf/settings.local.js
+/app/styles/compiled

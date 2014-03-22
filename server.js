@@ -1,6 +1,7 @@
 'use strict';
 // Module dependencies.
 var express = require('express'),
+    sass = require('node-sass'),
     app = express(),
     urls = require('./utils/urls'),
     path = require('path'),
@@ -8,11 +9,21 @@ var express = require('express'),
     models;
 
 // Express Configuration
+app.configure(function () {
+    app.use(
+        sass.middleware({
+            src: [__dirname, 'app', 'styles', 'sass'].join('/'),
+            dest: [__dirname, 'app'].join('/'),
+            debug: true,
+            outputStyle: 'compressed'
+        })
+    );
+});
+
 app.configure('development', function () {
     if (process.env.LIVERELOAD) {
         app.use(require('connect-livereload')());
     }
-    app.use(express.static(path.join(__dirname, '.tmp')));
     app.use(express.static(path.join(__dirname, 'app')));
     app.use(express.errorHandler());
     app.set('views', __dirname + '/app/views');

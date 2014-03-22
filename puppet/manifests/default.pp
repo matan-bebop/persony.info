@@ -13,7 +13,7 @@ class apt_get_update {
 
 # Handy tools good to have in dev environment
 class tools {
-  package {['mc', 'htop', 'git']:
+  package {['mc', 'htop', 'git', 'virtualbox-guest-additions']:
     ensure => "installed"
   }
 }

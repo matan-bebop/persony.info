@@ -1,14 +1,21 @@
 persony.info
 ============
 
-main repo for persony.info
-Basic requirements:
+main repo for persony.info project
 
-Node (+npm, bower [npm install bower], grunt [npm install grunt])
+Basic requirements
+------------------
 
-Mysql
+* Node
+    * npm
+    * bower [npm install bower]
+    * grunt [npm install grunt]
+* Mysql
 
-Local deploy:
+Local deploy
+------------
+
+Working environment can be created with [Vagrant](http://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
 
 Create database and set appropriate settings in ./conf/settings.js database section
 
@@ -20,7 +27,7 @@ Create database and set appropriate settings in ./conf/settings.js database sect
 > node ./utils/syncdb
 
 
-Run
+*Run*
 
 for development (inside vm will fail on xdg-open, so force should be used)
 > grunt serve --force
@@ -28,16 +35,16 @@ for development (inside vm will fail on xdg-open, so force should be used)
 for production
 > npm start
 
-Build
+*Build*
 
 > grunt build
 
-Test
+*Test*
 
 > grunt test
 
 
-Import Fake data
+*Import Fake data*
 
 - Set DEBUG to true inside settings(or settings.local)
 
@@ -48,3 +55,10 @@ To import Persons, Events, Sources:
 To generate relations between models
 
 - Open http://localhost:3000/related
+
+
+SASS
+-----
+
+*.scss files should be located in **[project root]/app/styles/sass/styles/compiled/** directory
+and they will be served as **/app/styles/compiled/\*.css**
