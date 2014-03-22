@@ -16,6 +16,8 @@ Local deploy
 ------------
 
 Working environment can be created with [Vagrant](http://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
+Don't forget to fetch puppet modules with
+> git submodule update --init
 
 Create database and set appropriate settings in ./conf/settings.js database section
 
