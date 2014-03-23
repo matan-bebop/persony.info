@@ -16,6 +16,8 @@ Local deploy
 ------------
 
 Working environment can be created with [Vagrant](http://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
+Don't forget to fetch puppet modules with
+> git submodule update --init
 
 Create database and set appropriate settings in ./conf/settings.js database section
 
@@ -60,5 +62,5 @@ To generate relations between models
 SASS
 -----
 
-*.scss files should be located in **[project root]/app/styles/sass/styles/compiled/** directory
+*.scss files should be located in **[project root]/app/styles/sass/** directory
 and they will be served as **/app/styles/compiled/\*.css**

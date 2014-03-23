@@ -11,16 +11,17 @@ class apt_get_update {
   }
 }
 
-# Handy tools good to have in dev environment
-class tools {
-  package {['mc', 'htop', 'git']:
-    ensure => "installed"
-  }
-}
-
 # Declare (invoke) the apt_get_update
 class { 'apt_get_update':
   stage => preinstall
+}
+
+# Handy tools good to have in dev environment
+class tools {
+  package {['mc', 'htop', 'git']:
+    ensure => "installed",
+    require => Class['apt_get_update']
+  }
 }
 
 # Install tools
@@ -28,6 +29,16 @@ class { 'tools':
   stage => preinstall,
   require => Class['apt_get_update']
 }
+
+# Ruby
+class ruby {
+  package {['ruby1.9.3']:
+    ensure => "installed",
+    require => Class['apt_get_update']
+  }
+}
+
+include ruby
 
 # --- NodeJS --- #
 
@@ -43,6 +54,11 @@ class node_tools {
     ensure => present,
     provider => 'npm',
     require => Class["nodejs"],
+  }
+  package { ['compass']:
+    ensure => present,
+    provider => 'gem',
+    require => Class['ruby']
   }
 }
 

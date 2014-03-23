@@ -1,29 +1,21 @@
 'use strict';
 // Module dependencies.
 var express = require('express'),
-    sass = require('node-sass'),
     compass = require('node-compass'),
     app = express(),
-    urls = require('./utils/urls'),
+    urls = require(__dirname + '/utils/urls'),
     path = require('path'),
-    secret = require("./conf/settings").security_key,
+    secret = require(__dirname + "/conf/settings").security_key,
     models;
 
 // Express Configuration
 app.configure(function () {
     app.use(
-        sass.middleware({
-            src: [__dirname, 'app', 'styles', 'sass'].join('/'),
-            dest: [__dirname, 'app'].join('/'),
-            debug: true,
-            outputStyle: 'compressed'
-        })
-    );
-    app.use(
         compass({
-            project: [__dirname, 'app', 'styles', 'sass', 'compass'].join('/'),
-            sass: [__dirname, 'app', 'styles', 'sass', 'styles', 'compiled'].join('/'),
-            css: [__dirname, 'app', 'styles', 'compiled'].join('/')
+            project: [__dirname, 'app'].join('/'),
+            sass: 'styles/sass',
+            css: 'styles/compiled',
+            logging: true
         })
     );
 });
@@ -54,7 +46,7 @@ app.configure(function () {
 });
 
 /* Database setup !important to be before url & pass definition */
-app.set('models', require("./utils/connectdb")(app));
+app.set('models', require(__dirname + "/utils/connectdb")(app));
 
 /* Init URL dispatcher */
 urls.handle(app);
