@@ -50,7 +50,7 @@ class node_tools {
   package {['xdg-utils']:
     ensure => "installed"
   }
-  package { ['bower', 'grunt-cli']:
+  package { ['bower', 'grunt-cli', 'supervisor']:
     ensure => present,
     provider => 'npm',
     require => Class["nodejs"],
@@ -68,4 +68,10 @@ include node_tools
 
 class { '::mysql::server':
   root_password   => 'mysql'
+}
+
+mysql_database { 'personDB':
+  ensure  => 'present',
+  charset => 'utf8',
+  collate => 'utf8_unicode_ci',
 }
