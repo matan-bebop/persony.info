@@ -69,3 +69,9 @@ include node_tools
 class { '::mysql::server':
   root_password   => 'mysql'
 }
+
+mysql_database { 'personDB':
+  ensure  => 'present',
+  charset => 'utf8',
+  collate => 'utf8_unicode_ci',
+}
