@@ -1,0 +1,105 @@
+@mixin lin-gradient($from, $to) {
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
+  background-image: -webkit-linear-gradient(top, $from, $to);
+  background-image: -moz-linear-gradient(top, $from, $to);
+  background-image: -ms-linear-gradient(top, $from, $to);
+  background-image: -o-linear-gradient(top, $from, $to);
+}
+
+.post_persons {
+  margin: 20px 0;
+  width:100%;
+}
+
+.post_pers img {
+  display: block;
+  margin: 0 auto;
+  height:182px;
+}
+
+.post_pers {
+  max-width: 300px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  float: left;
+  display: inline;
+  padding: 10px;
+  margin: 25px;
+  border: 1px solid #f2f2f2;
+
+  @include easings;
+}
+
+.post_pers:hover {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+.post_pers hr {
+  border: none;
+  background: #cfcfcf;
+  height: 1px;
+}
+
+h5 {
+  font-size: 22px;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+#filters_container li {
+  font-size: 12px;
+  float: left;
+  padding: 0px 5px;
+  list-style-type: none;
+}
+
+input.filter{
+  float: right;
+  max-width: 300px;
+}
+
+.post_pers .read-more {
+  position: absolute;
+  bottom: -10px;
+  padding-top: 35px;
+  left: 0px;
+  height: 65px;
+  width: 100%;
+  text-align: center;
+
+  @include lin-gradient(rgba(242,242,242,0), rgba(242,242,242,1));
+  @include border-radius(5px);
+}
+
+.post_pers:hover .read-more{
+  @include lin-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+.post_pers .read-more .button{
+  margin-top: 100px;
+  border: 2px solid #0266ec;
+  background: #8abbfe;
+  padding: 2px 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #222;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+
+.post_pers .read-more .button:hover{
+  border-color: #28597a;
+  background: #28597a;
+  color: #eee;
+}

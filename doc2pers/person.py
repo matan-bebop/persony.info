@@ -24,14 +24,14 @@ class Person(object):
     def read_descrition(self, f):
         [self.surname, self.firstname, self.middlename] = read_name(f)
         self.brief = read_brief(f)
-        self.photo = read_paragraph(f).strip()
+        self.photo = concat_lines(read_paragraph(f)).strip()
 
 
     def read_events(self, f):
         ev = read_event(f)
         while ev is not None:
             self.events.append(ev)
-            ev = read_event(f, ev.start)
+            ev = read_event(f, ev)
 
     def full_name(self):
         return (self.surname + ' ' 

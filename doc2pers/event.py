@@ -2,8 +2,6 @@ import re
 
 date_re = re.compile(r"(((?P<n1>\d+)\.)?((?P<n2>(\d+))\.)?(?P<year>\d+))")
 
-tags_re = re.compile(r"\((\w+)(\s*,\s*\w+\s*)*\)")
-
 uri_symbols = r"[^ ,\"]*"
 supported_protocols = r"((https?)|(ftp))"
 
@@ -13,11 +11,25 @@ def link_re_str(suffix):
     return "(?P<link>" + supported_protocols + r"://" \
             + uri_symbols + suffix + ")"
 
+replaces = {"---" : "—",
+            "--" : "—",
+            "<<" : "«",
+            ">>" : "»",
+            r'"([^"]*)"' : r"«\1»",
+            "„" : "«",
+            "“" : "»",
+            "„" : "«",
+            "”" : "»",
+            "“" : "«",
+            "”" : "»"
+           }
+
 # # #
 
 class Event(object):
     def __init__(self):
         self.start = None
+        self.end = None
         self.title = None
         self.body = None
         self.images = []
@@ -46,13 +58,45 @@ def read_paragraph(f):
     last_paragraph = None
     #else: return None
 
+
 def unread_paragraph(f):
     global paragraph_rejected, last_paragraph
     paragraph_rejected = True
     return last_paragraph
 
+
 def concat_lines(s, sep=""):
     return s.replace('\n', sep)
+
+
+def cure_pml(multiline, pml_sep="*"):
+    return multiline # TODO: It only makes things worse
+    res = ""
+    n = 0
+    for s in multiline.split(pml_sep):
+        if n%2:
+            res += s.replace('\n', "")
+        else:
+            res += s
+        res += pml_sep
+        n += 1
+    return res
+
+
+def beautify(body):
+    s = body
+    for fr, to in replaces.items():
+        s = re.sub(fr, to, s)
+    return s
+
+
+def split_interval(s):
+    l = s.split('-')
+    if len(l) < 2:
+        l = s.split('–')
+        if len(l) < 2:
+            l.append(None)
+    return l
 
 def parse_date(s):
     m = date_re.match(s)
@@ -69,17 +113,18 @@ def parse_date(s):
 
 
 def read_title(f):
-    par = concat_lines(read_paragraph(f), ' ')
+    par = beautify(concat_lines(read_paragraph(f), ' '))
     if par is not None:
         return par.strip()
 
 
 def read_body(f):
-    return concat_lines(read_paragraph(f), ' ')
+    return beautify(concat_lines(cure_pml(read_paragraph(f)), ' '))
 
 # # #
 
 def fetch_title(uri):
+    # TODO: Add automatic title fetching
     return uri
 
 def parse_simple_link(s, suffix):
@@ -90,6 +135,8 @@ def parse_simple_link(s, suffix):
     d = m.groupdict()
     if not d["title"]:
         d["title"] = fetch_title(d["link"])
+    else:
+        d["title"] = beautify(d["title"])
     return d
 
 
@@ -101,6 +148,8 @@ def parse_msword_link(s, suffix):
     d = m.groupdict()
     if d["title"] == d["link"]:
         d["title"] = fetch_title(d["link"])
+    else:
+        d["title"] = beautify(d["title"])
     return d
 
 
@@ -109,6 +158,7 @@ def parse_hybrid_link(s, suffix):
                 + link_re_str(suffix), s, re.IGNORECASE)
     if m is None:
         return
+    # TODO: Add fetch_title() and beatify() call
     return m.groupdict()
 
 
@@ -144,11 +194,11 @@ def parse_image(s):
 
 
 def extract_tags(s, tags):
-    m = tags_re.search(s)
-    if m is None:
+    l = re.split(r"[()]", s)
+    if len(l) < 2:
         return s
     tags.append("світ") # TODO Many tags
-    return re.sub(tags_re, "", s)
+    return l[0]
 
 # # #
 
@@ -159,26 +209,34 @@ def skip_empty_lines(f):
     return unread_paragraph(f)
     
 
-def read_event(f, previous_date=None):
+def read_event(f, previous_event=None):
     ev = Event()
 
-    global last_paragraph
-
+    # Read the date & tags paragraph
     skip_empty_lines(f)
     par = read_paragraph(f)
-    if par is None: return # EOF when no event data has been read
-    ev.start = parse_date(extract_tags(concat_lines(par, ' '), ev.tags))
+    if par is None: 
+        return # EOF when no event data has been read
+    s = extract_tags(concat_lines(par, ' '), ev.tags)
+    str_start, str_end = split_interval(s)
+    ev.start = parse_date(str_start)
+    if str_end:
+        ev.end = parse_date(str_end)
     if ev.start is None:
-        if previous_date is None:
+        if previous_event is None:
             return # Error
-        ev.start = previous_date
+        ev.start = previous_event.start
+        ev.end = previous_event.end
 
+    # Read title paragraph
     skip_empty_lines(f)
     ev.title = read_title(f)
 
+    # Read body paragraph
     skip_empty_lines(f)
     ev.body = read_body(f)
 
+    # Read paragraphs conainting either link to a source or to an image each
     while True:
         skip_empty_lines(f)
         par = read_paragraph(f)
@@ -198,5 +256,3 @@ def read_event(f, previous_date=None):
             ev.images.append(i)
 
     return ev
-
-# TODO Replace "", <<>>, “” to «» in all text fields
