@@ -62,5 +62,5 @@ To generate relations between models
 SASS
 -----
 
-*.scss files should be located in **[project root]/app/styles/sass/styles/compiled/** directory
+*.scss files should be located in **[project root]/app/styles/sass/** directory
 and they will be served as **/app/styles/compiled/\*.css**
