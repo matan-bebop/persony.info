@@ -2,6 +2,7 @@
 // Module dependencies.
 var express = require('express'),
     sass = require('node-sass'),
+    compass = require('node-compass'),
     app = express(),
     urls = require('./utils/urls'),
     path = require('path'),
@@ -11,6 +12,9 @@ var express = require('express'),
 // Express Configuration
 app.configure(function () {
     app.use(
+        compass({
+            project: [__dirname, 'app', 'styles', 'sass'].join('/')
+        }),
         sass.middleware({
             src: [__dirname, 'app', 'styles', 'sass'].join('/'),
             dest: [__dirname, 'app'].join('/'),
