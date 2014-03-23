@@ -5,7 +5,7 @@ body {
     background: url(../../../../images/agsquare.png) repeat #f2f2f2 ! important;
 }
 
-
+@import "compass/css3/transition";
 
 .menu li, a, .interest_person, .post_pers, .event-body .detail, .event-body .short, .event-body {
     -webkit-transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);

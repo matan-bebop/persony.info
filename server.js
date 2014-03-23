@@ -12,14 +12,18 @@ var express = require('express'),
 // Express Configuration
 app.configure(function () {
     app.use(
-        compass({
-            project: [__dirname, 'app', 'styles', 'sass'].join('/')
-        }),
         sass.middleware({
             src: [__dirname, 'app', 'styles', 'sass'].join('/'),
             dest: [__dirname, 'app'].join('/'),
             debug: true,
             outputStyle: 'compressed'
+        })
+    );
+    app.use(
+        compass({
+            project: [__dirname, 'app', 'styles', 'sass', 'compass'].join('/'),
+            sass: [__dirname, 'app', 'styles', 'sass', 'styles', 'compiled'].join('/'),
+            css: [__dirname, 'app', 'styles', 'compiled'].join('/')
         })
     );
 });
