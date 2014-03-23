@@ -50,7 +50,7 @@ class node_tools {
   package {['xdg-utils']:
     ensure => "installed"
   }
-  package { ['bower', 'grunt-cli']:
+  package { ['bower', 'grunt-cli', 'supervisor']:
     ensure => present,
     provider => 'npm',
     require => Class["nodejs"],
