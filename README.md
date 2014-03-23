@@ -10,17 +10,32 @@ Basic requirements
     * npm
     * bower [npm install bower]
     * grunt [npm install grunt]
+* Ruby
+    * compass
 * Mysql
 
 Local deploy
 ------------
 
 Working environment can be created with [Vagrant](http://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
-Don't forget to fetch puppet modules with
+Install them and then run the following commands in project home directory
+
 > git submodule update --init
+> vagrant up
 
-Create database and set appropriate settings in ./conf/settings.js database section
+You can get inside VM running following command under the project home directory
+> vagrant ssh
 
+Project will be mounted inside VM at the */vagrant* directory
+> cd /vagrant
+
+Database is created by puppet, and default credentials are root:mysql, which corresponds with config stored in git.
+
+Application configuration is stored in **[project_root]/conf/settings.js** file.
+It also has an information of how to override any of the settings with **[project_root]/conf/settings.local.js** file
+
+Please make sure you are inside project home directory of the run environment
+(if you are using development VM, this will be /vagrant directory inside it)
 
 > npm install
 
@@ -31,11 +46,13 @@ Create database and set appropriate settings in ./conf/settings.js database sect
 
 *Run*
 
-for development (inside vm will fail on xdg-open, so force should be used)
-> grunt serve --force
+for development you may use one of the options of your choice
+* ./devrun.sh
+* npm start
+* grunt serve --force
 
-for production
-> npm start
+for production (environment variable should be somehow defined: export NODE_ENV="production")
+> node server.js
 
 *Build*
 
