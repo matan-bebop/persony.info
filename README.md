@@ -81,3 +81,8 @@ SASS
 
 *.scss files should be located in **[project root]/app/styles/sass/** directory
 and they will be served as **/app/styles/compiled/\*.css**
+
+Database
+--------
+
+Inside development environment PhpMyAdmin will be available on *http://localhost:8000/*
