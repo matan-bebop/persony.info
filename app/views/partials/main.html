@@ -27,7 +27,7 @@
     <h4>Вас зацікавлять:</h4>
     <section>
         <div class="interest_person" ng-repeat="person in featured">
-            <a ng-href="/people/{{person.id}}">
+            <a ng-href="/persons/{{person.id}}">
                 <img
                         ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}"
                         title="{{person.name}}"

@@ -1,9 +1,11 @@
-var views = require("./views").views;
+'use strict';
 
-exports.dispatch = function(app){
+var views = require(__dirname + "/views").views;
+
+exports.dispatch = function (app) {
     return [
-       {"/partials/*" :  {
-         "get": [views.partials, false]
+        {"/partials/*": {
+            "get": [views.partials, false]
         }}
-    ]
+    ];
 };

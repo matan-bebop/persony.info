@@ -18,5 +18,5 @@ exports.dispatch = function(app){
         {"/auth/signup" :  {
             "post": [views.signUp, "auth"]
         }}
-    ]
+    ];
 };

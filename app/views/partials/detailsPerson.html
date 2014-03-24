@@ -26,15 +26,15 @@
 
 <div class="person-timeline">
   <ul class="event-years-list">
-    <li ng-repeat="yearData in eventYears" class="li-year">
-      <div class="pull-left event-year">{{yearData.year}}</div>
+    <li ng-repeat="year in eventYears.orders.years" class="li-year">
+      <div class="pull-left event-year">{{year}}</div>
       <ul class="event-months-list">
-        <li ng-repeat="monthsData in yearData.months" class="li-month">
-          <div class="event-month">{{monthsData.month | monthName}}</div>
+        <li ng-repeat="month in eventYears.orders.months[year]" class="li-month">
+          <div class="event-month">{{month | monthName}}</div>
           <ul class="events-list">
-            <li ng-repeat="event in monthsData.events">
+            <li ng-repeat="event in eventYears[year][month]">
               <div class="event-date">{{event.start | date: "d"}}</div>
-              <div ng-if="Event.getDuration(event) <= 29" class="event-icon">
+              <div ng-if="event.getDuration() <= 29" class="event-icon">
                 <div
                     class="event-icon-marker"
                     source="{{event.sources[0].icon}}"
@@ -42,7 +42,7 @@
                     >
                 </div>
               </div>
-              <div ng-if="Event.getDuration(event) > 29" class="event-icon">
+              <div ng-if="event.getDuration() > 29" class="event-icon">
                 <div class="event-icon-marker event-icon-durable">D</div>
               </div>
               <div class="event-body" default-state="'short'">
@@ -56,7 +56,7 @@
                   <div class="event-detail-date">{{event.start | date:"d MMMM"}}</div>
                   <div class="detail-info">
                     <div class="info-wrap-img" ng-if="event.image">
-                      <img ng-src="{{Event.getImageSrc(event)}}"/>
+                      <img ng-src="{{event.getImageSrc()}}"/>
                     </div>
                     <div class="info-wrap">
                       <p class="description">{{event.description}}</p>
