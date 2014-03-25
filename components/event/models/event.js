@@ -3,7 +3,8 @@
 var path = require("path");
 
 module.exports = function (seq, DataTypes) {
-    var Person = require(["..", "..", "person", "models", "person"].join(path.sep))(seq, DataTypes),
+    var Person = seq.app.getModel('Person'),
+        Source = seq.app.getModel('Source'),
         Event = seq.define("event",
             {
                 "start": { type: DataTypes.DATE, allowNull: true},
@@ -63,7 +64,6 @@ module.exports = function (seq, DataTypes) {
                     }
                 },
                 instanceMethods: {
-                    addSources: function (sources) {this.dataValues.sources = sources[this.id]; },
                     clean: function (user) {
                         var _t = this;
                         String.prototype.endsWith = function (suffix) {
@@ -80,8 +80,11 @@ module.exports = function (seq, DataTypes) {
                     }
                 }
             });
-    Event.hasMany(Person, {as: "Persons", foreignKey: 'event_id', through: "person_events"});
-    Person.hasMany(Event, {as: "Events", foreignKey: 'person_id', through: "person_events"});
-    Event.Person = Person;
+    Event.hasMany(Person, {foreignKey: 'event_id', through: "person_events"});
+    Person.hasMany(Event, {foreignKey: 'person_id', through: "person_events"});
+
+    Event.hasMany(Source, {foreignKey: "event_id"});
+    Source.belongsTo(Event, {foreignKey: "event_id"});
+
     return Event;
 };

@@ -26,19 +26,19 @@
     <div class="clearfix"></div>
     <div class="post_persons">
         <div ng-repeat="person in persons" class="post_pers">
-            <a ng-href="/people/{{person.id}}">
+            <a ng-href="/persons/{{person.id}}">
                 <img ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}"
                      alt="{{person.name}}"/>
             </a>
 
             <div class="text">
-                <h5><a ng-href="/people/{{person.id}}">{{person.name}}</a></h5>
+                <h5><a ng-href="/persons/{{person.id}}">{{person.name}}</a></h5>
 
                 <p class="date">{{person.lastEvent | date:"dd MMM yyyy"}}</p>
 
                 <p ng-bind-html="person.info"></p>
             </div>
-            <p class="read-more"><a ng-href="/people/{{person.id}}" class="button">Більше...</a></p>
+            <p class="read-more"><a ng-href="/persons/{{person.id}}" class="button">Більше...</a></p>
         </div>
     </div>
 </div>

@@ -1,22 +1,24 @@
-var views = require("./views").views;
+'use strict';
 
-exports.dispatch = function(app){
+exports.dispatch = function (app) {
+    var views = require(__dirname + "/views")(app);
+
     return [
-        {"/api/person/search" : {
-            "get" : [views.getEntitySearch, false]
+        {"/api/persons/search": {
+            "get": [views.getEntitySearch, false]
         }},
-        {"/api/person" : {
-            "get" : [views.getAll, false],
+        {"/api/persons": {
+            "get": [views.getAll, false],
             "post": [views.updateEntity, "auth"],
-            "put" : [views.updateEntity, "auth"],
-            "delete" : [views.removeEntity, "auth"]
+            "put": [views.updateEntity, "auth"],
+            "delete": [views.removeEntity, "auth"]
         }},
 
-        {"/api/person/:id" :  {
+        {"/api/persons/:id": {
             "get": [views.getEntity, false],
             "post": [views.updateEntity, "auth"],
-            "put" : [views.updateEntity, "auth"],
-            "delete" : [views.removeEntit, "auth"]
+            "put": [views.updateEntity, "auth"],
+            "delete": [views.removeEntit, "auth"]
         }}
-    ]
+    ];
 };

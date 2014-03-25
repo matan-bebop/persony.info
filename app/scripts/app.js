@@ -8,10 +8,10 @@
                 .when('/', {
                     templateUrl: 'partials/main',
                     controller: 'controllers.main'
-                }).when('/people', {
-                    templateUrl: 'partials/people',
-                    controller: 'controllers.people'
-                }).when('/people/:id', {
+                }).when('/persons', {
+                    templateUrl: 'partials/persons',
+                    controller: 'controllers.persons'
+                }).when('/persons/:id', {
                     templateUrl: 'partials/detailsPerson',
                     controller: 'controllers.personDetails'
                 })

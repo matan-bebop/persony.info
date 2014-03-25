@@ -13,21 +13,35 @@
                     }
                 );
 
-                $scope.eventYears = Event.queryByPerson({entityId: $routeParams.id});
+                Event.query({personId: $routeParams.id, order: 'start.desc'}, function (events) {
+                    var data = {
+                        orders: {
+                            years: [],
+                            months: {}
+                        }
+                    };
 
-                $scope.Event = new Event;
+                    angular.forEach(events, function (event) {
+                        var date = new Date(event.start),
+                            year = date.getFullYear(),
+                            month = date.getMonth();
 
-                $scope.numberOfDays = function (startDate, endDate) {
-                    startDate = new Date(startDate);
-                    endDate = new Date(endDate);
-                    if (startDate && endDate) {
-                        var millisecondsPerDay = 1000 * 60 * 60 * 24,
-                            millisBetween = endDate.getTime() - startDate.getTime(),
-                            days = millisBetween / millisecondsPerDay;
+                        if (!data[year]) {
+                            data.orders.years.push(year);
+                            data.orders.months[year] = [];
+                            data[year] = {};
+                        }
 
-                        return Math.floor(days);
-                    }
-                };
+                        if (!data[year][month]) {
+                            data.orders.months[year].push(month);
+                            data[year][month] = [];
+                        }
+
+                        data[year][month].push(event);
+                    });
+
+                    $scope.eventYears = data;
+                });
             }
         ]
     );

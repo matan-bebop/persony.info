@@ -3,9 +3,11 @@
 
     angular.module('personyApp').factory(
         'Person',
-        ['$resource',
-         function ($resource) {
-             return $resource("/api/person/:id");
-         }]
+        [
+            '$resource',
+            function ($resource) {
+                return $resource("/api/persons/:id");
+            }
+        ]
     );
 }());

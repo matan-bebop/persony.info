@@ -18,7 +18,7 @@ class { 'apt_get_update':
 
 # Handy tools good to have in dev environment
 class tools {
-  package {['mc', 'htop', 'git']:
+  package {['mc', 'htop', 'git', 'libapache2-mod-php5', 'php5-mcrypt', 'php5-mysql']:
     ensure => "installed",
     require => Class['apt_get_update']
   }
@@ -28,6 +28,19 @@ class tools {
 class { 'tools':
   stage => preinstall,
   require => Class['apt_get_update']
+}
+
+# Downloads and deployes PMA under /var/www/
+class pma {
+  exec { 'rm -f /var/www/index.html; wget https://github.com/phpmyadmin/phpmyadmin/archive/RELEASE_4_1_11.zip -O /tmp/pma.zip; unzip /tmp/pma.zip -d /tmp; mv /tmp/phpmyadmin-RELEASE_4_1_11/* /var/www/; rm /tmp/pma.zip; rm -rf /tmp/phpmyadmin-RELEASE_4_1_11/; service apache2 restart':
+    path => ['/usr/sbin', '/usr/bin', '/sbin', '/bin'],
+    creates => '/var/www/index.php'
+  }
+}
+
+# Install pma
+class { 'pma':
+  require => Class['tools']
 }
 
 # Ruby

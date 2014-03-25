@@ -1,26 +1,25 @@
-var views = require("./views").views;
+'use strict';
 
-exports.dispatch = function(app){
+exports.dispatch = function (app) {
+    var views = require(__dirname + "/views")(app);
+
     return [
-        {"/api/event/relation/" :  {
+        {"/api/events/relation/": {
             "post": [views.updateRelation, "auth"],
             "put": [views.updateRelation, "auth"],
             "delete": [views.removeRelation, "auth"]
         }},
-
-        {"/api/event/person/:person_id" :  {
-            "get": [views.getRelatedEntity, "auth"]
-        }},
-        {"/api/event/" :  {
+        {"/api/events": {
+            "get": [views.getAll, false],
             "post": [views.updateEntity, "auth"],
-            "put" : [views.updateEntity, "auth"],
-            "delete" : [views.removeEntity, "auth"]
+            "put": [views.updateEntity, "auth"],
+            "delete": [views.removeEntity, "auth"]
         }},
-        {"/api/event/:id" :  {
+        {"/api/events/:id": {
             "get": [views.getEntity, "auth"],
             "post": [views.updateEntity, "auth"],
-            "put" : [views.updateEntity, "auth"],
-            "delete" : [views.removeEntity, "auth"]
+            "put": [views.updateEntity, "auth"],
+            "delete": [views.removeEntity, "auth"]
         }}
-    ]
+    ];
 };
