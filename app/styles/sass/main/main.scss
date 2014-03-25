@@ -1,0 +1,32 @@
+.main-search-block {
+  display: block;
+  float: none !important;
+  margin: 150px auto 20px !important;
+}
+
+.main-search-block h4 {
+  margin: 0;
+}
+
+.interest_person {
+  display: block;
+  float: left;
+  min-height: 185px !important;
+  min-width: 207px;
+  max-width: 207px;
+  margin: 10px;
+
+  @include personBlock;
+}
+
+.interest_person img {
+  display: block;
+  margin: 0 auto;
+  max-width: 120px;
+  max-height: 120px;
+  min-width: 120px;
+}
+
+.interest_person:hover {
+  @include personBlockHover;
+}

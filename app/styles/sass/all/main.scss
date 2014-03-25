@@ -1,0 +1,40 @@
+// ButtonColor
+$regularAllPageButtonBorderColour: #0266ec;
+$regularAllPageButtonColour: #8abbfe;
+$hoverAllPageButtonBorderColour: #28597a;
+$hoverAllPageButtonColour: #28597a;
+
+.post_persons {
+  margin: 20px 0;
+  width:100%;
+}
+
+.post_pers img {
+  display: block;
+  margin: 0 auto;
+  height:182px;
+}
+
+.post_pers {
+  max-width: 300px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  display: inline;
+  margin: 25px;
+
+  @include personBlock;
+}
+
+.post_pers:hover {
+  @include personBlockHover;
+}
+
+.post_pers h5 {
+  margin: 10px 0;
+}
+
+//submodules
+@import "filter";
+@import "read-more";

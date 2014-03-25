@@ -1,11 +1,9 @@
-
 .navbar-static-top{
   border-width: 0;
 }
 
 .nav li {
   height: 50px !important;
-  padding: 0 20px;
   cursor: pointer;
   border-bottom: 4px solid transparent;
 
@@ -13,17 +11,16 @@
 }
 
 .nav li:hover{
-  border-bottom: 4px solid #3E8FFD;
-  color: #3e8ffd;
+  border-bottom: 4px solid $regularLinkColour;
 }
 
 .nav a:hover, .nav li:hover a, .navbar-nav>.active>a:hover{
-  color: #3e8ffd !important;
+  color: $regularLinkColour !important;
   text-decoration: none;
 }
 
 .nav a {
-  color: #b2b2b2;
+  color: $mainMenuColour;
   text-decoration: none;
   font-weight: 600;
   line-height: 14px !important;
@@ -47,26 +44,31 @@
 .search-form .input-group-addon {
   border: 0;
   height: 27px;
-  background: #666;
+  background: $mainSearchNavBgColour;
 
   @include border-left-radius(2px);
 }
 
 .search-input{
-  @include border-right-radius(2px);
-}
-
-.search-form .search-input {
   font-style: italic;
   padding-left: 0;
   font-size: 12px;
   color: white;
+
+  @include border-right-radius(2px);
+}
+
+.navbar-inverse .navbar-nav > .active{
+  border-bottom: 4px solid $mainMenuActiveColour;
+  color: $mainMenuActiveColour;
+}
+
+.navbar-inverse .navbar-nav > .active > a{
+  background: $mainTextColour !important;
+  border-bottom: 4px solid $mainMenuActiveColour;
+  color: $mainMenuActiveColour;
 }
 
 .navbar-inverse {
-  background: #080808;
-}
-
-.logo img {
-  margin: 4px 50px 0 0;
+  background: $mainTextColour;
 }

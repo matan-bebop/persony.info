@@ -184,7 +184,7 @@
 }
 
 .event-icon-marker {
-  background: url('../../images/socicons_h.png') no-repeat;
+  background: url('../../../images/socicons_h.png') no-repeat;
   width: 33px;
   height: 33px;
   text-align: center;
@@ -292,7 +292,7 @@
 }
 
 .event-body .detail p.description{
-  color: #222;
+  color: $mainTextColour;
   font-weight: 500;
 }
 
@@ -301,3 +301,5 @@
   font-size: 12px;
   color: #999;
 }
+
+@import "timeline";

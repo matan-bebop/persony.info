@@ -1,26 +1,27 @@
-@import "compass/css3/transition";
+//using
 @import "compass/css3/border-radius";
+@import "mixins";
+@import "colours";
+
+// U_N_S_O_R_T_E_D
+$bg: url(../../images/agsquare.png) repeat $mainBackgroundColour ! important;
 
 body {
-  color: #222;
+  color: $mainTextColour;
   font-family: 'Roboto', Arial, Tahoma, sans-serif !important;
   font-weight: 300 !important;
-  background: url(../../images/agsquare.png) repeat #f2f2f2 ! important;
-}
-
-@mixin easings {
-    @include transition(all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1));
+  background: $bg;
 }
 
 a{
   text-decoration: underline;
-  color: #3e8ffd;
+  color: $regularLinkColour;
 
   @include easings;
 }
 
 a:hover {
-  color: #005580;
+  color: $hoverLinkColour;
 }
 
 ul, ol {
@@ -32,9 +33,24 @@ ul li, ol li {
   list-style: none;
 }
 
+h5 {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+h4 {
+  font: 32px;
+  font-weight: 100;
+}
+
+.logo img {
+  margin: 4px 50px 0 0;
+}
+
+//submodules
 @import "navbar";
-@import "all_page";
-@import "main_page";
-@import "timeline";
+@import "all/main";
+@import "main/main";
+@import "detailPerson/main";
 @import "footer";
 @import "alpha_version";
