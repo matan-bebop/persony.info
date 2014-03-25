@@ -1,37 +1,40 @@
-.post_pers .read-more {
-  position: absolute;
-  bottom: -10px;
-  padding-top: 35px;
-  left: 0px;
-  height: 65px;
-  width: 100%;
-  text-align: center;
+.post_pers{
+  .read-more {
+    position: absolute;
+    bottom: -10px;
+    padding-top: 35px;
+    left: 0px;
+    height: 65px;
+    width: 100%;
+    text-align: center;
 
-  @include lin-gradient(rgba(242,242,242,0), rgba(242,242,242,1));
-  @include border-radius(5px);
-}
+    @include lin-gradient(rgba(242,242,242,0), rgba(242,242,242,1));
+    @include border-radius(5px);
 
-.post_pers:hover .read-more{
-  @include lin-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
-}
+    .button{
+      margin-top: 100px;
+      border: 2px solid $regularAllPageButtonBorderColour;
+      background: $regularAllPageButtonColour;
+      padding: 2px 5px;
+      color: $mainTextColour;
+      font-weight: 500;
+      font-size: 14px;
+      text-decoration: none;
+      vertical-align: middle;
 
-.post_pers .read-more .button{
-  margin-top: 100px;
-  border: 2px solid $regularAllPageButtonBorderColour;
-  background: $regularAllPageButtonColour;
-  padding: 2px 5px;
-  color: $mainTextColour;
-  font-weight: 500;
-  font-size: 14px;
-  text-decoration: none;
-  vertical-align: middle;
+      @include border-radius(3px);
 
-  @include border-radius(3px);
-}
+      &:hover{
+        border-color: $hoverAllPageButtonBorderColour;
+        background: $hoverAllPageButtonColour;
+        color: $personBlockBackgroundColour;
+      }
+    }
+  }
 
-
-.post_pers .read-more .button:hover{
-  border-color: $hoverAllPageButtonBorderColour;
-  background: $hoverAllPageButtonColour;
-  color: $personBlockBackgroundColour;
+  &:hover{
+    .read-more{
+      @include lin-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+    }
+  }
 }

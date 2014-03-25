@@ -18,19 +18,19 @@ a{
   color: $regularLinkColour;
 
   @include easings;
-}
 
-a:hover {
-  color: $hoverLinkColour;
+  &:hover {
+    color: $hoverLinkColour;
+  }
 }
 
 ul, ol {
   margin: 0;
   padding: 0;
-}
 
-ul li, ol li {
-  list-style: none;
+  li{
+    list-style: none;
+  }
 }
 
 h5 {
@@ -39,7 +39,7 @@ h5 {
 }
 
 h4 {
-  font: 32px;
+  font-size: 32px;
   font-weight: 100;
 }
 

@@ -1,65 +1,63 @@
-.person-container {
-  width: 570px;
-  margin: 0 auto;
-}
+.person-header {
+  margin: 0 0 0 -65px !important;
+  position: absolute;
 
-.person-detail-header {
-  padding: 30px 0 0;
-  background: #eee;
-}
+  &:before{
+    background: $timelinePersonBgColour;
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
 
-.person-data {
-  margin-left: -35px;
-  width: 500px;
-  padding: 5px 0 30px 55px;
-  border-left: 2px solid #DDD;
-  position: relative;
-  z-index: 1;
-}
+  .person-photo {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    background: white;
+    border: 5px solid $timelineAxisColour;
+    font-size: 25px;
+    position: relative;
+    z-index: 2;
 
-.person-photo {
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  background: #FFF;
-  border: 5px solid #DDD;
-  font-size: 25px;
-  position: relative;
-  z-index: 2;
+    @include border-radius(35px);
 
-  @include border-radius(35px);
-}
+    span{
+      line-height: 56px;
+    }
+  }
 
-.person-data {
-  font-size: 12px;
-}
+  .person-data {
+    margin-left: -35px;
+    width: 500px;
+    padding: 5px 0 30px 55px;
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+  }
 
-.social-icons li {
-  display: inline-block;
-  margin-left: 10px;
-  line-height: 24px;
-}
+  .social-icons li {
+    display: inline-block;
+    margin-left: 10px;
+    line-height: 24px;
+  }
 
-.social-icons i {
-  font-size: 1.2em;
-}
+  .social-icons i {
+    font-size: 1.2em;
+  }
 
-.person-photo span {
-  line-height: 56px;
-}
+  .person-name {
+    margin-top: 0;
+    color: #000;
+    font-size: 24px;
+  }
 
-.person-name {
-  margin-top: 0;
-  color: #000;
-  font-size: 24px;
-}
+  .person-info {
+    margin-bottom: 10px;
+  }
 
-.person-info {
-  margin-bottom: 10px;
-}
-
-.person-social {
-  margin-bottom: 10px;
+  .person-social {
+    margin-bottom: 10px;
+  }
 }
 
 .person-tags li {
@@ -78,28 +76,6 @@
 
 .person-tags li:hover {
   background: #DDD;
-}
-
-.persons-list {
-  margin: 50px auto;
-  width: 450px;
-}
-
-.persons-list li {
-  display: block;
-  margin-bottom: 20px;
-}
-
-.persons-list .person-name {
-  line-height: 70px;
-}
-
-.persons-list .person-photo {
-  margin-right: 30px;
-}
-
-.persons-list a .person-photo {
-  color: #DDD;
 }
 
 .event-year {

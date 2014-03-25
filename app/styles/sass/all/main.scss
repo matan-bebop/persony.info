@@ -9,12 +9,6 @@ $hoverAllPageButtonColour: #28597a;
   width:100%;
 }
 
-.post_pers img {
-  display: block;
-  margin: 0 auto;
-  height:182px;
-}
-
 .post_pers {
   max-width: 300px;
   height: 380px;
@@ -25,14 +19,20 @@ $hoverAllPageButtonColour: #28597a;
   margin: 25px;
 
   @include personBlock;
-}
 
-.post_pers:hover {
-  @include personBlockHover;
-}
+  img{
+    display: block;
+    margin: 0 auto;
+    height:182px;
+  }
 
-.post_pers h5 {
-  margin: 10px 0;
+  &:hover{
+    @include personBlockHover;
+  }
+
+  h5{
+    margin: 10px 0;
+  }
 }
 
 //submodules
