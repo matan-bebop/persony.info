@@ -1,39 +1,18 @@
-var Sequelize = require("sequelize"),
-    settings = require("../conf/settings"),
-    path = require("path"),
-    collectModels = function(){
-        var apps = settings.installed_apps, app,
-            models = [];
-        for(var i= 0,l=apps.length;i<l;i++){
-            app = apps[i];
-            models.push(".." + path.sep + "components" + path.sep + app + path.sep + "models");
+'use strict';
+
+var path = require("path"),
+    app = {
+        ROOT: path.join(__dirname, '/../'),
+        require: function (module) {
+            return require(this.ROOT + path.sep + Array.prototype.slice.call(arguments).join(path.sep));
         }
-        return models
-    }, dbs = settings.database;
+    },
+    seq = app.require('/components/db-connection')(app);
 
-(function () {
-    var seq = new Sequelize(dbs.database, dbs.user, dbs.password, {
-        host: dbs.host,
-        port: dbs.port,
-        dialect: dbs.protocol,
-        define: {
-            underscored: false,
-            freezeTableName: false,
-            syncOnAssociation: true,
-            charset: 'utf8',
-            collate: 'utf8_general_ci',
-            timestamps: false
-        },
-        sync: { force: true },
-        pool: { maxConnections: 5, maxIdleTime: 30}
-    }), _app_models, app_models = collectModels();
-    for(var i= 0,l=app_models.length;i<l;i++){
-        try{
-            _app_models = require(app_models[i]).sync(seq);
-        }catch (e){
-            console.log(e)
+/*jslint node: true, stupid: true */
+require('fs').readdirSync(path.join(app.ROOT, "components", "models")).
+    forEach(function (model) {
+        seq.getModel(path.basename(model, '.js'));
+    });
 
-        }
-    }
-
-})();
+seq.sync({ force: true });

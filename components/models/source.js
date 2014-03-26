@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (seq, DataTypes) {
-    return seq.define("source",
+    return seq.define("Source",
         {
             "icon": {
                 type: DataTypes.ENUM(

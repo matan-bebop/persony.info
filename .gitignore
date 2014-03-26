@@ -19,5 +19,6 @@ public
 .vagrant
 app/bower_components
 heroku
-conf/settings.local.js
+/config/settings.local.js
 /app/styles/compiled
+/legacy

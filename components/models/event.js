@@ -3,9 +3,9 @@
 var path = require("path");
 
 module.exports = function (seq, DataTypes) {
-    var Person = seq.app.getModel('Person'),
-        Source = seq.app.getModel('Source'),
-        Event = seq.define("event",
+    var Person = seq.getModel('Person'),
+        Source = seq.getModel('Source'),
+        Event = seq.define("Event",
             {
                 "start": { type: DataTypes.DATE, allowNull: true},
                 "start_draft": { type: DataTypes.DATE, allowNull: true},
@@ -80,11 +80,11 @@ module.exports = function (seq, DataTypes) {
                     }
                 }
             });
-    Event.hasMany(Person, {foreignKey: 'event_id', through: "person_events"});
-    Person.hasMany(Event, {foreignKey: 'person_id', through: "person_events"});
+    Event.hasMany(Person, {foreignKey: 'Event_id', through: "Events_Persons"});
+    Person.hasMany(Event, {foreignKey: 'Person_id', through: "Events_Persons"});
 
-    Event.hasMany(Source, {foreignKey: "event_id"});
-    Source.belongsTo(Event, {foreignKey: "event_id"});
+    Event.hasMany(Source, {foreignKey: "Event_id"});
+    Source.belongsTo(Event, {foreignKey: "Event_id"});
 
     return Event;
 };

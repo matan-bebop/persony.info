@@ -31,8 +31,8 @@ Project will be mounted inside VM at the */vagrant* directory
 
 Database is created by puppet, and default credentials are root:mysql, which corresponds with config stored in git.
 
-Application configuration is stored in **[project_root]/conf/settings.js** file.
-It also has an information of how to override any of the settings with **[project_root]/conf/settings.local.js** file
+Application configuration is stored in **[project_root]/config/settings.js** file.
+It also has an information of how to override any of the settings with **[project_root]/config/settings.local.js** file
 
 Please make sure you are inside project home directory of the run environment
 (if you are using development VM, this will be /vagrant directory inside it)

@@ -3,34 +3,34 @@
 var path = require("path");
 
 module.exports = function (app) {
+    var Person = app.orm.getModel('Person');
     return {
-        getAll: function (req, res, next) {
-            var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep + "person");
-            res.setHeader('Content-Type', 'application/json');
-            Entity.findAll({}).success(function (entity) {
-                if (entity) {
-                    res.end(JSON.stringify(entity));
-                } else {
-                    res.send(404, "Nothing found");
-                }
-            });
-        },
-        getEntity: function (req, res, next) {
-            var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep + "person");
-            res.setHeader('Content-Type', 'application/json');
-            /* */
-            if (req.params.id) {
-                Entity.find({ where: {id: req.params.id} }).success(function (entity) {
+        "list": function (req, res, next) {
+            Person.findAll({}).
+                success(function (entity) {
                     if (entity) {
                         res.end(JSON.stringify(entity));
                     } else {
                         res.send(404, "Nothing found");
                     }
                 });
+        },
+        "get": function (req, res, next) {
+            if (req.params.id) {
+                Person.find({ where: {id: req.params.id} }).
+                    success(function (entity) {
+                        if (entity) {
+                            res.end(JSON.stringify(entity));
+                        } else {
+                            res.send(404, "Nothing found");
+                        }
+                    });
             } else {
                 res.end(JSON.stringify({}));
             }
         },
+
+
         getEntitySearch: function (req, res, next) {
             var Entity = req.app.get("models").import(__dirname + path.sep + "models" + path.sep + "person");
             res.setHeader('Content-Type', 'application/json');
