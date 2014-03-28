@@ -50,7 +50,6 @@ app.configure(function () {
     app.set('view engine', 'html');
     app.use(express.logger('dev'));
     app.use(express.json());
-    app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.cookieSession({key: "_open_sid", secret: secret}));
@@ -61,9 +60,14 @@ app.orm = app.require("/components/db-connection")(app);
 
 // all api requests will have 'Content-Type: application/json' header
 app.use(function (req, res, next) {
-    var matchUrl = '/api';
-    if (req.url.substring(0, matchUrl.length) === matchUrl) {
+    if (req.url.substring(0, 4) === '/api') {
+        req.isApiRequest = true;
         res.setHeader('Content-Type', 'application/json');
+        res.respond = function (data) {
+            this.end(JSON.stringify(data));
+        };
+    } else {
+        req.isApiRequest = false;
     }
     return next();
 });
