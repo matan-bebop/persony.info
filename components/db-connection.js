@@ -23,7 +23,15 @@ module.exports = function (app) {
 
     seq.app = app;
     seq.getModel = function (model) {
-        return seq.import(path.join(app.ROOT, 'components', 'models', model.toLowerCase()));
+        return seq.import(
+            path.join(
+                app.ROOT,
+                'components',
+                'models',
+                //seq can load model with .js extension but will misbehavior afterwards.
+                path.basename(model.toLowerCase(), '.js')
+            )
+        );
     };
     return seq;
 };
