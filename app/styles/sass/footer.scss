@@ -1,6 +1,5 @@
 .wrap {
   position: relative;
-  width: 100%;
   max-width: 1260px;
   margin: 0 auto;
 }
@@ -9,16 +8,14 @@
   min-height: 120px;
   background: $mainTextColour;
   color: white;
-
-  margin: 0 auto;
   max-width: 1260px;
   border-radius: 10px 10px 0 0;
   padding: 30px;
   margin-top: 50px;
+  text-align: center;
 
   .social {
-    margin-top: 0px;
-    text-align: center;
+
 
     a{
       margin: 10px;
@@ -72,7 +69,6 @@
   .copyright {
     color: $mainBackgroundColour;
     font-style: italic;
-    text-align: center;
     margin-top: 30px;
   }
 }

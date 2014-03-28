@@ -1,152 +1,224 @@
+<div class="person-header-die"></div>
+<div class="container">
 
-<!--div class="person-detail-header">
-  <div class="person-container">
-
-    <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
-
-    <div class="person-data pull-left">
-
-      <h3 class="pull-left person-name">{{person.name}}</h3>
-
-      <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
-        <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
-        <div class="twitter" title="Твітнути">Twitter</div>
-        <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
-        <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
-      </div>
-      <div class="clearfix"></div>
-
-      <div class="person-info">{{person.info}}</div>
-
-    </div>
-
-    <div class="clearfix"></div>
-
-  </div>
-</div>
-
-<div class="person-timeline">
-  <ul class="event-years-list">
-    <li ng-repeat="year in eventYears.orders.years" class="li-year">
-      <div class="pull-left event-year">{{year}}</div>
-      <ul class="event-months-list">
-        <li ng-repeat="month in eventYears.orders.months[year]" class="li-month">
-          <div class="event-month">{{month | monthName}}</div>
-          <ul class="events-list">
-            <li ng-repeat="event in eventYears[year][month]">
-              <div class="event-date">{{event.start | date: "d"}}</div>
-              <div ng-if="event.getDuration() <= 29" class="event-icon">
-                <div
-                    class="event-icon-marker"
-                    source="{{event.sources[0].icon}}"
-                    href="{{event.sources[0].link}}"
-                    >
-                </div>
-              </div>
-              <div ng-if="event.getDuration() > 29" class="event-icon">
-                <div class="event-icon-marker event-icon-durable">D</div>
-              </div>
-              <div class="event-body" default-state="'short'">
-                <div class="short" ng-show="state.is('short')">
-                  <a class="event-link" href="" ng-click="state.set('detail')">{{event.title}}</a>
-                </div>
-                <div class="detail" ng-show="state.is('detail')">
-                  <div id="tail"></div>
-                  <a class="event-title ng-binding" href="" ng-click="state.set('short')">{{event.title}}</a>
-
-                  <div class="event-detail-date">{{event.start | date:"d MMMM"}}</div>
-                  <div class="detail-info">
-                    <div class="info-wrap-img" ng-if="event.image">
-                      <img ng-src="{{event.getImageSrc()}}"/>
-                    </div>
-                    <div class="info-wrap">
-                      <p class="description">{{event.description}}</p>
-
-
-                      <p class="source">
-                        Джерело:
-                        <span ng-repeat="source in event.sources">
-                          <a ng-href="{{source.link}}">{{source.icon}}</a>
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <!--div class="person-timeline">
+        <ul class="event-years-list">
+            <li ng-repeat="yearData in eventYears" class="li-year">
+                <div class="pull-left event-year">{{yearData.year}}</div>
+                <ul class="event-monthes-list">
+                    <li ng-repeat="monthesData in yearData.monthes" class="li-month">
+                        <div class="event-month">{{monthNames[monthesData.month]}}</div>
+                        <ul class="events-list">
+                            <li ng-repeat="event in monthesData.events">
+                                <div class="event-date">{{event.start | date: "d"}}</div>
+                                <div class="event-icon">{{event.sourses[0].icon}}</div>
+                                <a class="event-link" href="#">{{event.title}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
             </li>
-            <div class="clearfix"></div>
-          </ul>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
-    </li>
-  </ul>
-</div-->
-<h2>New Timeline</h2>
-<ul id='timeline'>
-    <li class='work'>
-        <input class='radio' id='work5' name='works' type='radio' checked>
-        <div class="relative">
-            <label for='work5'>Lorem ipsum dolor sit amet</label>
-            <span class='date'>12 May 2013</span>
-            <span class='circle'></span>
+        </ul>
+    </div-->
+
+    <div class="person-bio">
+        <div class='person-header'>
+            <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
+
+            <div class="person-data pull-left">
+
+                <h3 class="pull-left person-name">{{person.name}}</h3>
+
+                <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
+                    <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
+                    <div class="twitter" title="Твітнути">Twitter</div>
+                    <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
+                    <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="person-info">{{person.info}}</div>
+
+            </div>
         </div>
-        <div class='content'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
-            </p>
-        </div>
-    </li>
-    <li class='work'>
-        <input class='radio' id='work4' name='works' type='radio'>
-        <div class="relative">
-            <label for='work4'>Lorem ipsum dolor sit amet</label>
-            <span class='date'>11 May 2013</span>
-            <span class='circle'></span>
-        </div>
-        <div class='content'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
-            </p>
-        </div>
-    </li>
-    <li class='work'>
-        <input class='radio' id='work3' name='works' type='radio'>
-        <div class="relative">
-            <label for='work3'>Lorem ipsum dolor sit amet</label>
-            <span class='date'>10 May 2013</span>
-            <span class='circle'></span>
-        </div>
-        <div class='content'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
-            </p>
-        </div>
-    </li>
-    <li class='work'>
-        <input class='radio' id='work2' name='works' type='radio'>
-        <div class="relative">
-            <label for='work2'>Lorem ipsum dolor sit amet</label>
-            <span class='date'>09 May 2013</span>
-            <span class='circle'></span>
-        </div>
-        <div class='content'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
-            </p>
-        </div>
-    </li>
-    <li class='work'>
-        <input class='radio' id='work1' name='works' type='radio'>
-        <div class="relative">
-            <label for='work1'>Lorem ipsum dolor sit amet</label>
-            <span class='date'>08 May 2013</span>
-            <span class='circle'></span>
-        </div>
-        <div class='content'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
-            </p>
-        </div>
-    </li>
-</ul>
+
+        <div class="clearfix"></div>
+
+        <ul id='timeline'>
+            <li class="li-year">
+                <div class="event-year">2011</div>
+                <ul class="event-monthes-list">
+                    <li class="li-month">
+                        <div class="event-month">Листопад</div>
+                        <ul class="events-list">
+                            <li >
+                                <input class='radio' id='event1' type='radio'>
+                                <label for='event1'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                            <li >
+                                <input class='radio' id='event2' type='radio'>
+                                <label for='event2'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <input class='radio' id='event3' type='radio'>
+                                <label for='event3'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <input class='radio' id='event4' type='radio'>
+                                <label for='event4'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="li-month">
+                        <div class="event-month">Сшчень</div>
+                        <ul class="events-list">
+                            <li>
+                                <input class='radio' id='event5' type='radio'>
+                                <label for='event5'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-repeat="monthesData in yearData.monthes" class="li-month">
+                        <div class="event-month">Вересень</div>
+                        <ul class="events-list">
+                            <li >
+                                <input class='radio' id='event6' type='radio'>
+                                <label for='event6'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </li>
+            <li class="li-year">
+                <div class="pull-left event-year">2000</div>
+                <ul class="event-monthes-list">
+                    <li class="li-month">
+                        <div class="event-month">ГРГР</div>
+                        <ul class="events-list">
+                            <li >
+                                <input class='radio' id='event7' type='radio'>
+                                <label for='event7'>Lorem ipsum dolor sit amet</label>
+                                <div class="event-date">23</div>
+                                <div class="event-icon">i</div>
+                                <div class='content'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </li>
+            <li class='event'>
+                <input class='radio' id='work5' type='radio'>
+                <div class="relative">
+                    <label for='work5'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>12</span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                    </p>
+                </div>
+            </li>
+            <li class='event'>
+                <input class='radio' id='work4' type='radio'>
+                <div class="relative">
+                    <label for='work4'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>11</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                    </p>
+                </div>
+            </li>
+            <li class='event'>
+                <input class='radio' id='work3' type='radio'>
+                <div class="relative">
+                    <label for='work3'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>10</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                    </p>
+                </div>
+            </li>
+            <li class='event'>
+                <input class='radio' id='work2' type='radio'>
+                <div class="relative">
+                    <label for='work2'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>9</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                    </p>
+                </div>
+            </li>
+            <li class='event'>
+                <input class='radio' id='work1' name='works' type='radio'>
+                <div class="relative">
+                    <label for='work1'>Lorem ipsum dolor sit amet</label>
+                    <span class='date'>8</span>
+                    <span class='circle'></span>
+                </div>
+                <div class='content'>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
