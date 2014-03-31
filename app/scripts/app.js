@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize'])
+    angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap'])
         .config(function ($routeProvider, $locationProvider) {
 
             $routeProvider
