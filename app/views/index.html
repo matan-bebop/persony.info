@@ -37,7 +37,7 @@
   <meta property="og:image" content="{{Page.getImage()}}" />
 
   <!-- build:css({.tmp,app}) styles/main.css -->
-  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
   <link rel="stylesheet" href="styles/font-awesome.min.css">
   <link rel="stylesheet" href="styles/compiled/main.css">
   <link rel="stylesheet" href="styles/soclikes_birman.css">
@@ -74,8 +74,7 @@
 <body>
     <!--div class="blue" style="height: 30px; background: #005BBB; color: #eee; font-size: 16px; font-weight: 600; text-align: center; padding-top: 5px;">Бережіть Україну</div>
     <div class="yellow" style="height: 30px; background: #FFD500; color: #333; font-size: 16px; font-weight: 600; text-align: center; padding-top: 5px;">Берегите Украину</div-->
-
-    <nav class="navbar navbar-static-top navbar-inverse" role="navigation" ng-controller="controllers.navbar">
+    <nav class="navbar navbar-static-top navbar-inverse navbar-fixed-top" role="navigation" ng-controller="controllers.navbar">
         <div class="container">
             <div class="logo pull-left">
                 <a href="/"><img src="images/logo.png" height="40px"/></a>
@@ -160,7 +159,12 @@
 
     </nav>
 
-    <div ng-view=""></div>
+    <div class="help-tip alert alert-success alert-dismissable">
+        <button type="button" class="close" id="help-tip-close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span class="help-tip-text">Тут <strong>МАЄ</strong> буть підказка щодо <a href="#" class="alert-link">функціоналу</a>. <a href="#" id="help-tip-close" class="alert-link">Сховати</a></span>
+    </div>
+
+    <div ng-view="" class="main-container"></div>
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="scripts/soclikes.min.js"></script>
@@ -186,6 +190,30 @@
                     }
                 e.preventDefault();
                 return false;
+            })
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            var showTip = 500;
+            $(window).scroll(function() {
+                var scroll = getCurrentScroll();
+                if ( scroll >= showTip ) {
+                    $('.help-tip').addClass('show-tip');
+                    $('.help-tip').addClass('show-tip');
+                }
+                else {
+                    $('.help-tip').removeClass('show-tip');
+                    $('.help-tip').removeClass('show-tip');
+                }
+            });
+            function getCurrentScroll() {
+                return window.pageYOffset;
+            }
+
+            $('#help-tip-close').click(function(){
+                $('.help-tip').hide();
             })
         });
     </script>
@@ -219,6 +247,7 @@
     <script src="scripts/directives/socialLikes.js"></script>
     <script src="scripts/directives/eventIconMarker.js"></script>
     <script src="scripts/filters/monthName.js"></script>
+    <script src="scripts/ui-bootstrap-0.10.0.min.js"></script>
     <!-- endbuild -->
     
 <div class="wrap">

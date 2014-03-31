@@ -1,7 +1,5 @@
-@import "compass/css3/transition";
-
-@mixin easings {
-  @include transition(all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1));
+@mixin easings($speed: 0.3s) {
+  @include transition(all $speed cubic-bezier(0.215, 0.61, 0.355, 1));
 }
 
 @mixin lin-gradient($from, $to) {
