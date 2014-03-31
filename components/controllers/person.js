@@ -5,7 +5,7 @@ var path = require("path");
 module.exports = function (app) {
     var Person = app.orm.getModel('Person');
     return {
-        "list": function (req, res, next) {
+        "query": function (req, res, next) {
             Person.findAll({}).
                 success(function (entity) {
                     if (entity) {
