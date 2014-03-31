@@ -8,17 +8,9 @@ module.exports = function (seq, DataTypes) {
         Event = seq.define("Event",
             {
                 "start": { type: DataTypes.DATE, allowNull: true},
-                "start_draft": { type: DataTypes.DATE, allowNull: true},
-
                 "end": { type: DataTypes.DATE, allowNull: true},
-                "end_draft": { type: DataTypes.DATE, allowNull: true},
-
                 "title": { type: DataTypes.STRING, allowNull: true},
-                "title_draft": { type: DataTypes.STRING, allowNull: true},
-
                 "description": { type: DataTypes.TEXT, allowNull: true },
-                "description_draft": { type: DataTypes.TEXT, allowNull: true },
-
                 "created_by_key": { type: DataTypes.STRING, allowNull: true},
                 "published": { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
                 image: {type: DataTypes.STRING, unique: false}

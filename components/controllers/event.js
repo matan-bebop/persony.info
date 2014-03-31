@@ -8,7 +8,7 @@ module.exports = function (app) {
         Event = app.orm.getModel('Event'),
         Source = app.orm.getModel('Source');
     return {
-        "list": function (req, res, next) {
+        "query": function (req, res, next) {
             var order = req.query.order ? req.query.order.split('.').join(' ') : null;
 
             if (req.query.personId) {
@@ -44,6 +44,33 @@ module.exports = function (app) {
             } else {
                 res.end(JSON.stringify(null));
             }
+        },
+
+        "save": function (req, res, next) {
+            Event.find(req.body.id).success(function (entity) {
+                if (!entity) {
+                    entity = Event.build();
+                }
+                entity.set(req.body);
+
+                var options;
+                entity.validate(options).success(function (errors) {
+                    console.log(errors);
+                });
+//                    entity.save().success(function (entity) {
+//                        res.end(JSON.stringify(entity));
+//                    }).
+//                        error(function () {
+//                            console.log(arguments);
+//                            res.status(500);
+//                            res.end(JSON.stringify({error: "error"}));
+//                        });
+//                } else {
+//                    console.log(entity);
+//                    res.status(400);
+//                    res.end(JSON.stringify({error: "error"}));
+//                }
+            });
         },
 
 
