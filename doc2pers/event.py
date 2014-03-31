@@ -42,45 +42,24 @@ last_paragraph = None
 
 def read_paragraph(f):
     global paragraph_rejected, last_paragraph
+
     if paragraph_rejected:
         paragraph_rejected = False
         return last_paragraph
-    s = ''
-    for line in f:
-        if line == '\n':
-            last_paragraph = s
-            return s
-        s += line.lstrip()
-    # We are here only in case of EOF
-    if s: # Return the terminated paragraph, if any
-        last_paragraph = s
-        return s
-    last_paragraph = None
-    #else: return None
+
+    last_paragraph = f.readline()
+
+    if not last_paragraph: # EOF?
+        last_paragraph = None
+    else:
+        last_paragraph = last_paragraph.strip()
+        return last_paragraph
 
 
 def unread_paragraph(f):
     global paragraph_rejected, last_paragraph
     paragraph_rejected = True
     return last_paragraph
-
-
-def concat_lines(s, sep=""):
-    return s.replace('\n', sep)
-
-
-def cure_pml(multiline, pml_sep="*"):
-    return multiline # TODO: It only makes things worse
-    res = ""
-    n = 0
-    for s in multiline.split(pml_sep):
-        if n%2:
-            res += s.replace('\n', "")
-        else:
-            res += s
-        res += pml_sep
-        n += 1
-    return res
 
 
 def beautify(body):
@@ -102,8 +81,8 @@ def parse_date(s):
     m = date_re.match(s)
     if m:
         d = m.groupdict()
-        if(len(d["year"]) == 2): # Short year format
-            # should be turned into the full format
+        if(len(d["year"]) == 2): # Short year format?
+            # Should be turned into the full format.
             s = "20" + d["year"]
             if d["n2"] is not None:
                 s = d["n2"] + '.' + s
@@ -113,13 +92,11 @@ def parse_date(s):
 
 
 def read_title(f):
-    par = beautify(concat_lines(read_paragraph(f), ' '))
+    par = read_paragraph(f)
     if par is not None:
-        return par.strip()
+        return beautify(par.strip())
 
-
-def read_body(f):
-    return beautify(concat_lines(cure_pml(read_paragraph(f)), ' '))
+read_body = read_title
 
 # # #
 
@@ -217,7 +194,7 @@ def read_event(f, previous_event=None):
     par = read_paragraph(f)
     if par is None: 
         return # EOF when no event data has been read
-    s = extract_tags(concat_lines(par, ' '), ev.tags)
+    s = extract_tags(par, ev.tags)
     str_start, str_end = split_interval(s)
     ev.start = parse_date(str_start)
     if str_end:
@@ -242,9 +219,9 @@ def read_event(f, previous_event=None):
         par = read_paragraph(f)
         if par is None:
             break # EOF after everything've been read successfully
-        i = parse_image(concat_lines(par))
+        i = parse_image(par)
         if i is None:
-            s = parse_source(concat_lines(par))
+            s = parse_source(par)
             if s is None:
                 # The paragraph is neither a valid source, nor an image.
                 # Unread it for further processing.
