@@ -4,14 +4,29 @@
     angular.module('personyApp').controller(
         'controllers.personDetails',
         [
-            'Page', '$routeParams', 'Person', 'Event', '$scope',
-            function (Page, $routeParams, Person, Event, $scope) {
+            'Page', '$routeParams', 'Person', 'Event', '$scope', '$modal',
+            function (Page, $routeParams, Person, Event, $scope, $modal) {
                 $scope.person = Person.get(
                     {id: $routeParams.id},
                     function () {
                         Page.setTitle('Персони | ' + $scope.person.name);
                     }
                 );
+
+                $scope.popup = function(image, description){
+                    var modalInstance = $modal.open({
+                        templateUrl: 'photoModal.html',
+                        controller: 'controllers.photoModalCtrl',
+                        resolve: {
+                            image: function () {
+                                return image;
+                            },
+                            description: function () {
+                                return description;
+                            }
+                        }
+                    });
+                }
 
                 Event.query({personId: $routeParams.id, order: 'start.desc'}, function (events) {
                     var data = {
