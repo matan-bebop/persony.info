@@ -13,11 +13,69 @@
                     }
                 );
 
-                $scope.popup = function(image, description){
+                $scope.zoomSlider = 7;
+
+                $scope.translate = function(value)
+                {
+                    switch(value)
+                    {
+                        case 7:
+                            return 'Дні';
+                        case 6:
+                            return 'Тижні';
+                        case 5:
+                            return 'Місяці';
+                        case 4:
+                            return 'Квартали';
+                        case 3:
+                            return 'Півріччя';
+                        case 2:
+                            return 'Роки';
+                        case 1:
+                            return 'П’ятиріччя';
+                        case 0:
+                            return 'Десятиріччя';
+                        default:
+                            return 'Дні';
+                    }
+
+                    /*
+                     * switch(value)
+                     {
+                     case 7:
+                     return '1д.'
+                     case 6:
+                     return '7д.';
+                     case 5:
+                     return '1м.';
+                     case 4:
+                     return '3м.';
+                     case 3:
+                     return '6м.';
+                     case 2:
+                     return '1р.';
+                     case 1:
+                     return '5р.';
+                     case 0:
+                     return '10р.';
+                     default:
+                     return '1д.';
+                     }
+                     * */
+                }
+
+                $scope.popup = function(title, description, image){
                     var modalInstance = $modal.open({
                         templateUrl: 'photoModal.html',
                         controller: 'controllers.photoModalCtrl',
+                        /*windowClass: 'modal-sm',*/
                         resolve: {
+                            name: function () {
+                                return $scope.person.name;
+                            },
+                            title: function () {
+                                return title;
+                            },
                             image: function () {
                                 return image;
                             },
@@ -64,15 +122,13 @@
     angular.module('personyApp').controller(
         'controllers.photoModalCtrl',
         [
-            '$scope', '$modalInstance', 'image', 'description',
-            function ($scope, $modalInstance, image, description) {
+            '$scope', '$modalInstance', 'name', 'title', 'image', 'description',
+            function ($scope, $modalInstance, name, title, image, description) {
                 $scope.modal = {
-                    image: function () {
-                        return image;
-                    },
-                    description: function () {
-                        return description;
-                    }
+                    modalName: name,
+                    modalTitle: title,
+                    modalImage: image,
+                    modalDescription: description
                 }
             }
         ]

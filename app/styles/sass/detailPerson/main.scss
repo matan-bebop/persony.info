@@ -48,7 +48,7 @@
     padding: 5px 0 30px 55px;
     position: relative;
     z-index: 103;
-    font-size: 12px;
+    font-size: 1em;
   }
 
   .social-icons li {
@@ -63,7 +63,7 @@
 
   .person-name {
     margin-top: 0;
-    font-size: 24px;
+    font-size: 1.5em;
   }
 
   .person-info {
@@ -86,7 +86,7 @@
 
       span{
         line-height: 50px;
-        font-size: 25px;
+        font-size: 1.5em;
       }
     }
 
@@ -117,7 +117,6 @@
 .person-tags li:hover {
   background: #DDD;
 }
-
 
 /* -------------------------------------
  * Colours of source indicators
@@ -164,3 +163,5 @@
 }
 
 @import "timeline";
+@import "zoom";
+@import "modal";

@@ -1,0 +1,22 @@
+.modal-body{
+  img{
+    width: 90%;
+    @include easings;
+  }
+}
+
+.modal-body, .modal-header{
+  text-align: center !important;
+
+  @include easings;
+}
+
+.modal-header{
+  h4{
+    font-weight: 500 !important;
+  }
+}
+
+.modal-footer{
+  text-align: left !important;
+}

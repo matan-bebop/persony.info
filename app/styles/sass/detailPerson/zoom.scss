@@ -1,0 +1,130 @@
+.timeline-zoom{
+  position: fixed;
+  left: 1.3em;
+  top: 60px;
+  width: 14em;
+  z-index: 102;
+
+  .zoom-tip{
+    margin-left: 10px;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding-top: 25px;
+    height: 70px;
+
+    @include easings;
+  }
+
+  @include easings;
+
+  &.shrink .zoom-tip{
+    height: 0px;
+    padding-top: 0px;
+    color: transparent;
+  }
+
+  i{
+    display: inline-block;
+    margin: 0 0.75em;
+  }
+}
+
+rzslider {
+  display: inline-block;
+  position: relative;
+  height: 4px;
+  width: 9em;
+  margin: 35px 0 15px 0;
+  vertical-align: middle;
+
+  span {
+    white-space: nowrap;
+    position: absolute;
+    display: inline-block;
+
+
+    &.base {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+    }
+
+    &.bar {
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      border: 1px solid $zoomAxisColor;
+      background: white;
+
+      &.selection {
+        width: 0%;
+        z-index: 1;
+        background: $zoomActiveColor;
+      }
+    }
+
+    &.pointer {
+
+      cursor: pointer;
+      width: 6px;
+      height: 26px;
+      top: -12px;
+      background-color: transparent;
+      z-index: 2;
+
+      &:after {
+        content: '';
+        width: 6px;
+        height: 26px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: white;
+        border: 1px solid $zoomAxisColor;
+
+        @include border-radius(3px);
+      }
+
+      &:hover:after {
+        background-color: $zoomHoverColor;
+      }
+
+      &.active:after {
+        background-color: $zoomActiveColor;
+      }
+    }
+
+    &.bubble {
+      cursor: default;
+      font-size: 0.75em;
+      top: -40px;
+      opacity: 0.5;
+      padding: 3px;
+      color: $zoomLabelTextColor;
+      background: $zoomLabelBkgColor;
+
+      @include border-radius(3px);
+
+      &:after{
+        content: '';
+        position: absolute;
+        border-top: 4px solid $zoomLabelBkgColor;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        top: 100%;
+        left: 50%;
+        margin-left: -4px;
+        width: 0; height: 0;
+      }
+
+      &.limit {
+        color: transparent;
+        background: transparent;
+
+        &:after{
+          border: 0px transparent;
+        }
+      }
+    }
+  }
+}

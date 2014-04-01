@@ -81,6 +81,11 @@ h4 {
 
   span{
     display: inline;
+
+    #help-tip-close-link{
+      border-bottom: 1px dashed;
+      cursor: pointer;
+    }
   }
 }
 
