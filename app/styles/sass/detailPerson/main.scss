@@ -1,48 +1,70 @@
 $timelineVerticalAxisLeftMarginDesktop: 270px;
-$timelineVerticalAxisLeftMarginDesktop-55px: 215px;
-$timelineVerticalAxisLeftMarginDesktop-30px: 240px;
+$personPhotoBigRadius: 55px;
+$personPhotoBigDiameter: 110px;
+$personPhotoSmallRadius: 30px;
+$personPhotoSmallDiameter: 60px;
+$personPhotoBigRadiusPlusTextPadding: 65px;
+
+$personHeaderBigDisplayHeight: 150px;
+$personHeaderSmallDisplayHeight: 80px;
+
+$personPageHeaderBigMarginTopBottom: 20px;
+$personPageHeaderSmallMarginTopBottom: 10px;
+
+$personHeaderDataDisplayWidth: 500px;
+$personHeaderTextLeftPadding: 10px;
+$personHeaderSmallMarginLeft: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
+$personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter;
 
 .person-header-die{
   background: $timelinePersonBgColour;
   position: fixed;
   left: 0;
   z-index: 101;
-  top: 50px;
+  top: $navbarHeight;
   width: 100%;
-  height: 150px;
+  height: $personHeaderBigDisplayHeight;
   border-bottom: 2px solid $timelineAxisColour;
 
   @include easings;
 
   &.shrink{
-    height: 80px;
+    height: $personHeaderSmallDisplayHeight;
   }
 }
 
 .page-header{
-  margin: 20px 0 20px;
+  margin: $personPageHeaderBigMarginTopBottom 0 $personPageHeaderBigMarginTopBottom;
   position: fixed;
   z-index: 102;
   width: inherit;
-  height: 130px;
+  height: $personHeaderBigDisplayHeight - $personPageHeaderBigMarginTopBottom;
   border: 0px;
+
+  @include easings;
 
   .person-header {
     z-index: 102;
-    margin-left: 55px;
+    width: $personHeaderDataDisplayWidth + $personPhotoBigDiameter;
+    margin-left: $timelineVerticalAxisLeftMarginDesktop - $personPhotoBigRadius;
 
     .person-photo {
-      width: 110px;
-      height: 110px;
+      width: $personPhotoBigDiameter;
+      height: $personPhotoBigDiameter;
       text-align: center;
       background: white;
       border: 5px solid $timelineAxisColour;
       font-size: 24px;
-      z-index: 103;
+      z-index: 104;
       position: relative;
+      cursor: pointer;
 
       @include border-radius(50%);
       @include easings;
+
+      &:hover{
+        border: 5px solid black;
+      }
 
       span{
         line-height: 95px;
@@ -52,15 +74,16 @@ $timelineVerticalAxisLeftMarginDesktop-30px: 240px;
     }
 
     .person-data {
-      margin-left: -35px;
-      width: 500px;
-      padding: 5px 0 30px 55px;
+      width: $personHeaderDataDisplayWidth;
+      margin-left: -$personPhotoBigRadius;
+      padding: 5px 0 18px $personPhotoBigRadius + $personHeaderTextLeftPadding;
       position: relative;
       z-index: 103;
-      font-size: 16px;
+      font-size: 14px;
+      border-left: 2px solid $timelineAxisColour;
     }
 
-    /*Old Code */
+    /*Old Code Begin*/
 
     .social-icons li {
       display: inline-block;
@@ -76,7 +99,7 @@ $timelineVerticalAxisLeftMarginDesktop-30px: 240px;
       margin-bottom: 10px;
     }
 
-    /*Old Code */
+    /*Old Code End*/
 
     .person-name {
       margin-top: 0;
@@ -91,30 +114,36 @@ $timelineVerticalAxisLeftMarginDesktop-30px: 240px;
   }
 
   &.shrink{
-    margin: 10px 0 0 -30px !important;
-    height: 50px;
+    margin: $personPageHeaderSmallMarginTopBottom 0 $personPageHeaderSmallMarginTopBottom;
+    height: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom;
 
-    .person-photo {
-      width: 60px;
-      height: 60px;
+    .person-header {
+      width: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter;
+      margin-left: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
 
-      span{
-        line-height: 50px;
-        font-size: 24px;
+      .person-photo {
+        width: $personPhotoSmallDiameter;
+        height: $personPhotoSmallDiameter;
+
+        span{
+          line-height: 50px;
+          font-size: 24px;
+        }
       }
-    }
 
-    .person-name {
-      margin-top: 10px;
-    }
+      .person-data {
+        margin-left: -$personPhotoSmallRadius;
+        padding: 15px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
+      }
 
-    .person-info {
-      display: none;
+      .person-info {
+        display: none;
+      }
     }
   }
 }
 
-/*Old Code */
+/*Old Code Start*/
 .person-tags li {
   display: inline-block;
   margin-right: 4px;
@@ -132,52 +161,7 @@ $timelineVerticalAxisLeftMarginDesktop-30px: 240px;
 .person-tags li:hover {
   background: #DDD;
 }
-/*Old Code */
-
-
-/* -------------------------------------
- * Colours of source indicators
- * ------------------------------------- */
-
-.fa-info{
-  color: $FoursquareBlue;
-}
-
-.fa-video-camera{
-  color: $YouTubeRed;
-}
-
-.fa-microphone{
-  color: $metallicSilver;
-}
-
-.fa-file-text{
-  color: black;
-}
-
-.fa-twitter{
-  color: $TwitterBlue;
-}
-
-.fa-facebook{
-  color: $FacebookBlue;
-}
-
-.fa-vk{
-  color: $VKBlue;
-}
-
-.fa-google-plus{
-  color: $GooglePlusRed;
-}
-
-.fa-paperclip{
-  color: black;
-}
-
-.fa-link{
-  color: $timelineLink;
-}
+/*Old Code End*/
 
 @import "timeline";
 @import "zoom";

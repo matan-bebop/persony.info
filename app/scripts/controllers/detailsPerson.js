@@ -38,30 +38,6 @@
                         default:
                             return 'Дні';
                     }
-
-                    /*
-                     * switch(value)
-                     {
-                     case 7:
-                     return '1д.'
-                     case 6:
-                     return '7д.';
-                     case 5:
-                     return '1м.';
-                     case 4:
-                     return '3м.';
-                     case 3:
-                     return '6м.';
-                     case 2:
-                     return '1р.';
-                     case 1:
-                     return '5р.';
-                     case 0:
-                     return '10р.';
-                     default:
-                     return '1д.';
-                     }
-                     * */
                 }
 
                 $scope.popup = function(title, description, image){
@@ -82,6 +58,18 @@
                             description: function () {
                                 return description;
                             }
+                        }
+                    });
+                }
+
+                $scope.personPopup = function(){
+                    var modalInstance = $modal.open({
+                        templateUrl: 'personModal.html',
+                        controller: 'controllers.personModalCtrl',
+                        resolve: {
+                            person: function () {
+                                return $scope.person;
+                            },
                         }
                     });
                 }
@@ -120,6 +108,16 @@
     );
 
     angular.module('personyApp').controller(
+        'controllers.personModalCtrl',
+        [
+            '$scope', '$modalInstance', 'person',
+            function ($scope, $modalInstance, person) {
+                $scope.person = person;
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
         'controllers.photoModalCtrl',
         [
             '$scope', '$modalInstance', 'name', 'title', 'image', 'description',
@@ -139,10 +137,19 @@
         [
             '$scope',
             function ($scope) {
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
+        'controllers.eventFilters',
+        [
+            '$scope',
+            function ($scope) {
                 $scope.items = [
-                    "The first choice!",
-                    "And another choice for you.",
-                    "but wait! A third!"
+                    "Допа",
+                    "Рабінович",
+                    "Дарт Вейдер"
                 ];
             }
         ]

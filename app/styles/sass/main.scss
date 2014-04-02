@@ -4,9 +4,12 @@
 @import "compass/css3/transition";
 @import "mixins";
 @import "colours";
+@import "socialColors";
 
 // U_N_S_O_R_T_E_D
 $bg: url(../../images/agsquare.png) repeat $mainBackgroundColour ! important;
+
+$navbarHeight: 50px;
 
 body {
   color: $mainTextColour;
@@ -46,11 +49,11 @@ h4 {
 }
 
 .logo img {
-  margin: 4px 50px 0 0;
+  margin: 4px $navbarHeight 0 0;
 }
 
 .main-container{
-  margin-top: 50px;
+  margin-top: $navbarHeight;
 }
 
 .help-tip{
@@ -59,7 +62,7 @@ h4 {
   border: 0;
   text-align: center;
   position: fixed;
-  top: 50px;
+  top: $navbarHeight;
   width: 100%;
   z-index: 2000;
 
@@ -73,7 +76,7 @@ h4 {
 .help-tip.show-tip{
   padding: 15px 35px 15px 15px;
   border: 1px solid transparent;;
-  height: 53px;
+  height: $navbarHeight;
 
   button{
     display: block;

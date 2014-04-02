@@ -13,7 +13,7 @@ angular.module('personyApp').directive('userAvatar', function () {
             var avatarCssClasses = 'person-photo pull-left';
             scope.$watch('src', function(value) {
                 if (scope.src) {
-                    element.replaceWith('<img src="avatars/' + value + '" alt="' + scope.title + '" class="' + avatarCssClasses + '" />');
+                    element.replaceWith('<img src="avatars/' + value + '" alt="' + scope.title + '" class="' + avatarCssClasses + '"  ng-click="personPopup()"/>');
                 }
                 else {
                     element.addClass(avatarCssClasses).append('<span class="fa fa-user fa-3x"></span>');

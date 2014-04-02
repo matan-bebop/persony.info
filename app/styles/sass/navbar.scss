@@ -1,10 +1,12 @@
+$navbarSearchDisplayWidth: 200px;
+
 .navbar-static-top{
   border-width: 0;
 }
 
 .nav{
   li {
-    height: 50px !important;
+    height: $navbarHeight !important;
     cursor: pointer;
     border-bottom: 4px solid transparent;
 
@@ -50,7 +52,7 @@
 }
 
 .search-form {
-  width: 200px;
+  width: $navbarSearchDisplayWidth;
   margin-top: 11px;
 
   .search-input, .input-group-addon{

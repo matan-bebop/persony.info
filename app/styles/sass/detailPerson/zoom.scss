@@ -1,5 +1,10 @@
+$zoomControlDisplayWidth: 200px;
+$sliderControlDisplayWidth: 120px;
+$zoomTitleDisplayHeight: 60px;
+
 .timeline-zoom{
-  width: 200px;
+  width: $zoomControlDisplayWidth;
+  padding-top: 15px;
   float: left;
   z-index: 102;
 
@@ -7,19 +12,12 @@
     margin-left: 10px;
     font-size: 24px;
     font-weight: 500;
-    padding-top: 0;
-    height: 70px;
+    height: $zoomTitleDisplayHeight;
 
     @include easings;
   }
 
   @include easings;
-
-  &.shrink .zoom-tip{
-    height: 0px;
-    padding-top: 0px;
-    color: transparent;
-  }
 
   i{
     display: inline-block;
@@ -42,12 +40,24 @@
   }
 }
 
+.page-header.shrink{
+  rzslider{
+    margin: 22px 0 25px 0;
+  }
+
+  .zoom-tip{
+      height: 0px;
+      padding-top: 0px;
+      color: transparent;
+  }
+}
+
 rzslider {
   display: inline-block;
   position: relative;
-  height: 4px;
-  width: 144px;
-  margin: 16px 0 15px 0;
+  height: 6px;
+  width: $sliderControlDisplayWidth;
+  margin: 22px 0 25px 0;
   vertical-align: middle;
 
   span {
@@ -68,6 +78,8 @@ rzslider {
       z-index: 0;
       border: 1px solid $zoomAxisColor;
       background: white;
+
+      @include border-radius(2px);
 
       &.selection {
         width: 0%;
