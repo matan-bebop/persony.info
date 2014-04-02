@@ -17,6 +17,12 @@ $mainSearchNavBgColour: #666;
 $personBlockBackgroundColour: #fff;
 $personBlockBorderColour: #ccc;
 
+//Button on All page
+$regularAllPageButtonBorderColour: #0266ec;
+$regularAllPageButtonColour: #8abbfe;
+$hoverAllPageButtonBorderColour: #28597a;
+$hoverAllPageButtonColour: #28597a;
+
 // Timeline
 $timelineAxisColour: #DDD;
 $timelineDedicatedAxisColour: #999;
@@ -25,6 +31,17 @@ $timelineLink: #00669a;
 $timelineLinkHover: #00409a;
 $timelineEventBgColour: #e0e0e0;
 $metallicSilver: #8f999f;
+
+// Timeline zoom control
+$zoomActiveColor: #6d6d6d;
+$zoomHoverColor: #9e9e9e;
+$zoomLabelTextColor: #fff;
+$zoomLabelBkgColor: #000;
+$zoomAxisColor: #9e9e9e;
+$zoomLimitLabelTextColor: $zoomLabelTextColor;
+
+//detailPerson page
+$toolsButtonColor: #777;
 
 //Social Colours
 $FacebookBlue: #3B5998;

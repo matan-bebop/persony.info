@@ -1,0 +1,61 @@
+.person-tools, .event-filter{
+  z-index: 102;
+
+  @include easings;
+
+  li{
+    list-style-type: none;
+  }
+
+  a{
+    cursor: pointer;
+  }
+
+  i{
+    color: $toolsButtonColor;
+    cursor: pointer;
+
+    @include easings(0.6s);
+
+    &:hover{
+      color: black;
+    }
+  }
+}
+
+.person-tools{
+  float: right;
+  height: 24px;
+  width: 28px;
+}
+
+.event-filter{
+  cursor: pointer;
+  margin-top: $personHeaderBigDisplayHeight - $personPageHeaderBigMarginTopBottom * 2 - 30px;
+
+  @include border-radius(3px);
+
+  a{
+    color: $timelineLink;
+    font-weight: 500;
+  }
+
+  i{
+    margin-right: 4px; //space
+  }
+
+  &:hover{
+    a{
+      color: $timelineLinkHover;
+    }
+
+    i{
+      color: black;
+    }
+  }
+}
+
+.page-header.shrink .event-filter{
+  margin-top: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom * 2 - 30px;
+}
+

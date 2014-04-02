@@ -13,17 +13,63 @@
                     }
                 );
 
-                $scope.popup = function(image, description){
+                $scope.zoomSlider = 7;
+
+                $scope.translate = function(value)
+                {
+                    switch(value)
+                    {
+                        case 7:
+                            return 'Дні';
+                        case 6:
+                            return 'Тижні';
+                        case 5:
+                            return 'Місяці';
+                        case 4:
+                            return 'Квартали';
+                        case 3:
+                            return 'Півріччя';
+                        case 2:
+                            return 'Роки';
+                        case 1:
+                            return 'П’ятиріччя';
+                        case 0:
+                            return 'Десятиріччя';
+                        default:
+                            return 'Дні';
+                    }
+                }
+
+                $scope.popup = function(title, description, image){
                     var modalInstance = $modal.open({
                         templateUrl: 'photoModal.html',
                         controller: 'controllers.photoModalCtrl',
+                        /*windowClass: 'modal-sm',*/
                         resolve: {
+                            name: function () {
+                                return $scope.person.name;
+                            },
+                            title: function () {
+                                return title;
+                            },
                             image: function () {
                                 return image;
                             },
                             description: function () {
                                 return description;
                             }
+                        }
+                    });
+                }
+
+                $scope.personPopup = function(){
+                    var modalInstance = $modal.open({
+                        templateUrl: 'personModal.html',
+                        controller: 'controllers.personModalCtrl',
+                        resolve: {
+                            person: function () {
+                                return $scope.person;
+                            },
                         }
                     });
                 }
@@ -57,6 +103,54 @@
 
                     $scope.eventYears = data;
                 });
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
+        'controllers.personModalCtrl',
+        [
+            '$scope', '$modalInstance', 'person',
+            function ($scope, $modalInstance, person) {
+                $scope.person = person;
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
+        'controllers.photoModalCtrl',
+        [
+            '$scope', '$modalInstance', 'name', 'title', 'image', 'description',
+            function ($scope, $modalInstance, name, title, image, description) {
+                $scope.modal = {
+                    modalName: name,
+                    modalTitle: title,
+                    modalImage: image,
+                    modalDescription: description
+                }
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
+        'controllers.personTools',
+        [
+            '$scope',
+            function ($scope) {
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
+        'controllers.eventFilters',
+        [
+            '$scope',
+            function ($scope) {
+                $scope.items = [
+                    "Допа",
+                    "Рабінович",
+                    "Дарт Вейдер"
+                ];
             }
         ]
     );

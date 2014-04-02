@@ -1,0 +1,58 @@
+.modal-body{
+  img{
+    width: 90%;
+    @include easings;
+  }
+}
+
+.modal-body, .modal-header{
+  text-align: center !important;
+
+  @include easings;
+}
+
+.modal-header{
+  h4{
+    font-weight: 500 !important;
+  }
+}
+
+.modal-footer{
+  text-align: left !important;
+}
+
+.person-modal{
+  display: block;
+  position: relative;
+  min-height: $personHeaderBigDisplayHeight;
+
+  .person-photo {
+    width: $personPhotoBigDiameter;
+    height: $personPhotoBigDiameter;
+    text-align: center;
+    background: white;
+    border: 5px solid $timelineAxisColour;
+    font-size: 24px;
+    z-index: 104;
+    position: relative;
+
+    @include border-radius(50%);
+    @include easings;
+
+    span{
+      line-height: 95px;
+
+      @include easings;
+    }
+  }
+
+  .person-data {
+    width: $personHeaderDataDisplayWidth;
+    margin-left: -$personPhotoBigRadius;
+    padding: 5px 0 18px $personPhotoBigRadius + $personHeaderTextLeftPadding;
+    position: relative;
+    z-index: 103;
+    font-size: 14px;
+  }
+
+}

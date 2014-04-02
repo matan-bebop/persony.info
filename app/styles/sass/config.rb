@@ -1,0 +1,10 @@
+preferred_syntax = :scss
+http_path = '/'
+css_dir = 'styles/compiled'
+sass_dir = 'styles/sass'
+images_dir = 'images'
+javascripts_dir = 'scripts'
+relative_assets = true
+line_comments = true
+cache_dir = '../../tmp/sass-cache'
+output_style = :compressed
