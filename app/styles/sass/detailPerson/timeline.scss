@@ -1,11 +1,6 @@
-$timelineVerticalAxisLeftMarginDesktop: 270px;
-
-/* -------------------------------------
- * timeline
- * ------------------------------------- */
-
 .person-bio{
-  margin: 20px 0 30px $timelineVerticalAxisLeftMarginDesktop;
+  margin: 0px 0 30px $timelineVerticalAxisLeftMarginDesktop;
+  padding-top: 20px;
   border-left: 2px solid $timelineAxisColour;
   z-index: 110;
 }
@@ -25,7 +20,7 @@ $timelineVerticalAxisLeftMarginDesktop: 270px;
   }
 
   label {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 400;
     margin-left: 20px;
     text-decoration: underline;
@@ -90,7 +85,7 @@ $timelineVerticalAxisLeftMarginDesktop: 270px;
       display: none;
     }
 
-    @include border-radius(0.25em);
+    @include border-radius(4px);
 
     .info-wrap{
       padding-left: 3px;
@@ -125,8 +120,8 @@ $timelineVerticalAxisLeftMarginDesktop: 270px;
 
       &.source{
         font-weight: 600;
-        font-size: 0.9em;
-        color: #999;
+        font-size: 14px;
+        color: $timelineDedicatedAxisColour;
       }
     }
 
@@ -180,7 +175,7 @@ $timelineVerticalAxisLeftMarginDesktop: 270px;
 .event-date {
   top: 50%;
   left: -80px;
-  font-size: 0.95em;
+  font-size: 15px;
   line-height: 20px;
   position: absolute;
   color: $timelineDedicatedAxisColour;
@@ -191,7 +186,7 @@ $timelineVerticalAxisLeftMarginDesktop: 270px;
   margin-top: 20px;
   padding-left: 3px;
   font-weight: 600;
-  font-size: 0.88em;
+  font-size: 14px;
   color: $timelineDedicatedAxisColour;
 }
 
@@ -226,7 +221,7 @@ $timelineVerticalAxisLeftMarginDesktop: 270px;
 
     label {
       width: 85%;
-      font-size: 1.1em;
+      font-size: 17px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;

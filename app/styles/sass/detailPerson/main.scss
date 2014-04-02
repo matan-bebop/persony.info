@@ -1,3 +1,7 @@
+$timelineVerticalAxisLeftMarginDesktop: 270px;
+$timelineVerticalAxisLeftMarginDesktop-55px: 215px;
+$timelineVerticalAxisLeftMarginDesktop-30px: 240px;
+
 .person-header-die{
   background: $timelinePersonBgColour;
   position: fixed;
@@ -15,66 +19,76 @@
   }
 }
 
-.person-header {
-  margin: 20px 0 0 -55px !important;
-  top: 50px;
-  z-index: 102;
-  height: 150px;
+.page-header{
+  margin: 20px 0 20px;
   position: fixed;
+  z-index: 102;
+  width: inherit;
+  height: 130px;
+  border: 0px;
 
-  .person-photo {
-    width: 110px;
-    height: 110px;
-    text-align: center;
-    background: white;
-    border: 5px solid $timelineAxisColour;
-    font-size: 25px;
-    z-index: 103;
-    position: relative;
+  .person-header {
+    z-index: 102;
+    margin-left: 55px;
 
-    @include border-radius(50%);
-    @include easings;
+    .person-photo {
+      width: 110px;
+      height: 110px;
+      text-align: center;
+      background: white;
+      border: 5px solid $timelineAxisColour;
+      font-size: 24px;
+      z-index: 103;
+      position: relative;
 
-    span{
-      line-height: 95px;
-
+      @include border-radius(50%);
       @include easings;
+
+      span{
+        line-height: 95px;
+
+        @include easings;
+      }
     }
-  }
 
-  .person-data {
-    margin-left: -35px;
-    width: 500px;
-    padding: 5px 0 30px 55px;
-    position: relative;
-    z-index: 103;
-    font-size: 1em;
-  }
+    .person-data {
+      margin-left: -35px;
+      width: 500px;
+      padding: 5px 0 30px 55px;
+      position: relative;
+      z-index: 103;
+      font-size: 16px;
+    }
 
-  .social-icons li {
-    display: inline-block;
-    margin-left: 10px;
-    line-height: 24px;
-  }
+    /*Old Code */
 
-  .social-icons i {
-    font-size: 1.2em;
-  }
+    .social-icons li {
+      display: inline-block;
+      margin-left: 10px;
+      line-height: 24px;
+    }
 
-  .person-name {
-    margin-top: 0;
-    font-size: 1.5em;
-  }
+    .social-icons i {
+      font-size: 19px;
+    }
 
-  .person-info {
-    margin-bottom: 10px;
-  }
+    .person-social {
+      margin-bottom: 10px;
+    }
 
-  .person-social {
-    margin-bottom: 10px;
-  }
+    /*Old Code */
 
-  @include easings;
+    .person-name {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .person-info {
+      margin-bottom: 10px;
+    }
+
+    @include easings;
+  }
 
   &.shrink{
     margin: 10px 0 0 -30px !important;
@@ -86,7 +100,7 @@
 
       span{
         line-height: 50px;
-        font-size: 1.5em;
+        font-size: 24px;
       }
     }
 
@@ -100,6 +114,7 @@
   }
 }
 
+/*Old Code */
 .person-tags li {
   display: inline-block;
   margin-right: 4px;
@@ -117,6 +132,8 @@
 .person-tags li:hover {
   background: #DDD;
 }
+/*Old Code */
+
 
 /* -------------------------------------
  * Colours of source indicators
@@ -165,3 +182,4 @@
 @import "timeline";
 @import "zoom";
 @import "modal";
+@import "tools";

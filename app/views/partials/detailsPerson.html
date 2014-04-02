@@ -43,14 +43,12 @@
             $(window).scroll(function() {
                 var scroll = getCurrentScroll();
                 if ( scroll >= shrinkHeader ) {
-                    $('.person-header').addClass('shrink');
+                    $('.page-header').addClass('shrink');
                     $('.person-header-die').addClass('shrink')
-                    $('.timeline-zoom').addClass('shrink');
                 }
                 else {
-                    $('.person-header').removeClass('shrink');
+                    $('.page-header').removeClass('shrink');
                     $('.person-header-die').removeClass('shrink');
-                    $('.timeline-zoom').removeClass('shrink');
                 }
             });
             function getCurrentScroll() {
@@ -59,20 +57,21 @@
         });
     </script>
 
-    <div class="person-bio">
+    <div class="page-header">
 
-    <div class="timeline-zoom" >
-        <div class="zoom-tip">
-            Маштаб часу:
+        <div class="timeline-zoom" >
+            <div class="zoom-tip">
+                Маштаб часу:
+            </div>
+            <i class="fa fa-minus"></i>
+            <rzslider rz-slider-model="zoomSlider"
+                      rz-slider-translate="translate">
+            </rzslider>
+            <i class="fa fa-plus"></i>
         </div>
-        <i class="fa fa-minus"></i>
-        <rzslider rz-slider-model="zoomSlider"
-                  rz-slider-translate="translate">
-        </rzslider>
-        <i class="fa fa-plus"></i>
-    </div>
 
         <div class='person-header'>
+
             <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
 
             <div class="person-data pull-left">
@@ -90,10 +89,25 @@
                 <div class="person-info">{{person.info}}</div>
 
             </div>
+
         </div>
 
-        <div class="clearfix"></div>
+        <div class="person-tools" >
+            <li class="dropdown" ng-controller="controllers.personTools">
+                <a class="dropdown-toggle">
+                    <i class="fa fa-cog fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="choice in items">
+                        <a>{{choice}}</a>
+                    </li>
+                </ul>
+            </li>
+        </div>
 
+    </div>
+
+    <div class="person-bio">
         <ul id='timeline'>
             <li class="li-year">
                 <div class="event-year">2011</div>

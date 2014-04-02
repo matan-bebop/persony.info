@@ -1,0 +1,33 @@
+.person-tools{
+  float: right;
+  top: 70px;
+  right: 0px;
+  width: 64px;
+  z-index: 102;
+  position: fixed;
+
+  @include easings;
+
+  li{
+    list-style-type: none;
+  }
+
+  a{
+    cursor: pointer;
+  }
+
+  i{
+    color: $toolsButtonColor;
+    cursor: pointer;
+
+    @include easings(0.6s);
+
+    &:hover{
+      color: black;
+    }
+  }
+
+  &.shrink{
+    top: 60px;
+  }
+}
