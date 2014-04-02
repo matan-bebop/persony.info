@@ -56,7 +56,7 @@ app.configure(function () {
 });
 
 /* Database setup !important to be before url & pass definition */
-app.orm = app.require("/components/db-connection")(app);
+app.require("/components/db-connection")(app);
 
 // all api requests will have 'Content-Type: application/json' header
 app.use(function (req, res, next) {

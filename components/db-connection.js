@@ -3,27 +3,28 @@
 var path = require('path');
 
 module.exports = function (app) {
-    var Sequelize = require('sequelize'),
-        settings = app.require('/config/settings').database,
-        seq = new Sequelize(settings.database, settings.user, settings.password, {
-            host: settings.host,
-            port: settings.port,
-            dialect: settings.protocol,
-            define: {
-                underscored: false,
-                freezeTableName: false,
-                syncOnAssociation: false,
-                charset: 'utf8',
-                collate: 'utf8_general_ci',
-                timestamps: false
-            },
-            sync: { force: false },
-            pool: { maxConnections: 5, maxIdleTime: 30}
-        });
+    var settings = app.require('/config/settings').database;
 
-    seq.app = app;
-    seq.getModel = function (model) {
-        return seq.import(
+    app.orm = new (require('sequelize'))(settings.database, settings.user, settings.password, {
+        host: settings.host,
+        port: settings.port,
+        dialect: settings.protocol,
+        define: {
+            underscored: false,
+            freezeTableName: false,
+            syncOnAssociation: false,
+            charset: 'utf8',
+            collate: 'utf8_general_ci',
+            timestamps: false
+        },
+        sync: { force: false },
+        pool: { maxConnections: 5, maxIdleTime: 30}
+    });
+
+    app.orm.app = app;
+
+    app.orm.getModel = function (model) {
+        return this.import(
             path.join(
                 app.ROOT,
                 'components',
@@ -33,5 +34,6 @@ module.exports = function (app) {
             )
         );
     };
-    return seq;
+
+    return app.orm;
 };

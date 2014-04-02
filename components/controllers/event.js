@@ -47,16 +47,18 @@ module.exports = function (app) {
         },
 
         "save": function (req, res, next) {
-            Event.find(req.body.id).success(function (entity) {
-                if (!entity) {
-                    entity = Event.build();
-                }
-                entity.set(req.body);
-
-                var options;
-                entity.validate(options).success(function (errors) {
-                    console.log(errors);
-                });
+            console.log(req.body);
+            Event.findOrCreate({id: req.body.id}, req.body).success(function (entity, created) {
+                console.log(entity, created);
+//                if (!entity) {
+//                    entity = Event.build();
+//                }
+//                entity.set(req.body);
+//
+//                var options;
+//                entity.validate(options).success(function (errors) {
+//                    console.log(errors);
+//                });
 //                    entity.save().success(function (entity) {
 //                        res.end(JSON.stringify(entity));
 //                    }).
