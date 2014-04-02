@@ -1,91 +1,74 @@
 .wrap {
   position: relative;
-  width: 100%;
   max-width: 1260px;
   margin: 0 auto;
 }
 
 #footer {
   min-height: 120px;
-  background: #252528;
-  color: #fff;
-
-  margin: 0 auto;
+  background: $mainTextColour;
+  color: white;
   max-width: 1260px;
   border-radius: 10px 10px 0 0;
   padding: 30px;
   margin-top: 50px;
-}
-
-#footer .social {
-  margin-top: 0px;
   text-align: center;
 
-}
+  .social {
 
-#footer .social a {
-  margin: 10px;
-  text-decoration: none;
-}
 
-.social a {
-  margin: 10px;
-  text-decoration: none;
-}
+    a{
+      margin: 10px;
+      text-decoration: none;
 
-.social a span {
-  display: inline-block;
-  width: 33px;
-  height: 33px;
-}
+      span {
+        display: inline-block;
+        width: 33px;
+        height: 33px;
 
-.social span.ico1,
-.social span.ico1h {
-  background-position: 0px 0px;
-}
+        &.ico1, &.ico1h{
+          background-position: 0px 0px !important;
+        }
 
-.social span.ico2,
-.social span.ico2h {
-  background-position: -37px 0px;
-}
+        &.ico2, &.ico2h{
+          background-position: -37px 0px !important;
+        }
 
-.social span.ico3,
-.social span.ico3h {
-  background-position: -75px 0px;
-}
+        &.ico3, &.ico3h{
+          background-position: -75px 0px !important;
+        }
 
-.social span.ico7,
-.social span.ico7h {
-  background-position: -226px 0px;
-}
+        &.ico7, &.ico7h{
+          background-position: -226px 0px !important;
+        }
 
-.social a:hover span.socialicons {
-  display: none;
-}
+        &.socialicons {
+          background: url('../../images/socicons.png') no-repeat;
+        }
 
-.social a:hover span.socialicons_h {
-  display: inline-block !important;
-}
+        &.socialicons_h {
+          background: url('../../images/socicons_h.png') no-repeat;
+          display: none;
+        }
+      }
 
-.social span.socialicons_h {
-  display: none;
-}
+      &:hover{
+        span{
+          &.socialicons{
+            display: none;
+          }
 
-.socialicons {
-  background: url('../../images/socicons.png') no-repeat;
-  width: 265px;
-  height: 36px;
-}
+          &.socialicons_h{
+            display: inline-block !important;
+          }
+        }
+      }
+    }
+  }
 
-.socialicons_h {
-  background: url('../../images/socicons_h.png') no-repeat;
-  width: 265px;
-  height: 36px;
-}
-
-#footer .copyright {
-  color: #a6a6a7;
-  font-style: italic;
-  text-align: center;
-  margin-top: 30px;
+  .copyright {
+    color: $mainBackgroundColour;
+    font-style: italic;
+    margin-top: 30px;
+  }
 }

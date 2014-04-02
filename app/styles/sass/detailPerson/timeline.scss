@@ -1,232 +1,229 @@
-/* -------------------------------------
- * For horizontal version, set the
- * $vertical variable to false
- * ------------------------------------- */
-$vertical: true;
-
-h2 {
-  margin: 3em 0 0 0;
-  font-size: 1.5em;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+$timelineVerticalAxisLeftMarginDesktop: 270px;
 
 /* -------------------------------------
  * timeline
  * ------------------------------------- */
 
+.person-bio{
+  margin: 20px 0 30px $timelineVerticalAxisLeftMarginDesktop;
+  border-left: 2px solid $timelineAxisColour;
+  z-index: 110;
+}
+
 #timeline {
   list-style: none;
-  @if $vertical {
-    margin: 50px 0 30px 120px;
-    padding-left: 30px;
-    border-left: 8px solid $white;
-  }
-  @else {
-    margin: 120px 0 0;
-    padding: 0;
-    border-top: 8px solid $white;
-    display: table;
-    border-spacing: 30px 0;
-  }
+  margin: 152px 0 30px 0;
+  padding-left: 30px;
+
   li {
-    @if $vertical {
-      margin: 40px 0;
-      position: relative;
+    margin: 40px 0;
+    position: relative;
+
+    .li-month, .li-year{
+      margin: 0;
     }
-    @else {
-      display: table-cell;
-      // for Firefox
-      .relative {
-        position: relative;
+  }
+
+  label {
+    font-size: 1em;
+    font-weight: 400;
+    margin-left: 20px;
+    text-decoration: underline;
+    position: absolute;
+    z-index: 100;
+    cursor: pointer;
+    top: 13px;
+    color: $timelineLink;
+
+    @include easings;
+
+    &:hover{
+      color: $timelineLinkHover;
+    }
+  }
+
+  .radio {
+    display: none;
+  }
+
+  .radio:checked {
+    & + .relative {
+
+      label {
+        cursor: default;
+        text-decoration: none;
+
+        @include easings;
+
+        &:hover{
+          color: $timelineLink;
+        }
+      }
+    }
+
+    & ~ .content {
+      max-height: 1000px !important;
+      min-height: 180px;
+      border-color: $timelineEventBgColour;
+      background: $timelineEventBgColour;
+      margin-right: 20px;
+
+      @include easings(1.3s);
+
+      .detail-info, .event-detail-date{
+        display: block;
       }
     }
   }
-  p {
-    margin: 0 0 15px;
+
+  .content {
+    max-height: 20px;
+    max-width: 800px;
+    padding: 10px 10px;
+    margin-left: 5px;
+    border-color: transparent;
+    border-width: 2px;
+    border-style: solid;
+    position: relative;
+
+    .detail-info, .event-detail-date{
+      display: none;
+    }
+
+    @include border-radius(0.25em);
+
+    .info-wrap{
+      padding-left: 3px;
+    }
+
+    .info-wrap-img{
+      position: relative;
+      max-width: 25%;
+      min-width: 25%;
+      display: block;
+      float: right;
+      text-align: right;
+    }
+
+    .info-wrap-img img{
+      display: inline-block;
+      max-height: 100%;
+      max-width: 100%;
+      cursor: pointer;
+    }
+
+    .detail-info{
+      margin: 10px 0;
+      position: relative;
+    }
+
+    p{
+      &.description{
+        color: $mainTextColour;
+        font-weight: 500;
+      }
+
+      &.source{
+        font-weight: 600;
+        font-size: 0.9em;
+        color: #999;
+      }
+    }
+
+    &:before, &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border: solid transparent;
+      position: absolute;
+      pointer-events: none;
+      right: 100%;
+    }
+
+    &:before {
+      border-right-color: inherit;
+      border-width: 12px;
+      top: 50%;
+    }
   }
+
 }
 
-.date {
-  @if $vertical {
-    margin-top: -10px;
-    top: 50%;
-    left: -158px;
-  }
-  @else {
-    text-align: center;
-    top: -55px;
-    left: 0;
-    right: 0;
-  }
+.event-year{
+  margin: -27px;
+  left: -290px;
+  width: 100%;
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 600;
+  position: absolute;
+  padding-bottom: 17px;
+  border-bottom: 1px solid $timelineDedicatedAxisColour;
+
+  @include calc( top, '100% - 32px');
+}
+
+.event-month{
+  margin: 10px;
+  left: -200px;
+  width: 80%;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 300;
+  position: absolute;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed $timelineDedicatedAxisColour;
+
+  @include calc( top, '100% - 24px');
+}
+
+.event-date {
+  top: 50%;
+  left: -80px;
   font-size: 0.95em;
   line-height: 20px;
   position: absolute;
+  color: $timelineDedicatedAxisColour;
+  font-weight: 600;
 }
 
-.circle {
-  @if $vertical {
-    margin-top: -10px;
-    top: 50%;
-    left: -44px;
-  }
-  @else {
-    margin: 0 auto;
-    top: -14px;
-    left: 0;
-    right: 0;
-  }
-  width: 10px;
-  height: 10px;
-  background: $bg;
-  border: 5px solid $white;
+.event-detail-date{
+  margin-top: 20px;
+  padding-left: 3px;
+  font-weight: 600;
+  font-size: 0.88em;
+  color: $timelineDedicatedAxisColour;
+}
+
+.event-icon {
+  margin-top: -10px;
+  top: 50%;
+  left: -51px;
+  width: 40px;
+  height: 40px;
+  background: $timelineAxisColour;
   border-radius: 50%;
   display: block;
   position: absolute;
-}
-
-.content {
-  @if $vertical {
-    max-height: 20px;
-    padding: 50px 20px 0;
-    border-color: transparent;
-  }
-  @else {
-    width: 200px;
-    max-height: 0;
-    margin-top: 40px;
-    vertical-align: top;
-    padding: 50px 15px 15px;
-    transition: width 0.4s linear, max-height 0.4s linear;
-  }
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 0.5em;
-  position: relative;
-  &:before, &:after {
-    content: "";
-    width: 0;
-    height: 0;
-    border: solid transparent;
-    position: absolute;
-    pointer-events: none;
-    @if $vertical {
-      right: 100%;
-    }
-    @else {
-      bottom: 100%;
-    }
-  }
-  &:before {
-    @if $vertical {
-      border-right-color: inherit;
-      border-width: 20px;
-      top: 50%;
-      margin-top: -20px;
-    }
-    @else {
-      border-bottom-color: inherit;
-      border-width: 15px;
-      left: 50%;
-      margin-left: -15px;
-    }
-  }
-  &:after {
-    @if $vertical {
-      border-right-color: $bg;
-      border-width: 17px;
-      top: 50%;
-      margin-top: -17px;
-    }
-    @else {
-      border-bottom-color: $bg;
-      border-width: 12px;
-      left: 50%;
-      margin-left: -12px;
-    }
-  }
-  p {
-    max-height: 0;
-    color: transparent;
-    text-align: justify;
-    word-break: break-word;
-    hyphens: auto;
-    overflow: hidden;
-  }
-}
-
-label {
-  font-size: 1.3em;
-  position: absolute;
-  z-index: 100;
-  cursor: pointer;
-  @if $vertical {
-    top: 20px;
-    transition: transform 0.2s linear;
-  }
-  @else {
-    width: 200px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-    top: 60px;
-    left: 15px;
-  }
-}
-
-.radio {
-  display: none;
-}
-
-.radio:checked {
-  & + .relative {
-    label {
-      cursor: auto;
-      @if $vertical {
-        transform: translateX(42px);
-      }
-      @else {
-        width: 400px;
-        transition: width 0.3s linear 0.2s;
-      }
-    }
-    .circle {
-      background: $red;
-    }
-  }
-  & ~ .content {
-    max-height: 180px;
-    border-color: $white;
-    @if $vertical {
-      margin-right: 20px;
-      transform: translateX(20px);
-      transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
-    }
-    @else {
-      width: 400px;
-    }
-    p {
-      max-height: 200px;
-      color: $white;
-      transition: color 0.3s linear 0.3s;
-    }
-  }
+  padding-top: 15px;
+  text-align: center;
 }
 
 /* -------------------------------------
  * mobile phones (vertical version only)
  * ------------------------------------- */
-@if $vertical {
   @media screen and (max-width: 767px) {
+
     #timeline {
       margin-left: 0;
       padding-left: 0;
       border-left: none;
+
       li {
         margin: 50px 0;
       }
     }
+
     label {
       width: 85%;
       font-size: 1.1em;
@@ -236,9 +233,10 @@ label {
       display: block;
       transform: translateX(18px);
     }
+
     .content {
       padding-top: 45px;
-      border-color: $white;
+      border-color: $timelineAxisColour;
       &:before, &:after {
         border: solid transparent;
         bottom: 100%;
@@ -257,13 +255,5 @@ label {
         left: 50px;
         margin-left: -20px;
       }
-      p {
-        font-size: 0.9em;
-        line-height: 1.4;
-      }
-    }
-    .circle, .date {
-      display: none;
     }
   }
-}

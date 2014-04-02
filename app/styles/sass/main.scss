@@ -1,5 +1,7 @@
 //using
 @import "compass/css3/border-radius";
+@import "compass/css3/opacity";
+@import "compass/css3/transition";
 @import "mixins";
 @import "colours";
 
@@ -18,33 +20,68 @@ a{
   color: $regularLinkColour;
 
   @include easings;
-}
 
-a:hover {
-  color: $hoverLinkColour;
+  &:hover {
+    color: $hoverLinkColour;
+  }
 }
 
 ul, ol {
   margin: 0;
   padding: 0;
-}
 
-ul li, ol li {
-  list-style: none;
+  li{
+    list-style: none;
+  }
 }
 
 h5 {
-  font-size: 22px;
+  font-size: 1.375em;
   font-weight: 300;
 }
 
 h4 {
-  font: 32px;
+  font-size: 2em;
   font-weight: 100;
 }
 
 .logo img {
   margin: 4px 50px 0 0;
+}
+
+.main-container{
+  margin-top: 50px;
+}
+
+.help-tip{
+  height: 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 2000;
+
+  @include easings;
+
+  button, span{
+    display: none;
+  }
+}
+
+.help-tip.show-tip{
+  padding: 15px 35px 15px 15px;
+  border: 1px solid transparent;;
+  height: 53px;
+
+  button{
+    display: block;
+  }
+
+  span{
+    display: inline;
+  }
 }
 
 //submodules

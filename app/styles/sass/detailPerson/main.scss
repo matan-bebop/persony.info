@@ -1,65 +1,103 @@
-.person-container {
-  width: 570px;
-  margin: 0 auto;
+.person-header-die{
+  background: $timelinePersonBgColour;
+  position: fixed;
+  left: 0;
+  z-index: 101;
+  top: 50px;
+  width: 100%;
+  height: 150px;
+  border-bottom: 2px solid $timelineAxisColour;
+
+  @include easings;
+
+  &.shrink{
+    height: 80px;
+  }
 }
 
-.person-detail-header {
-  padding: 30px 0 0;
-  background: #eee;
-}
+.person-header {
+  margin: 20px 0 0 -55px !important;
+  top: 50px;
+  z-index: 102;
+  height: 150px;
+  position: fixed;
 
-.person-data {
-  margin-left: -35px;
-  width: 500px;
-  padding: 5px 0 30px 55px;
-  border-left: 2px solid #DDD;
-  position: relative;
-  z-index: 1;
-}
+  .person-photo {
+    width: 110px;
+    height: 110px;
+    text-align: center;
+    background: white;
+    border: 5px solid $timelineAxisColour;
+    font-size: 25px;
+    z-index: 103;
+    position: relative;
 
-.person-photo {
-  width: 70px;
-  height: 70px;
-  text-align: center;
-  background: #FFF;
-  border: 5px solid #DDD;
-  font-size: 25px;
-  position: relative;
-  z-index: 2;
+    @include border-radius(50%);
+    @include easings;
 
-  @include border-radius(35px);
-}
+    span{
+      line-height: 95px;
 
-.person-data {
-  font-size: 12px;
-}
+      @include easings;
+    }
+  }
 
-.social-icons li {
-  display: inline-block;
-  margin-left: 10px;
-  line-height: 24px;
-}
+  .person-data {
+    margin-left: -35px;
+    width: 500px;
+    padding: 5px 0 30px 55px;
+    position: relative;
+    z-index: 103;
+    font-size: 12px;
+  }
 
-.social-icons i {
-  font-size: 1.2em;
-}
+  .social-icons li {
+    display: inline-block;
+    margin-left: 10px;
+    line-height: 24px;
+  }
 
-.person-photo span {
-  line-height: 56px;
-}
+  .social-icons i {
+    font-size: 1.2em;
+  }
 
-.person-name {
-  margin-top: 0;
-  color: #000;
-  font-size: 24px;
-}
+  .person-name {
+    margin-top: 0;
+    font-size: 24px;
+  }
 
-.person-info {
-  margin-bottom: 10px;
-}
+  .person-info {
+    margin-bottom: 10px;
+  }
 
-.person-social {
-  margin-bottom: 10px;
+  .person-social {
+    margin-bottom: 10px;
+  }
+
+  @include easings;
+
+  &.shrink{
+    margin: 10px 0 0 -30px !important;
+    height: 50px;
+
+    .person-photo {
+      width: 60px;
+      height: 60px;
+
+      span{
+        line-height: 50px;
+        font-size: 25px;
+      }
+    }
+
+    .person-name {
+      margin-top: 10px;
+    }
+
+    .person-info {
+      display: none;
+    }
+  }
 }
 
 .person-tags li {
@@ -80,226 +118,49 @@
   background: #DDD;
 }
 
-.persons-list {
-  margin: 50px auto;
-  width: 450px;
+
+/* -------------------------------------
+ * Colours of source indicators
+ * ------------------------------------- */
+
+.fa-info{
+  color: $FoursquareBlue;
 }
 
-.persons-list li {
-  display: block;
-  margin-bottom: 20px;
+.fa-video-camera{
+  color: $YouTubeRed;
 }
 
-.persons-list .person-name {
-  line-height: 70px;
+.fa-microphone{
+  color: $metallicSilver;
 }
 
-.persons-list .person-photo {
-  margin-right: 30px;
+.fa-file-text{
+  color: black;
 }
 
-.persons-list a .person-photo {
-  color: #DDD;
+.fa-twitter{
+  color: $TwitterBlue;
 }
 
-.event-year {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  font-size: 32px;
-  font-weight: 600;
+.fa-facebook{
+  color: $FacebookBlue;
 }
 
-.event-years-list > li {
-  border-bottom: 2px solid #DDD;
-  position: relative;
+.fa-vk{
+  color: $VKBlue;
 }
 
-.event-months-list > li {
-  border-bottom: 1px dashed #DDD;
-  position: relative;
+.fa-google-plus{
+  color: $GooglePlusRed;
 }
 
-.event-months-list {
-  margin: 0 auto;
-  width: 1024px;
+.fa-paperclip{
+  color: black;
 }
 
-.event-month {
-  width: 258px;
-  font-size: 24px;
-  line-height: 24px;
-  text-align: center;
-  display: inline-block;
-}
-
-.events-list {
-  display: inline-block;
-}
-
-.events-list li {
-  padding: 0px;
-  margin:3px 0 3px -53px;
-}
-
-.event-years-list:first-child .li-month:first-of-type .events-list,
-.event-years-list:first-child .li-month:first-of-type .event-month {
-  padding-top: 40px;
-  padding-bottom: 0px;
-  border-bottom: 0px;
-}
-
-.event-date {
-  font-size: 12px;
-  min-width:35px;
-  font-weight: 600;
-  color: #666;
-  vertical-align: top !important;
-  padding: 17px 0 0 0 !important;
-}
-
-.event-date:after{
-  content:"";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: calc(50% - 250px);
-  border-right: 2px solid #DDD;
-}
-
-.event-icon, .event-date, .event-body{
-  display: table-cell;
-  vertical-align: middle;
-  border:0;
-  padding:7px;
-  border-collapse:collapse;
-}
-
-.event-icon {
-  width: 40px;
-  vertical-align: top !important;
-  margin: 0px 0;
-  padding: 7px 0 0 0 !important;
-}
-
-.event-icon-marker {
-  background: url('../../../images/socicons_h.png') no-repeat;
-  width: 33px;
-  height: 33px;
-  text-align: center;
-  font: italic 22px Georgia, Times, serif;
-  font-weight: 600;
-  color: #444;
-  padding-top: 5px;
-  cursor: pointer;
-
-  @include border-radius(20px);
-}
-
-.event-icon-durable {
-  background: #f99 !important;
-}
-
-.event-icon-marker.facebook {
-  background-position: 0px 0px;
-}
-
-.event-icon-marker.twitter {
-  background-position: -37px 0px;
-}
-
-.event-icon-marker.google-plus {
-  background-position: -75px 0px;
-}
-
-.event-icon-marker.vkontakte {
-  background-position: -226px 0px;
-}
-
-.event-icon-marker.default {
-  background: #bbb;
-}
-
-.event-body{
-  margin: 10px 0;
-}
-
-.event-body a{
-  color: #00669a;
-  font-weight: 500;
-}
-
-.event-body a:hover{
-  color: #00409a;
-  font-weight: 500;
-}
-
-.event-body .short{
-  padding: 0 30px;
-}
-
-.event-body .detail{
-  padding: 15px 15px 15px 15px;
-  margin-left: 15px;
-  background: #e0e0e0;
-  max-width: 600px;
-  position:relative;
-  @include border-radius(2px);
-}
-
-.event-body .detail #tail{
-  position:absolute;
-  top:12px;
-  left:-18px;
-  width:0;height:0;
-  border-color:transparent #e0e0e0 transparent transparent;
-  border-width:9px;
-  border-style:solid;
-}
-
-.event-detail-date{
-  font-weight: 600;
-  font-size: 11px;
-  color: #999;
-}
-
-.event-body .detail .info-wrap{
-  display: block;
-}
-.info-wrap-img{
-  position: relative;
-  max-width: 35%;
-  min-width: 35%;
-  display: block;
-  float: right;
-  text-align: right;
-}
-.info-wrap-img img{
-  max-height:120px !important;
-  max-width:200px !important;
-}
-.event-body .detail .detail-info{
-  margin-top: 10px;
-  max-width: 570px;
-}
-
-.event-body .detail img{
-  display: inline-block;
-  margin-left: 30px;
-  max-height: 200px;
-  max-width: 200px;
-}
-
-.event-body .detail p.description{
-  color: $mainTextColour;
-  font-weight: 500;
-}
-
-.event-body .detail p.source{
-  font-weight: 600;
-  font-size: 12px;
-  color: #999;
+.fa-link{
+  color: $timelineLink;
 }
 
 @import "timeline";

@@ -1,14 +1,14 @@
 from event import *
 
 def read_name(f):
-    par = concat_lines(read_paragraph(f), ' ').strip()
+    par = read_paragraph(f).strip()
     pib = par.split()
     pib += [""]*(3 - len(pib))
     return pib
 
 
 def read_brief(f):
-    return concat_lines(read_paragraph(f), ' ').strip()
+    return read_paragraph(f).strip()
 
 
 class Person(object):
@@ -24,7 +24,7 @@ class Person(object):
     def read_descrition(self, f):
         [self.surname, self.firstname, self.middlename] = read_name(f)
         self.brief = read_brief(f)
-        self.photo = concat_lines(read_paragraph(f)).strip()
+        self.photo = read_paragraph(f).strip()
 
 
     def read_events(self, f):

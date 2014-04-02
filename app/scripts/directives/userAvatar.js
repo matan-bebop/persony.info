@@ -16,7 +16,7 @@ angular.module('personyApp').directive('userAvatar', function () {
                     element.replaceWith('<img src="avatars/' + value + '" alt="' + scope.title + '" class="' + avatarCssClasses + '" />');
                 }
                 else {
-                    element.addClass(avatarCssClasses).append('<span class="glyphicon glyphicon-user"></span>');
+                    element.addClass(avatarCssClasses).append('<span class="fa fa-user fa-3x"></span>');
                 }
             });
         }
