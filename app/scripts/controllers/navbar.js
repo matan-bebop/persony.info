@@ -3,9 +3,11 @@
 
     angular.module('personyApp').controller(
         'controllers.navbar',
-        ['$scope', 'Search',
-         function ($scope, Search) {
-             $scope.search = Search;
-         }]
+        [
+            '$scope', 'Search',
+            function ($scope, Search) {
+                $scope.search = Search;
+            }
+        ]
     );
 }());

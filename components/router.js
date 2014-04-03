@@ -16,7 +16,7 @@ module.exports = function (app) {
     app.put("/api/events", controllers.event.save);
 
     app.get("/api/persons", controllers.person.query);
-    app.get("/api/person/:id", controllers.person.get);
+    app.get("/api/persons/:id", controllers.person.get);
 
     // frontend urls which are handled by AngularJS
     app.get(/^\/(about|persons|all|)?\/?\d*$/, controllers.frontend.index);

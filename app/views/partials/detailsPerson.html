@@ -5,7 +5,7 @@
             <h4 class="modal-title" id="event1ImageModalLabel">{{modal.modalName}} - {{modal.modalTitle}}</h4>
         </div>
         <div class="modal-body">
-            <img ng-src="{{modal.modalImage}}" />
+            <img ng-src="{{modal.modalImage}}"/>
         </div>
         <div class="modal-footer">
             {{modal.modalDescription}}
@@ -36,394 +36,149 @@
 </script>
 
 <div class="person-header-die"></div>
-<div class="container">
+<div class="container" person-details>
 
-    <!--div class="person-timeline">
-        <ul class="event-years-list">
-            <li ng-repeat="yearData in eventYears" class="li-year">
-                <div class="pull-left event-year">{{yearData.year}}</div>
-                <ul class="event-monthes-list">
-                    <li ng-repeat="monthesData in yearData.monthes" class="li-month">
-                        <div class="event-month">{{monthNames[monthesData.month]}}</div>
-                        <ul class="events-list">
-                            <li ng-repeat="event in monthesData.events">
-                                <div class="event-date">{{event.start | date: "d"}}</div>
-                                <div class="event-icon">{{event.sourses[0].icon}}</div>
-                                <a class="event-link" href="#">{{event.title}}</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </li>
-        </ul>
+<!--div class="person-timeline">
+    <ul class="event-years-list">
+        <li ng-repeat="yearData in eventYears" class="li-year">
+            <div class="pull-left event-year">{{yearData.year}}</div>
+            <ul class="event-monthes-list">
+                <li ng-repeat="monthesData in yearData.monthes" class="li-month">
+                    <div class="event-month">{{monthNames[monthesData.month]}}</div>
+                    <ul class="events-list">
+                        <li ng-repeat="event in monthesData.events">
+                            <div class="event-date">{{event.start | date: "d"}}</div>
+                            <div class="event-icon">{{event.sourses[0].icon}}</div>
+                            <a class="event-link" href="#">{{event.title}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </li>
+    </ul>
+</div-->
+
+<div class="page-header">
+
+    <!--div class="timeline-zoom" >
+        <div class="zoom-tip">
+            Маштаб часу:
+        </div>
+        <i class="fa fa-minus"></i>
+        <rzslider rz-slider-model="zoomSlider"
+                  rz-slider-translate="translate">
+        </rzslider>
+        <i class="fa fa-plus"></i>
     </div-->
 
-    <script type="text/javascript">
-        $(function(){
-            var shrinkHeader = 300;
-            $(window).scroll(function() {
-                var scroll = getCurrentScroll();
-                if ( scroll >= shrinkHeader ) {
-                    $('.page-header').addClass('shrink');
-                    $('.person-header-die').addClass('shrink')
-                }
-                else {
-                    $('.page-header').removeClass('shrink');
-                    $('.person-header-die').removeClass('shrink');
-                }
-            });
-            function getCurrentScroll() {
-                return window.pageYOffset;
-            }
-        });
-    </script>
+    <div class='person-header'>
 
-    <div class="page-header">
+        <div>
+            <img
+                    ng-src="{{person.getPhotoSrc()}}"
+                    alt="{{person.name}}"
+                    title="{{person.name}}"
+                    ng-click="personPopup()"
+                    class="person-photo pull-left"
+                    ng-if="person.getPhotoSrc()"
+                    />
+            <span class="fa fa-user fa-3x" ng-if="!person.getPhotoSrc()"></span>
+        </div>
 
-        <!--div class="timeline-zoom" >
-            <div class="zoom-tip">
-                Маштаб часу:
+        <div class="person-data pull-left">
+
+            <h3 class="pull-left person-name">{{person.name}}</h3>
+
+            <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
+                <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
+                <div class="twitter" title="Твітнути">Twitter</div>
+                <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
+                <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
             </div>
-            <i class="fa fa-minus"></i>
-            <rzslider rz-slider-model="zoomSlider"
-                      rz-slider-translate="translate">
-            </rzslider>
-            <i class="fa fa-plus"></i>
-        </div-->
+            <div class="clearfix"></div>
 
-        <div class='person-header'>
-
-            <user-avatar src="{{person.photo}}" title="{{person.name}}" ng-click="personPopup()"></user-avatar>
-
-            <div class="person-data pull-left">
-
-                <h3 class="pull-left person-name">{{person.name}}</h3>
-
-                <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
-                    <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
-                    <div class="twitter" title="Твітнути">Twitter</div>
-                    <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
-                    <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
-                </div>
-                <div class="clearfix"></div>
-
-                <div class="person-info">{{person.info}}</div>
-
-            </div>
+            <div class="person-info">{{person.info}}</div>
 
         </div>
 
-        <!--div class="pull-right">
-            <div class="person-tools" >
-                <li class="dropdown" ng-controller="controllers.personTools">
-                    <a class="dropdown-toggle">
-                        <i class="fa fa-cog fa-2x"></i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li>
-                            <a>Додати у кабінет</a>
-                            <a>Додати до порівняння</a>
-                            <a>Редагувати</a>
-                            <a>Поскаржитись</a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-
-            <div class="event-filter" >
-                <li class="dropdown" ng-controller="controllers.eventFilters">
-                    <a class="dropdown-toggle">
-                        <i class="fa fa-filter fa-lg"></i>Фільтрувати події
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li ng-repeat="choice in items">
-                            <a>{{choice}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-        </div-->
-
     </div>
 
-    <div class="person-bio">
-        <ul id='timeline'>
-            <li class="li-year">
-                <div class="event-year">2011</div>
-                <ul class="event-monthes-list">
-                    <li class="li-month">
-                        <div class="event-month">Листопад</div>
-                        <ul class="events-list">
-                            <li >
-                                <input class='radio' id='event1' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event1'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-info"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                                <img src="http://localhost:3000/avatars/yatsenyuk.jpg" ng-click="popup('Lorem ipsum dolor sit amet', '*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині.', 'http://localhost:3000/avatars/yatsenyuk.jpg')"/>
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li >
-                                <input class='radio' id='event2' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event2'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-video-camera"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <input class='radio' id='event3' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event3'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-microphone"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <input class='radio' id='event4' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event4'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-file-text"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="li-month">
-                        <div class="event-month">Сшчень</div>
-                        <ul class="events-list">
-                            <li>
-                                <input class='radio' id='event5' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event5'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-twitter"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="li-month">
-                        <div class="event-month">Вересень</div>
-                        <ul class="events-list">
-                            <li >
-                                <input class='radio' id='event6' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event6'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-facebook"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li >
-                                <input class='radio' id='event8' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event8'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-vk"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li >
-                                <input class='radio' id='event9' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event9'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-google-plus"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li >
-                                <input class='radio' id='event10' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event10'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-paperclip"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li >
-                                <input class='radio' id='event11' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event11'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-link"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+    <!--div class="pull-right">
+        <div class="person-tools" >
+            <li class="dropdown" ng-controller="controllers.personTools">
+                <a class="dropdown-toggle">
+                    <i class="fa fa-cog fa-2x"></i>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a>Додати у кабінет</a>
+                        <a>Додати до порівняння</a>
+                        <a>Редагувати</a>
+                        <a>Поскаржитись</a>
                     </li>
                 </ul>
-                <div class="clearfix"></div>
             </li>
-            <li class="li-year">
-                <div class="pull-left event-year">2000</div>
-                <ul class="event-monthes-list">
-                    <li class="li-month">
-                        <div class="event-month">ГРГР</div>
-                        <ul class="events-list">
-                            <li >
-                                <input class='radio' id='event7' name='events' type='radio'>
-                                <div class="relative">
-                                    <label for='event7'>Lorem ipsum dolor sit amet</label>
-                                    <div class="event-date">23</div>
-                                    <div class="event-icon fa fa-lg fa-info"></div>
-                                </div>
-                                <div class='content'>
-                                    <div class="event-detail-date">13 липня</div>
-                                    <div class="detail-info">
-                                        <div class="info-wrap-img">
-                                            <img src="http://localhost:3000/avatars/yatsenyuk.jpg" />
-                                        </div>
-                                        <div class="info-wrap">
-                                            <p class="description">*персона Максим Булатецький Булатецький_Максим_Миколайович* знімає свою кандидатуру на повторних виборах народного депутата по *посилання 201-му виборчому окрузі http://www.cvk.gov.ua/pls/vd2002/WEBPROC113V?kodvib=401&amp;kodreg=71&amp;kodokr =201*, що на Черкащині. </p>
-                                            <p class="source">
-                                                Джерело: <span><a href="http://www.cvk.gov.ua/pls/vd2002/webproc0v?kodvib=401&amp;rejim=0">info</a></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+        </div>
+
+        <div class="event-filter" >
+            <li class="dropdown" ng-controller="controllers.eventFilters">
+                <a class="dropdown-toggle">
+                    <i class="fa fa-filter fa-lg"></i>Фільтрувати події
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <li ng-repeat="choice in items">
+                        <a>{{choice}}</a>
                     </li>
                 </ul>
-                <div class="clearfix"></div>
             </li>
-        </ul>
-    </div>
+        </div>
+    </div-->
+
+</div>
+
+<div class="person-bio">
+<ul id='timeline'>
+<li class="li-year" ng-repeat="year in eventYears.orders.years">
+<div class="event-year">{{year}}</div>
+<ul class="event-monthes-list">
+<li class="li-month" ng-repeat="month in eventYears.orders.months[year]">
+    <div class="event-month">{{month | monthName}}</div>
+    <ul class="events-list">
+        <li ng-repeat="event in eventYears[year][month]">
+            <input class='radio' id='event{{$index}}' name='events' type='radio'>
+
+            <div class="relative">
+                <label for='event{{$index}}'>{{event.title}}</label>
+
+                <div class="event-date">{{event.start | date:"d"}}</div>
+                <div class="event-icon fa fa-lg fa-info"></div>
+            </div>
+            <div class='content'>
+                <div class="event-detail-date">{{event.start | date:"d MMMM"}}</div>
+                <div class="detail-info">
+                    <div class="info-wrap-img">
+                        <img ng-src="{{event.getImageSrc()}}"
+                             ng-click="popup(event)"/>
+                    </div>
+                    <div class="info-wrap">
+                        <p class="description">{{event.description}}</p>
+
+                        <p class="source" ng-repeat="source in event.sources">
+                            Джерело: <span><a ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
+                        </p>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</li>
+
+</ul>
+<div class="clearfix"></div>
+</li>
+</ul>
+</div>
 </div>

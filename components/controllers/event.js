@@ -47,9 +47,9 @@ module.exports = function (app) {
         },
 
         "save": function (req, res, next) {
-            console.log(req.body);
-            Event.findOrCreate({id: req.body.id}, req.body).success(function (entity, created) {
-                console.log(entity, created);
+//            console.log(req.body);
+//            Event.findOrCreate({id: req.body.id}, req.body).success(function (entity, created) {
+//                console.log(entity, created);
 //                if (!entity) {
 //                    entity = Event.build();
 //                }
@@ -72,7 +72,7 @@ module.exports = function (app) {
 //                    res.status(400);
 //                    res.end(JSON.stringify({error: "error"}));
 //                }
-            });
+//            });
         },
 
 

@@ -15,10 +15,8 @@
 
                 $scope.zoomSlider = 7;
 
-                $scope.translate = function(value)
-                {
-                    switch(value)
-                    {
+                $scope.translate = function (value) {
+                    switch (value) {
                         case 7:
                             return 'Дні';
                         case 6:
@@ -38,9 +36,9 @@
                         default:
                             return 'Дні';
                     }
-                }
+                };
 
-                $scope.popup = function(title, description, image){
+                $scope.popup = function (event) {
                     var modalInstance = $modal.open({
                         templateUrl: 'photoModal.html',
                         controller: 'controllers.photoModalCtrl',
@@ -50,19 +48,19 @@
                                 return $scope.person.name;
                             },
                             title: function () {
-                                return title;
+                                return event.title;
                             },
                             image: function () {
-                                return image;
+                                return event.image;
                             },
                             description: function () {
-                                return description;
+                                return event.description;
                             }
                         }
                     });
                 }
 
-                $scope.personPopup = function(){
+                $scope.personPopup = function () {
                     var modalInstance = $modal.open({
                         templateUrl: 'personModal.html',
                         controller: 'controllers.personModalCtrl',

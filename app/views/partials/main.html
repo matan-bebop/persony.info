@@ -29,7 +29,7 @@
         <div class="interest_person" ng-repeat="person in featured">
             <a ng-href="/persons/{{person.id}}">
                 <img
-                        ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}"
+                        ng-src="{{person.getPhotoSrc()}}"
                         title="{{person.name}}"
                         alt="{{person.name}}"
                         />
