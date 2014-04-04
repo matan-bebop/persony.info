@@ -6,7 +6,18 @@
         [
             '$resource',
             function ($resource) {
-                return $resource("/api/persons/:id");
+                var Person = $resource("/api/persons/:id");
+                Person.prototype.getPhotoSrc = function () {
+                    if (this.photo) {
+                        if (this.photo[0] === '/' || this.photo.substr(0, 4) === 'http') {
+                            return this.photo;
+                        }
+                        return '/images/' + this.photo;
+                    }
+                    return null;
+                };
+
+                return Person;
             }
         ]
     );

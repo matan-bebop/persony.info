@@ -3,12 +3,11 @@
 var express = require('express'),
     compass = require('node-compass'),
     app = express(),
-    urls = require(__dirname + '/utils/dispatcher'),
     path = require('path'),
-    secret = require(__dirname + "/conf/settings").security_key,
+    secret = require(__dirname + "/config/settings").security_key,
     models;
 
-// Express Configuration
+app.ROOT = __dirname;
 /**
  * May be used to require application components using path relative to the application root.
  * @param module string
@@ -18,9 +17,14 @@ app.require = function (module) {
     return require(__dirname + path.sep + Array.prototype.slice.call(arguments).join(path.sep));
 };
 
+// Express Configuration
 app.disable('strict routing');
 
-app.configure(function () {
+app.configure('development', function () {
+    if (process.env.LIVERELOAD) {
+        app.use(require('connect-livereload')());
+    }
+
     app.use(
         compass({
             project: [__dirname, 'app'].join('/'),
@@ -29,12 +33,7 @@ app.configure(function () {
             logging: true
         })
     );
-});
 
-app.configure('development', function () {
-    if (process.env.LIVERELOAD) {
-        app.use(require('connect-livereload')());
-    }
     app.use(express.static(path.join(__dirname, 'app')));
     app.use(express.errorHandler());
     app.set('views', __dirname + '/app/views');
@@ -43,65 +42,37 @@ app.configure('development', function () {
 app.configure('production', function () {
     app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
     app.use(express.static(path.join(__dirname, 'public')));
-    app.set('views', __dirname + '/public/views');
+    app.set('views', __dirname + '/www/build/views');
 });
 
 app.configure(function () {
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
     app.use(express.logger('dev'));
-    app.use(express.bodyParser());
+    app.use(express.json());
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.cookieSession({key: "_open_sid", secret: secret}));
 });
 
 /* Database setup !important to be before url & pass definition */
-app.set('models', require(__dirname + "/utils/connectdb")(app));
-app.getModel = function (model) {
-    model = model.toLowerCase();
-    return app.get('models').
-        import(path.join(__dirname, "components", model === 'source' ? 'event' : model, "models", model));
-};
+app.require("/components/db-connection")(app);
 
 // all api requests will have 'Content-Type: application/json' header
 app.use(function (req, res, next) {
-    var matchUrl = '/api';
-    if (req.url.substring(0, matchUrl.length) === matchUrl) {
+    if (req.url.substring(0, 4) === '/api') {
+        req.isApiRequest = true;
         res.setHeader('Content-Type', 'application/json');
+        res.respond = function (data) {
+            this.end(JSON.stringify(data));
+        };
+    } else {
+        req.isApiRequest = false;
     }
     return next();
 });
 
-/* Init URL dispatcher */
-urls.dispatch(app);
-
-// Errors handling
-app.use(function (req, res, next) {
-    res.status(404);
-
-    if (req.url.substring(0, 4) === '/api') {
-        res.send({ error: 'Not found' });
-        return;
-    }
-
-    // respond with html page
-    if (req.accepts('html')) {
-        res.render('404', { url: req.url });
-        return;
-    }
-
-    // default to plain-text. send()
-    res.type('txt').send('Not found');
-});
-
-app.use(function (err, req, res, next) {
-    // we may use properties of the error object
-    // here and next(err) appropriately, or if
-    // we possibly recovered from the error, simply next().
-    res.status(err.status || 500);
-    res.render('500', { error: err });
-});
+app.require('/components/router')(app);
 
 // Start server
 var port = process.env.PORT || 3000;

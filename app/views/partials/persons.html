@@ -27,7 +27,7 @@
     <div class="post_persons">
         <div ng-repeat="person in persons" class="post_pers">
             <a ng-href="/persons/{{person.id}}">
-                <img ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}"
+                <img ng-src="{{person.getPhotoSrc()}}"
                      alt="{{person.name}}"/>
             </a>
 

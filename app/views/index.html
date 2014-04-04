@@ -82,9 +82,9 @@
             </div>
             <ul class="nav navbar-left navbar-nav">
                 <li ng-class="{'active':getClass('/persons')}"><a ng-href="/persons" ng-click="search.clear(); search.showResults()">Всі</a></li>
-                <li ng-class="{'active':getClass('/about')}"><a href="/about">Про проект</a></li>
+                <li ng-class="{'active':getClass('/about')}" ng-if="false"><a href="/about">Про проект</a></li>
             </ul>
-            <ul class="nav navbar-right navbar-nav">
+            <ul class="nav navbar-right navbar-nav" ng-if="false">
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up<b class="caret"></b></a>
                     <div class="row dropdown-menu">
@@ -160,10 +160,10 @@
 
     </nav>
 
-    <div class="help-tip alert alert-success alert-dismissable">
+    <!--<div class="help-tip alert alert-success alert-dismissable">
         <button type="button" class="close" id="help-tip-close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <span class="help-tip-text">Тут <strong>МАЄ</strong> буть підказка щодо <a href="#" class="alert-link">функціоналу</a>. <span id="help-tip-close-link" class="alert-link">Сховати</span></span>
-    </div>
+    </div>-->
 
     <div ng-view="" class="main-container"></div>
 
@@ -249,14 +249,16 @@
     <script src="scripts/directives/eventBody.js"></script>
     <script src="scripts/directives/socialLikes.js"></script>
     <script src="scripts/directives/eventIconMarker.js"></script>
+    <script src="scripts/directives/person-details.js"></script>
+    <script src="scripts/directives/external-link.js"></script>
     <script src="scripts/filters/monthName.js"></script>
     <!-- endbuild -->
-    
+
 <div class="wrap">
 
-    <footer id="footer">         
-                
-                    <div class="social">                        
+    <footer id="footer">
+
+                    <div class="social">
                             <a href="https://www.facebook.com/persony.persony" class="facebook">
                                 <span class="socialicons ico1"></span>
                                 <span class="socialicons_h ico1h"></span>
@@ -272,7 +274,7 @@
                             <a href="#" class="vk">
                                 <span class="socialicons ico7"></span>
                                 <span class="socialicons_h ico7h"></span>
-                            </a>                       
+                            </a>
                     </div>
                     <div class="copyright">
                             <!-- Yandex.Metrika informer -->
@@ -288,8 +290,8 @@ style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" tit
                                 rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.uk"
                                 style="color:#005580;">ліцензією
                             Creative Commons Із зазначенням автора - Розповсюдження на тих самих умовах 4.0
-                            Міжнародна</a>.                      
-                    </div>         
+                            Міжнародна</a>.
+                    </div>
     </footer>
 </div>
 

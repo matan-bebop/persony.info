@@ -19,17 +19,12 @@ var settings = {
         user     : "root",
         password : "mysql"
     },
-    security_key : "GcDesWWD5cHcuN1TYJwv,dWW+IE7LNgS0UTRD4EAlSdo==",
-    installed_apps : [
-        'partials',
-        'person',
-        'event',
-        'user',
-        'main'
-    ]
+    security_key : "GcDesWWD5cHcuN1TYJwv,dWW+IE7LNgS0UTRD4EAlSdo=="
 };
 
 var localConfigFile = __dirname + '/settings.local.js';
+
+/*jslint node: true, stupid: true */
 if (require('fs').existsSync(localConfigFile)) {
     require('node.extend')(true, settings, require(localConfigFile));
 }

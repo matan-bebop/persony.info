@@ -18,7 +18,7 @@
                                 return this.current === field;
                             },
                             change: function (field) {
-                                if (this.current == field) {
+                                if (this.current === field) {
                                     this.reverse = !this.reverse;
                                 } else {
                                     this.reverse = false;

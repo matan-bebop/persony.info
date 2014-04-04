@@ -4,11 +4,11 @@ var path = require("path"),
     _ = require("lodash");
 
 module.exports = function (app) {
-    var Person = app.getModel('Person'),
-        Event = app.getModel('Event'),
-        Source = app.getModel('Source');
+    var Person = app.orm.getModel('Person'),
+        Event = app.orm.getModel('Event'),
+        Source = app.orm.getModel('Source');
     return {
-        getAll: function (req, res, next) {
+        "query": function (req, res, next) {
             var order = req.query.order ? req.query.order.split('.').join(' ') : null;
 
             if (req.query.personId) {
@@ -34,7 +34,7 @@ module.exports = function (app) {
                 });
             }
         },
-        getEntity: function (req, res, next) {
+        "get": function (req, res, next) {
             if (req.params.id) {
                 Event.find({ where: {id: req.params.id}, include: [ Source ] }).success(
                     function (entity) {
@@ -45,6 +45,37 @@ module.exports = function (app) {
                 res.end(JSON.stringify(null));
             }
         },
+
+        "save": function (req, res, next) {
+//            console.log(req.body);
+//            Event.findOrCreate({id: req.body.id}, req.body).success(function (entity, created) {
+//                console.log(entity, created);
+//                if (!entity) {
+//                    entity = Event.build();
+//                }
+//                entity.set(req.body);
+//
+//                var options;
+//                entity.validate(options).success(function (errors) {
+//                    console.log(errors);
+//                });
+//                    entity.save().success(function (entity) {
+//                        res.end(JSON.stringify(entity));
+//                    }).
+//                        error(function () {
+//                            console.log(arguments);
+//                            res.status(500);
+//                            res.end(JSON.stringify({error: "error"}));
+//                        });
+//                } else {
+//                    console.log(entity);
+//                    res.status(400);
+//                    res.end(JSON.stringify({error: "error"}));
+//                }
+//            });
+        },
+
+
         updateEntity: function (req, res) {
             var user = req.user,
                 form_data = {},
