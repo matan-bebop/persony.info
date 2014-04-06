@@ -9,7 +9,14 @@ module.exports = function (seq, DataTypes) {
             {
                 "start": { type: DataTypes.DATE, allowNull: false},
                 "end": { type: DataTypes.DATE, allowNull: true},
-                "title": { type: DataTypes.STRING, allowNull: false},
+                "title": {
+                    type: DataTypes.STRING,
+                    allowNull: false,
+                    validate: {
+                        notNull: true,
+                        notEmpty: true
+                    }
+                },
                 "description": { type: DataTypes.TEXT, allowNull: false },
                 "created_by_key": { type: DataTypes.STRING, allowNull: true},
                 "published": { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},

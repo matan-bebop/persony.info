@@ -1,7 +1,8 @@
 'use strict';
 
 var path = require("path"),
-    _ = require("lodash");
+    _ = require("lodash"),
+    async = require("async");
 
 module.exports = function (app) {
     var Person = app.orm.getModel('Person'),
@@ -36,105 +37,138 @@ module.exports = function (app) {
         },
         "get": function (req, res, next) {
             if (req.params.id) {
-                Event.find({ where: {id: req.params.id}, include: [ Source ] }).success(
-                    function (entity) {
-                        res.end(JSON.stringify(entity));
-                    }
-                );
+                Event.find({ where: {id: req.params.id}, include: [ Source ] }).
+                    success(function (entity) {
+                        if (!entity) {
+                            res.status(404);
+                        }
+                        res.send(entity);
+                    }).error(next);
             } else {
-                res.end(JSON.stringify(null));
+                res.send(404, null);
             }
         },
 
         "save": function (req, res, next) {
-//            console.log(req.body);
-//            Event.findOrCreate({id: req.body.id}, req.body).success(function (entity, created) {
-//                console.log(entity, created);
-//                if (!entity) {
-//                    entity = Event.build();
-//                }
-//                entity.set(req.body);
-//
-//                var options;
-//                entity.validate(options).success(function (errors) {
-//                    console.log(errors);
-//                });
-//                    entity.save().success(function (entity) {
-//                        res.end(JSON.stringify(entity));
-//                    }).
-//                        error(function () {
-//                            console.log(arguments);
-//                            res.status(500);
-//                            res.end(JSON.stringify({error: "error"}));
-//                        });
-//                } else {
-//                    console.log(entity);
-//                    res.status(400);
-//                    res.end(JSON.stringify({error: "error"}));
-//                }
-//            });
-        },
+            app.orm.transaction(function (transaction) {
+                var attributes = _(req.body).omit('sources'),
+                    errorHandler = function (error) {
+                        transaction.rollback().success(function () {
+                            next(error);
+                        });
+                    };
 
-
-        updateEntity: function (req, res) {
-            var user = req.user,
-                form_data = {},
-                suff = "";
-            /* form TODO Add forms */
-            form_data.created_by_key = req.session.sid;
-            if (user.is_moderator) {
-                suff = req.param('published') ? "" : "_draft";
-                if (req.param('id')) {form_data.id = req.param('id'); }
-                if (req.param('start')) {form_data["start" + suff] = req.param('start'); }
-                if (req.param('end')) {form_data["end" + suff] = req.param('end'); }
-                if (req.param('title')) {form_data["title" + suff] = req.param('title'); }
-                if (req.param('description')) {form_data["description" + suff] = req.param('description'); }
-                if (req.param('published')) {form_data.published = req.param('published'); }
-                if (req.param('id')) {
-                    Event.find({ where: {id: req.param('id')}}).success(function (entity) {
-                        if (entity) {
-                            entity.updateAttributes(form_data).success(function (entity) {
-                                res.end(JSON.stringify({status: "ok"}));
-                            });
+                Event.find({ where: {id: req.params.id}, include: [ Source ] }).error(errorHandler).
+                    success(function (entity) {
+                        if (!entity) {
+                            console.log("Creating new entity");
+                            entity = Event.build(attributes);
                         } else {
-                            Event.create(form_data).success(function (entity) {
-                                res.end(JSON.stringify({status: "ok"}));
+                            entity.setAttributes(attributes);
+                        }
+
+                        var errors = entity.validate();
+
+                        if (errors) {
+                            errorHandler({type: "validation", errors: errors});
+                        } else {
+                            entity.save().error(errorHandler).success(function () {
+                                var sourceIds = _(req.body.sources).pluck('id');
+
+                                async.parallel(
+                                    [
+                                        //associating with provided person
+                                        function (done) {
+                                            if (!req.body.personId) { return done(); }
+
+                                            Person.find(req.body.personId).error(errorHandler).success(function (person) {
+                                                if (!person) { return done(); }
+
+                                                entity.addPerson(person).error(errorHandler).success(function () {
+                                                    console.log("relation created");
+                                                    done();
+                                                });
+                                            });
+                                        },
+                                        // handling sources list consistency
+                                        function (done) {
+                                            async.each(
+                                                entity.sources,
+                                                function (source, callback) {
+                                                    // all actual sources will be submitted in request.
+                                                    // Some could have been removed in client, so here we will handle this, deleting them from database
+                                                    if (sourceIds.indexOf(source.id) !== -1) { return callback(); }
+
+                                                    source.destroy().success(function () {callback(); });
+                                                },
+                                                // and now update or create sources to sync them with request
+                                                function () {
+                                                    async.each(
+                                                        req.body.sources,
+                                                        function (data, callback) {
+                                                            if (data.id) {
+                                                                var source = _(entity.sources).findWhere({id: data.id});
+                                                                if (source) {
+                                                                    return source.updateAttributes(data).success(function () {callback(); });
+                                                                }
+                                                            }
+
+                                                            // creating new source should not be bounded to some predefined id
+                                                            delete data.id;
+
+                                                            Source.create(data).success(function (source) {
+                                                                console.log('adding source to event');
+                                                                entity.addSource(source).success(function () {
+                                                                    // add* call from sequelize doesn not attach association to currently pre-loaded list
+                                                                    // do it manually
+                                                                    entity.sources.push(source);
+                                                                    callback();
+                                                                });
+                                                            });
+                                                        },
+                                                        function (err) {done(err); }
+                                                    );
+                                                }
+                                            );
+                                        }
+                                    ],
+                                    function (err) {
+                                        if (err) {return errorHandler(err); }
+                                        transaction.commit().
+                                            success(function () {res.send(entity); }).
+                                            error(function (error) {next(error); });
+                                    }
+                                );
                             });
                         }
                     });
-                } else {
-                    Event.create(form_data).success(function (entity) {
-                        res.end(JSON.stringify({status: "ok"}));
-                    });
-                }
-            } else {
-                suff = "_draft";
-                if (req.param('start')) {form_data["start" + suff] = req.param('start'); }
-                if (req.param('end')) {form_data["end" + suff] = req.param('end'); }
-                if (req.param('title')) {form_data["title" + suff] = req.param('title'); }
-                if (req.param('description')) {form_data["description" + suff] = req.param('description'); }
-                Event.create(form_data).success(function (entity) {
-                    res.end(JSON.stringify({status: "ok"}));
-                });
-            }
-        },
-        removeEntity: function (req, res) {
-            Event.find({ where: {id: req.params.id}}).success(function (entity) {
-                if (entity) {
-                    entity.destroy().success(function () {
-                        res.end(JSON.stringify({status: "ok"}));
-                    });
-                } else {
-                    res.end(JSON.stringify({}));
-                }
             });
         },
+
+        "delete": function (req, res, next) {
+            Event.find(req.params.id).success(function (entity) {
+                if (entity) {
+                    entity.destroy().
+                        success(function () {
+                            res.send({});
+                        }).
+                        error(next);
+                } else {
+                    res.send({});
+                }
+            }).error(next);
+        },
+
         updateRelation: function (req, res) {
             /* form TODO Add forms */
             var form_data = {};
 
-            if (req.param('event_id')) { form_data.event_id = req.param('event_id'); }
-            if (req.param('person_id')) {form_data.person_id = req.param('person_id'); }
+            if (req.param('event_id')) {
+                form_data.event_id = req.param('event_id');
+            }
+            if (req.param('person_id')) {
+                form_data.person_id = req.param('person_id');
+            }
 
             if (form_data.event_id && form_data.person_id) {
                 Event.find(form_data.event_id).success(function (event) {
@@ -158,8 +192,12 @@ module.exports = function (app) {
         },
         removeRelation: function (req, res) {
             var form_data = {};
-            if (req.param('event_id')) { form_data.event_id = req.param('event_id'); }
-            if (req.param('person_id')) { form_data.person_id = req.param('person_id'); }
+            if (req.param('event_id')) {
+                form_data.event_id = req.param('event_id');
+            }
+            if (req.param('person_id')) {
+                form_data.person_id = req.param('person_id');
+            }
 
             if (form_data.event_id && form_data.person_id) {
                 Event.find(form_data.event_id).success(function (event) {
