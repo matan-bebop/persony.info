@@ -16,6 +16,9 @@ public
 .idea
 .tmp
 .sass-cache
+.ssh
+.vagrant.d
+.VirtualBox
 .vagrant
 app/bower_components
 heroku
