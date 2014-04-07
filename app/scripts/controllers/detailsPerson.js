@@ -111,6 +111,10 @@
             '$scope', '$modalInstance', 'person',
             function ($scope, $modalInstance, person) {
                 $scope.person = person;
+
+                $scope.close = function () {
+                    $modalInstance.close();
+                };
             }
         ]
     );
@@ -126,6 +130,10 @@
                     modalImage: image,
                     modalDescription: description
                 }
+
+                $scope.close = function () {
+                    $modalInstance.close();
+                };
             }
         ]
     );

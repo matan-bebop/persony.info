@@ -16,7 +16,14 @@ public
 .idea
 .tmp
 .sass-cache
+.ssh
+.vagrant.d
+.VirtualBox
 .vagrant
+.bash_history
+.viminfo
+.zcompdump*
+.zsh*
 app/bower_components
 heroku
 /config/settings.local.js
