@@ -59,7 +59,7 @@ app.configure(function () {
 /* Database setup !important to be before url & pass definition */
 app.require("/components/db-connection")(app);
 
-// all api requests will have 'Content-Type: application/json' header
+// Creates isApiRequest flag in request object that can be used later to apply proper logic
 app.use(function (req, res, next) {
     req.isApiRequest = req.url.substring(0, 4) === '/api';
     return next();
