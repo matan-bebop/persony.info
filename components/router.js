@@ -15,6 +15,9 @@ module.exports = function (app) {
     app.get("/api/events", controllers.event.query);
     app.get("/api/events/:id", controllers.event.get);
     app.post("/api/events", controllers.event.save);
+    // "update" controller should not be accessible via "post" actually,
+    // but Angular Resource uses same url for "create" and "update" and we want to support it
+    app.post("/api/events/:id", controllers.event.save);
     app.put("/api/events/:id", controllers.event.save);
     app.delete("/api/events/:id", controllers.event.delete);
 
