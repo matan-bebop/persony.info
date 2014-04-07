@@ -29,6 +29,25 @@
   width: 28px;
 }
 
+.event-tools{
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  a{
+    color: $toolsButtonColor;
+
+    &:hover{
+      color: black;
+    }
+  }
+
+  li{
+    margin: 0 !important;
+  }
+}
+
 .event-filter{
   cursor: pointer;
   margin-top: $personHeaderBigDisplayHeight - $personPageHeaderBigMarginTopBottom * 2 - 30px;

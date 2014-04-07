@@ -13,25 +13,25 @@
                     }
                 );
 
-                $scope.zoomSlider = 7;
+                $scope.zoomSlider = 0;
 
                 $scope.translate = function (value) {
                     switch (value) {
-                        case 7:
-                            return 'Дні';
-                        case 6:
-                            return 'Тижні';
-                        case 5:
-                            return 'Місяці';
-                        case 4:
-                            return 'Квартали';
-                        case 3:
-                            return 'Півріччя';
-                        case 2:
-                            return 'Роки';
-                        case 1:
-                            return 'П’ятиріччя';
                         case 0:
+                            return 'Дні';
+                        case 1:
+                            return 'Тижні';
+                        case 2:
+                            return 'Місяці';
+                        case 3:
+                            return 'Квартали';
+                        case 4:
+                            return 'Півріччя';
+                        case 5:
+                            return 'Роки';
+                        case 6:
+                            return 'П’ятиріччя';
+                        case 7:
                             return 'Десятиріччя';
                         default:
                             return 'Дні';
@@ -140,6 +140,15 @@
 
     angular.module('personyApp').controller(
         'controllers.personTools',
+        [
+            '$scope',
+            function ($scope) {
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
+        'controllers.eventTools',
         [
             '$scope',
             function ($scope) {

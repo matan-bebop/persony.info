@@ -1,6 +1,7 @@
 #!/bin/bash
 # To run this scirpt properly set VAGRANT_DIR environment variable first. (c)webknjaz
 
+
 CSS_COMPILED=/tmp/personcss/compiled
 SASS_CASHE=/tmp/sass-cashe
 STYLES_DIR="${VAGRANT_DIR:-/vagrant}/app/styles/"

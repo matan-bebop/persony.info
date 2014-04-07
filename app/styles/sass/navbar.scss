@@ -78,12 +78,27 @@ $navbarSearchDisplayWidth: 200px;
 
   .navbar-nav > .active{
     border-bottom: 4px solid $mainMenuActiveColour;
-    color: $mainMenuActiveColour;
   }
 
   .navbar-nav > .active > a{
     background: $mainTextColour !important;
-    border-bottom: 4px solid $mainMenuActiveColour;
-    color: $mainMenuActiveColour;
+  }
+}
+
+.collapse-btn.btn-navbar{
+  display: none;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px){
+  .collapse-btn.btn-navbar{
+    display: inline-block;
+  }
+
+  .nav{
+    li {
+      border: 0 !important;
+      height: auto !important;
+    }
   }
 }

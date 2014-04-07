@@ -65,7 +65,7 @@
 
       @include easings(1.3s);
 
-      .detail-info, .event-detail-date{
+      .detail-info, .event-header{
         display: block;
       }
     }
@@ -81,7 +81,7 @@
     border-style: solid;
     position: relative;
 
-    .detail-info, .event-detail-date{
+    .detail-info, .event-header{
       display: none;
     }
 
@@ -182,8 +182,11 @@
   font-weight: 600;
 }
 
-.event-detail-date{
+.event-header{
   margin-top: 20px;
+}
+
+.event-detail-date{
   padding-left: 3px;
   font-weight: 600;
   font-size: 14px;

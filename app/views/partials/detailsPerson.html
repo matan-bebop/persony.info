@@ -54,39 +54,20 @@
 <div class="person-header-die"></div>
 <div class="container" person-details>
 
-<!--div class="person-timeline">
-    <ul class="event-years-list">
-        <li ng-repeat="yearData in eventYears" class="li-year">
-            <div class="pull-left event-year">{{yearData.year}}</div>
-            <ul class="event-monthes-list">
-                <li ng-repeat="monthesData in yearData.monthes" class="li-month">
-                    <div class="event-month">{{monthNames[monthesData.month]}}</div>
-                    <ul class="events-list">
-                        <li ng-repeat="event in monthesData.events">
-                            <div class="event-date">{{event.start | date: "d"}}</div>
-                            <div class="event-icon">{{event.sourses[0].icon}}</div>
-                            <a class="event-link" href="#">{{event.title}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </li>
-    </ul>
-</div-->
-
 <div class="page-header">
 
-    <!--div class="timeline-zoom" >
+    <div class="timeline-zoom" >
         <div class="zoom-tip">
             Маштаб часу:
         </div>
-        <i class="fa fa-minus"></i>
+        <i class="fa fa-plus"></i>
         <rzslider rz-slider-model="zoomSlider"
+                  rz-slider-floor="0"
+                  rz-slider-ceil="7"
                   rz-slider-translate="translate">
         </rzslider>
-        <i class="fa fa-plus"></i>
-    </div-->
+        <i class="fa fa-minus"></i>
+    </div>
 
     <div class='person-header'>
 
@@ -110,7 +91,7 @@
 
         <div class="person-data pull-left">
 
-            <h3 class="pull-left person-name">{{person.name}}</h3>
+            <h3 class="pull-left person-name" ng-click="personPopup()">{{person.name}}</h3>
 
             <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
                 <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
@@ -126,7 +107,7 @@
 
     </div>
 
-    <!--div class="pull-right">
+    <div class="pull-right">
         <div class="person-tools" >
             <li class="dropdown" ng-controller="controllers.personTools">
                 <a class="dropdown-toggle">
@@ -155,7 +136,7 @@
                 </ul>
             </li>
         </div>
-    </div-->
+    </div>
 
 </div>
 
@@ -177,7 +158,25 @@
                 <div class="event-icon fa fa-lg fa-info"></div>
             </div>
             <div class='content'>
-                <div class="event-detail-date">{{event.start | date:"d MMMM"}}</div>
+                <div class="event-header">
+                    <div class="event-detail-date">
+                        {{event.start | date:"d MMMM"}}
+                    </div>
+
+                    <div class="event-tools" >
+                        <div class="dropdown" ng-controller="controllers.eventTools">
+                            <a class="dropdown-toggle">
+                                <i class="fa fa-cog fa-2x"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a>Редагувати</a>
+                                    <a>Поскаржитись</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <div class="detail-info">
                     <div class="info-wrap-img">
                         <img ng-src="{{event.getImageSrc()}}"
@@ -186,8 +185,8 @@
                     <div class="info-wrap">
                         <p class="description">{{event.description}}</p>
 
-                        <p class="source" ng-repeat="source in event.sources">
-                            Джерело: <span><a ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
+                        <p class="source">
+                            Джерело: <span ng-repeat="source in event.sources"><a ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                         </p>
 
                         <div class="clearfix"></div>

@@ -4,8 +4,8 @@
     angular.module('personyApp').factory(
         'Search',
         [
-            '$filter', '$location', '$route', 'Person',
-            function ($filter, $location, $route, Person) {
+            '$filter', '$location', '$route', 'Person', 'Navbar',
+            function ($filter, $location, $route, Person, Navbar) {
                 var persons = Person.query();
                 return {
                     $promise: persons.$promise,
@@ -25,6 +25,8 @@
                         }
                     },
                     showResults: function () {
+                        Navbar.collapsed = true;
+
                         if ($location.path() === '/persons') {
                             $route.reload();
                         } else {

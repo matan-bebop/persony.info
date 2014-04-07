@@ -107,6 +107,12 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
     .person-name {
       margin-top: 0;
       font-size: 24px;
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover{
+        color: black;
+      }
     }
 
     .person-info {
