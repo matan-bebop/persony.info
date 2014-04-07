@@ -33,6 +33,34 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
   }
 }
 
+.person-photo {
+  width: $personPhotoBigDiameter;
+  height: $personPhotoBigDiameter;
+  text-align: center;
+  background: white;
+  border: 5px solid $timelineAxisColour;
+  font-size: 24px;
+  z-index: 104;
+  position: relative;
+  cursor: pointer;
+
+  @include border-radius(50%);
+  @include easings;
+
+  img{
+    display: block;
+    width: 100% !important;
+    border: 0;
+    margin: 0;
+
+    @include border-radius(50%);
+  }
+
+  &:hover{
+    border: 5px solid black;
+  }
+}
+
 .page-header{
   margin: $personPageHeaderBigMarginTopBottom 0 $personPageHeaderBigMarginTopBottom;
   position: fixed;
@@ -48,35 +76,10 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
     width: $personHeaderDataDisplayWidth + $personPhotoBigDiameter;
     margin-left: $timelineVerticalAxisLeftMarginDesktop - $personPhotoBigRadius;
 
-    .person-photo {
-      width: $personPhotoBigDiameter;
-      height: $personPhotoBigDiameter;
-      text-align: center;
-      background: white;
-      border: 5px solid $timelineAxisColour;
-      font-size: 24px;
-      z-index: 104;
-      position: relative;
-      cursor: pointer;
-
-      @include border-radius(50%);
-      @include easings;
-
-      &:hover{
-        border: 5px solid black;
-      }
-
-      span{
-        line-height: 95px;
-
-        @include easings;
-      }
-    }
-
     .person-data {
       width: $personHeaderDataDisplayWidth;
       margin-left: -$personPhotoBigRadius;
-      padding: 5px 0 18px $personPhotoBigRadius + $personHeaderTextLeftPadding;
+      padding: 4px 0 0 $personPhotoBigRadius + $personHeaderTextLeftPadding;
       position: relative;
       z-index: 103;
       font-size: 14px;
