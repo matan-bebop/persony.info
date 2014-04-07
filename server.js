@@ -77,6 +77,6 @@ app.require('/components/router')(app);
 // Start server
 var port = process.env.PORT || 3000;
 var host = process.env.HOST || '0.0.0.0';
-app.listen(port, function () {
+app.listen(port, host, function () {
     console.log('Express server listening on port %d in %s mode', port, app.get('env'));
 });
