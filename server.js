@@ -1,6 +1,7 @@
 'use strict';
 // Module dependencies.
-var express = require('express'),
+var settings = require(__dirname + '/config/settings'),
+    express = require('express'),
     compass = require('node-compass'),
     app = express(),
     path = require('path'),
@@ -25,14 +26,7 @@ app.configure('development', function () {
         app.use(require('connect-livereload')());
     }
 
-    app.use(
-        compass({
-            project: [__dirname, 'app'].join('/'),
-            sass: 'styles/sass',
-            css: 'styles/compiled',
-            logging: true
-        })
-    );
+    app.use(compass(settings.compass));
 
     app.use(express.static(path.join(__dirname, 'app')));
     app.use(express.errorHandler());
@@ -68,8 +62,15 @@ app.use(function (req, res, next) {
 app.require('/components/router')(app);
 
 // Start server
-var port = process.env.PORT || 3000;
-var host = process.env.HOST || '0.0.0.0';
-app.listen(port, host, function () {
-    console.log('Express server listening on port %d in %s mode', port, app.get('env'));
-});
+app.listen(
+    settings.server.port,
+    settings.server.host,
+    function () {
+        console.log(
+            'Express server listening on %s:%d in %s mode',
+            settings.server.host,
+            settings.server.port,
+            app.get('env')
+        );
+    }
+);
