@@ -78,3 +78,28 @@
   margin-top: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom * 2 - 30px;
 }
 
+//For tablet
+@media screen and (max-width: 995px) {
+  .page-header, .page-header.shrink{
+    .event-filter {
+      margin-top: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom * 2 - 30px;
+    }
+
+    .event-filter, .person-tools{
+      margin-right: 20px;
+    }
+  }
+}
+
+//For mobile
+@media screen and (max-width: 767px) {
+  .event-filter {
+    i.fa-filter{
+      font-size: 2em;
+    }
+
+    span{
+      display: none;
+    }
+  }
+}

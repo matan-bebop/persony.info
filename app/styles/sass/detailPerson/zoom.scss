@@ -1,6 +1,12 @@
 $zoomControlDisplayWidth: 200px;
+$zoomControlTabletWidth: 130px;
+$zoomControlMobileWidth: 90px;
 $sliderControlDisplayWidth: 120px;
 $zoomTitleDisplayHeight: 60px;
+
+.slider-instead{
+  display: none;
+}
 
 .timeline-zoom{
   width: $zoomControlDisplayWidth;
@@ -22,7 +28,7 @@ $zoomTitleDisplayHeight: 60px;
   i{
     display: inline-block;
     cursor: pointer;
-    padding: 10px 5px 5px 8px;
+    padding: 10px 5px 5px 10px;
     width: 32px;
     height: 32px;
     color: $zoomActiveColor;
@@ -154,5 +160,38 @@ rzslider {
         }
       }
     }
+  }
+}
+
+//For tablet
+@media screen and (max-width: 995px) {
+  .page-header, .page-header.shrink {
+    rzslider {
+      margin: 22px 0 25px 0;
+    }
+
+    .zoom-tip {
+      height: 0px;
+      padding-top: 0px;
+      color: transparent;
+    }
+  }
+}
+
+//For mobile
+@media screen and (max-width: 767px) {
+  .timeline-zoom {
+    width: $zoomControlMobileWidth;
+    padding-top: 0;
+  }
+  rzslider {
+    display: none;
+  }
+
+  .slider-instead{
+    display: block;
+    margin-left: 0;
+    font-size: 14px;
+    font-weight: 500;
   }
 }
