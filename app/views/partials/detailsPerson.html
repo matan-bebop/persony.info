@@ -60,6 +60,9 @@
         <div class="zoom-tip">
             Маштаб часу:
         </div>
+        <div class="slider-instead">
+            Десятиріччя
+        </div>
         <i class="fa fa-plus"></i>
         <rzslider rz-slider-model="zoomSlider"
                   rz-slider-floor="0"
@@ -93,7 +96,7 @@
 
             <h3 class="pull-left person-name" ng-click="personPopup()">{{person.name}}</h3>
 
-            <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
+            <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити" ng-if="false">
                 <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
                 <div class="twitter" title="Твітнути">Twitter</div>
                 <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
@@ -101,7 +104,7 @@
             </div>
             <div class="clearfix"></div>
 
-            <div class="person-info">{{person.info}}епутат Верховної Ради, член Партії регіонів, член Комітету з питань бюджету; мільйонер, власник ФК «Говерла».</div>
+            <div class="person-info">{{person.info}}</div>
 
         </div>
 
@@ -127,7 +130,7 @@
         <div class="event-filter" >
             <li class="dropdown" ng-controller="controllers.eventFilters">
                 <a class="dropdown-toggle">
-                    <i class="fa fa-filter fa-lg"></i>Фільтрувати події
+                    <i class="fa fa-filter fa-lg"></i><span>Фільтрувати події</span>
                 </a>
                 <ul class="dropdown-menu pull-right">
                     <li ng-repeat="choice in items">

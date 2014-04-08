@@ -1,4 +1,6 @@
 $timelineVerticalAxisLeftMarginDesktop: 270px;
+$timelineVerticalAxisLeftMarginTablet: 230px;
+$timelineVerticalAxisLeftMarginMobile: 150px;
 $personPhotoBigRadius: 55px;
 $personPhotoBigDiameter: 110px;
 $personPhotoSmallRadius: 30px;
@@ -12,6 +14,8 @@ $personPageHeaderBigMarginTopBottom: 20px;
 $personPageHeaderSmallMarginTopBottom: 10px;
 
 $personHeaderDataDisplayWidth: 500px;
+$personHeaderDataTabletWidth: 380px;
+$personHeaderDataMobileWidth: 300px;
 $personHeaderTextLeftPadding: 10px;
 $personHeaderSmallMarginLeft: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
 $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter;
@@ -84,34 +88,37 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
       z-index: 103;
       font-size: 14px;
       border-left: 2px solid $timelineAxisColour;
+
+      @include easings;
     }
-
-    /*Old Code Begin*/
-
-    .social-icons li {
-      display: inline-block;
-      margin-left: 10px;
-      line-height: 24px;
-    }
-
-    .social-icons i {
-      font-size: 19px;
-    }
-
-    .person-social {
-      margin-bottom: 10px;
-    }
-
-    /*Old Code End*/
 
     .person-name {
       margin-top: 0;
       font-size: 24px;
       text-decoration: underline;
       cursor: pointer;
+      word-wrap: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      width: $personHeaderDataDisplayWidth - $personPhotoBigRadius - $personHeaderTextLeftPadding - 2px; //border
 
       &:hover{
         color: black;
+        overflow: visible;
+
+        &:after {
+          background: none;
+        }
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0; top: 0;
+        width: 20px;
+        height: 90%;
+
+        @include left-lin-gradient($timelinePersonBgColourRGBA02, $timelinePersonBgColour 100%);
       }
     }
 
@@ -143,6 +150,11 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
       .person-data {
         margin-left: -$personPhotoSmallRadius;
         padding: 15px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
+        width: $personHeaderDataDisplayWidth - $personPhotoSmallRadius;
+      }
+
+      .person-name{
+        width: $personHeaderDataDisplayWidth - $personPhotoSmallRadius - $personPhotoSmallRadius - $personHeaderTextLeftPadding - 2px; //border
       }
 
       .person-info {
@@ -152,7 +164,82 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
   }
 }
 
+//For tablet
+@media screen and (max-width: 995px) {
+  .page-header, .page-header.shrink{
+    margin: $personPageHeaderSmallMarginTopBottom 0 $personPageHeaderSmallMarginTopBottom;
+    height: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom;
+
+    .person-header {
+      width: $personHeaderDataTabletWidth + $personPhotoSmallDiameter;
+      margin-left: $timelineVerticalAxisLeftMarginTablet - $personPhotoSmallRadius;
+
+      .person-photo {
+        width: $personPhotoSmallDiameter;
+        height: $personPhotoSmallDiameter;
+
+        span{
+          line-height: 50px;
+          font-size: 24px;
+        }
+      }
+
+      .person-data {
+        margin-left: -$personPhotoSmallRadius;
+        padding: 15px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
+        width: $personHeaderDataTabletWidth - $personPhotoSmallRadius;
+      }
+
+      .person-name{
+        width: $personHeaderDataTabletWidth - $personPhotoSmallRadius - $personPhotoSmallRadius - $personHeaderTextLeftPadding - 2px; //border
+      }
+
+      .person-info {
+        display: none;
+      }
+    }
+  }
+
+  .person-header-die{
+    height: $personHeaderSmallDisplayHeight;
+  }
+}
+
+//For mobile
+@media screen and (max-width: 767px) {
+  .page-header, .page-header.shrink{
+    width: 100%;
+
+    .person-header {
+      width: $personHeaderDataMobileWidth + $personPhotoSmallDiameter;
+      margin-left: $timelineVerticalAxisLeftMarginMobile - $personPhotoSmallRadius;
+
+      .person-data {
+        width: $personHeaderDataMobileWidth - $personPhotoSmallRadius;
+      }
+
+      .person-name{
+        width: $personHeaderDataMobileWidth - $personPhotoSmallRadius - $personPhotoSmallRadius - $personHeaderTextLeftPadding - 2px; //border
+      }
+    }
+  }
+}
+
 /*Old Code Start*/
+.social-icons li {
+  display: inline-block;
+  margin-left: 10px;
+  line-height: 24px;
+}
+
+.social-icons i {
+  font-size: 19px;
+}
+
+.person-social {
+  margin-bottom: 10px;
+}
+
 .person-tags li {
   display: inline-block;
   margin-right: 4px;
