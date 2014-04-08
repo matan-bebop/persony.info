@@ -75,6 +75,7 @@ class JSONEvent(object):
         self.end = JSON_date(date_end(ev.start))
         self.title = ev.title
         self.description = ev.body
+        self.others = ev.tags
 
         if ev.images:
             self.image = ev.images[0]
