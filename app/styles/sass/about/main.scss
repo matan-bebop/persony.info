@@ -1,4 +1,96 @@
-/*About page css*/
+.about{
+  .about-icon {
+    display: inline-block;
+    line-height: 100px;
+    font-size: 4em;
+    background: $regularAllPageButtonColour;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    transition: .5s;
+    text-align:center !important;
 
-/*Example for import sub css
-@import "bla-bla-bla"; for bla-bla-bla.scss file in a same folder*/
+    &:hover{
+      background: $hoverAllPageButtonColour;
+    }
+  }
+
+  .separator{
+    margin:20px 0px;
+    border-top:1px dashed #cccccc;
+    height: 1px;
+    width:100%;
+  }
+
+  #founders{
+    width:100%;
+    height:auto;
+    padding:0;
+
+
+    .comment{
+      border:2px solid $regularAllPageButtonColour;
+      -webkit-border-radius:5px;
+      -moz-border-radius:5px;
+      border-radius:5px;
+      background:#fff;
+      max-width:331px;
+      height:auto;
+      padding:17px 15px;
+      position:relative;
+
+      p{
+        color:#6f6353;
+        font-size:16px;
+        line-height:22px;
+        margin:0;
+      }
+
+      span{
+        width:0px;
+        height:0px;
+        display:block;
+        position:absolute;
+        border-left:8px solid transparent;
+        border-right:8px solid transparent;
+        border-top: 12px solid $regularAllPageButtonColour;
+        left:50%;
+        bottom:-12px;
+        margin-left:-15px;
+      }
+    }
+  }
+
+  .founders{
+     margin:20px 0px;
+  }
+
+
+  .author{
+    display:block;
+    padding:20px 0 0 45px;
+
+    img{
+      float:left;
+      margin:0 13px 0 0;
+    }
+
+    p{
+      margin:0;
+      padding:6px 0 0 0;
+      font-size:16px;
+      color:#6f6353;
+      line-height:22px;
+    }
+
+    span{
+      font-size:16px;
+      color:#6f6353;
+    }
+  }
+
+  .author_mini{
+    display:inline-block;
+    padding:20px 0 0 45px;
+  }
+}
