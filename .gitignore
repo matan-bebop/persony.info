@@ -26,6 +26,6 @@ public
 .zsh*
 app/bower_components
 heroku
-/config/settings.local.js
+*.local.js
 /app/styles/compiled
 /legacy
