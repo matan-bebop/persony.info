@@ -12,9 +12,17 @@
                     if (scroll >= shrinkHeader) {
                         $('.page-header').addClass('shrink');
                         $('.person-header-die').addClass('shrink');
+                        $('.timeline-helper').addClass('shrink');
                     } else {
                         $('.page-header').removeClass('shrink');
                         $('.person-header-die').removeClass('shrink');
+                        $('.timeline-helper').removeClass('shrink');
+                    }
+
+                    if ($('.helper-month').hasClass('active')){
+                        $('.helper-month').parent('ul').parent('li').addClass('active');
+                    } else{
+                        $('.helper-month').parent('ul').parent('li').removeClass('active');
                     }
                 });
             };

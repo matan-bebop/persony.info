@@ -6,6 +6,7 @@
         [
             'Page', '$routeParams', 'Person', 'Event', '$scope', '$modal',
             function (Page, $routeParams, Person, Event, $scope, $modal) {
+
                 $scope.person = Person.get(
                     {id: $routeParams.id},
                     function () {
