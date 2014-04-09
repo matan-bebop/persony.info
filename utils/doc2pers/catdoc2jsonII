@@ -87,7 +87,7 @@ class JSONEvent(object):
                         for s in ev.sources]
 
 class JSON(object):
-    def __init__(self, person, local_photo=True, photos_path="/media/faces/"):
+    def __init__(self, person, local_photo=True, photos_path=""):
         self.name = person.full_name()
         self.info = person.brief
         if local_photo:
