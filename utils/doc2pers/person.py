@@ -1,8 +1,21 @@
+import re
+
 from event import *
 
+def remove_unknown_leading_symbol(s):
+    """ 
+    An unkonwn leading symbol occures while reading person name from the text 
+    file exported by Google Docs. This routine leaves only the relevant name 
+    string.
+    """
+    name = re.compile(r"[0-9a-zA-Zа-яА-Я]")
+    return s[name.search(s).start():]
+
+
 def read_name(f):
-    par = read_paragraph(f).strip()
+    par = remove_unknown_leading_symbol(read_paragraph(f).strip())
     pib = par.split()
+    # Add empty surname and middlename if they were not specified
     pib += [""]*(3 - len(pib))
     return pib
 
