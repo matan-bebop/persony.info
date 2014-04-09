@@ -16,6 +16,7 @@ $personPageHeaderSmallMarginTopBottom: 10px;
 $personHeaderDataDisplayWidth: 500px;
 $personHeaderDataTabletWidth: 380px;
 $personHeaderDataMobileWidth: 300px;
+$personHeaderDataMicroWidth: 200px;
 $personHeaderTextLeftPadding: 10px;
 $personHeaderSmallMarginLeft: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
 $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter;
@@ -220,6 +221,23 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
 
       .person-name{
         width: $personHeaderDataMobileWidth - $personPhotoSmallRadius - $personPhotoSmallRadius - $personHeaderTextLeftPadding - 2px; //border
+      }
+    }
+  }
+}
+
+//For a little mobile ;)
+@media screen and (max-width: 500px){
+  .page-header, .page-header.shrink{
+    .person-header {
+      width: $personHeaderDataMicroWidth + $personPhotoSmallDiameter;
+
+      .person-data {
+        width: $personHeaderDataMicroWidth - $personPhotoSmallRadius;
+      }
+
+      .person-name{
+        width: $personHeaderDataMicroWidth - $personPhotoSmallRadius - $personPhotoSmallRadius - $personHeaderTextLeftPadding - 2px; //border
       }
     }
   }
