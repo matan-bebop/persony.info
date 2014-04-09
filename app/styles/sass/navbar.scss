@@ -140,9 +140,7 @@ $navbarSearchDisplayWidth: 200px;
 
 //For a little mobile ;)
 @media screen and (max-width: 500px){
-  .navbar{
-      a{
+  .navbar .logo a{
         margin-left: 15%;
-      }
     }
 }
