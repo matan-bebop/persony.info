@@ -8,13 +8,13 @@
                 Page.setTitle('Про проект');
 
                 $scope.tabs = [{
-                    title: '<i>One</i>',
+                    title: '<div class="about-icon"><i class="fa fa-bar-chart-o"></i></div>'+' <b class="about_pri">Наглядність</b>',
                     url: 'one.tpl.html'
                 }, {
-                    title: 'Two',
+                    title: '<div class="about-icon"><i class="fa fa-camera-retro"></i></div>'+' <b class="about_pri">Достовірність</h3>',
                     url: 'two.tpl.html'
                 }, {
-                    title: 'Three',
+                    title: '   <div class="about-icon"><i class="fa fa-users"></i></div>'+'<b class="about_pri">Відкритість</b>',
                     url: 'three.tpl.html'
                 }];
 
