@@ -39,3 +39,9 @@
   #{$property}: -webkit-calc(#{$expression});
   #{$property}: calc(#{$expression});
 }
+
+@mixin right-calc($expression) {
+  right: calc($expression);
+  right: -moz-calc($expression);
+  right: -webkit-calc($expression);
+}

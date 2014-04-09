@@ -20,7 +20,8 @@
                     controller: 'AboutCtrl'
                 })
                 .otherwise({
-                    redirectTo: '/'
+                    templateUrl: 'partials/error',
+                    controller: 'errorCtrl'
                 });
 
             $locationProvider.html5Mode(true).hashPrefix('!');

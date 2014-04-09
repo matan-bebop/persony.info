@@ -25,6 +25,7 @@
 
 .person-tools{
   float: right;
+  margin-right: 20px;
   height: 24px;
   width: 28px;
 }
@@ -50,6 +51,7 @@
 
 .event-filter{
   cursor: pointer;
+  margin-right: 20px;
   margin-top: $personHeaderBigDisplayHeight - $personPageHeaderBigMarginTopBottom * 2 - 30px;
 
   @include border-radius(3px);

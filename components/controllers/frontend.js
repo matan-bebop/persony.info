@@ -11,7 +11,7 @@ module.exports = function (app) {
             var stripped = req.url.split('.')[0];
             res.render(path.join('./', stripped), function (err, html) {
                 if (err) {
-                    res.render('404');
+                    res.render('index');
                 } else {
                     res.send(html);
                 }
@@ -27,7 +27,8 @@ module.exports = function (app) {
 
             // respond with html page
             if (req.accepts('html')) {
-                res.render('404', { url: req.url });
+                //res.render('404', { url: req.url });
+                res.render('index');
                 return;
             }
 

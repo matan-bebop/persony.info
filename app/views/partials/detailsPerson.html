@@ -170,13 +170,13 @@
                         <div class="event-month">{{month | monthName}}</div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
-                                <input class='radio' id='event{{$index}}' name='events' type='radio'>
+                                <input class='radio' id='event{{event.id}}' name='events' type='radio'>
 
                                 <div class="relative">
-                                    <label for='event{{$index}}'>{{event.title}}</label>
+                                    <label for='event{{event.id}}'>{{event.title}}</label>
 
                                     <div class="event-date">{{event.start | date:"d"}}</div>
-                                    <div class="event-icon fa fa-lg fa-info"></div>
+                                    <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
                                 </div>
                                 <div class='content'>
                                     <div class="event-header">
@@ -207,7 +207,7 @@
                                             <p class="description">{{event.description}}</p>
 
                                             <p class="source">
-                                                Джерело: <span ng-repeat="source in event.sources"><a
+                                                Джерело: <span ng-repeat="source in event.sources">{{$index === 0 ? '' : ', '}}<a
                                                     ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                                             </p>
 
