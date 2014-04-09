@@ -3,8 +3,10 @@
   z-index: 150;
   width: 110px;
   top: $personHeaderBigDisplayHeight + $navbarHeight + 10px;
-  left: 10px;
   opacity: 0.95;
+  right: calc((100% - 1170px) / 2);
+  right: -moz-calc((100% - 1170px) / 2);
+  right: -webkit-calc((100% - 1170px) / 2);
 
   @include easings;
 
@@ -29,7 +31,8 @@
       }
 
       &.helper-month-link{
-        padding-left: 20px;
+        padding: 1px 0 1px 20px;
+        font-size: 12px;
       }
 
       &:hover{
@@ -46,6 +49,12 @@
         border-left: 2px solid $timelineHelperActive;
       }
 
+      .helper-month-link{
+        color: $timelineHelperActive;
+        font-size: 14px;
+        border-left: 2px solid $timelineHelperActive;
+      }
+
       ul{
         display: block;
       }
@@ -54,13 +63,41 @@
 }
 
 //For tablet
-@media screen and (max-width: 995px) {
+@media screen and (max-width: 1200px) {
+  .timeline-helper{
+    right: calc((100% - 970px) / 2);
+    right: -moz-calc((100% - 970px) / 2);
+    right: -webkit-calc((100% - 970px) / 2);
+  }
+}
+
+//For tablet
+@media screen and (max-width: 992px) {
   .timeline-helper{
     top: $personHeaderSmallDisplayHeight + $navbarHeight + 10px;
-    width: 90px;
+    right: calc((100% - 750px) / 2);
+    right: -moz-calc((100% - 750px) / 2);
+    right: -webkit-calc((100% - 750px) / 2);
 
     .helper-year {
       margin-left: -12px;
     }
+  }
+}
+
+//For mobile
+@media screen and (max-width: 768px) {
+  .timeline-helper{
+    width: 90px;
+    right: 10px;
+  }
+}
+
+//For small mobile
+@media screen and (max-width: 640px) {
+  .timeline-helper{
+    display: none;
+    /*width: 90px;
+    right: 10px;*/
   }
 }

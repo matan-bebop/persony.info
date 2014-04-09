@@ -20,7 +20,9 @@
                     }
 
                     if ($('.helper-month').hasClass('active')){
-                        $('.helper-month').parent('ul').parent('li').addClass('active');
+                        var yearLi = $('.helper-month').parent('ul').parent('li');
+                        if (!yearLi.hasClass('active'))
+                            yearLi.addClass('active');
                     } else{
                         $('.helper-month').parent('ul').parent('li').removeClass('active');
                     }
