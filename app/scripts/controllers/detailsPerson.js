@@ -13,7 +13,7 @@
                         Page.setTitle('Персони | ' + $scope.person.name);
                     }
                 );
-
+                $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;
 
                 $scope.translate = function (value) {
