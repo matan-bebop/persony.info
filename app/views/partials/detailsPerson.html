@@ -173,7 +173,7 @@
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
                                 <input class='radio' id='event{{event.id}}' name='events' type='radio'>
-
+                                <a class="anchor" href="#event_{{event.id}}"></a>
                                 <div class="relative">
                                     <label for='event{{event.id}}'>{{event.title}}</label>
 
@@ -213,12 +213,48 @@
                                                     ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                                             </p>
 
+                                            <p class="social">
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_facebook_hcount' displayText='Facebook'></span>
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_twitter_hcount' displayText='Tweet'></span>
+
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_linkedin_hcount' displayText='LinkedIn'></span>
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_vkontakte_hcount' displayText='Vkontakte'></span>
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_googleplus_hcount' displayText='Google +'></span>
+                                            </p>
+
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         </ul>
+                        <script>
+                            $(".social").find(">span").each(function(){stWidget.addEntry({"element" :this})})
+                        </script>
                     </li>
 
                 </ul>
