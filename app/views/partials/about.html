@@ -42,8 +42,17 @@
     <h4>Допомогти проекту:</h4>
     <p>Персони - це громадянська ініціатива, спільний проект ....</br>
         завданням якого є об'єктивне та неупереджене інформування про ... </br>
+        Ваша допомога дуже важлива нам</br>
         Дайте просто грошей </br>
-        /* за основу берем http://hromadske.tv/donate/  */
+        <ul class="pay-list pay-list1" >
+            <li ng-repeat="payList in payLists" >
+                <img ng-src="{{payList.image}}"
+                     ng-click="groupCollapse($index)"/>
+            </li>
+        </ul>
+        <div ng-repeat="payList in payLists" collapse="payList.collapsed">
+            <div class="well well-lg">{{payList.description}}</div>
+        </div>
     </p>
     <div class="separator"></div>
     <h4>Наша команда: </h4>
@@ -94,7 +103,7 @@
 
     <div class="row">
         <div class="about-item col-sm-6">
-            <h3 class="about-heading">Інтузіасти розробники:</h3>
+            <h3 class="about-heading">Ентузіасти розробники:</h3>
             <div class="author_mini">
                 <img src="images/eli.jpg" />
                 <p>Eli Finkelman,</p>
@@ -112,7 +121,7 @@
          </div>
         </div>
         <div class="about-item col-sm-6">
-            <h3 class="about-heading">Інтузіасти дописувачі:</h3>
+            <h3 class="about-heading">Ентузіасти дописувачі:</h3>
             <div class="author_mini">
                 <img src="images/eli.jpg" />
                 <p>Eli Finkelman,</p>

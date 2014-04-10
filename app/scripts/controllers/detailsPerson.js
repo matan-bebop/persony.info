@@ -4,14 +4,21 @@
     angular.module('personyApp').controller(
         'controllers.personDetails',
         [
-            'Page', '$routeParams', 'Person', 'Event', '$scope', '$modal',
-            function (Page, $routeParams, Person, Event, $scope, $modal) {
+            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal',
+            function (Page, $location, $routeParams, Person, Event, $scope, $modal) {
 
                 $scope.person = Person.get(
                     {id: $routeParams.id},
-                    function () {
+                    function (person) {
+                        if (!person){
+                            $location.path('/error');
+                        }
                         Page.setTitle('Персони | ' + $scope.person.name);
+                    },
+                    function () {
+                        $location.path('/error');
                     }
+
                 );
                 $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;

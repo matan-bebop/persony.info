@@ -28,6 +28,55 @@
                     return tabUrl == $scope.currentTab;
                 }
 
+                $scope.payLists = [
+                    {
+                        image: 'http://hromadske.tv/images/doc/1/9/199050b-pay1.jpg',
+                        description: 'Наш проект за адресою бла бла бла',
+                        collapsed: true
+                    },
+                    {
+                        image: 'http://hromadske.tv/images/doc/1/9/199050b-pay1.jpg',
+                        description: 'Наш проект за адресою бла бла бла',
+                        collapsed: true
+                    },
+                    {
+                        image: 'http://hromadske.tv/images/doc/1/9/199050b-pay1.jpg',
+                        description: 'Наш проект за адресою бла бла бла',
+                        collapsed: true
+                    },
+                    {
+                        image: 'http://hromadske.tv/images/doc/1/9/199050b-pay1.jpg',
+                        description: 'Наш проект за адресою бла бла бла',
+                        collapsed: true
+                    },
+                    {
+                        image: 'http://hromadske.tv/images/doc/1/9/199050b-pay1.jpg',
+                        description: 'Наш проект за адресою бла бла бла',
+                        collapsed: true
+                    },
+                    {
+                        image: 'http://hromadske.tv/images/doc/1/9/199050b-pay1.jpg',
+                        description: 'Наш проект за адресою бла бла бла',
+                        collapsed: true
+                    }
+                ];
+
+
+                $scope.groupCollapse = function (index) {
+
+                    var i = 0;
+
+                    $scope.payLists.forEach(function(entry) {
+                        if (i === index){
+                            entry.collapsed = !entry.collapsed;
+                        }
+                        else
+                            entry.collapsed = true;
+
+                        i++;
+                    });
+                }
+
             }]
     );
 }());

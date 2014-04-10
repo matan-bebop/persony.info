@@ -2,12 +2,19 @@
 
 
     <div class="col-lg-9 main-search-block">
-        <h4>Для пошуку особистостей використовуйте поле нижче</h4>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
+        <div style="height: 305px">
+            <carousel interval="5000">
+                <slide ng-repeat="slide in slides" active="slide.active">
+                    <img ng-src="{{slide.image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <h4>{{slide.title}}</h4>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </slide>
+            </carousel>
+        </div>
+        <h4>Для пошуку кішечок(особистостей) використовуйте поле нижче</h4>
+        <br />
         <div class="input-group">
             <input type="text" class="input-lg form-control"
                    placeholder="Шукати можна за Ім'ям, Прізвищем, партією, або іншими ознаками"
