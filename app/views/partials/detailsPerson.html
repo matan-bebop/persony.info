@@ -123,7 +123,9 @@
                         <li>
                             <a>Додати у кабінет</a>
                             <a>Додати до порівняння</a>
-                            <a>Редагувати</a>
+                            <a ng-click="addEditEvent()">Додати подію</a>
+                            <a ng-click="addEditPerson(person)">Редагувати</a>
+                            <a ng-click="addEditPerson()">Додати персону</a>
                             <a>Поскаржитись</a>
                         </li>
                     </ul>
@@ -191,7 +193,7 @@
                                                 </a>
                                                 <ul class="dropdown-menu pull-right">
                                                     <li>
-                                                        <a>Редагувати</a>
+                                                        <a ng-click="addEditEvent(event)">Редагувати</a>
                                                         <a>Поскаржитись</a>
                                                     </li>
                                                 </ul>
