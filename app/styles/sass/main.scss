@@ -91,6 +91,19 @@ h4 {
     }
   }
 }
+.info-wrap{
+  .social{
+    margin: 2em 0 0 0;
+    float: right;
+  }
+  .stButton .stButton_gradient,
+  .stButton .stFb,
+  .stButton .stTwbutton,
+  .stButton .stMainServices {
+    height: 22px;
+  }
+}
+
 
 //submodules
 @import "navbar";

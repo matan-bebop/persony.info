@@ -73,8 +73,6 @@
 </head>
 
 <body scroll-up>
-    <!--div class="blue" style="height: 30px; background: #005BBB; color: #eee; font-size: 16px; font-weight: 600; text-align: center; padding-top: 5px;">Бережіть Україну</div>
-    <div class="yellow" style="height: 30px; background: #FFD500; color: #333; font-size: 16px; font-weight: 600; text-align: center; padding-top: 5px;">Берегите Украину</div-->
     <nav class="navbar navbar-static-top navbar-inverse navbar-fixed-top" role="navigation" ng-controller="controllers.navbar">
         <div class="container">
             <div class="logo pull-left">
@@ -245,12 +243,14 @@
     <script src="scripts/services/person.js"></script>
     <script src="scripts/services/event.js"></script>
     <script src="scripts/services/search.js"></script>
+    <script src="scripts/controllers/error.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/persons.js"></script>
     <script src="scripts/controllers/detailsPerson.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/page.js"></script>
     <script src="scripts/controllers/navbar.js"></script>
+    <script src="scripts/controllers/personCRUD.js"></script>
     <script src="scripts/directives/scrollUp.js"></script>
     <script src="scripts/directives/onEnter.js"></script>
     <script src="scripts/directives/socialLikes.js"></script>
@@ -263,69 +263,64 @@
 <div class="wrap">
 
     <footer id="footer">
+        <div class="row">
+            <div class="col-sm-4">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.uk"><img
+                        alt="Ліцензія Creative Commons" style="border-width:0;margin-top:8px;"
+                        src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a>
+            </div>
+            <div class="col-sm-4">
+                <div class="social">
 
-                    <div class="social">
-                            <a href="https://www.facebook.com/persony.persony" class="facebook">
-                                <span class="socialicons ico1"></span>
-                                <span class="socialicons_h ico1h"></span>
-                            </a>
-                            <a href="https://twitter.com/PersonyProject" class="twitter">
-                                <span class="socialicons ico2"></span>
-                                <span class="socialicons_h ico2h"></span>
-                            </a>
-                            <a href="https://plus.google.com/107673314003532823384/posts" class="gplus">
-                                <span class="socialicons ico3"></span>
-                                <span class="socialicons_h ico3h"></span>
-                            </a>
-                            <a href="#" class="vk">
-                                <span class="socialicons ico7"></span>
-                                <span class="socialicons_h ico7h"></span>
-                            </a>
-                    </div>
-                    <div class="copyright">
-                            <!-- Yandex.Metrika informer -->
-<a href="http://metrika.yandex.ru/stat/?id=24100588&amp;from=informer"
-target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/24100588/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
-style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:24100588,lang:'ru'});return false}catch(e){}"/></a>
-<!-- /Yandex.Metrika informer -->
-                            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.uk"><img
-                                    alt="Ліцензія Creative Commons" style="border-width:0"
-                                    src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a><br/>Проект &laquo;<span
-                                xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset"
-                                property="dct:title" rel="dct:type">Персони</span>&raquo; ліцензовано за <a
-                                rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.uk"
-                                style="color:#005580;">ліцензією
-                            Creative Commons Із зазначенням автора - Розповсюдження на тих самих умовах 4.0
-                            Міжнародна</a>.
-                    </div>
+                    <div class="social-icon facebook"><a href="https://www.facebook.com/persony.persony"><i class="fa fa-facebook fa-2x"></i></a></div>
+                    <div class="social-icon twitter"><a href="https://twitter.com/PersonyProject"><i class="fa fa-twitter fa-2x"></i></a></div>
+                    <div class="social-icon gplus"><a href="https://plus.google.com/107673314003532823384/posts"><i class="fa fa-google-plus fa-2x"></i></a></div>
+                    <div class="social-icon vk"><a href="#"><i class="fa fa-vk fa-2x"></i></a></div>
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o"></i>  Долучитись</button>
+                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-money"></i> Допомогти</button>
+            </div>
+        </div>
+         <div class="copyright">
+            Проект &laquo;<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">Персони</span>&raquo;
+            ліцензовано за <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.uk" style="color:#005580;">
+            ліцензією Creative Commons Із зазначенням автора - Розповсюдження на тих самих умовах 4.0 Міжнародна</a>.
+         </div>
     </footer>
 </div>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter24100588 = new Ya.Metrika({id:24100588,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+                } catch(e) { }
+            });
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-(function (d, w, c) {
-    (w[c] = w[c] || []).push(function() {
-        try {
-            w.yaCounter24100588 = new Ya.Metrika({id:24100588,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true});
-        } catch(e) { }
-    });
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
-    var n = d.getElementsByTagName("script")[0],
-        s = d.createElement("script"),
-        f = function () { n.parentNode.insertBefore(s, n); };
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-    if (w.opera == "[object Opera]") {
-        d.addEventListener("DOMContentLoaded", f, false);
-    } else { f(); }
-})(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="//mc.yandex.ru/watch/24100588" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/24100588" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript" src="scripts/buttons.js"></script>
+    <script>
+        stLight.options({publisher: "58ae2a33-2f29-4fbb-8ed0-76b6d3060471", doNotHash: false, doNotCopy: false, hashAddressBar: false})
+    </script>
 </body>
 </html>

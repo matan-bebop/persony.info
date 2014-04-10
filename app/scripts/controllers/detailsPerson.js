@@ -13,7 +13,7 @@
                         Page.setTitle('Персони | ' + $scope.person.name);
                     }
                 );
-
+                $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;
 
                 $scope.translate = function (value) {
@@ -38,6 +38,34 @@
                             return 'Дні';
                     }
                 };
+
+                $scope.addEditEvent = function (event) {
+
+                    var init = {};
+                    if (event){
+                        init = {};
+                    };
+
+                    var modalInstance = $modal.open({
+                        templateUrl: 'partials/eventAddEdit',
+                        controller: 'controllers.eventAddEdit',
+                        resolve: init
+                    });
+                }
+
+                $scope.addEditPerson = function (person) {
+
+                    var init = {};
+                    if (person){
+                        init = {};
+                    };
+
+                    var modalInstance = $modal.open({
+                        templateUrl: 'partials/personAddEdit',
+                        controller: 'controllers.personAddEdit',
+                        resolve: init
+                    });
+                }
 
                 $scope.popup = function (event) {
                     var modalInstance = $modal.open({
@@ -140,6 +168,20 @@
     );
 
     angular.module('personyApp').controller(
+        'controllers.eventFilters',
+        [
+            '$scope',
+            function ($scope) {
+                $scope.items = [
+                    "Допа",
+                    "Рабінович",
+                    "Дарт Вейдер"
+                ];
+            }
+        ]
+    );
+
+    angular.module('personyApp').controller(
         'controllers.personTools',
         [
             '$scope',
@@ -153,20 +195,6 @@
         [
             '$scope',
             function ($scope) {
-            }
-        ]
-    );
-
-    angular.module('personyApp').controller(
-        'controllers.eventFilters',
-        [
-            '$scope',
-            function ($scope) {
-                $scope.items = [
-                    "Допа",
-                    "Рабінович",
-                    "Дарт Вейдер"
-                ];
             }
         ]
     );
