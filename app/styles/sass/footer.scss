@@ -69,12 +69,16 @@
      font-size:1.2em;
      margin-left:8px;
      margin-top:3px;
+     margin-bottom: 10px;
 
    }
 
   .copyright {
     color: $mainBackgroundColour;
     font-style: italic;
-    margin-top: 20px;
+    margin-top: 10px;
   }
+  .fotter_mail{
+    margin-top: 15px !important;
+      }
 }
