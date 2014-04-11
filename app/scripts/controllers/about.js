@@ -8,17 +8,17 @@
                 Page.setTitle('Про проект');
 
                 $scope.tabs = [{
-                    title: '<div class="about-icon"><i class="fa fa-bar-chart-o"></i></div>'+' <b class="about_pri">Наглядність</b>',
+                    title: '<div class="about-icon"><i class="fa fa-bar-chart-o"></i></div><b class="about_pri">Наглядність</b>',
                     url: 'one.tpl.html'
                 }, {
-                    title: '<div class="about-icon"><i class="fa fa-camera-retro"></i></div>'+' <b class="about_pri">Достовірність</h3>',
+                    title: '<div class="about-icon"><i class="fa fa-camera-retro"></i></div><b class="about_pri">Достовірність</h3>',
                     url: 'two.tpl.html'
                 }, {
-                    title: '   <div class="about-icon"><i class="fa fa-users"></i></div>'+'<b class="about_pri">Відкритість</b>',
+                    title: '<div class="about-icon"><i class="fa fa-users"></i></div><b class="about_pri">Відкритість</b>',
                     url: 'three.tpl.html'
                 }];
 
-                $scope.currentTab = 'one.tpl.html';
+                $scope.currentTab = 'three.tpl.html';
 
                 $scope.onClickTab = function (tab) {
                     $scope.currentTab = tab.url;
@@ -61,12 +61,34 @@
                     }
                 ];
 
+                $scope.formLists = [
+                    { collapsed: true },
+                    { collapsed: true },
+                    { collapsed: true },
+                    { collapsed: true }
+                ];
+
 
                 $scope.groupCollapse = function (index) {
 
                     var i = 0;
 
                     $scope.payLists.forEach(function(entry) {
+                        if (i === index){
+                            entry.collapsed = !entry.collapsed;
+                        }
+                        else
+                            entry.collapsed = true;
+
+                        i++;
+                    });
+                };
+
+                $scope.formCollapse = function (index) {
+
+                    var i = 0;
+
+                    $scope.formLists.forEach(function(entry) {
                         if (i === index){
                             entry.collapsed = !entry.collapsed;
                         }

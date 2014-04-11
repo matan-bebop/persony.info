@@ -162,6 +162,13 @@
     border-bottom-left-radius: 10px;
   }
 
+  a.donate-anchor{
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
+  }
+
   @media screen and (max-width: 700px){
      .about_pri{
       display: block;

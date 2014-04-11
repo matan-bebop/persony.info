@@ -39,15 +39,16 @@
         </div>
     </script>
 
+    <a class="donate-anchor" id="donate"></a>
     <h4>Допомогти проекту:</h4>
-    <p>Персони - це громадянська ініціатива, спільний проект ....</br>
+    <p> Персони - це громадянська ініціатива, спільний проект ....</br>
         завданням якого є об'єктивне та неупереджене інформування про ... </br>
-        Ваша допомога дуже важлива нам</br>
+        Ваша допомога дуже важлива нам </br>
         Дайте просто грошей </br>
         <ul class="pay-list pay-list1" >
             <li ng-repeat="payList in payLists" >
                 <img ng-src="{{payList.image}}"
-                     ng-click="groupCollapse($index)"/>
+                     ng-click="groupCollapse($index)">
             </li>
         </ul>
         <div ng-repeat="payList in payLists" collapse="payList.collapsed">
@@ -60,113 +61,302 @@
         <div class="container">
             <div class="founders col-sm-4">
                 <div class="comment">
-                    <p>I am floored, impressed, very happy, and jumping up and down whenever we work with Theory on UI or web design.</p>
+                    <p>Думайте.</p>
                     <span></span>
                 </div>
 
                 <div class="author">
-                    <img src="images/patrick.jpg" />
-                    <p>Patrick Ortman,</p>
-                    <span>Founder, POINC</span>
+                    <img src="images/andriy.jpg" />
+                    <p>Андрій,</p>
+                    <span>Ідеолог</span>
+                    <span class="mail">andriy@persony.info</span>
                 </div>
             </div>
             <div class="founders col-sm-4">
                 <div class="comment">
-                    <p>I choose Theory when I need a UI/UX project done right. Theory removes the stress from design projects with great visual detail, communication, and strategy.</p>				<span></span>
-                </div>
-
-                <div class="author">
-                    <img src="images/paul.jpg" />
-                    <p>Paul Shiffman,</p>
-                    <span>Co-Founder, SalesPro</span>
-                </div>
-            </div>
-            <div class="founders col-sm-4">
-                <div class="comment">
-                    <p>We trust Theory with all our interface projects and are very happy working together on a close, long-term basis.</p>
+                    <p>Основою для Країни 2.0 мають стати ЧЕСТЬ, РОЗУМ І ПРАЦЯ. А ще окрім нас самих ніхто не вирішить наші проблеми. Тому САМІ мусимо дізнаватись з ким маємо справу!</p>
                     <span></span>
                 </div>
 
                 <div class="author">
-                    <img src="images/eli.jpg" />
-                    <p>Eli Finkelman,</p>
-                    <span>Co-Founder, TelAPI</span>
+                    <img src="images/oleg.jpg" />
+                    <p>Олег,</p>
+                    <span>Організатор</span>
+                    <span class="mail">oleg@persony.info</span>
+                </div>
+            </div>
+            <div class="founders col-sm-4">
+                <div class="comment">
+                    <p>Не пройобуйте.</p>
+                    <span></span>
+                </div>
+
+                <div class="author">
+                    <img src="images/yurko.jpg" />
+                    <p>Юра,</p>
+                    <span>Інженер</span>
+                    <span class="mail">yurko@persony.info</span>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 
-
-    <iframe type="text/html" width="520" height="390" src="http://tvi.ua/embed.php?video=38523" frameborder="0"></iframe>
-    <iframe type="text/html" width="520" height="390" src="http://tvi.ua/embed.php?video=38523" frameborder="0"></iframe>
+    <div id="video-about" ng-if="false">
+        <iframe type="text/html" width="520" height="390" src="http://tvi.ua/embed.php?video=38523" frameborder="0"></iframe>
+    </div>
 
     <div class="row">
         <div class="about-item col-sm-6">
-            <h3 class="about-heading">Ентузіасти розробники:</h3>
+            <h3 class="about-heading">Девелопери ентузіасти:</h3>
             <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
+                <img src="images/volunteer.png" />
+                <p>Олексій,</p>
+                <span>Back-еnd, Node.js</span>
             </div>
             <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
+                <img src="images/volunteer.png" />
+                <p>Дмитро,</p>
+                <span>Front-end, Angular.js</span>
             </div>
             <div class="author_mini">
-            <img src="images/eli.jpg" />
-            <p>Eli Finkelman,</p>
-            <span>Co-Founder, TelAPI</span>
-         </div>
+                <img src="images/volunteer.png" />
+                <p>Сергій,</p>
+                <span>Дизайн, UI</span>
+            </div>
+            <div class="author_mini">
+                <img src="images/volunteer.png" />
+                <p>Пєрсик,</p>
+                <span>Архітектор ПЗ</span>
+            </div>
         </div>
         <div class="about-item col-sm-6">
-            <h3 class="about-heading">Ентузіасти дописувачі:</h3>
+            <h3 class="about-heading">Дописувачі ентузіасти:</h3>
             <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
+                <img src="images/volunteer.png" />
+                <p>Олена</p>
+                <span></span>
             </div>
             <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
+                <img src="images/volunteer.png" />
+                <p>Леся</p>
+                <span></span>
             </div>
             <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
+                <img src="images/volunteer.png" />
+                <p>Віктор</p>
+                <span></span>
             </div>
-            <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
-            </div>
-            <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
-            </div>
-            <div class="author_mini">
-                <img src="images/eli.jpg" />
-                <p>Eli Finkelman,</p>
-                <span>Co-Founder, TelAPI</span>
-            </div>
-
         </div>
     </div>
     <div class="separator"></div>
 
-    <h4>Долучайтесь:</h4>
-    <h3>Для того, щоб долучитись до проекту "Персони" заповніть форму зворотнього звя’зку: </h3>
-   /* за основу берем http://theorydesign.ca/  */
-    <form action="/contact" method="post" id="contact-form">
-        <div class="input-group"><span class="input-group-addon tool-tip" title="Ім'я (Необов'язково)" data-placement="left"><i class="fa fa-user"></i></span><input type="text" class="form-control" id="contact-name" name="contact-name" placeholder="Ім'я (Необов'язково)"/></div>
-        <div class="input-group"><span class="input-group-addon tool-tip" title="Електронна пошта (ця інформація не публікується)" data-placement="left"><i class="fa fa-envelope"></i></span><input type="email" class="form-control" id="contact-email" name="contact-email" placeholder="Електронна пошта (ця інформація не публікується)" data-validate="validate(required, email)"/></div>
-        <div class="input-group"><span class="input-group-addon tool-tip" title="Ваша пропозиція" data-placement="left"><i class="fa fa-pencil"></i></span><textarea class="form-control" id="contact-message" name="contact-message" placeholder="Повідомлення" rows="5" data-validate="validate(rangelength(1, 10000))"></textarea></div>
-        <input type="submit" class="btn btn-lg btn-block" id="contact-form-submit" name="contact-form-submit" value="Надіслати"/>
-        <div class="alert alert-success" id="contact-success"></div>
-        <div class="alert alert-danger" id="contact-error"></div>
-    </form>
+    <h4 id="join">Якщо вам є що сказати, або ви хочете допомогти в розробці &ndash; ми будемо всіляко раді вам.</h4>
+    <div class="list tehnology">
+        <div>Наші технології:</div>
+        <ul>
+            <li>Node.js</li>
+            <li>Angular</li>
+            <li>Mysql</li>
+            <li>Redmine</li>
+            <li>Github</li>
+            <li>Agile</li>
+        </ul>
+    </div>
 
+    <div class="list product">
+        <div>Потребуємо спеціалістів у сфері:</div>
+        <ul>
+            <li>Android</li>
+            <li>iOS</li>
+            <li>Node</li>
+            <li>Angular</li>
+            <li>Журналісти</li>
+            <li>Політологи</li>
+            <li>Юристи</li>
+            <li>Веб тестувальники</li>
+        </ul>
+    </div>
+
+    <div class="list product">
+        <div>Можем співпрацювати:</div>
+        <ul>
+            <li>REST</li>
+        </ul>
+    </div>
+
+    <div>А ще ви потрапите в перелік ентузіастів;)</div>
+
+    <div>Задавайте питання або пропозиції</div>
+    <button type="button" ng-click="formCollapse(0)" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Хочу девелопити</button>
+    <button type="button" ng-click="formCollapse(1)" class="btn btn-info"><i class="fa fa-pencil-square-o"></i> Маю що розповісти</button>
+    <button type="button" ng-click="formCollapse(2)" class="btn btn-success"><i class="fa fa-pencil-square-o"></i> Хочем співпрацювати (для організацій)</button>
+    <button type="button" ng-click="formCollapse(3)" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Просто є питання</button>
+
+    <div class="panel panel-default" collapse="formLists[0].collapsed">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail0" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail0" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName0" class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName0" placeholder="Ім’я">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Я знаю Node.js
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Я знаю Angular
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Я програмую під Android
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Я програмую під iOS
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAdditional0" class="col-sm-2 control-label">Додаткова інформація</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="inputAdditional0" placeholder="Опишіть що б ви хотіли робити" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Надіслати</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default" collapse="formLists[1].collapsed">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail1" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName1" class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName1" placeholder="Ім’я">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputProfession" class="col-sm-2 control-label">Професія</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputProfession" placeholder="Професія">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAdditional1" class="col-sm-2 control-label">Додаткова інформація</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="inputAdditional1" placeholder="Опишіть що б ви хотіли робити" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Надіслати</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default" collapse="formLists[2].collapsed">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail2" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputOrganization" class="col-sm-2 control-label">Організація</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputOrganization" placeholder="Організація">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAdditional2" class="col-sm-2 control-label">Предмет співпраці</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="inputAdditional2" placeholder="Чим можемо бути вам корисні?" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Надіслати</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default" collapse="formLists[3].collapsed">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName3" class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName3" placeholder="Ім’я">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAdditional3" class="col-sm-2 control-label">Питання</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="inputAdditional3" placeholder="Чим можемо бути вам корисні?" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Надіслати</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="roadmap" ng-if="false">
+        <h4>Роадмап</h4>
+        http://almende.github.io/chap-links-library/js/timeline/examples/example15_mobile.html
+    </div>
 </div>
