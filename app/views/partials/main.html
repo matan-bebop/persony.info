@@ -1,36 +1,28 @@
 <div class="container">
-    <p class="caption_info">Найсвіжіші висловлюваня персон в соціальних мережах:</p>
-    <div class="col-sm-6">
-        <blockquote class="twitter-tweet" lang="uk"><p><a href="https://twitter.com/Yatsenyuk_AP">@Yatsenyuk_AP</a> А ті, які хочуть займатись бізнесом - мають іти в бізнес. <a href="http://t.co/KcCQszwLfq">http://t.co/KcCQszwLfq</a></p>&mdash; Arseniy Yatsenyuk (@Yatsenyuk_AP) <a href="https://twitter.com/Yatsenyuk_AP/statuses/454636763513098240">April 11, 2014</a></blockquote>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
-    <div class="col-sm-6">
-        <blockquote class="twitter-tweet" lang="uk"><p>Социальные издержки ликвидации института социальных работников перевесят любую бюджетную экономию. СТ <a href="https://t.co/v2BGTGjQdU">https://t.co/v2BGTGjQdU</a></p>&mdash; Сергей Тигипко (@SergeyTigipko) <a href="https://twitter.com/SergeyTigipko/statuses/454622611092566016">April 11, 2014</a></blockquote>
-        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <div class="container">
+        <p class="caption_info">Найсвіжіші висловлюваня в соціальних мережах:</p>
+        <div class="col-sm-6">
+            <script type="text/javascript">twitterFetcher.fetch('454716649438846977', 'tweet-left', 1, true);</script>
+            <blockquote class="twitter" id="tweet-left" lang="uk"></blockquote>
+        </div>
+        <div class="col-sm-6">
+            <script type="text/javascript">twitterFetcher.fetch('454735082880655360', 'tweet-right', 1, true);</script>
+            <blockquote class="twitter" id="tweet-right" lang="uk"></blockquote>
+        </div>
     </div>
 
-        <!--carousel interval="5000">
-            <slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <h4>{{slide.title}}</h4>
-                    <p>{{slide.text}}</p>
-                </div>
-            </slide>
-        </carousel-->
-    </div>
+        <!--placeholder="Шукати можна за Ім'ям, Прізвищем, партією, або іншими ознаками"-->
     <div class="col-lg-9 main-search-block">
-        <p class="caption_info">Для пошуку особистостей використовуйте поле нижче</p>
-        <br />
         <div class="input-group">
             <input type="text" class="input-lg form-control"
-                   placeholder="Шукати можна за Ім'ям, Прізвищем, партією, або іншими ознаками"
+                   placeholder="Шукати можна за Ім'ям або прізвищем"
                    ng-model="search.keyword"
                    on-enter="search.showResults()"
                     >
-      <span class="input-group-btn">
-        <button class="btn btn-lg btn-primary" type="button" ng-click="search.showResults()">Пошук персон</button>
-      </span>
+              <span class="input-group-btn">
+                <button class="btn btn-lg btn-primary" type="button" ng-click="search.showResults()">Пошук персон</button>
+              </span>
         </div>
         <!-- /input-group -->
     </div>
