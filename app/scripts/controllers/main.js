@@ -23,7 +23,12 @@
                      text: 'Kittys2',
                      title: 'MiMiMi'
                  }
-             ]
+             ];
+
+             $scope.nextTwitterQuote = function () {
+
+                 //load
+             }
 
              $scope.search = Search;
 

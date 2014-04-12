@@ -39,9 +39,14 @@
 }
 
 blockquote.twitter{
-
   .interact{
     display: none;
+  }
+
+  .fa{
+    width: 100%;
+    text-align: center;
+    color: $personBlockBorderColour;
   }
 
   .user{

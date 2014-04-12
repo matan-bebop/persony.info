@@ -170,7 +170,11 @@
         <span class="help-tip-text">Тут <strong>МАЄ</strong> буть підказка щодо <a href="#" class="alert-link">функціоналу</a>. <span id="help-tip-close-link" class="alert-link">Сховати</span></span>
     </div>-->
 
-    <div ng-view="" class="main-container"></div>
+    <div ng-view="" class="main-container">
+        <div class="container loading">
+            <i class="fa fa-spinner fa-spin fa-5x"></i>
+        </div>
+    </div>
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="scripts/soclikes.min.js"></script>
