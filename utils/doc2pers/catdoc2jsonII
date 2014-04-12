@@ -4,6 +4,7 @@ import sys
 import json
 
 from person import Person
+from cyr2url import Cyr2Url
 
 class Date(object):
     def __init__(self, strdate):
@@ -75,6 +76,7 @@ class JSONEvent(object):
         self.end = JSON_date(date_end(ev.start))
         self.title = ev.title
         self.description = ev.body
+        self.others = ev.tags
 
         if ev.images:
             self.image = ev.images[0]
@@ -85,10 +87,13 @@ class JSONEvent(object):
                         for s in ev.sources]
 
 class JSON(object):
-    def __init__(self, person):
+    def __init__(self, person, local_photo=True, photos_path=""):
         self.name = person.full_name()
         self.info = person.brief
-        self.photo = person.photo
+        if local_photo:
+            self.photo = photos_path + Cyr2Url().code(person.surname).lower()
+        else:
+            self.photo = person.photo
         self.facebook = ""
         self.twitter = ""
         self.events = [JSONEvent(ev).__dict__ for ev in person.events]
@@ -98,4 +103,9 @@ p = Person()
 p.read_descrition(sys.stdin)
 p.read_events(sys.stdin)
 
-print(json.dumps(JSON(p).__dict__, ensure_ascii=False))
+if len(sys.argv) > 1 and sys.argv[1] == "-local_photo":
+    use_local_photo = True
+else:
+    use_local_photo = False
+
+print(json.dumps(JSON(p, use_local_photo).__dict__, ensure_ascii=False))

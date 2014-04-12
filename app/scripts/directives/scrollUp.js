@@ -2,11 +2,13 @@
     'use strict';
 
     angular.module('personyApp').directive('scrollUp', [
-        '$window',
-        function ($window) {
+        '$window', '$location',
+        function ($window, $location) {
             return function (scope, element, attrs) {
                 scope.$on('$routeChangeSuccess', function (scope, next, current) {
-                    $window.scrollTo(0,0);
+                    if (!$location.hash()) {
+                        $window.scrollTo(0, 0);
+                    }
                 })
             };
         }

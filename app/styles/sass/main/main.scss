@@ -1,7 +1,7 @@
 .main-search-block {
   display: block;
   float: none !important;
-  margin: 150px auto 20px !important;
+  margin: 50px auto 20px !important;
 
   h4{
     margin: 0;
@@ -28,5 +28,89 @@
 
   &:hover{
     @include personBlockHover;
+  }
+}
+
+.caption_info{
+  padding:35px;
+  font-size: 32px;
+  font-weight: 100;
+  text-align: center;
+}
+
+blockquote.twitter{
+  .interact{
+    display: none;
+  }
+
+  .fa{
+    width: 100%;
+    text-align: center;
+    color: $personBlockBorderColour;
+  }
+
+  .user{
+
+    a{
+      text-decoration: none;
+    }
+
+    img{
+      @include border-radius(50%);
+      border: 3px solid $timelineAxisColour;
+      width: 62px;
+      height: 62px;
+      margin: 5px;
+      float: left;
+    }
+
+    span{
+      &:first-child{
+        font-size:20px !important;
+        color: $mainTextColour !important;
+        text-decoration: none !important;
+
+        &:before{
+          content: " — " !important;
+        }
+
+        &:after{
+          content: "" !important;
+        }
+      }
+
+      &:last-child{
+        color: $regularLinkColour;
+        text-decoration: underline;
+        font-size:18px;
+
+        &:before{
+          color: $mainTextColour !important;
+          text-decoration: none !important;
+          content: "(";
+        }
+
+        &:after{
+          color: $mainTextColour !important;
+          text-decoration: none !important;
+          content: ")";
+        }
+      }
+
+    }
+  }
+
+
+  p{
+    &.tweet{
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    &.timePosted{
+      font-size: 10px;
+      text-align: right;
+      margin-bottom: 0;
+    }
   }
 }

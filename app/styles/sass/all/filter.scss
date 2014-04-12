@@ -10,3 +10,14 @@ input.filter{
   float: right;
   max-width: 300px;
 }
+
+//For a little mobile ;)
+@media screen and (max-width: 500px){
+  #filters_container li {
+    float: none;
+  }
+
+  input.filter{
+    float: none;
+  }
+}

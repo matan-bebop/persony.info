@@ -1,7 +1,8 @@
 <script type="text/ng-template" id="photoModal.html">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                    aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="event1ImageModalLabel">{{modal.modalName}} - {{modal.modalTitle}}</h4>
         </div>
         <div class="modal-body">
@@ -16,7 +17,8 @@
 <script type="text/ng-template" id="personModal.html">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                    aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="event1ImageModalLabel">{{person.name}}</h4>
         </div>
         <div class="modal-body">
@@ -54,152 +56,210 @@
 <div class="person-header-die"></div>
 <div class="container" person-details>
 
-<div class="page-header">
+    <div class="page-header">
 
-    <div class="timeline-zoom" >
-        <div class="zoom-tip">
-            Маштаб часу:
-        </div>
-        <i class="fa fa-plus"></i>
-        <rzslider rz-slider-model="zoomSlider"
-                  rz-slider-floor="0"
-                  rz-slider-ceil="7"
-                  rz-slider-translate="translate">
-        </rzslider>
-        <i class="fa fa-minus"></i>
-    </div>
-
-    <div class='person-header'>
-
-        <div class="person-photo pull-left">
-            <img
-                    ng-src="{{person.getPhotoSrc()}}"
-                    alt="{{person.name}}"
-                    title="{{person.name}}"
-                    ng-click="personPopup()"
-                    ng-if="person.getPhotoSrc()"
-                    />
-
-            <img
-                    src="/images/apple-touch-icon-114x114.png"
-                    alt="Фотографії не існує"
-                    title="{{person.name}}"
-                    ng-click="personPopup()"
-                    ng-if="!person.getPhotoSrc()"
-                    />
-        </div>
-
-        <div class="person-data pull-left">
-
-            <h3 class="pull-left person-name" ng-click="personPopup()">{{person.name}}</h3>
-
-            <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити">
-                <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
-                <div class="twitter" title="Твітнути">Twitter</div>
-                <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
-                <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
+        <div class="timeline-zoom">
+            <div class="zoom-tip">
+                Маштаб часу:
             </div>
-            <div class="clearfix"></div>
-
-            <div class="person-info">{{person.info}}епутат Верховної Ради, член Партії регіонів, член Комітету з питань бюджету; мільйонер, власник ФК «Говерла».</div>
-
-        </div>
-
-    </div>
-
-    <div class="pull-right">
-        <div class="person-tools" >
-            <li class="dropdown" ng-controller="controllers.personTools">
-                <a class="dropdown-toggle">
-                    <i class="fa fa-cog fa-2x"></i>
-                </a>
-                <ul class="dropdown-menu pull-right">
-                    <li>
-                        <a>Додати у кабінет</a>
-                        <a>Додати до порівняння</a>
-                        <a>Редагувати</a>
-                        <a>Поскаржитись</a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-
-        <div class="event-filter" >
-            <li class="dropdown" ng-controller="controllers.eventFilters">
-                <a class="dropdown-toggle">
-                    <i class="fa fa-filter fa-lg"></i>Фільтрувати події
-                </a>
-                <ul class="dropdown-menu pull-right">
-                    <li ng-repeat="choice in items">
-                        <a>{{choice}}</a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-    </div>
-
-</div>
-
-<div class="person-bio">
-<ul id='timeline'>
-<li class="li-year" ng-repeat="year in eventYears.orders.years">
-<div class="event-year">{{year}}</div>
-<ul class="event-monthes-list">
-<li class="li-month" ng-repeat="month in eventYears.orders.months[year]">
-    <div class="event-month">{{month | monthName}}</div>
-    <ul class="events-list">
-        <li ng-repeat="event in eventYears[year][month]">
-            <input class='radio' id='event{{$index}}' name='events' type='radio'>
-
-            <div class="relative">
-                <label for='event{{$index}}'>{{event.title}}</label>
-
-                <div class="event-date">{{event.start | date:"d"}}</div>
-                <div class="event-icon fa fa-lg fa-info"></div>
+            <div class="slider-instead">
+                Десятиріччя
             </div>
-            <div class='content'>
-                <div class="event-header">
-                    <div class="event-detail-date">
-                        {{event.start | date:"d MMMM"}}
-                    </div>
+            <i class="fa fa-plus"></i>
+            <rzslider rz-slider-model="zoomSlider"
+                      rz-slider-floor="0"
+                      rz-slider-ceil="7"
+                      rz-slider-translate="translate">
+            </rzslider>
+            <i class="fa fa-minus"></i>
+        </div>
 
-                    <div class="event-tools" >
-                        <div class="dropdown" ng-controller="controllers.eventTools">
-                            <a class="dropdown-toggle">
-                                <i class="fa fa-cog fa-2x"></i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li>
-                                    <a>Редагувати</a>
-                                    <a>Поскаржитись</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+        <div class='person-header'>
+
+            <div class="person-photo pull-left">
+                <img
+                        ng-src="{{person.getPhotoSrc()}}"
+                        alt="{{person.name}}"
+                        title="{{person.name}}"
+                        ng-click="personPopup()"
+                        ng-if="person.getPhotoSrc()"
+                        />
+
+                <img
+                        src="/images/apple-touch-icon-114x114.png"
+                        alt="Фотографії не існує"
+                        title="{{person.name}}"
+                        ng-click="personPopup()"
+                        ng-if="!person.getPhotoSrc()"
+                        />
+            </div>
+
+            <div class="person-data pull-left">
+
+                <h3 class="pull-left person-name" ng-click="personPopup()">{{person.name}}</h3>
+
+                <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити"
+                     ng-if="false">
+                    <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
+                    <div class="twitter" title="Твітнути">Twitter</div>
+                    <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
+                    <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
                 </div>
-                <div class="detail-info">
-                    <div class="info-wrap-img">
-                        <img ng-src="{{event.getImageSrc()}}"
-                             ng-click="popup(event)"/>
-                    </div>
-                    <div class="info-wrap">
-                        <p class="description">{{event.description}}</p>
+                <div class="clearfix"></div>
 
-                        <p class="source">
-                            Джерело: <span ng-repeat="source in event.sources"><a ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
-                        </p>
+                <div class="person-info">{{person.info}}</div>
 
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
             </div>
-        </li>
-    </ul>
-</li>
 
-</ul>
-<div class="clearfix"></div>
-</li>
-</ul>
-</div>
+        </div>
+
+        <div class="pull-right">
+            <div class="person-tools">
+                <li class="dropdown" ng-controller="controllers.personTools">
+                    <a class="dropdown-toggle">
+                        <i class="fa fa-cog fa-2x"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a>Додати у кабінет</a>
+                            <a>Додати до порівняння</a>
+                            <a ng-click="addEditEvent()">Додати подію</a>
+                            <a ng-click="addEditPerson(person)">Редагувати</a>
+                            <a ng-click="addEditPerson()">Додати персону</a>
+                            <a>Поскаржитись</a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+
+            <div class="event-filter">
+                <li class="dropdown" ng-controller="controllers.eventFilters">
+                    <a class="dropdown-toggle">
+                        <i class="fa fa-filter fa-lg"></i><span>Фільтрувати події</span>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li ng-repeat="choice in items">
+                            <a>{{choice}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default timeline-helper">
+        <div class="panel-body">
+            <ul>
+                <li class="helper-year {{$index === 0 && 'active' || ''}}" offset="210" ng-repeat="year in eventYears.orders.years">
+                    <a href="#year{{year}}" class="helper-year-link" du-smooth-scroll offset="-200">{{year}}</a>
+                    <ul du-spy-context>
+                        <li class="helper-month {{$index === 0 && 'active' || ''}}" du-scrollspy="year{{year}}month{{month}}" offset="210" ng-repeat="month in eventYears.orders.months[year]">
+                            <a href="#year{{year}}month{{month}}" class="helper-month-link" du-smooth-scroll offset="-200">{{month | monthName}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="person-bio">
+        <ul id='timeline'>
+            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
+                <div class="event-year">{{year}}</div>
+                <ul class="event-monthes-list">
+                    <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
+                        <div class="event-month">{{month | monthName}}</div>
+                        <ul class="events-list">
+                            <li ng-repeat="event in eventYears[year][month]">
+                                <input class='radio' id='event{{event.id}}' name='events' type='radio'>
+                                <a class="anchor" href="#event_{{event.id}}"></a>
+                                <div class="relative">
+                                    <label for='event{{event.id}}'>{{event.title}}</label>
+
+                                    <div class="event-date">{{event.start | date:"d"}}</div>
+                                    <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
+                                </div>
+                                <div class='content'>
+                                    <div class="event-header">
+                                        <div class="event-detail-date">
+                                            {{event.start | date:"d MMMM"}}
+                                        </div>
+
+                                        <div class="event-tools">
+                                            <div class="dropdown" ng-controller="controllers.eventTools">
+                                                <a class="dropdown-toggle">
+                                                    <i class="fa fa-cog fa-2x"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a ng-click="addEditEvent(event)">Редагувати</a>
+                                                        <a>Поскаржитись</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-info">
+                                        <div class="info-wrap-img">
+                                            <img ng-src="{{event.getImageSrc()}}"
+                                                 ng-click="popup(event)"/>
+                                        </div>
+                                        <div class="info-wrap">
+                                            <p class="description">{{event.description}}</p>
+
+                                            <p class="source">
+                                                Джерело: <span ng-repeat="source in event.sources">{{$index === 0 ? '' : ', '}}<a
+                                                    ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
+                                            </p>
+
+                                            <p class="social">
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_facebook_hcount' displayText='Facebook'></span>
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_twitter_hcount' displayText='Tweet'></span>
+
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_linkedin_hcount' displayText='LinkedIn'></span>
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_vkontakte_hcount' displayText='Vkontakte'></span>
+
+                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
+                                                      st_title="{{event.title}}"
+                                                      st_image="{{event.getImageSrc()}}"
+                                                      st_summary="{{event.description}}"
+                                                      class='st_googleplus_hcount' displayText='Google +'></span>
+                                            </p>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <script>
+                            $(".social").find(">span").each(function(){stWidget.addEntry({"element" :this})})
+                        </script>
+                    </li>
+
+                </ul>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+    </div>
 </div>

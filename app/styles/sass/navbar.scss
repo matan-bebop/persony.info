@@ -90,7 +90,8 @@ $navbarSearchDisplayWidth: 200px;
   margin-right: 10px;
 }
 
-@media screen and (max-width: 768px){
+//For tablet and mobile
+@media screen and (max-width: 767px){
   .collapse-btn.btn-navbar{
     display: inline-block;
   }
@@ -101,4 +102,45 @@ $navbarSearchDisplayWidth: 200px;
       height: auto !important;
     }
   }
+
+  .navbar{
+    .logo{
+      width: 100%;
+
+      a{
+        margin-left: 38%;
+
+        &.btn-navbar{
+          margin-left: 0 !important;
+          margin-top: 8px;
+          float: right;
+        }
+      }
+    }
+
+    li{
+      a{
+        text-align: center;
+      }
+    }
+
+    ul{
+      .search-form{
+        width: 100%;
+        margin: 0 auto;
+
+        .input-group{
+          margin: 0 auto;
+          width: 380px;
+        }
+      }
+    }
+  }
+}
+
+//For a little mobile ;)
+@media screen and (max-width: 500px){
+  .navbar .logo a{
+        margin-left: 15%;
+    }
 }

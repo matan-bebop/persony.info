@@ -49,7 +49,7 @@ h4 {
 }
 
 .logo img {
-  margin: 4px $navbarHeight 0 0;
+  margin: 4px 5px 0 0;
 }
 
 .main-container{
@@ -91,11 +91,32 @@ h4 {
     }
   }
 }
+.info-wrap{
+  .social{
+    margin: 2em 0 0 0;
+    float: right;
+  }
+  .stButton .stButton_gradient,
+  .stButton .stFb,
+  .stButton .stTwbutton,
+  .stButton .stMainServices {
+    height: 22px;
+  }
+}
+
+.loading{
+  text-align: center;
+  padding: 200px 0;
+  color: $mainSearchNavBgColour;
+}
+
 
 //submodules
 @import "navbar";
 @import "all/main";
 @import "main/main";
+@import "about/main";
+@import "errors/main";
 @import "detailPerson/main";
 @import "footer";
 @import "alpha_version";
