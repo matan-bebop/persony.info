@@ -14,7 +14,8 @@ module.exports = function (seq, DataTypes) {
                     'vk',
                     'google-plus',
                     'paperclip',
-                    'link'
+                    'link',
+                    'wiki'
                 ),
                 allowNull: false,
                 defaultValue: "info"
