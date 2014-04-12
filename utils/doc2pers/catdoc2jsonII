@@ -5,6 +5,7 @@ import json
 
 from person import Person
 from cyr2url import Cyr2Url
+from icon import source_icon
 
 class Date(object):
     def __init__(self, strdate):
@@ -64,10 +65,6 @@ def cat_dicts(d1, d2):
     d = dict(d1)
     d.update(d2)
     return d
-
-
-def source_icon(source):
-    return "info"
 
 
 class JSONEvent(object):
