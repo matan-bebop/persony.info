@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap', 'rzModule', 'duScroll'])
+    angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize', 'rzModule', 'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.affix', 'mgcrea.ngStrap.tab' ])
         .config(function ($routeProvider, $locationProvider) {
 
             $routeProvider

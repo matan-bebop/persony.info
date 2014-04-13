@@ -5,6 +5,7 @@
 @import "mixins";
 @import "colours";
 @import "socialColors";
+@import "animate";
 
 // U_N_S_O_R_T_E_D
 $bg: url(../../images/agsquare.png) repeat $mainBackgroundColour ! important;
@@ -119,4 +120,3 @@ h4 {
 @import "errors/main";
 @import "detailPerson/main";
 @import "footer";
-@import "alpha_version";

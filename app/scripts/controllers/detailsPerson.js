@@ -76,37 +76,14 @@
                     });
                 }
 
-                $scope.popup = function (event) {
-                    var modalInstance = $modal.open({
-                        templateUrl: 'photoModal.html',
-                        controller: 'controllers.photoModalCtrl',
-                        /*windowClass: 'modal-sm',*/
-                        resolve: {
-                            name: function () {
-                                return $scope.person.name;
-                            },
-                            title: function () {
-                                return event.title;
-                            },
-                            image: function () {
-                                return event.image;
-                            },
-                            description: function () {
-                                return event.description;
-                            }
-                        }
-                    });
-                }
-
-                $scope.personPopup = function () {
-                    var modalInstance = $modal.open({
-                        templateUrl: 'personModal.html',
-                        controller: 'controllers.personModalCtrl',
-                        resolve: {
-                            person: function () {
-                                return $scope.person;
-                            },
-                        }
+                $scope.popupEventPhoto = function (event) {
+                    var photoModal = $modal({
+                        "title": $scope.person.name + "<br />" + event.title,
+                        "content": "<img src=\"" + event.image + "\" alt=\"" + event.title + "\" title='" + event.title + "'></div><div class=\"modal-footer\">" + event.description,
+                        "animation": "am-fade-and-slide-top",
+                        "placement": "center",
+                        "template": "photoModal.html",
+                        show: true
                     });
                 }
 
@@ -139,39 +116,6 @@
 
                     $scope.eventYears = data;
                 });
-            }
-        ]
-    );
-
-    angular.module('personyApp').controller(
-        'controllers.personModalCtrl',
-        [
-            '$scope', '$modalInstance', 'person',
-            function ($scope, $modalInstance, person) {
-                $scope.person = person;
-
-                $scope.close = function () {
-                    $modalInstance.close();
-                };
-            }
-        ]
-    );
-
-    angular.module('personyApp').controller(
-        'controllers.photoModalCtrl',
-        [
-            '$scope', '$modalInstance', 'name', 'title', 'image', 'description',
-            function ($scope, $modalInstance, name, title, image, description) {
-                $scope.modal = {
-                    modalName: name,
-                    modalTitle: title,
-                    modalImage: image,
-                    modalDescription: description
-                }
-
-                $scope.close = function () {
-                    $modalInstance.close();
-                };
             }
         ]
     );

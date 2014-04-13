@@ -1,3 +1,39 @@
+.modal-open{
+  .navbar, .timeline-helper{
+    z-index: 1;
+  }
+
+  .person-photo, .timeline-zoom{
+    display: none;
+  }
+
+  .person-data{
+    border-left: 0px !important;
+  }
+
+  .modal-backdrop{
+    z-index: 101;
+  }
+
+  .person-header-die{
+    z-index: 2;
+  }
+
+  .modal-dialog{
+    z-index: 200;
+
+    .person-photo, .person-info{
+      display: block;
+      z-index: 200;
+    }
+
+    .person-data{
+      z-index: 199;
+      border-left: 0px !important;
+    }
+  }
+}
+
 .modal-body{
   img{
     width: 90%;
@@ -24,11 +60,11 @@
 .person-modal{
   display: block;
   position: relative;
-  min-height: $personHeaderBigDisplayHeight;
+  min-height: $personHeaderBigDisplayHeight !important;
 
   .person-photo {
-    width: $personPhotoBigDiameter;
-    height: $personPhotoBigDiameter;
+    width: $personPhotoBigDiameter !important;
+    height: $personPhotoBigDiameter !important;
     text-align: center;
     background: white;
     border: 5px solid $timelineAxisColour;
@@ -53,6 +89,10 @@
     position: relative;
     z-index: 103;
     font-size: 14px;
+
+    .person-info{
+      display: block !important;
+    }
   }
 
 }

@@ -1,53 +1,54 @@
 <script type="text/ng-template" id="photoModal.html">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" ng-click="close()" data-dismiss="modal"
-                    aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="event1ImageModalLabel">{{modal.modalName}} - {{modal.modalTitle}}</h4>
-        </div>
-        <div class="modal-body">
-            <img ng-src="{{modal.modalImage}}"/>
-        </div>
-        <div class="modal-footer">
-            {{modal.modalDescription}}
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">×</button>
+                    <h4 class="modal-title" id="event1ImageModalLabel" ng-bind-html="title"></h4>
+                </div>
+                <div class="modal-body" ng-bind-html="content"></div>
+            </div>
         </div>
     </div>
 </script>
 
 <script type="text/ng-template" id="personModal.html">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" ng-click="close()" data-dismiss="modal"
-                    aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="event1ImageModalLabel">{{person.name}}</h4>
-        </div>
-        <div class="modal-body">
-            <div class='person-modal'>
-
-                <div class="person-photo pull-left">
-                    <img
-                            ng-src="{{person.getPhotoSrc()}}"
-                            alt="{{person.name}}"
-                            title="{{person.name}}"
-                            ng-click="personPopup()"
-                            ng-if="person.getPhotoSrc()"
-                            />
-
-                    <img
-                            src="/images/apple-touch-icon-114x114.png"
-                            alt="Фотографії не існує"
-                            title="{{person.name}}"
-                            ng-click="personPopup()"
-                            ng-if="!person.getPhotoSrc()"
-                            />
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">×</button>
+                    <h4 class="modal-title" id="event1ImageModalLabel">{{person.name}}</h4>
                 </div>
+                <div class="modal-body">
+                    <div class='person-modal'>
 
-                <div class="person-data pull-left">
+                        <div class="person-photo pull-left">
+                            <img
+                                    ng-src="{{person.getPhotoSrc()}}"
+                                    alt="{{person.name}}"
+                                    title="{{person.name}}"
+                                    ng-click="personPopup()"
+                                    ng-if="person.getPhotoSrc()"
+                                    />
 
-                    <div class="person-info">{{person.info}}</div>
+                            <img
+                                    src="/images/apple-touch-icon-114x114.png"
+                                    alt="Фотографії не існує"
+                                    title="{{person.name}}"
+                                    ng-click="personPopup()"
+                                    ng-if="!person.getPhotoSrc()"
+                                    />
+                        </div>
 
+                        <div class="person-data pull-left">
+
+                            <div class="person-info">{{person.info}}</div>
+
+                        </div>
+
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -96,7 +97,7 @@
 
             <div class="person-data pull-left">
 
-                <h3 class="pull-left person-name" ng-click="personPopup()">{{person.name}}</h3>
+                <h3 class="pull-left person-name" data-animation="am-fade-and-slide-top" data-placement="center" data-template="personModal.html" bs-modal="modal">{{person.name}}</h3>
 
                 <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити"
                      ng-if="false">
@@ -204,7 +205,9 @@
                                     <div class="detail-info">
                                         <div class="info-wrap-img">
                                             <img ng-src="{{event.getImageSrc()}}"
-                                                 ng-click="popup(event)"/>
+                                                 alt="{{event.title}}"
+                                                 title="{{event.title}}"
+                                                 ng-click="popupEventPhoto(event)"/>
                                         </div>
                                         <div class="info-wrap">
                                             <p class="description">{{event.description}}</p>
