@@ -17,9 +17,9 @@
         '$window',
         function ($window) {
             return function (scope, element, attrs) {
-                element.find('a').bind('click', function (e) {
+                element.on('click', 'a', function (e) {
                     e.preventDefault();
-                    $window.open(attrs.href);
+                    $window.open($(this).attr('href'));
                 });
             };
         }
