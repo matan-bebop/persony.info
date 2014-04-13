@@ -41,18 +41,19 @@
 
     <a class="donate-anchor" id="donate"></a>
     <h4>Допомогти проекту:</h4>
-    <p> Персони - це громадянська ініціатива, спільний проект ....</br>
-        завданням якого є об'єктивне та неупереджене інформування про ... </br>
-        Ваша допомога дуже важлива нам </br>
-        Дайте просто грошей </br>
-        <ul class="pay-list pay-list1" >
+    <p> Персони - це проект ініціативних українців, які хочуть аби життєпис відомих людей був доступний кожному.</br>
+        Завданням цього сайту є об'єктивний та неупереджений збір інформації з достоівірних джерел про вчинки і висловлювання політиків. </br>
+        Ваша допомога дуже важлива, адже ми зможемо збільшити штат модераторів, покращити обладнання, розширити функціонал нашого сервісу.  </br>
+
+    <div class="class_pay_list">
+        <ul class="pay-list pay-list1 center-block" >
             <li ng-repeat="payList in payLists" >
-                <img ng-src="{{payList.image}}"
-                     ng-click="groupCollapse($index)">
+                <button type="button" class="btn btn-default" ng-click="groupCollapse($index)"> <img ng-src="{{payList.image}}"></button>
             </li>
         </ul>
+    </div>
         <div ng-repeat="payList in payLists" collapse="payList.collapsed">
-            <div class="well well-lg">{{payList.description}}</div>
+            <div class="well well-lg" ng-bind-html="payList.description"></div>
         </div>
     </p>
     <div class="separator"></div>
@@ -67,9 +68,9 @@
 
                 <div class="author">
                     <img src="images/andriy.jpg" />
-                    <p>Андрій,</p>
+                    <b>Андрій</b>,
                     <span>Ідеолог</span>
-                    <span class="mail">andriy@persony.info</span>
+                    <a href="mailto:andriy@persony.info">andriy@persony.info</a>
                 </div>
             </div>
             <div class="founders col-sm-4">
@@ -80,10 +81,10 @@
 
                 <div class="author">
                     <img src="images/oleg.jpg" />
-                    <p>Олег,</p>
+                    <b>Олег</b>,
                     <span>Організатор</span>
-                    <span class="mail">oleg@persony.info</span>
-                </div>
+                    <a href="mailto:oleg@persony.info">oleg@persony.info</a>
+                 </div>
             </div>
             <div class="founders col-sm-4">
                 <div class="comment">
@@ -93,9 +94,9 @@
 
                 <div class="author">
                     <img src="images/yurko.jpg" />
-                    <p>Юра,</p>
+                    <b>Юрій</b>,
                     <span>Інженер</span>
-                    <span class="mail">yurko@persony.info</span>
+                    <a href="mailto:yurko@persony.info">yurko@persony.info</a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -111,22 +112,22 @@
             <h3 class="about-heading">Девелопери ентузіасти:</h3>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Олексій,</p>
+                <p> <b>Олексій</b>,</p>
                 <span>Back-еnd, Node.js</span>
             </div>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Дмитро,</p>
+                <p> <b>Дмитро</b>,</p>
                 <span>Front-end, Angular.js</span>
             </div>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Сергій,</p>
+                <p> <b>Сергій</b>,</p>
                 <span>Дизайн, UI</span>
             </div>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Пєрсик,</p>
+                <p><b>Пєрсик</b>,</p>
                 <span>Архітектор ПЗ</span>
             </div>
         </div>
@@ -134,26 +135,26 @@
             <h3 class="about-heading">Дописувачі ентузіасти:</h3>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Олена</p>
+                <p><b>Олена</b></p>
                 <span></span>
             </div>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Леся</p>
+                <p> <b>Леся</b></p>
                 <span></span>
             </div>
             <div class="author_mini">
                 <img src="images/volunteer.png" />
-                <p>Віктор</p>
+                <p>  <b>Віктор</b></p>
                 <span></span>
             </div>
         </div>
     </div>
     <div class="separator"></div>
 
-    <h4 id="join">Якщо вам є що сказати, або ви хочете допомогти в розробці &ndash; ми будемо всіляко раді вам.</h4>
-    <div class="list tehnology">
-        <div>Наші технології:</div>
+    <h4 id="join">Долучитись до розвитку проекту може кожен, хто має бажання:</h4>
+    <div class="col-sm-4 tehnology">
+        <p>Наші технології:</p>
         <ul>
             <li>Node.js</li>
             <li>Angular</li>
@@ -164,8 +165,8 @@
         </ul>
     </div>
 
-    <div class="list product">
-        <div>Потребуємо спеціалістів у сфері:</div>
+    <div class="col-sm-4 product">
+        <p>Потребуємо спеціалістів у сфері:</p>
         <ul>
             <li>Android</li>
             <li>iOS</li>
@@ -174,25 +175,27 @@
             <li>Журналісти</li>
             <li>Політологи</li>
             <li>Юристи</li>
-            <li>Веб тестувальники</li>
+            <li>Веб-тестувальники</li>
         </ul>
     </div>
 
-    <div class="list product">
-        <div>Можем співпрацювати:</div>
+    <div class="col-sm-4 product">
+        <p>Можем співпрацювати:</p>
         <ul>
             <li>REST</li>
         </ul>
     </div>
-
+    <div class="clearfix"></div>
     <div>А ще ви потрапите в перелік ентузіастів;)</div>
 
-    <div>Задавайте питання або пропозиції</div>
-    <button type="button" ng-click="formCollapse(0)" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Хочу девелопити</button>
-    <button type="button" ng-click="formCollapse(1)" class="btn btn-info"><i class="fa fa-pencil-square-o"></i> Маю що розповісти</button>
-    <button type="button" ng-click="formCollapse(2)" class="btn btn-success"><i class="fa fa-pencil-square-o"></i> Хочем співпрацювати (для організацій)</button>
-    <button type="button" ng-click="formCollapse(3)" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Просто є питання</button>
+    <div class="help_button"><p>Заповніть одну з запропонованих форм:</p>
 
+    <button type="button" ng-click="formCollapse(0)" class="btn btn-primary"><i class="fa fa-wrench"></i> Хочу девелопити</button>
+    <button type="button" ng-click="formCollapse(1)" class="btn btn-info"><i class="fa fa-stack-exchange"></i> Маю що розповісти</button>
+    <button type="button" ng-click="formCollapse(2)" class="btn btn-success"><i class="fa fa-briefcase"></i> Хочем співпрацювати (для організацій)</button>
+    <button type="button" ng-click="formCollapse(3)" class="btn btn-warning"><i class="fa fa-question"></i> Просто є питання</button>
+
+    </div>
     <div class="panel panel-default" collapse="formLists[0].collapsed">
         <div class="panel-body">
             <form class="form-horizontal" role="form">

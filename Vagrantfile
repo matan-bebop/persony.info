@@ -16,6 +16,8 @@ Vagrant.configure('2') do |config|
   config.vm.network 'forwarded_port', :guest => 3000, :host => 3000
   # networking. Apache with PMA will be accessible as http://localhost:8000/
   config.vm.network 'forwarded_port', :guest => 80, :host => 8000
+  # direct access to mysql
+  config.vm.network 'forwarded_port', :guest => 3306, :host => 3307
 
   # provision with Puppet stand alone
   config.vm.provision :puppet do |puppet|

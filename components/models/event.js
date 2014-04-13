@@ -18,9 +18,9 @@ module.exports = function (seq, DataTypes) {
                     }
                 },
                 "description": { type: DataTypes.TEXT, allowNull: false },
-                "created_by_key": { type: DataTypes.STRING, allowNull: true},
                 "published": { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
-                image: {type: DataTypes.STRING, unique: false}
+                image: {type: DataTypes.STRING, unique: false},
+                "others": { type: DataTypes.TEXT, allowNull: true }
             });
 
     Event.hasMany(Person, {foreignKey: 'Event_id', through: "Events_Persons"});
