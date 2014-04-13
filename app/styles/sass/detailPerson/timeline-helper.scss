@@ -41,17 +41,11 @@
       }
     }
 
-    &.active{
+    &.active, &.active1{
       .helper-year-link{
         color: $timelineHelperActive;
         font-size: 16px;
         font-weight: 600;
-        border-left: 2px solid $timelineHelperActive;
-      }
-
-      .helper-month-link{
-        color: $timelineHelperActive;
-        font-size: 14px;
         border-left: 2px solid $timelineHelperActive;
       }
 
@@ -60,6 +54,23 @@
       }
     }
   }
+
+  .helper-month{
+    &.active {
+      .helper-month-link {
+        color: $timelineHelperActive;
+        font-size: 14px;
+        border-left: 2px solid $timelineHelperActive;
+      }
+    }
+  }
+}
+
+a.timeline-anchor{
+  display: block;
+  position: relative;
+  top: -$personHeaderBigDisplayHeight - $navbarHeight - 10px;
+  visibility: hidden;
 }
 
 //For tablet
@@ -82,6 +93,10 @@
     .helper-year {
       margin-left: -12px;
     }
+  }
+
+  a.timeline-anchor{
+    top: -$personHeaderSmallDisplayHeight - $navbarHeight - 10px;
   }
 }
 

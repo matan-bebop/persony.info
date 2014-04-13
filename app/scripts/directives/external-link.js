@@ -12,16 +12,4 @@
             };
         }
     ]);
-
-    angular.module('personyApp').directive('externalAllInsideLink', [
-        '$window',
-        function ($window) {
-            return function (scope, element, attrs) {
-                element.find('a').bind('click', function (e) {
-                    e.preventDefault();
-                    $window.open(attrs.href);
-                });
-            };
-        }
-    ]);
 }());

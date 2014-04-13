@@ -19,13 +19,15 @@
                         $('.timeline-helper').removeClass('shrink');
                     }
 
-                    if ($('.helper-month').hasClass('active')){
-                        var yearLi = $('.helper-month').parent('ul').parent('li');
-                        if (!yearLi.hasClass('active'))
-                            yearLi.addClass('active');
+                    /*if ($('.helper-month').hasClass('active')){
+                        var year = $('.helper-month').data("year");
+                        console.log('#spy-listener' + year);
+                        if (!('#spy-listener' + year).hasClass('active1')) {
+                            ('#spy-listener' + year).addClass('active1');
+                        }
                     } else{
-                        $('.helper-month').parent('ul').parent('li').removeClass('active');
-                    }
+                        ('#spy-listener' + year).removeClass('active1');
+                    }*/
                 });
             };
         }

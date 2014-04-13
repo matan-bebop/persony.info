@@ -4,8 +4,10 @@
     angular.module('personyApp').controller(
         'controllers.personDetails',
         [
-            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal',
-            function (Page, $location, $routeParams, Person, Event, $scope, $modal) {
+            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window',
+            function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window) {
+
+                $scope.spyoffset = ($window.innerWidth > 992) ? 210 : 160;
 
                 $scope.person = Person.get(
                     {id: $routeParams.id},

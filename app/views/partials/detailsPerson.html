@@ -150,31 +150,32 @@
 
     <div class="panel panel-default timeline-helper">
         <div class="panel-body">
-            <ul>
-                <li class="helper-year {{$index === 0 && 'active' || ''}}" offset="210" ng-repeat="year in eventYears.orders.years">
-                    <a href="#year{{year}}" class="helper-year-link" du-smooth-scroll offset="-200">{{year}}</a>
-                    <ul du-spy-context>
-                        <li class="helper-month {{$index === 0 && 'active' || ''}}" du-scrollspy="year{{year}}month{{month}}" offset="210" ng-repeat="month in eventYears.orders.months[year]">
-                            <a href="#year{{year}}month{{month}}" class="helper-month-link" du-smooth-scroll offset="-200">{{month | monthName}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="helper-year" ng-repeat="year in eventYears.orders.years" offset="{{spyoffset}}" du-scrollspy="spy-year{{year}}">
+                <a href="#year{{year}}" class="helper-year-link" du-smooth-scroll>{{year}}</a>
+                <ul>
+                    <li class="helper-month" ng-repeat="month in eventYears.orders.months[year]">
+                        <a href="#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <div class="person-bio">
         <ul id='timeline'>
-            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
+            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="spy-year{{year}}">
+                <a class="timeline-anchor" id="year{{year}}"></a>
                 <div class="event-year">{{year}}</div>
                 <ul class="event-monthes-list">
-                    <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
+                    <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="spy-year{{year}}month{{month}}">
+                        <a class="timeline-anchor" id="year{{year}}month{{month}}"></a>
                         <div class="event-month">{{month | monthName}}</div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
                                 <input class='radio' id='event{{event.id}}' name='events' type='radio'>
                                 <a class="anchor" href="#event_{{event.id}}"></a>
                                 <div class="relative">
+                                    <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
                                     <label for='event{{event.id}}'>{{event.title}}</label>
 
                                     <div class="event-date">{{event.start | date:"d"}}</div>
