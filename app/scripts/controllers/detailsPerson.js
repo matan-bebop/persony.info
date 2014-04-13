@@ -7,7 +7,7 @@
             'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window',
             function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window) {
 
-                $scope.spyoffset = ($window.innerWidth > 992) ? 210 : 160;
+                $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
                 $scope.person = Person.get(
                     {id: $routeParams.id},
@@ -24,29 +24,6 @@
                 );
                 $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;
-
-                $scope.translate = function (value) {
-                    switch (value) {
-                        case 0:
-                            return 'Дні';
-                        case 1:
-                            return 'Тижні';
-                        case 2:
-                            return 'Місяці';
-                        case 3:
-                            return 'Квартали';
-                        case 4:
-                            return 'Півріччя';
-                        case 5:
-                            return 'Роки';
-                        case 6:
-                            return 'П’ятиріччя';
-                        case 7:
-                            return 'Десятиріччя';
-                        default:
-                            return 'Дні';
-                    }
-                };
 
                 $scope.addEditEvent = function (event) {
 
@@ -116,38 +93,87 @@
 
                     $scope.eventYears = data;
                 });
-            }
-        ]
-    );
 
-    angular.module('personyApp').controller(
-        'controllers.eventFilters',
-        [
-            '$scope',
-            function ($scope) {
-                $scope.items = [
-                    "Допа",
-                    "Рабінович",
-                    "Дарт Вейдер"
+                $scope.translate = function (value) {
+                    switch (value) {
+                        case 0:
+                            return 'Дні';
+                        case 1:
+                            return 'Тижні';
+                        case 2:
+                            return 'Місяці';
+                        case 3:
+                            return 'Квартали';
+                        case 4:
+                            return 'Півріччя';
+                        case 5:
+                            return 'Роки';
+                        case 6:
+                            return 'П’ятиріччя';
+                        case 7:
+                            return 'Десятиріччя';
+                        default:
+                            return 'Дні';
+                    }
+                };
+
+                $scope.dropdownPersonTools = [
+                    {
+                        "text": "<i class=\"fa fa-pencil-square-o\"></i> &nbsp;Додати у кабінет",
+                        "click": "alert('')"
+                    },
+                    {
+                        "text": "<i class=\"fa fa-users\"></i> &nbsp;Додати до порівняння",
+                        "click": "alert('')"
+                    },
+                    {
+                        "text": "<span class=\"pop-primary\"><i class=\"fa fa-pencil\"></i> &nbsp;Редагувати</span>",
+                        "click": "addEditPerson(person)"
+                    },
+                    {
+                        "text": "<i class=\"fa fa-user\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати персону",
+                        "click": "addEditPerson()"
+                    },
+                    {
+                        "text": "<span class=\"pop-warning\"><i class=\"fa fa-star\"></i> &nbsp; Я " + $scope.person.name + "</span>",
+                        "click": "alert('')"
+                    },
+                    {
+                        "text": "<span class=\"pop-danger\"><i class=\"fa fa-minus-circle\"></i> &nbsp;Поскаржитись</span>",
+                        "click": "alert('')"
+                    },
+                    {
+                        "text": "<i class=\"fa fa-bell\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати подію",
+                        "click": "addEditEvent()"
+                    }
                 ];
-            }
-        ]
-    );
 
-    angular.module('personyApp').controller(
-        'controllers.personTools',
-        [
-            '$scope',
-            function ($scope) {
-            }
-        ]
-    );
+                $scope.dropdownEventFilters = [
+                    {
+                        "text": "Допа",
+                        "click": "alert('')"
+                    },
+                    {
+                        "text": "Рабінович",
+                        "click": "alert('')"
+                    },
+                    {
+                        "text": "Дарт Вейдер",
+                        "click": "alert('')"
+                    }
+                ];
 
-    angular.module('personyApp').controller(
-        'controllers.eventTools',
-        [
-            '$scope',
-            function ($scope) {
+                $scope.dropdownEventTools= [
+                    {
+                        "text": "<span class=\"pop-primary\"><i class=\"fa fa-pencil\"></i> &nbsp;Редагувати</span>",
+                        "click": "addEditEvent(event)"
+                    },
+                    {
+                        "text": "<span class=\"pop-danger\"><i class=\"fa fa-minus-circle\"></i> &nbsp;Поскаржитись</span>",
+                        "click": "alert('')"
+                    }
+                ];
+
             }
         ]
     );

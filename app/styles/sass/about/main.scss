@@ -180,40 +180,109 @@
       font-size:1.1em;
     }
   }
+
   @media screen and (max-width: 500px){
     .about_pri{
       display: none;
     }
   }
+
   .pay-list1 img{
     max-height:70px;
 
   }
+
   .class_pay_list{
     margin: 10px auto !important;
     display: block;
     max-width:1000px;
   }
+
   .pay-list1 li{
     display: inline-block;
     margin:7px;
   }
+
   .help_button button{
     margin:0px 15px 5px 0px;
   }
+
   .help_button p{
     font-size:1.5em;
   }
-  .tehnology,.product{
-  border-left: 2px solid #8abbfe;
-  max-width: 331px;
-  height: auto;
-  position: relative;
-  padding: 0px 10px;
-  margin: 10px 20px;
-  min-height:190px !important;
+
+  .join{
+    margin-top: 20px;
+
+    p{
+      font-size:20px;
+      display: block;
+      height: 50px;
+      color: $mainMenuActiveColour;
+      text-align: center;
+      background: $mainTextColour;
+      padding-top: 10px;
+      font-weight: 500;
+      margin-bottom: 0;
+
+      @include border-top-radius(5px);
+    }
+
+    ul{
+      border:1px solid $mainMenuColour;
+      padding: 10px 0 10px 20px;
+
+      @include border-bottom-radius(5px);
+
+      li{
+        font-weight: 500;
+        padding: 4px;
+
+        i{
+          color:$success;
+        }
+      }
+    }
   }
-  .tehnology p,.product p{
-    font-size:1.2em;
+
+  .form-buttons{
+    margin-bottom: 20px;
+  }
+
+  .collapsable {
+    overflow: hidden;
+    position: relative;
+    height: 0;
+    max-height: 0;
+    margin-bottom: 0;
+
+    border: 0;
+
+    @include easings;
+
+    &.showMe {
+      min-height: 110px;
+
+      &.panel{
+        margin-bottom: 20px;
+        border: 1px solid $timelineAxisColour;
+
+        &.form1{
+          min-height: 380px;
+        }
+
+        &.form2{
+          min-height: 300px;
+        }
+
+        &.form3{
+          min-height: 260px;
+        }
+
+        &.form4{
+          min-height: 250px;
+        }
+      }
+    }
   }
 }

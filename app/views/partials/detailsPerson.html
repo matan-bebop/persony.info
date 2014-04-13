@@ -99,13 +99,13 @@
 
                 <h3 class="pull-left person-name" data-animation="am-fade-and-slide-top" data-placement="center" data-template="personModal.html" bs-modal="modal">{{person.name}}</h3>
 
-                <div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити"
+                <!--div class="social-likes social-likes_single social-likes_light" data-single-title="Поширити"
                      ng-if="false">
                     <div class="facebook" title="Поширити на Фейсбуці">Facebook</div>
                     <div class="twitter" title="Твітнути">Twitter</div>
                     <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
                     <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
-                </div>
+                </div-->
                 <div class="clearfix"></div>
 
                 <div class="person-info">{{person.info}}</div>
@@ -116,65 +116,46 @@
 
         <div class="pull-right">
             <div class="person-tools">
-                <li class="dropdown" ng-controller="controllers.personTools">
-                    <a class="dropdown-toggle">
-                        <i class="fa fa-cog fa-2x"></i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li>
-                            <a>Додати у кабінет</a>
-                            <a>Додати до порівняння</a>
-                            <a ng-click="addEditEvent()">Додати подію</a>
-                            <a ng-click="addEditPerson(person)">Редагувати</a>
-                            <a ng-click="addEditPerson()">Додати персону</a>
-                            <a>Поскаржитись</a>
-                        </li>
-                    </ul>
-                </li>
+                <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownPersonTools" data-html="true">
+                    <i class="fa fa-cog fa-2x"></i>
+                </a>
             </div>
 
             <div class="event-filter">
-                <li class="dropdown" ng-controller="controllers.eventFilters">
-                    <a class="dropdown-toggle">
-                        <i class="fa fa-filter fa-lg"></i><span>Фільтрувати події</span>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li ng-repeat="choice in items">
-                            <a>{{choice}}</a>
-                        </li>
-                    </ul>
-                </li>
+                <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventFilters" data-html="true">
+                    <i class="fa fa-filter fa-lg"></i><span>Фільтрувати події</span>
+                </a>
             </div>
         </div>
 
     </div>
 
     <div class="panel panel-default timeline-helper">
-        <div class="panel-body">
-            <div class="helper-year" ng-repeat="year in eventYears.orders.years" offset="{{spyoffset}}" du-scrollspy="spy-year{{year}}">
-                <a href="#year{{year}}" class="helper-year-link" du-smooth-scroll>{{year}}</a>
-                <ul>
-                    <li class="helper-month" ng-repeat="month in eventYears.orders.months[year]">
-                        <a href="#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="panel-body" role="complementary" bs-scrollspy-list>
+            <ul>
+                <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}" ng-repeat="year in eventYears.orders.years" class="helper-year">
+                    <a href="#year{{year}}" class="helper-year-link">{{year}}</a>
+                    <ul>
+                        <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}month{{month}}" ng-repeat="month in eventYears.orders.months[year]" class="helper-month">
+                            <a href="#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 
     <div class="person-bio">
         <ul id='timeline'>
-            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="spy-year{{year}}">
-                <a class="timeline-anchor" id="year{{year}}"></a>
+            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
                 <div class="event-year">{{year}}</div>
                 <ul class="event-monthes-list">
-                    <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="spy-year{{year}}month{{month}}">
-                        <a class="timeline-anchor" id="year{{year}}month{{month}}"></a>
+                    <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
                         <div class="event-month">{{month | monthName}}</div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
                                 <input class='radio' id='event{{event.id}}' name='events' type='radio'>
-                                <a class="anchor" href="#event_{{event.id}}"></a>
+                                <a id="#event_{{event.id}}"></a>
                                 <div class="relative">
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
                                     <label for='event{{event.id}}'>{{event.title}}</label>
@@ -189,8 +170,8 @@
                                         </div>
 
                                         <div class="event-tools">
-                                            <div class="dropdown" ng-controller="controllers.eventTools">
-                                                <a class="dropdown-toggle">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventTools" data-html="true">
                                                     <i class="fa fa-cog fa-2x"></i>
                                                 </a>
                                                 <ul class="dropdown-menu pull-right">
@@ -207,7 +188,9 @@
                                             <img ng-src="{{event.getImageSrc()}}"
                                                  alt="{{event.title}}"
                                                  title="{{event.title}}"
-                                                 ng-click="popupEventPhoto(event)"/>
+                                                 ng-click="popupEventPhoto(event)"
+                                                 ng-if="event.getImageSrc()"
+                                                    />
                                         </div>
                                         <div class="info-wrap">
                                             <p class="description">{{event.description}}</p>

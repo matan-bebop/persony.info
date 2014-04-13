@@ -52,7 +52,7 @@
             </li>
         </ul>
     </div>
-        <div ng-repeat="payList in payLists" collapse="payList.collapsed">
+        <div ng-repeat="payList in payLists" ng-class="{ showMe: !payList.collapsed }" class="collapsable">
             <div class="well well-lg" ng-bind-html="payList.description"></div>
         </div>
     </p>
@@ -158,36 +158,36 @@
     <div class="separator"></div>
 
     <h4 id="join">Долучитись до розвитку проекту може кожен, хто має бажання:</h4>
-    <div class="col-sm-4 tehnology">
+    <div class="col-sm-4 join">
         <p>Наші технології:</p>
         <ul>
-            <li>Node.js</li>
-            <li>Angular</li>
-            <li>Mysql</li>
-            <li>Redmine</li>
-            <li>Github</li>
-            <li>Agile</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Node.js</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Angular</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Mysql</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Redmine</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Github</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Agile</li>
         </ul>
     </div>
 
-    <div class="col-sm-4 product">
+    <div class="col-sm-4 join">
         <p>Потребуємо спеціалістів у сфері:</p>
         <ul>
-            <li>Android</li>
-            <li>iOS</li>
-            <li>Node</li>
-            <li>Angular</li>
-            <li>Журналісти</li>
-            <li>Політологи</li>
-            <li>Юристи</li>
-            <li>Веб-тестувальники</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Android</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;iOS</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Node</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Angular</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Журналісти</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Політологи</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Юристи</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Веб-тестувальники</li>
         </ul>
     </div>
 
-    <div class="col-sm-4 product">
+    <div class="col-sm-4 join">
         <p>Можем співпрацювати:</p>
         <ul>
-            <li>REST</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;REST</li>
         </ul>
     </div>
     <div class="clearfix"></div>
@@ -195,13 +195,15 @@
 
     <div class="help_button"><p>Заповніть одну з запропонованих форм:</p>
 
-    <button type="button" ng-click="formCollapse(0)" class="btn btn-primary"><i class="fa fa-wrench"></i> Хочу девелопити</button>
-    <button type="button" ng-click="formCollapse(1)" class="btn btn-info"><i class="fa fa-stack-exchange"></i> Маю що розповісти</button>
-    <button type="button" ng-click="formCollapse(2)" class="btn btn-success"><i class="fa fa-briefcase"></i> Хочем співпрацювати (для організацій)</button>
-    <button type="button" ng-click="formCollapse(3)" class="btn btn-warning"><i class="fa fa-question"></i> Просто є питання</button>
+        <div class="center-block form-buttons">
+            <button type="button" ng-click="formCollapse(0)" class="btn btn-primary"><i class="fa fa-wrench"></i> Хочу девелопити</button>
+            <button type="button" ng-click="formCollapse(1)" class="btn btn-info"><i class="fa fa-stack-exchange"></i> Маю що розповісти</button>
+            <button type="button" ng-click="formCollapse(2)" class="btn btn-success"><i class="fa fa-briefcase"></i> Хочем співпрацювати (для організацій)</button>
+            <button type="button" ng-click="formCollapse(3)" class="btn btn-warning"><i class="fa fa-question"></i> Просто є питання</button>
+        </div>
 
     </div>
-    <div class="panel panel-default" collapse="formLists[0].collapsed">
+    <div class="panel panel-default collapsable form1" ng-class="{ showMe: !formLists[0].collapsed }">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -260,7 +262,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default" collapse="formLists[1].collapsed">
+    <div class="panel panel-default collapsable form2" ng-class="{ showMe: !formLists[1].collapsed }">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -299,7 +301,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default" collapse="formLists[2].collapsed">
+    <div class="panel panel-default collapsable form3" ng-class="{ showMe: !formLists[2].collapsed }">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -331,7 +333,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default" collapse="formLists[3].collapsed">
+    <div class="panel panel-default collapsable form4" ng-class="{ showMe: !formLists[3].collapsed }">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">

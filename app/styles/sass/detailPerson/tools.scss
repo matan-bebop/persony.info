@@ -1,14 +1,45 @@
+span.pop-danger {
+  color: $danger;
+
+  i{
+    color: $danger;
+  }
+}
+
+span.pop-primary {
+  color: $primary;
+
+  i{
+    color: $primary;
+  }
+}
+
+span.pop-warning {
+  color: $warning;
+
+  i{
+    color: $warning;
+  }
+}
+
 .person-tools, .event-filter{
   z-index: 102;
+
+  .dropdown-menu{
+    right: 0 !important;
+    left: auto !important;
+  }
 
   @include easings;
 
   li{
     list-style-type: none;
+    z-index: 102;
   }
 
   a{
     cursor: pointer;
+    text-decoration: none;
   }
 
   i{
@@ -36,8 +67,14 @@
   right: 10px;
   top: 10px;
 
+  .dropdown-menu{
+    right: 0 !important;
+    left: auto !important;
+  }
+
   a{
     color: $toolsButtonColor;
+    text-decoration: none;
 
     &:hover{
       color: black;
@@ -105,3 +142,4 @@
     }
   }
 }
+
