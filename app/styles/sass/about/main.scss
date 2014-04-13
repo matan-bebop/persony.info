@@ -96,11 +96,16 @@
       font-size:16px;
       color:#6f6353;
     }
+    a{
+      display: block;
+    }
   }
 
   .author_mini{
     display:inline-block;
-    padding:20px 0 0 0;
+    padding:20px 10px 0 0;
+    min-width: 120px;
+    text-align: center;
   }
 
   ul {
@@ -179,5 +184,36 @@
     .about_pri{
       display: none;
     }
+  }
+  .pay-list1 img{
+    max-height:70px;
+
+  }
+  .class_pay_list{
+    margin: 10px auto !important;
+    display: block;
+    max-width:1000px;
+  }
+  .pay-list1 li{
+    display: inline-block;
+    margin:7px;
+  }
+  .help_button button{
+    margin:0px 15px 5px 0px;
+  }
+  .help_button p{
+    font-size:1.5em;
+  }
+  .tehnology,.product{
+  border-left: 2px solid #8abbfe;
+  max-width: 331px;
+  height: auto;
+  position: relative;
+  padding: 0px 10px;
+  margin: 10px 20px;
+  min-height:190px !important;
+  }
+  .tehnology p,.product p{
+    font-size:1.2em;
   }
 }
