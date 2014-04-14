@@ -5,7 +5,7 @@ date_re = re.compile(r"(((?P<n1>\d+)\.)?((?P<n2>(\d+))\.)?(?P<year>\d+))")
 uri_symbols = r"[^ ,\"]*"
 supported_protocols = r"((https?)|(ftp))"
 
-images_suffix_re_str = r"\.((png)|(jpg)|(gif)|(svg))"
+images_suffix_re_str = r"\.((png)|(jpe?g)|(gif)|(svg))"
 
 def link_re_str(suffix):
     return "(?P<link>" + supported_protocols + r"://" \
@@ -22,7 +22,7 @@ replaces = {"---" : "—",
             "”" : "»",
             "“" : "«",
             "”" : "»"
-           }
+           } #TODO << << >> >> to << " " >>
 
 # # #
 
@@ -135,7 +135,7 @@ def parse_hybrid_link(s, suffix):
                 + link_re_str(suffix), s, re.IGNORECASE)
     if m is None:
         return
-    # TODO: Add fetch_title() and beatify() call
+    # TODO: Add fetch_title() and beautify() call
     return m.groupdict()
 
 
