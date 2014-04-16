@@ -1,0 +1,3 @@
+Usage:
+
+php /var/www/dev.persony.info/utils/persony-import/import.php importperson --clean --dataDir=path/to/dir/with/jsons
