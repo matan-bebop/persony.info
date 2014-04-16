@@ -68,23 +68,37 @@ def cat_dicts(d1, d2):
 
 
 class JSONEvent(object):
-    def __init__(self, ev):
+    def __init__(self, ev, pml_translator=None):
         self.start = JSON_date(date_start(ev.start))
         self.end = JSON_date(date_end(ev.start))
         self.title = ev.title
-        self.description = ev.body
+
+        if ev.body is None:
+            print("Дивна подія із пустим тілом:"
+                  " старт=", ev.start,
+                  " заголовок=", ev.title,
+                  " джерела=", ev.sources,
+                 file=sys.stderr)
+
+        if pml_translator is not None and ev.body is not None:
+            self.description = pml_translator(ev.body)
+        else:
+            self.description = ev.body
+
         self.others = ev.tags
 
         if ev.images:
             self.image = ev.images[0]
         else:
             self.image = None
-        
+
         self.sources = [cat_dicts(s, {"icon": source_icon(s)})
                         for s in ev.sources]
 
+
 class JSON(object):
-    def __init__(self, person, local_photo=True, photos_path=""):
+    def __init__(self, person,
+                 local_photo=True, pml_translator=None, photos_path=""):
         self.name = person.full_name()
         self.info = person.brief
         if local_photo:
@@ -93,16 +107,22 @@ class JSON(object):
             self.photo = person.photo
         self.facebook = ""
         self.twitter = ""
-        self.events = [JSONEvent(ev).__dict__ for ev in person.events]
+        self.events = [JSONEvent(ev, pml_translator).__dict__ 
+                       for ev in person.events]
 
 
 p = Person()
 p.read_descrition(sys.stdin)
 p.read_events(sys.stdin)
 
-if len(sys.argv) > 1 and sys.argv[1] == "-local_photo":
-    use_local_photo = True
-else:
-    use_local_photo = False
-
-print(json.dumps(JSON(p, use_local_photo).__dict__, ensure_ascii=False))
+use_local_photo = False
+translator = None
+for a in sys.argv[1:]:
+    if a == "-local_photo":
+        use_local_photo = True
+    elif a == "-html":
+        import pml
+        translator = pml.Translator().translate 
+  
+print(json.dumps(JSON(p, use_local_photo, translator).__dict__,
+                 ensure_ascii=False))

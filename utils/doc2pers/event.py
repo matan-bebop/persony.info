@@ -202,8 +202,10 @@ def read_event(f, previous_event=None):
     if ev.start is None:
         if previous_event is None:
             return # Error
+        # If event date is ommited, than it is the same as the previous one
         ev.start = previous_event.start
         ev.end = previous_event.end
+        unread_paragraph(f)
 
     # Read title paragraph
     skip_empty_lines(f)
