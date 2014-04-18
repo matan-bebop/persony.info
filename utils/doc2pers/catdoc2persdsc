@@ -2,32 +2,26 @@
 
 import sys
 import json
-import getopt
 
 from person import Person
-from cyr2url import Cyr2Url
 
 
 def print_usage():
-	print("Usage: " + sys.argv[0]
-	     + "-name | -fullname-url | -surname-url | -fullname | -brief")
+	print("Usage:\n"
+             + sys.argv[0] + "-name | -name-url | -brief | -photo")
 
 
 p = Person()
 p.read_descrition(sys.stdin)
 
-c = Cyr2Url()
-
 if len(sys.argv) < 2:
 	print_usage()
-elif sys.argv[1] == "-fullname-url":
-	print(c.code(p.full_name()).lower())
-elif sys.argv[1] == "-surname-url":
-	print(c.code(p.surname).lower())
-elif sys.argv[1] == "-fullname":
-	print(p.full_name())
+elif sys.argv[1] == "-name-url":
+	from cyr2url import Cyr2Url
+	c = Cyr2Url()
+	print(c.code(p.name).lower())
 elif sys.argv[1] == "-name":
-	print(p.name())
+	print(p.name)
 elif sys.argv[1] == "-photo":
 	print(p.photo)
 elif sys.argv[1] == "-brief":

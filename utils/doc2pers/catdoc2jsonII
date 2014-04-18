@@ -99,10 +99,10 @@ class JSONEvent(object):
 class JSON(object):
     def __init__(self, person,
                  local_photo=True, pml_translator=None, photos_path=""):
-        self.name = person.full_name()
+        self.name = person.name
         self.info = person.brief
         if local_photo:
-            self.photo = photos_path + Cyr2Url().code(person.surname).lower()
+            self.photo = photos_path + Cyr2Url().code(person.name).lower()
         else:
             self.photo = person.photo
         self.facebook = ""

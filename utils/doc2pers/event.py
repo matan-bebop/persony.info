@@ -174,7 +174,7 @@ def extract_tags(s, tags):
     l = re.split(r"[()]", s)
     if len(l) < 2:
         return s
-    tags += [p.strip() for p in l[1].split(',')];
+    tags += [beautify(p.strip()) for p in l[1].split(',')];
     return l[0]
 
 # # #

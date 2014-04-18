@@ -35,7 +35,7 @@ https://drive.google.com/folderview?id=0B_B6nEGrtErMY2xhdmdtRHlJUTA&usp=sharing
 Залежності
 -------------------------------------------------------------------------------
 
-Утиліти потребують модуль cyr2url.
+Утиліти потребують модулів cyr2url і pml.
 > export PYTHONPATH=/репозиторії/persony.info/utils
 
 -------------------------------------------------------------------------------
@@ -45,23 +45,17 @@ catdoc2persdesc
 Допоміжна утиліта, що видає інформацію із шапки формату опису життєпису.
 
 Використання:
-./catdoc2persdsc -name | -fullname-url | -surname-url | -fullname | -brief
+./catdoc2persdsc -name | -name-url | -brief | -photo
 
 Зчитує текстове представлення життєпису із стандартного входу. У стандартний вихід записує задані параметром командного рядку дані про персону.
 
 Ключі командного рядку:
 
 -name
-Видати ім’я персони у вигляді Ім’я Призвіще.
+Видати ім’я персони.
 
--fullname
-Видати повне ім’я персони, у вигляді Призвіще Ім’я По-батькові
-
--fullname-url
-Видати повне ім’я у тому ж форматі, але транслітероване для використання в URL.
-
--surname-url
-Видати призвіще персони, транслітероване для URL.
+-name-url
+Видати ім’я персони транслітероване для URL.
 
 -brief
 Видати короткий опис персони. 
@@ -71,9 +65,9 @@ catdoc2persdesc
 
 Приклади використання:
 
-> catdoc2persdsc -fullname < "Анатолій Гриценко.txt"
+> catdoc2persdsc -name < "Анатолій Гриценко.txt"
 Гриценко Анатолій Степанович
-> catdoc naiem.doc | catdoc2persdsc -fullname-url
+> catdoc naiem.doc | catdoc2persdsc -name-url
 najjem_mustafa
 
 -------------------------------------------------------------------------------
@@ -101,6 +95,6 @@ catdoc2jsonII
 
  for i in *.txt; do
  	echo -n Оброблюється $i... ; 
- 	./catdoc2jsonII < "$i" >  `./catdoc2persdsc -surname-url < "$i"`.json;
+ 	./catdoc2jsonII < "$i" >  `./catdoc2persdsc -name-url < "$i"`.json;
  	echo є!
  done
