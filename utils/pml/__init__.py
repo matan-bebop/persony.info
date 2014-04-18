@@ -38,16 +38,16 @@ class Translator(object):
         substitute the appropriate PML commands.
         Default values for functions are the convertors to plain text.
         """
-        self.handlers = [TagHandler(r"\*посилання\s+(.*)\s+(\S+)\*",
+        self.handlers = [TagHandler(r"\*посилання\s+([^*]*)\s+([^*\s]+)\*",
                                     lambda m: link(m.group(1),
                                                    m.group(2))),
-                         TagHandler(r"\*джерело\s+(.*)\s+(\S+)\*",
+                         TagHandler(r"\*джерело\s+([^*]*)\s+([^*\s]+)\*",
                                     lambda m: source(m.group(1),
                                                      m.group(2))),
-                         TagHandler(r"\*персона\s+(.*)\s+(\S+)\*",
+                         TagHandler(r"\*персона\s+([^*]*)\s+([^*\s]+)\*",
                                     lambda m: person(m.group(1),
                                                      m.group(2))),
-                         TagHandler(r"\*цитата\s+(.*)\*",
+                         TagHandler(r"\*цитата\s+([^*]*)\*",
                                     lambda m: citation(m.group(1)))]
 
     def translate(self, s):
