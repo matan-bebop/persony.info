@@ -1,5 +1,7 @@
 import re
 
+from beautifier import beautify
+
 date_re = re.compile(r"(((?P<n1>\d+)\.)?((?P<n2>(\d+))\.)?(?P<year>\d+))")
 
 uri_symbols = r"[^ ,\"]*"
@@ -10,19 +12,6 @@ images_suffix_re_str = r"\.((png)|(jpe?g)|(gif)|(svg))"
 def link_re_str(suffix):
     return "(?P<link>" + supported_protocols + r"://" \
             + uri_symbols + suffix + ")"
-
-replaces = {"---" : "—",
-            "--" : "—",
-            "<<" : "«",
-            ">>" : "»",
-            r'"([^"]*)"' : r"«\1»",
-            "„" : "«",
-            "“" : "»",
-            "„" : "«",
-            "”" : "»",
-            "“" : "«",
-            "”" : "»"
-           } #TODO << << >> >> to << " " >>
 
 # # #
 
@@ -60,13 +49,6 @@ def unread_paragraph(f):
     global paragraph_rejected, last_paragraph
     paragraph_rejected = True
     return last_paragraph
-
-
-def beautify(body):
-    s = body
-    for fr, to in replaces.items():
-        s = re.sub(fr, to, s)
-    return s
 
 
 def split_interval(s):
