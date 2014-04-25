@@ -3,7 +3,7 @@
 @import "compass/css3/opacity";
 @import "compass/css3/transition";
 @import "mixins";
-@import "colours";
+@import "colors";
 @import "socialColors";
 @import "animate";
 
@@ -12,11 +12,30 @@ $bg: url(../../images/agsquare.png) repeat $mainBackgroundColour ! important;
 
 $navbarHeight: 50px;
 
-body {
+html, body {
   color: $mainTextColour;
   font-family: 'Roboto', Arial, Tahoma, sans-serif !important;
   font-weight: 300 !important;
   background: $bg;
+  height: calc(100% - 25px) !important;
+  height: -moz-calc(100% - 25px) !important;
+  height: -webkit-calc(100% - 25px) !important;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  min-height: 100%!important;
+  margin-bottom: -135px;
+
+}
+
+* html .page-wrapper {
+  height: 100%;
+}
+
+.page-buffer {
+  height: 135px;
 }
 
 a{
