@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="pml.js"></script>
+</head>
+
+<body>
+  Введіть PML-код:<br>
+  <textarea cols=60 rows=10 id="CODE_TEXTBOX_ID">*джерело лалала http://www.ya.ru* Як вказує *джерело персональний сайт Богословської http://www.inna.com.ua*, дупа *персона Інни Богословської bohoslovska* *цитата схожа на динозавра*. Дивись також *посилання гугль. https://www.google.com.ua/search?q=%D1%96%D0%BD%D0%BD%D0%B0+%D0%B1%D0%BE%D0%B3%D0%BE%D1%81%D0%BB%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B0&source=lnms&tbm=isch&sa=X&ei=q2L6UrGuLIzwhQfRlIGoBg&ved=0CAkQ_AUoAQ* </textarea>
+
+  <button type="button" onclick="translatePML()">Показати</button>
+
+  <br>Результат:
+  <p id="RESULT_PARAGRAPH_ID"></p>
+
+  <script>
+     function posylannya_handler(text, link)
+     {
+	     return "<a href=\"" + link + "\">" + text + "</a>";
+     }
+
+     function dzherelo_handler(text, link)
+     {
+	     return posylannya_handler(text, link);
+     }
+
+     function persona_handler(text, uid)
+     {
+	     return "<a href=\"" + "/" + uid + "\">" + text + "</a>";
+     }
+
+     function cytata_handler(text)
+     {
+	     return "<i>«" + text + "»</i>";
+     }
+
+     tr = new PML.Translator();
+     tr.tags = {
+     	"посилання" : PML.two_args(posylannya_handler),
+     	  "джерело" : PML.two_args(dzherelo_handler),
+     	  "персона" : PML.two_args(persona_handler),
+     	  "цитата"  : PML.one_arg(cytata_handler)
+     };
+
+     function translatePML()
+     {
+       document.getElementById("RESULT_PARAGRAPH_ID").innerHTML =
+         tr.translate(document.getElementById("CODE_TEXTBOX_ID").value);
+     }
+  </script>
+
+</body>
+
+</html>

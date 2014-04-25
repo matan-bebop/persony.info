@@ -1,5 +1,7 @@
 import re
 
+from beautifier import beautify
+
 date_re = re.compile(r"(((?P<n1>\d+)\.)?((?P<n2>(\d+))\.)?(?P<year>\d+))")
 
 uri_symbols = r"[^ ,\"]*"
@@ -10,19 +12,6 @@ images_suffix_re_str = r"\.((png)|(jpe?g)|(gif)|(svg))"
 def link_re_str(suffix):
     return "(?P<link>" + supported_protocols + r"://" \
             + uri_symbols + suffix + ")"
-
-replaces = {"---" : "—",
-            "--" : "—",
-            "<<" : "«",
-            ">>" : "»",
-            r'"([^"]*)"' : r"«\1»",
-            "„" : "«",
-            "“" : "»",
-            "„" : "«",
-            "”" : "»",
-            "“" : "«",
-            "”" : "»"
-           } #TODO << << >> >> to << " " >>
 
 # # #
 
@@ -60,13 +49,6 @@ def unread_paragraph(f):
     global paragraph_rejected, last_paragraph
     paragraph_rejected = True
     return last_paragraph
-
-
-def beautify(body):
-    s = body
-    for fr, to in replaces.items():
-        s = re.sub(fr, to, s)
-    return s
 
 
 def split_interval(s):
@@ -174,7 +156,7 @@ def extract_tags(s, tags):
     l = re.split(r"[()]", s)
     if len(l) < 2:
         return s
-    tags += [p.strip() for p in l[1].split(',')];
+    tags += [beautify(p.strip()) for p in l[1].split(',')];
     return l[0]
 
 # # #
@@ -202,8 +184,10 @@ def read_event(f, previous_event=None):
     if ev.start is None:
         if previous_event is None:
             return # Error
+        # If event date is ommited, than it is the same as the previous one
         ev.start = previous_event.start
         ev.end = previous_event.end
+        unread_paragraph(f)
 
     # Read title paragraph
     skip_empty_lines(f)

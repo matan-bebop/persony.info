@@ -1,8 +1,9 @@
 #!/usr/bin/python2
 
 import cv2
+import os.path
 
-cascades_path = "/home/andriy/maidan/persony/mordovorot/"
+cascades_path = "/home/andriy/persony/mordovorot/"
 
 def detect_faces(img, min_face_rect):
     """
@@ -72,7 +73,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit("A script to make a square picture of a face. Takes an image "
                  "file name as a parameter and inputs the result "
-                 "into the file with preceding 'squared-'."
+                 "into the file with .squared extension before the original one"
                  "\n"
                  "Usage: " + sys.argv[0] + " path/to/picture")
 
@@ -81,7 +82,19 @@ if __name__ == "__main__":
 
     face_rect = detect_face(img)
     if face_rect is None:
-        print "No faces on image from " + sys.argv[1] 
+        sys.exit("No faces on image from " + sys.argv[1])
     else:
-        face = crop(img, face_square_grudgy(img, face_rect))
-        cv2.imwrite("squared-" + path, face)
+        face_rect = face_square_grudgy(img, face_rect)
+
+        # Crop a face only if, simultaneously, original image is not a square 
+        # and a face is not that big on the image
+        img_h, img_w = img.shape[:2]
+        face_w, face_h = face_rect[2]-face_rect[0], face_rect[3]-face_rect[1] 
+        if img_w != img_h or face_w*face_h < .6*img_w*img_h:
+            face = crop(img, face_rect)
+        else:
+            face = img
+
+        writeto = (os.path.splitext(path)[0] + ".squared" 
+                   + os.path.splitext(path)[1])
+        cv2.imwrite(writeto, face)
