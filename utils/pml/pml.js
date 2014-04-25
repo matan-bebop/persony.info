@@ -62,7 +62,7 @@ Translator : function() { // BEGIN Class Translator
 
 		for (var i = 1; i < slices.length; i++) {
 			name_n_args = split_first(slices[i], ' ');
-			if (typeof that.tags[name_n_args[0]] != "undefined") {
+			if (that.tags.hasOwnProperty(name_n_args[0])) {
 				result += that.tags[name_n_args[0]](name_n_args[1]);
 			} else { // Unknown tag
 				result += slices[i]; // Leave the text inside delimiters as is
