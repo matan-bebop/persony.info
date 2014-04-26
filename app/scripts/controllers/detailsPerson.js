@@ -6,6 +6,8 @@
         [
             'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window',
             function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window) {
+            	
+            	$scope.contentLoaded = false;
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
@@ -92,6 +94,7 @@
                     });
 
                     $scope.eventYears = data;
+                    $scope.contentLoaded = true;
                 });
 
                 $scope.translate = function (value) {

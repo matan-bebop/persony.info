@@ -145,7 +145,11 @@
         </div>
     </div>
 
-    <div class="person-bio">
+	<div class="container loading" ng-hide="contentLoaded">
+	   	<i class="fa fa-spinner fa-spin fa-5x"></i>
+	</div>
+
+    <div class="person-bio" ng-show="contentLoaded">
         <ul id='timeline'>
             <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
                 <div class="event-year">{{year}}</div>
