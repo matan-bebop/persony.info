@@ -4,14 +4,17 @@
     angular.module('personyApp').controller(
         'controllers.personDetails',
         [
-            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window',
-            function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window) {
+            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window', '$anchorScroll',
+            function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window, $anchorScroll) {
+
+                var match = $location.hash().match(/(event)([0-9]+)/),
+                    eventId = match ? match[2] : null;
             	
             	$scope.contentLoaded = false;
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
-                $scope.expandedEventId = $location.search().scrollTo;
+                $scope.expandedEventId = eventId;
 
                 var personCallback = function(person) {
                     if (!person){
@@ -65,6 +68,11 @@
 
                 $scope.expandEvent = function (id) {
                     $scope.expandedEventId = id;
+                };
+
+                $scope.scrollToEvent = function (id) {
+                    $location.hash('event'+id);
+                    $anchorScroll();
                 };
 
                 $scope.addEditEvent = function (event) {
@@ -152,6 +160,7 @@
 
                     $scope.eventYears = data;
                     $scope.contentLoaded = true;
+                    $scope.scrollToEvent($scope.expandedEventId);
                 });
 
                 $scope.translate = function (value) {

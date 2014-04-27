@@ -258,7 +258,7 @@
         </div>
 
     </div>
-    <div class="panel panel-default collapsable form1" ng-class="{ showMe: !formLists[0].collapsed }">
+    <div class="panel panel-default collapsable form1" ng-class="{ showMe: !formLists[0].collapsed }" ng-form name="developerForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -269,7 +269,9 @@
                                 ng-model="forms.developer.email"
                                 class="form-control"
                                 id="inputEmail0"
-                                placeholder="Email">
+                                placeholder="Email"
+                                required
+                                >
                     </div>
                 </div>
 
@@ -331,7 +333,7 @@
                                 class="btn btn-default"
                                 ng-class="{'btn-danger': forms.$error == 'developer', 'btn-success': forms.$success == 'developer'}"
                                 ng-click="sendForm('developer')"
-                                ng-disabled="forms.$sending == 'developer'"
+                                ng-disabled="forms.$sending == 'developer' || developerForm.$invalid"
                                 >
                             Надіслати
                             <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'developer'"></i>
@@ -342,7 +344,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default collapsable form2" ng-class="{ showMe: !formLists[1].collapsed }">
+    <div class="panel panel-default collapsable form2" ng-class="{ showMe: !formLists[1].collapsed }" ng-form name="authorForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -354,6 +356,7 @@
                                 class="form-control"
                                 id="inputEmail1"
                                 placeholder="Email"
+                                required
                                 >
                     </div>
                 </div>
@@ -393,6 +396,7 @@
                                 id="inputAdditional1"
                                 placeholder="Опишіть що б ви хотіли робити"
                                 rows="3"
+                                required
                                 ></textarea>
                     </div>
                 </div>
@@ -403,7 +407,7 @@
                                 class="btn btn-default"
                                 ng-class="{'btn-danger': forms.$error == 'author', 'btn-success': forms.$success == 'author'}"
                                 ng-click="sendForm('author')"
-                                ng-disabled="forms.$sending == 'author'"
+                                ng-disabled="forms.$sending == 'author' || authorForm.$invalid"
                                 >
                             Надіслати
                             <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'author'"></i>
@@ -414,7 +418,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default collapsable form3" ng-class="{ showMe: !formLists[2].collapsed }">
+    <div class="panel panel-default collapsable form3" ng-class="{ showMe: !formLists[2].collapsed }" ng-form name="cooperatorForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -426,6 +430,7 @@
                                 class="form-control"
                                 id="inputEmail2"
                                 placeholder="Email"
+                                required
                                 >
                     </div>
                 </div>
@@ -452,6 +457,7 @@
                                 id="inputAdditional2"
                                 placeholder="Чим можемо бути вам корисні?"
                                 rows="3"
+                                required
                                 ></textarea>
                     </div>
                 </div>
@@ -462,7 +468,7 @@
                                 class="btn btn-default"
                                 ng-class="{'btn-danger': forms.$error == 'cooperator', 'btn-success': forms.$success == 'cooperator'}"
                                 ng-click="sendForm('cooperator')"
-                                ng-disabled="forms.$sending == 'cooperator'"
+                                ng-disabled="forms.$sending == 'cooperator' || cooperatorForm.$invalid"
                                 >
                             Надіслати
                             <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'cooperator'"></i>
@@ -473,7 +479,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default collapsable form4" ng-class="{ showMe: !formLists[3].collapsed }">
+    <div class="panel panel-default collapsable form4" ng-class="{ showMe: !formLists[3].collapsed }" ng-form name="questionerForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -485,6 +491,7 @@
                                 class="form-control"
                                 id="inputEmail3"
                                 placeholder="Email"
+                                required
                                 >
                     </div>
                 </div>
@@ -511,6 +518,7 @@
                                 id="inputAdditional3"
                                 placeholder="Чим можемо бути вам корисні?"
                                 rows="3"
+                                required
                                 ></textarea>
                     </div>
                 </div>
@@ -521,7 +529,7 @@
                                 class="btn btn-default"
                                 ng-class="{'btn-danger': forms.$error == 'questioner', 'btn-success': forms.$success == 'questioner'}"
                                 ng-click="sendForm('questioner')"
-                                ng-disabled="forms.$sending == 'questioner'"
+                                ng-disabled="forms.$sending == 'questioner' || questionerForm.$invalid"
                                 >
                             Надіслати
                             <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'questioner'"></i>
