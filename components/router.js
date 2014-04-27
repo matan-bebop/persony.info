@@ -25,6 +25,7 @@ module.exports = function (app) {
     app.get("/api/persons", controllers.person.query);
     app.get("/api/persons/:id", controllers.person.get);
 
+    app.post("/contact/:formName", controllers.frontend.contact);
     // frontend urls which are handled by AngularJS
     app.get(/^\/(about|persons|all|)?\/?\d*$/, controllers.frontend.index);
     app.get("/partials/*", controllers.frontend.partials);

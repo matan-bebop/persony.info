@@ -9,6 +9,8 @@ var settings = require(__dirname + '/config/settings'),
     models;
 
 app.ROOT = __dirname;
+app.config = settings;
+
 /**
  * May be used to require application components using path relative to the application root.
  * @param module string
@@ -22,6 +24,7 @@ app.require = function (module) {
 app.disable('strict routing');
 
 app.configure('development', function () {
+    app.use(express.favicon(path.join(__dirname, 'app', 'favicon.ico')));
     if (process.env.LIVERELOAD) {
         app.use(require('connect-livereload')());
     }
