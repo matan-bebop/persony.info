@@ -27,10 +27,9 @@
 
             $locationProvider.html5Mode(true).hashPrefix('!');
         }).run(function($rootScope, $location, $anchorScroll, $routeParams) {
-            //when the route is changed scroll to the proper element.
-            $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-                $location.hash($routeParams.scrollTo);
-                $anchorScroll();
-            });
+            //scroll to the hash spevified in scrollTo route parameter
+            $rootScope.hashScroll = function(){
+            	$anchorScroll($routeParams.scrollTo);
+            }
         });
 }());
