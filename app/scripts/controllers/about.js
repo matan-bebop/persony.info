@@ -147,7 +147,7 @@
                      }, 3000);
                  };
                  Contact(formName, $scope.forms[formName]).
-                     then(function () {
+                     success(function () {
                          result('$success');
                      }).
                      error(function () {
