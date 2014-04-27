@@ -11,19 +11,53 @@
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
+                var personCallback = function(person) {
+                    if (!person){
+                        $location.path('/error');
+                    }
+                    Page.setTitle('Персони | ' + $scope.person.name);
+
+                    $scope.dropdownPersonTools = [
+                        {
+                            "text": "<i class=\"fa fa-pencil-square-o\"></i> &nbsp;Додати у кабінет",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<i class=\"fa fa-users\"></i> &nbsp;Додати до порівняння",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<span class=\"pop-primary\"><i class=\"fa fa-pencil\"></i> &nbsp;Редагувати</span>",
+                            "click": "addEditPerson(person)"
+                        },
+                        {
+                            "text": "<i class=\"fa fa-user\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати персону",
+                            "click": "addEditPerson()"
+                        },
+                        {
+                            "text": "<span class=\"pop-warning\"><i class=\"fa fa-star\"></i> &nbsp; Я " + $scope.person.name + "</span>",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<span class=\"pop-danger\"><i class=\"fa fa-minus-circle\"></i> &nbsp;Поскаржитись</span>",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<i class=\"fa fa-bell\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати подію",
+                            "click": "addEditEvent()"
+                        }
+                    ];
+                }
+
                 $scope.person = Person.get(
                     {id: $routeParams.id},
-                    function (person) {
-                        if (!person){
-                            $location.path('/error');
-                        }
-                        Page.setTitle('Персони | ' + $scope.person.name);
-                    },
+                    personCallback,
                     function () {
                         $location.path('/error');
                     }
 
                 );
+
                 $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;
 
@@ -119,37 +153,6 @@
                             return 'Дні';
                     }
                 };
-
-                $scope.dropdownPersonTools = [
-                    {
-                        "text": "<i class=\"fa fa-pencil-square-o\"></i> &nbsp;Додати у кабінет",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<i class=\"fa fa-users\"></i> &nbsp;Додати до порівняння",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<span class=\"pop-primary\"><i class=\"fa fa-pencil\"></i> &nbsp;Редагувати</span>",
-                        "click": "addEditPerson(person)"
-                    },
-                    {
-                        "text": "<i class=\"fa fa-user\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати персону",
-                        "click": "addEditPerson()"
-                    },
-                    {
-                        "text": "<span class=\"pop-warning\"><i class=\"fa fa-star\"></i> &nbsp; Я " + $scope.person.name + "</span>",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<span class=\"pop-danger\"><i class=\"fa fa-minus-circle\"></i> &nbsp;Поскаржитись</span>",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<i class=\"fa fa-bell\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати подію",
-                        "click": "addEditEvent()"
-                    }
-                ];
 
                 $scope.dropdownEventFilters = [
                     {
