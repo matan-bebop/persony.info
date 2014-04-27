@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize', 'rzModule',
-        'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip', 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy' ])
+        'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip', 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy', 'mgcrea.ngStrap.helpers.dimensions' ])
         .config(function ($routeProvider, $locationProvider) {
 
             $routeProvider
@@ -14,7 +14,8 @@
                     controller: 'controllers.persons'
                 }).when('/persons/:id', {
                     templateUrl: 'partials/detailsPerson',
-                    controller: 'controllers.personDetails'
+                    controller: 'controllers.personDetails',
+                    reloadOnSearch: false
                 })
                 .when('/about', {
                     templateUrl: 'partials/about',

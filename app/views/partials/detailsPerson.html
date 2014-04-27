@@ -56,7 +56,6 @@
 
 <div class="person-header-die"></div>
 <div class="container" person-details>
-
     <div class="page-header">
 
         <div class="timeline-zoom">
@@ -134,10 +133,10 @@
         <div class="panel-body" role="complementary" bs-scrollspy-list>
             <ul>
                 <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}" ng-repeat="year in eventYears.orders.years" class="helper-year">
-                    <a href="#year{{year}}" class="helper-year-link">{{year}}</a>
+                    <a ng-href="/persons/{{person.id}}#year{{year}}" class="helper-year-link">{{year}}</a>
                     <ul>
                         <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}month{{month}}" ng-repeat="month in eventYears.orders.months[year]" class="helper-month">
-                            <a href="#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
+                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
                         </li>
                     </ul>
                 </li>
