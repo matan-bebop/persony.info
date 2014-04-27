@@ -11,6 +11,8 @@
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
+                $scope.expandedEventId = $location.search().scrollTo;
+
                 var personCallback = function(person) {
                     if (!person){
                         $location.path('/error');
@@ -61,6 +63,10 @@
                 $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;
 
+                $scope.expandEvent = function (id) {
+                    $scope.expandedEventId = id;
+                };
+
                 $scope.addEditEvent = function (event) {
 
                     var init = {};
@@ -80,7 +86,7 @@
                     var init = {};
                     if (person){
                         init = {};
-                    };
+                    }
 
                     var modalInstance = $modal.open({
                         templateUrl: 'partials/personAddEdit',
