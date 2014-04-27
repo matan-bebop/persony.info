@@ -168,11 +168,11 @@
                         <div class="event-month">{{month | monthName}}</div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
-                                <input class='radio' id='event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == 'event'+event.id">
-                                <a id="#event_{{event.id}}"></a>
+                                <input class='radio' id='#event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == event.id">
+                                <a id="event{{event.id}}"></a>
                                 <div class="relative">
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
-                                    <label for='event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
+                                    <label for='#event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
 
                                     <div class="event-date">{{event.start | date:"d"}}</div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
