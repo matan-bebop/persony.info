@@ -149,6 +149,16 @@
 	</div>
 
     <div class="person-bio" ng-show="contentLoaded">
+    	<script>
+    		function labelClicked(e) {
+    			var event = e || window.event;
+    			var checkbox = $('input#' + $(event.target).attr('for'));
+    			if (checkbox.prop('checked') && event.preventDefault) {
+    				event.preventDefault();	
+    				checkbox.prop('checked', null);
+    			}
+    		}
+    	</script>
         <ul id='timeline'>
             <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
                 <div class="event-year">{{year}}</div>
@@ -161,7 +171,7 @@
                                 <a id="#event_{{event.id}}"></a>
                                 <div class="relative">
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
-                                    <label for='event{{event.id}}'>{{event.title}}</label>
+                                    <label for='event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
 
                                     <div class="event-date">{{event.start | date:"d"}}</div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
@@ -247,7 +257,6 @@
                             $(".social").find(">span").each(function(){stWidget.addEntry({"element" :this})})
                         </script>
                     </li>
-
                 </ul>
                 <div class="clearfix"></div>
             </li>
