@@ -1,3 +1,4 @@
+
 <script type="text/ng-template" id="photoModal.html">
     <div class="modal">
         <div class="modal-dialog">
@@ -160,18 +161,18 @@
     		}
     	</script>
         <ul id='timeline'>
-            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
+            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}" on-last-repeat>
                 <div class="event-year">{{year}}</div>
                 <ul class="event-monthes-list">
                     <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
                         <div class="event-month">{{month | monthName}}</div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
-                                <input class='radio' id='event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == 'event'+event.id">
-                                <a id="#event_{{event.id}}"></a>
+                                <input class='radio' id='#event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == event.id">
+                                <a id="event{{event.id}}"></a>
                                 <div class="relative">
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
-                                    <label for='event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
+                                    <label for='#event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
 
                                     <div class="event-date">{{event.start | date:"d"}}</div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
@@ -214,38 +215,12 @@
                                                     ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                                             </p>
 
-                                            <p class="social">
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_facebook_hcount' displayText='Facebook'></span>
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_twitter_hcount' displayText='Tweet'></span>
-
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_linkedin_hcount' displayText='LinkedIn'></span>
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_vkontakte_hcount' displayText='Vkontakte'></span>
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_googleplus_hcount' displayText='Google +'></span>
-                                            </p>
+                                            <div class="share" id="share_{{event.id}}" data-url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}" data-title="{{event.title}}">
+                                                <div class="facebook" title="Поділитись у Фейсбуці">Facebook</div>
+                                                <div class="twitter" title="Твітнути">Twitter</div>
+                                                <div class="vkontakte" title="Поділитись у Вконтакті">Vkontakte</div>
+                                                <div class="plusone" title="Поділитись у Гугл">Google+</div>
+                                            </div>
 
                                             <div class="clearfix"></div>
                                         </div>
@@ -253,9 +228,6 @@
                                 </div>
                             </li>
                         </ul>
-                        <script>
-                            $(".social").find(">span").each(function(){stWidget.addEntry({"element" :this})})
-                        </script>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
