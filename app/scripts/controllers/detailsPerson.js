@@ -122,10 +122,27 @@
                         }
                     };
 
+					var monthMaxDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
                     angular.forEach(events, function (event) {
                         var date = new Date(event.start),
                             year = date.getFullYear(),
-                            month = date.getMonth();
+                            month = date.getMonth(),
+                            endDate = new Date(event.end),
+                            endYear = endDate.getFullYear(),
+                            endMonth = endDate.getMonth(),
+                            day = endDate.getDate() - date.getDate();
+
+                        if  (day === monthMaxDays[month] - 1) {
+                        	event.day = '.';                        	
+                        }
+                        else {
+                        	event.day = date.getDate();
+                        }
+                            
+						if (endMonth - month === 11) {
+							month = -1;
+						}
 
                         if (!data[year]) {
                             data.orders.years.push(year);
@@ -137,7 +154,7 @@
                             data.orders.months[year].push(month);
                             data[year][month] = [];
                         }
-
+                        
                         data[year][month].push(event);
                     });
 

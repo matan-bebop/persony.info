@@ -174,7 +174,7 @@
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
                                     <label for='#event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
 
-                                    <div class="event-date">{{event.start | date:"d"}}</div>
+                                    <div class="event-date">{{event.day}}</div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
                                 </div>
                                 <div class='content'>
