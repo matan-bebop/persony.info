@@ -181,56 +181,6 @@
     <script src="scripts/soclikes.min.js"></script>
     <script src="scripts/twitterPostFetcher.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            //Handles menu drop down
-            $('.dropdown-toggle').on("click", function (e) {
-                $(this).parent().toggleClass("open");
-                e.preventDefault();
-            });
-            $(".dropdown-menu form").on("submit", function(e){
-                var form = $(this),
-                    url = form.attr("action");
-                    if(url){
-                        $.ajax({
-                            type : form.attr("method"),
-                            url : url,
-                            data : form.serialize(),
-                            success : function(data){
-                                $('.dropdown-toggle').parents("open").removeClass("open");
-                            }
-                        })
-                    }
-                e.preventDefault();
-                return false;
-            })
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(function(){
-            var showTip = 500;
-            $(window).scroll(function() {
-                var scroll = getCurrentScroll();
-                if ( scroll >= showTip ) {
-                    $('.help-tip').addClass('show-tip');
-                    $('.help-tip').addClass('show-tip');
-                }
-                else {
-                    $('.help-tip').removeClass('show-tip');
-                    $('.help-tip').removeClass('show-tip');
-                }
-            });
-            function getCurrentScroll() {
-                return window.pageYOffset;
-            }
-
-            $('#help-tip-close-link, #help-tip-close').click(function(){
-                $('.help-tip').hide();
-            })
-        });
-    </script>
-
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-i18n/angular-locale_uk-ua.js"></script>
 
@@ -250,6 +200,7 @@
     <script src="scripts/services/person.js"></script>
     <script src="scripts/services/event.js"></script>
     <script src="scripts/services/search.js"></script>
+    <script src="scripts/services/contact.js"></script>
     <script src="scripts/controllers/error.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/persons.js"></script>
@@ -289,8 +240,8 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <a class="btn btn-success" href="about?scrollTo=join"><i class="fa fa-pencil-square-o"></i>  Долучитись</a>
-                <a class="btn btn-warning" href="about?scrollTo=donate"><i class="fa fa-money"></i> Допомогти</a>
+                <a class="btn btn-success" href="about?scrollTo=join" ng-click="hashScroll()"><i class="fa fa-pencil-square-o"></i>  Долучитись</a>
+                <a class="btn btn-warning" href="about?scrollTo=donate" ng-click="hashScroll()"><i class="fa fa-money"></i> Допомогти</a>
             </div>
         </div>
          <div class="copyright">
@@ -330,9 +281,5 @@
     </script>
     <noscript><div><img src="//mc.yandex.ru/watch/24100588" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-    <script type="text/javascript" src="scripts/buttons.js"></script>
-    <script>
-        stLight.options({publisher: "58ae2a33-2f29-4fbb-8ed0-76b6d3060471", doNotHash: false, doNotCopy: false, hashAddressBar: false})
-    </script>
 </body>
 </html>

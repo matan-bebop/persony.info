@@ -15,4 +15,4 @@ require('fs').readdirSync(path.join(app.ROOT, "components", "models")).
         seq.getModel(path.basename(model, '.js'));
     });
 
-seq.sync({ force: true });
+seq.sync({ force: process.env.FORCE });

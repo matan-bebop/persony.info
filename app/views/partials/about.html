@@ -140,7 +140,7 @@
             </div>
             <div class="founders col-sm-4">
                 <div class="comment">
-                    <p>Не пройобуйте.</p>
+                    <p>Отримуючи інформацію пам’ятайте її аналізувати. Лише критичне мислення дозволить вибудувати свідому точку зору.</p>
                     <span></span>
                 </div>
 
@@ -259,20 +259,32 @@
         </div>
 
     </div>
-    <div class="panel panel-default collapsable form1" ng-class="{ showMe: !formLists[0].collapsed }">
+    <div class="panel panel-default collapsable form1" ng-class="{ showMe: !formLists[0].collapsed }" ng-form name="developerForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputEmail0" class="col-sm-2 control-label">Електронна пошта</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail0" placeholder="Email">
+                        <input
+                                type="email"
+                                ng-model="forms.developer.email"
+                                class="form-control"
+                                id="inputEmail0"
+                                placeholder="Email"
+                                required
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputName0" class="col-sm-2 control-label">Ім’я</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName0" placeholder="Ім’я">
+                        <input
+                                type="text"
+                                ng-model="forms.developer.name"
+                                class="form-control"
+                                id="inputName0"
+                                placeholder="Ім’я">
                     </div>
                 </div>
 
@@ -280,25 +292,25 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Я знаю Node.js
+                                <input type="checkbox" ng-model="forms.developer.skills.nodejs"> Я знаю Node.js
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Я знаю Angular
+                                <input type="checkbox" ng-model="forms.developer.skills.angularjs"> Я знаю Angular
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Я програмую під Android
+                                <input type="checkbox" ng-model="forms.developer.skills.android"> Я програмую під Android
                             </label>
                         </div>
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Я програмую під iOS
+                                <input type="checkbox" ng-model="forms.developer.skills.ios"> Я програмую під iOS
                             </label>
                         </div>
                     </div>
@@ -306,115 +318,223 @@
                 <div class="form-group">
                     <label for="inputAdditional0" class="col-sm-2 control-label">Додаткова інформація</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="inputAdditional0" placeholder="Опишіть що б ви хотіли робити" rows="3"></textarea>
+                        <textarea
+                                class="form-control"
+                                id="inputAdditional0"
+                                placeholder="Опишіть що б ви хотіли робити"
+                                rows="3"
+                                ng-model="forms.developer.additional"
+                                ></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Надіслати</button>
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'developer', 'btn-success': forms.$success == 'developer'}"
+                                ng-click="sendForm('developer')"
+                                ng-disabled="forms.$sending == 'developer' || developerForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'developer'"></i>
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="panel panel-default collapsable form2" ng-class="{ showMe: !formLists[1].collapsed }">
+    <div class="panel panel-default collapsable form2" ng-class="{ showMe: !formLists[1].collapsed }" ng-form name="authorForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputEmail1" class="col-sm-2 control-label">Електронна пошта</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+                        <input
+                                type="email"
+                                ng-model="forms.author.email"
+                                class="form-control"
+                                id="inputEmail1"
+                                placeholder="Email"
+                                required
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputName1" class="col-sm-2 control-label">Ім’я</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName1" placeholder="Ім’я">
+                        <input
+                                type="text"
+                                ng-model="forms.author.name"
+                                class="form-control"
+                                id="inputName1"
+                                placeholder="Ім’я"
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputProfession" class="col-sm-2 control-label">Професія</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputProfession" placeholder="Професія">
+                        <input
+                                type="text"
+                                ng-model="forms.author.profession"
+                                class="form-control"
+                                id="inputProfession"
+                                placeholder="Професія"
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputAdditional1" class="col-sm-2 control-label">Додаткова інформація</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="inputAdditional1" placeholder="Опишіть що б ви хотіли робити" rows="3"></textarea>
+                        <textarea
+                                ng-model="forms.author.additional"
+                                class="form-control"
+                                id="inputAdditional1"
+                                placeholder="Опишіть що б ви хотіли робити"
+                                rows="3"
+                                required
+                                ></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Надіслати</button>
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'author', 'btn-success': forms.$success == 'author'}"
+                                ng-click="sendForm('author')"
+                                ng-disabled="forms.$sending == 'author' || authorForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'author'"></i>
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="panel panel-default collapsable form3" ng-class="{ showMe: !formLists[2].collapsed }">
+    <div class="panel panel-default collapsable form3" ng-class="{ showMe: !formLists[2].collapsed }" ng-form name="cooperatorForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputEmail2" class="col-sm-2 control-label">Електронна пошта</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
+                        <input
+                                type="email"
+                                ng-model="forms.cooperator.email"
+                                class="form-control"
+                                id="inputEmail2"
+                                placeholder="Email"
+                                required
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputOrganization" class="col-sm-2 control-label">Організація</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputOrganization" placeholder="Організація">
+                        <input
+                                type="text"
+                                ng-model="forms.cooperator.organisation"
+                                class="form-control"
+                                id="inputOrganization"
+                                placeholder="Організація"
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputAdditional2" class="col-sm-2 control-label">Предмет співпраці</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="inputAdditional2" placeholder="Чим можемо бути вам корисні?" rows="3"></textarea>
+                        <textarea
+                                ng-model="forms.cooperator.subject"
+                                class="form-control"
+                                id="inputAdditional2"
+                                placeholder="Чим можемо бути вам корисні?"
+                                rows="3"
+                                required
+                                ></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Надіслати</button>
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'cooperator', 'btn-success': forms.$success == 'cooperator'}"
+                                ng-click="sendForm('cooperator')"
+                                ng-disabled="forms.$sending == 'cooperator' || cooperatorForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'cooperator'"></i>
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="panel panel-default collapsable form4" ng-class="{ showMe: !formLists[3].collapsed }">
+    <div class="panel panel-default collapsable form4" ng-class="{ showMe: !formLists[3].collapsed }" ng-form name="questionerForm">
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Електронна пошта</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        <input
+                                type="email"
+                                ng-model="forms.questioner.email"
+                                class="form-control"
+                                id="inputEmail3"
+                                placeholder="Email"
+                                required
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputName3" class="col-sm-2 control-label">Ім’я</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName3" placeholder="Ім’я">
+                        <input
+                                type="text"
+                                ng-model="forms.questioner.name"
+                                class="form-control"
+                                id="inputName3"
+                                placeholder="Ім’я"
+                                >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputAdditional3" class="col-sm-2 control-label">Питання</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="inputAdditional3" placeholder="Чим можемо бути вам корисні?" rows="3"></textarea>
+                        <textarea
+                                ng-model="forms.questioner.question"
+                                class="form-control"
+                                id="inputAdditional3"
+                                placeholder="Чим можемо бути вам корисні?"
+                                rows="3"
+                                required
+                                ></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Надіслати</button>
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'questioner', 'btn-success': forms.$success == 'questioner'}"
+                                ng-click="sendForm('questioner')"
+                                ng-disabled="forms.$sending == 'questioner' || questionerForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'questioner'"></i>
+                        </button>
                     </div>
                 </div>
             </form>

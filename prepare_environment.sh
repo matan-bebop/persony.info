@@ -2,8 +2,8 @@
 # To run this scirpt properly set VAGRANT_DIR environment variable first. (c)webknjaz
 
 
-CSS_COMPILED=/tmp/personcss/compiled
-SASS_CASHE=/tmp/sass-cashe
+CSS_COMPILED=/home/vagrant/personcss/compiled
+SASS_CASHE=/home/vagrant/sass-cashe
 STYLES_DIR="${VAGRANT_DIR:-/vagrant}/app/styles/"
 
 mkdir -p "$CSS_COMPILED" 2>/dev/null && echo "Directory '$CSS_COMPILED' for css files was created. "

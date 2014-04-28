@@ -4,26 +4,76 @@
     angular.module('personyApp').controller(
         'controllers.personDetails',
         [
-            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window',
-            function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window) {
+            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window', '$anchorScroll',
+            function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window, $anchorScroll) {
+
+                var match = $location.hash().match(/(event)([0-9]+)/),
+                    eventId = match ? match[2] : null;
+            	
+            	$scope.contentLoaded = false;
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
+                $scope.expandedEventId = eventId;
+
+                var personCallback = function(person) {
+                    if (!person){
+                        $location.path('/error');
+                    }
+                    Page.setTitle('Персони | ' + $scope.person.name);
+
+                    $scope.dropdownPersonTools = [
+                        {
+                            "text": "<i class=\"fa fa-pencil-square-o\"></i> &nbsp;Додати у кабінет",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<i class=\"fa fa-users\"></i> &nbsp;Додати до порівняння",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<span class=\"pop-primary\"><i class=\"fa fa-pencil\"></i> &nbsp;Редагувати</span>",
+                            "click": "addEditPerson(person)"
+                        },
+                        {
+                            "text": "<i class=\"fa fa-user\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати персону",
+                            "click": "addEditPerson()"
+                        },
+                        {
+                            "text": "<span class=\"pop-warning\"><i class=\"fa fa-star\"></i> &nbsp; Я " + $scope.person.name + "</span>",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<span class=\"pop-danger\"><i class=\"fa fa-minus-circle\"></i> &nbsp;Поскаржитись</span>",
+                            "click": "alert('')"
+                        },
+                        {
+                            "text": "<i class=\"fa fa-bell\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати подію",
+                            "click": "addEditEvent()"
+                        }
+                    ];
+                }
+
                 $scope.person = Person.get(
                     {id: $routeParams.id},
-                    function (person) {
-                        if (!person){
-                            $location.path('/error');
-                        }
-                        Page.setTitle('Персони | ' + $scope.person.name);
-                    },
+                    personCallback,
                     function () {
                         $location.path('/error');
                     }
 
                 );
+
                 $scope.HOST_URL = "http://" + location.host;
                 $scope.zoomSlider = 0;
+
+                $scope.expandEvent = function (id) {
+                    $scope.expandedEventId = id;
+                };
+
+                $scope.scrollToEvent = function (id) {
+                    $location.hash('event'+id);
+                    $anchorScroll();
+                };
 
                 $scope.addEditEvent = function (event) {
 
@@ -44,7 +94,7 @@
                     var init = {};
                     if (person){
                         init = {};
-                    };
+                    }
 
                     var modalInstance = $modal.open({
                         templateUrl: 'partials/personAddEdit',
@@ -72,10 +122,27 @@
                         }
                     };
 
+					var monthMaxDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
                     angular.forEach(events, function (event) {
                         var date = new Date(event.start),
                             year = date.getFullYear(),
-                            month = date.getMonth();
+                            month = date.getMonth(),
+                            endDate = new Date(event.end),
+                            endYear = endDate.getFullYear(),
+                            endMonth = endDate.getMonth(),
+                            day = endDate.getDate() - date.getDate();
+
+                        if  (day === monthMaxDays[month] - 1) {
+                        	event.day = '.';                        	
+                        }
+                        else {
+                        	event.day = date.getDate();
+                        }
+                            
+						if (endMonth - month === 11) {
+							month = -1;
+						}
 
                         if (!data[year]) {
                             data.orders.years.push(year);
@@ -87,11 +154,13 @@
                             data.orders.months[year].push(month);
                             data[year][month] = [];
                         }
-
+                        
                         data[year][month].push(event);
                     });
 
                     $scope.eventYears = data;
+                    $scope.contentLoaded = true;
+                    $scope.scrollToEvent($scope.expandedEventId);
                 });
 
                 $scope.translate = function (value) {
@@ -116,37 +185,6 @@
                             return 'Дні';
                     }
                 };
-
-                $scope.dropdownPersonTools = [
-                    {
-                        "text": "<i class=\"fa fa-pencil-square-o\"></i> &nbsp;Додати у кабінет",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<i class=\"fa fa-users\"></i> &nbsp;Додати до порівняння",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<span class=\"pop-primary\"><i class=\"fa fa-pencil\"></i> &nbsp;Редагувати</span>",
-                        "click": "addEditPerson(person)"
-                    },
-                    {
-                        "text": "<i class=\"fa fa-user\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати персону",
-                        "click": "addEditPerson()"
-                    },
-                    {
-                        "text": "<span class=\"pop-warning\"><i class=\"fa fa-star\"></i> &nbsp; Я " + $scope.person.name + "</span>",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<span class=\"pop-danger\"><i class=\"fa fa-minus-circle\"></i> &nbsp;Поскаржитись</span>",
-                        "click": "alert('')"
-                    },
-                    {
-                        "text": "<i class=\"fa fa-bell\"></i>&nbsp;<i class=\"fa fa-plus\"></i> &nbsp;Додати подію",
-                        "click": "addEditEvent()"
-                    }
-                ];
 
                 $scope.dropdownEventFilters = [
                     {
