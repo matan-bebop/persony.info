@@ -10,7 +10,7 @@
         ];
         return function (input) {
         	if (input == -1) {
-				return '.';
+				return '&nbsp';
 			}
 			
             if (input.toString().length > 2) {
