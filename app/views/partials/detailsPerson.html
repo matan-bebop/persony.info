@@ -137,7 +137,7 @@
                     <a ng-href="/persons/{{person.id}}#year{{year}}" class="helper-year-link">{{year}}</a>
                     <ul>
                         <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}month{{month}}" ng-repeat="month in eventYears.orders.months[year]" class="helper-month">
-                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link" ng-bind-html="month | monthName"></a>
+                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link" ng-bind-html="month | monthName" ng-if="month != -1"></a>
                         </li>
                     </ul>
                 </li>
@@ -183,7 +183,6 @@
                                         	<span ng-if="event.displayDate">{{event.start | date:"d MMMM"}}</span>
                                             <span>&nbsp;</span>
                                         </div>
-
                                         <div class="event-tools">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventTools" data-html="true">
