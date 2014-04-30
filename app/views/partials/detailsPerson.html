@@ -1,3 +1,4 @@
+
 <script type="text/ng-template" id="photoModal.html">
     <div class="modal">
         <div class="modal-dialog">
@@ -56,7 +57,6 @@
 
 <div class="person-header-die"></div>
 <div class="container" person-details>
-
     <div class="page-header">
 
         <div class="timeline-zoom">
@@ -134,10 +134,10 @@
         <div class="panel-body" role="complementary" bs-scrollspy-list>
             <ul>
                 <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}" ng-repeat="year in eventYears.orders.years" class="helper-year">
-                    <a href="#year{{year}}" class="helper-year-link">{{year}}</a>
+                    <a ng-href="/persons/{{person.id}}#year{{year}}" class="helper-year-link">{{year}}</a>
                     <ul>
                         <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}month{{month}}" ng-repeat="month in eventYears.orders.months[year]" class="helper-month">
-                            <a href="#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
+                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link" ng-bind-html="month | monthName" ng-if="month != -1"></a>
                         </li>
                     </ul>
                 </li>
@@ -145,30 +145,44 @@
         </div>
     </div>
 
-    <div class="person-bio">
+	<div class="container loading" ng-hide="contentLoaded">
+	   	<i class="fa fa-spinner fa-spin fa-5x"></i>
+	</div>
+
+    <div class="person-bio" ng-show="contentLoaded">
+    	<script>
+    		function labelClicked(e) {
+    			var event = e || window.event;
+    			var checkbox = $('input#' + $(event.target).attr('for'));
+    			if (checkbox.prop('checked') && event.preventDefault) {
+    				event.preventDefault();	
+    				checkbox.prop('checked', null);
+    			}
+    		}
+    	</script>
         <ul id='timeline'>
-            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}">
+            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}" on-last-repeat>
                 <div class="event-year">{{year}}</div>
                 <ul class="event-monthes-list">
                     <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
-                        <div class="event-month">{{month | monthName}}</div>
+                        <div class="event-month" ng-bind-html="month | monthName"></div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
-                                <input class='radio' id='event{{event.id}}' name='events' type='radio'>
-                                <a id="#event_{{event.id}}"></a>
+                                <input class='radio' id='#event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == event.id">
+                                <a id="event{{event.id}}"></a>
                                 <div class="relative">
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
-                                    <label for='event{{event.id}}'>{{event.title}}</label>
+                                    <label for='#event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
 
-                                    <div class="event-date">{{event.start | date:"d"}}</div>
+                                    <div class="event-date" ng-bind-html="event.day"></div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
                                 </div>
                                 <div class='content'>
                                     <div class="event-header">
                                         <div class="event-detail-date">
-                                            {{event.start | date:"d MMMM"}}
+                                        	<span ng-if="event.displayDate">{{event.start | date:"d MMMM"}}</span>
+                                            <span>&nbsp;</span>
                                         </div>
-
                                         <div class="event-tools">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventTools" data-html="true">
@@ -201,38 +215,12 @@
                                                     ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                                             </p>
 
-                                            <p class="social">
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_facebook_hcount' displayText='Facebook'></span>
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_twitter_hcount' displayText='Tweet'></span>
-
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_linkedin_hcount' displayText='LinkedIn'></span>
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_vkontakte_hcount' displayText='Vkontakte'></span>
-
-                                                <span st_url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}"
-                                                      st_title="{{event.title}}"
-                                                      st_image="{{event.getImageSrc()}}"
-                                                      st_summary="{{event.description}}"
-                                                      class='st_googleplus_hcount' displayText='Google +'></span>
-                                            </p>
+                                            <div class="share" id="share_{{event.id}}" data-url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}" data-title="{{event.title}}">
+                                                <div class="facebook" title="Поділитись у Фейсбуці">Facebook</div>
+                                                <div class="twitter" title="Твітнути">Twitter</div>
+                                                <div class="vkontakte" title="Поділитись у Вконтакті">Vkontakte</div>
+                                                <div class="plusone" title="Поділитись у Гугл">Google+</div>
+                                            </div>
 
                                             <div class="clearfix"></div>
                                         </div>
@@ -240,11 +228,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <script>
-                            $(".social").find(">span").each(function(){stWidget.addEntry({"element" :this})})
-                        </script>
                     </li>
-
                 </ul>
                 <div class="clearfix"></div>
             </li>

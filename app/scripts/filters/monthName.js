@@ -9,10 +9,14 @@
             'Жовтень', 'Листопад', 'Грудень'
         ];
         return function (input) {
+        	if (input == -1) {
+				return '&nbsp';
+			}
+			
             if (input.toString().length > 2) {
                 input = (new Date(input)).getMonth();
             }
-
+            
             return monthNames[parseInt(input, 10)];
         };
     });

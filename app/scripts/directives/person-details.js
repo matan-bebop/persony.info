@@ -22,4 +22,18 @@
             };
         }
     ]);
+
+    angular.module('personyApp').directive('onLastRepeat', [
+        '$window',
+        function ($window) {
+            return function (scope, element, attrs) {
+                if (scope.$last) {
+                    setTimeout(function(){
+                        $("div.share").socialLikes();
+                    }, 1);
+                }
+            };
+        }
+    ]);
+
 }());

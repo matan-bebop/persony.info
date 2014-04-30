@@ -28,6 +28,7 @@
     z-index: 100;
     cursor: pointer;
     top: 13px;
+   padding-right:100px;
     color: $timelineLink;
 
     @include easings;
@@ -89,15 +90,17 @@
 
     .info-wrap{
       padding-left: 3px;
+      word-break: break-all;
     }
 
     .info-wrap-img{
       position: relative;
-      max-width: 25%;
-      min-width: 25%;
-      display: block;
-      float: right;
+      max-width: 40%;
+      min-width: 40%;
+      display: inline-block;
+      float: left;
       text-align: right;
+      margin-right:15px;
     }
 
     .info-wrap-img img{
@@ -232,6 +235,14 @@
   .event-year{
     left: -250px;
   }
+  .info-wrap,.info-wrap-img,.info-wrap-img img{
+    display:block !important;
+  }
+  .info-wrap-img{
+    float:none !important;
+    max-width: 95% !important;
+    min-width: 95% !important;
+  }
 }
 
 //For mobile
@@ -258,8 +269,20 @@
     left: -170px;
     font-size: 16px;
   }
+  .info-wrap,.info-wrap-img,.info-wrap-img img{
+    display:block !important;
+  }
+  .info-wrap-img{
+  float:none !important;
+    max-width: 95% !important;
+    min-width: 95% !important;
+  }
 }
-
+@media screen and (max-width: 640px) {
+  #timeline label{
+    padding-right:0px;
+  }
+}
 
 //Wiki font
 .fa-wiki{

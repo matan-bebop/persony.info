@@ -29,7 +29,24 @@ var settings = {
         user:     "root",
         password: "mysql"
     },
-    security_key: "GcDesWWD5cHcuN1TYJwv,dWW+IE7LNgS0UTRD4EAlSdo=="
+    security_key: "GcDesWWD5cHcuN1TYJwv,dWW+IE7LNgS0UTRD4EAlSdo==",
+    mail:         {
+        contacts: {
+            support:    'hurtom@persony.info',
+            developer:  'hurtom@persony.info',
+            author:     'hurtom@persony.info',
+            cooperator: 'hurtom@persony.info',
+            questioner: 'hurtom@persony.info'
+        },
+
+        transport: {
+            service: "Zoho",
+            auth:    {
+                user: "hurtom@persony.info",
+                pass: ",552fudupy"
+            }
+        }
+    }
 };
 
 var localConfigFile = __dirname + '/settings.local.js';

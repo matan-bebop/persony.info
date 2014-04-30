@@ -7,12 +7,13 @@
     "async": "~0.6.2",
     "ejs": "~0.8.4",
     "passport": "~0.2.0",
-    "lodash" : "~2.4.1",
-    "mysql" : "~2.1.0",
-    "sequelize" : "~1.7.0",
-    "node.extend" : "~1.0.9",
+    "lodash": "~2.4.1",
+    "mysql": "~2.1.0",
+    "sequelize": "~1.7.0",
+    "node.extend": "~1.0.9",
     "node-compass": "~0.2.3",
-    "connect-livereload": "~0.3.2"
+    "connect-livereload": "~0.3.2",
+    "nodemailer": "^0.6.3"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
@@ -55,8 +56,8 @@
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "node-compass": "~0.2.3",
     "Faker": "~0.6.2",
-    "request" : "~2.34.0",
-    "walk" : "~2.3.1"
+    "request": "~2.34.0",
+    "walk": "~2.3.1"
   },
   "engines": {
     "node": ">=0.10.26"

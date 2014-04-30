@@ -1,4 +1,16 @@
 .about{
+  h4{
+    padding-top:15px;
+    color: $h4color;
+    font-weight:  300 !important;
+  }
+   p{
+    text-indent: 1.5em;
+  }
+  p:first-letter{
+    font-weight:  600 !important;
+    font-size: 15px;
+  }
   .about-icon {
     display: inline-block;
     line-height: 45px;

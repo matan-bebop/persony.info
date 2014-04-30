@@ -6,5 +6,5 @@ images_dir = 'images'
 javascripts_dir = 'scripts'
 relative_assets = true
 line_comments = true
-cache_dir = '../../tmp/sass-cache'
+cache_dir = '../../home/vagrant/sass-cache'
 output_style = :compressed
