@@ -129,15 +129,16 @@
                             year = date.getFullYear(),
                             month = date.getMonth(),
                             endDate = new Date(event.end),
-                            endYear = endDate.getFullYear(),
                             endMonth = endDate.getMonth(),
                             day = endDate.getDate() - date.getDate();
 
                         if  (day === monthMaxDays[month] - 1) {
-                        	event.day = '.';                        	
+                        	event.day = '&nbsp;';
+                        	event.displayDate = false;                        	
                         }
                         else {
-                        	event.day = date.getDate();
+                        	event.day = '<span>' + date.getDate() + '</span>';
+                        	event.displayDate = true;
                         }
                             
 						if (endMonth - month === 11) {

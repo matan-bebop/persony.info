@@ -137,7 +137,7 @@
                     <a ng-href="/persons/{{person.id}}#year{{year}}" class="helper-year-link">{{year}}</a>
                     <ul>
                         <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}month{{month}}" ng-repeat="month in eventYears.orders.months[year]" class="helper-month">
-                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link">{{month | monthName}}</a>
+                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link" ng-bind-html="month | monthName" ng-if="month != -1"></a>
                         </li>
                     </ul>
                 </li>
@@ -165,7 +165,7 @@
                 <div class="event-year">{{year}}</div>
                 <ul class="event-monthes-list">
                     <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
-                        <div class="event-month">{{month | monthName}}</div>
+                        <div class="event-month" ng-bind-html="month | monthName"></div>
                         <ul class="events-list">
                             <li ng-repeat="event in eventYears[year][month]">
                                 <input class='radio' id='#event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == event.id">
@@ -174,15 +174,15 @@
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
                                     <label for='#event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
 
-                                    <div class="event-date">{{event.day}}</div>
+                                    <div class="event-date" ng-bind-html="event.day"></div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
                                 </div>
                                 <div class='content'>
                                     <div class="event-header">
                                         <div class="event-detail-date">
-                                            {{event.start | date:"d MMMM"}}
+                                        	<span ng-if="event.displayDate">{{event.start | date:"d MMMM"}}</span>
+                                            <span>&nbsp;</span>
                                         </div>
-
                                         <div class="event-tools">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventTools" data-html="true">
