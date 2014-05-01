@@ -71,8 +71,9 @@
                 };
                 
                 $scope.eventLabelClick = function(id, e) {
-                	if (!document.getElementById('#event0').checked) {
-                		document.getElementById('#event0').checked = true;
+                	var nullEvent = document.getElementById('#event0');
+                	if (!nullEvent.checked) {
+                		nullEvent.checked = true;
                 		e.stopPropagation();
       					e.preventDefault();
                 	}

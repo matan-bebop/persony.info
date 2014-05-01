@@ -170,8 +170,9 @@
                                 <div class='content'>
                                     <div class="event-header">
                                         <div class="event-detail-date">
-                                        	<span ng-if="event.displayDate">{{event.start | date:"d MMMM"}}</span>
-                                            <span>&nbsp;</span>
+                                        	<span ng-if="event.displayDate"><span ng-bind-html="event.day"></span>&nbsp;{{event.start | date:"MMMM"}}</span>
+                                        	<span ng-if="!event.displayDate && month > -1" ng-bind-html="month | monthName"></span>
+                                            <span>{{year}}</span>
                                         </div>
                                         <div class="event-tools">
                                             <div class="dropdown">
