@@ -72,10 +72,13 @@
                 
                 $scope.eventLabelClick = function(id, e) {
                 	var nullEvent = document.getElementById('#event0');
+                	var targetEvent = document.getElementById('#event' + id);
                 	if (!nullEvent.checked) {
+                		if (targetEvent.checked) {
+	                		e.stopPropagation();
+	      					e.preventDefault();
+      					}
                 		nullEvent.checked = true;
-                		e.stopPropagation();
-      					e.preventDefault();
                 	}
                 }
 
