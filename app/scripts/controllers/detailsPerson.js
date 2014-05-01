@@ -69,6 +69,14 @@
                 $scope.expandEvent = function (id) {
                     $scope.expandedEventId = id;
                 };
+                
+                $scope.eventLabelClick = function(id, e) {
+                	if (!document.getElementById('#event0').checked) {
+                		document.getElementById('#event0').checked = true;
+                		e.stopPropagation();
+      					e.preventDefault();
+                	}
+                }
 
                 $scope.scrollToEvent = function (id) {
                     $location.hash('event'+id);
