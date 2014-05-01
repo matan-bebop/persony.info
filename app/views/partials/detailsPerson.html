@@ -150,17 +150,8 @@
 	</div>
 
     <div class="person-bio" ng-show="contentLoaded">
-    	<script>
-    		function labelClicked(e) {
-    			var event = e || window.event;
-    			var checkbox = $('input#' + $(event.target).attr('for'));
-    			if (checkbox.prop('checked') && event.preventDefault) {
-    				event.preventDefault();	
-    				checkbox.prop('checked', null);
-    			}
-    		}
-    	</script>
         <ul id='timeline'>
+        	<input class='radio' id='#event0' name='events' type='radio' ng-checked="expandedEventId == event.id">
             <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}" on-last-repeat>
                 <div class="event-year">{{year}}</div>
                 <ul class="event-monthes-list">
@@ -172,8 +163,7 @@
                                 <a id="event{{event.id}}"></a>
                                 <div class="relative">
                                     <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
-                                    <label for='#event{{event.id}}' onClick='labelClicked();'>{{event.title}}</label>
-
+                                    <label for='#event{{event.id}}' ng-click='eventLabelClick(event.id, $event)'>{{event.title}}</label>
                                     <div class="event-date" ng-bind-html="event.day"></div>
                                     <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
                                 </div>
