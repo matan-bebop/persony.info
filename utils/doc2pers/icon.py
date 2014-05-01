@@ -21,7 +21,7 @@ class Icon:
         
 
 icons = [Icon("відео",
-              "(youtube|rutube|dailymotion|vimeo|video.bigmir)",
+              "(youtube|youtu.be|rutube|dailymotion|vimeo|video.bigmir)",
               "video-camera"),
          Icon("інтерв’ю",              None,                     "microphone"),
          Icon("вікіпеді",              "wikipedia",              "wiki"),
