@@ -64,8 +64,6 @@
       background: $timelineEventBgColour;
       margin-right: 20px;
 
-      @include easings(1.3s);
-
       .detail-info, .event-header{
         display: block;
       }
@@ -81,6 +79,8 @@
     border-width: 2px;
     border-style: solid;
     position: relative;
+
+    @include easings(1.3s);
 
     .detail-info, .event-header{
       display: none;
