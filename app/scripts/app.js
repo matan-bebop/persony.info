@@ -2,17 +2,19 @@
     'use strict';
 
     angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize', 'rzModule',
-        'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip', 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy', 'mgcrea.ngStrap.helpers.dimensions' ])
+        'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip', 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy', 'mgcrea.ngStrap.helpers.dimensions', 'ui.bootstrap.datetimepicker', 'ui.select2' ])
         .config(function ($routeProvider, $locationProvider) {
 
             $routeProvider
                 .when('/', {
                     templateUrl: 'partials/main',
                     controller: 'controllers.main'
-                }).when('/persons', {
+                })
+                .when('/persons', {
                     templateUrl: 'partials/persons',
                     controller: 'controllers.persons'
-                }).when('/persons/:id', {
+                })
+                .when('/persons/:id', {
                     templateUrl: 'partials/detailsPerson',
                     controller: 'controllers.personDetails',
                     reloadOnSearch: false

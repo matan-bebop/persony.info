@@ -11,6 +11,7 @@
                     eventId = match ? match[2] : null;
             	
             	$scope.contentLoaded = false;
+            	$scope.imageAdded = false;
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
@@ -80,16 +81,118 @@
       					}
                 		nullEvent.checked = true;
                 	}
-                }
+                };
 
                 $scope.scrollToEvent = function (id) {
                     $location.hash('event'+id);
                     $anchorScroll();
                 };
+                
+                $scope.forms = {
+	                $sending:   null,
+	                $success:   null,
+	                $error:     null,
+	                personEdit:  {
+	                    name:       "",
+	                    email:      "",
+	                    skills:     {nodejs: false, angularjs: false, android: false, ios: false},
+	                    additional: ""
+	                }
+             	};
+             	
+             	$scope.sendForm = function (formName) {
+	                $scope.forms.$sending = formName;
+	                $scope.forms.$error = null;
+	
+	                var result = function (res) {
+	                    $scope.forms.$sending = null;
+	                    $scope.forms[res] = formName;
+	                    $timeout(function () {
+	                        $scope.forms.$success = null;
+	                        $scope.forms.$error = null;
+	                    }, 3000);
+	                };
+	                Contact(formName, $scope.forms[formName]).
+	                    success(function () {
+	                        result('$success');
+	                    }).
+	                    error(function () {
+	                        result('$error');
+	                    });
+             	};
+             	
+             	$scope.updateImage = function(evt) {
+                	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
+                	var reader = new FileReader();
+                	var jcrop_api, boundx, boundy, xratio, yratio;
+                	reader.onload = (function(theFile) {
+						return function(e) {
+							$scope.imageAdded = true;
+							var image = new Image();
+							image.src = e.target.result;
+							image.onload = function() {
+								var canvas = document.createElement('canvas');
+								canvas.width = image.naturalWidth;
+								canvas.height = image.naturalHeight;
+								var ctx = canvas.getContext('2d');
+								ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+						
+								$('#image_input').attr('src', canvas.toDataURL());
+						
+								var img = $('#image_input')[0];
+								var canvas = document.createElement('canvas');
+								canvas.width = canvas.height = 180;
+								xratio = image.naturalWidth / $('#image_input').width();
+								yratio = image.naturalHeight / $('#image_input').height();
+						
+								/*$('#image_input').Jcrop({
+									bgColor: 'black',
+									bgOpacity: .6,
+									setSelect: [0, 0, 100, 100],
+									aspectRatio: 1,
+									onSelect: imgSelect,
+									onChange: imgSelect
+								});*/
+								
+								if (typeof jcrop_api != 'undefined') {
+					                jcrop_api.destroy();
+					                jcrop_api = null;
+					            }
+
+								
+								$('#image_input').Jcrop({
+				                    minSize: [32, 32],
+				                    aspectRatio : 1,
+				                    bgFade: true,
+				                    bgOpacity: .3,
+				                    onSelect: imgSelect,
+									onChange: imgSelect
+				                }, function(){
+				 
+				                    // use the Jcrop API to get the real image size
+				                    var bounds = this.getBounds();
+				                    boundx = bounds[0];
+				                    boundy = bounds[1];
+	
+				                    // Store the Jcrop API in the jcrop_api variable
+				                    jcrop_api = this;
+				                });
+						
+								function imgSelect(selection) {						
+									var ctx = canvas.getContext('2d');
+									ctx.drawImage(img, selection.x * xratio, selection.y * yratio, selection.w * xratio, selection.h * yratio, 0, 0, canvas.width, canvas.height);
+								
+									$('#image_output').attr('src', canvas.toDataURL());
+								}
+							}
+						}
+					})(file);
+					reader.readAsDataURL(file);
+                }
 
                 $scope.addEditEvent = function (event) {
 
-                    var init = {};
+                    /*var init = {};
                     if (event){
                         init = {};
                     };
@@ -98,12 +201,21 @@
                         templateUrl: 'partials/eventAddEdit',
                         controller: 'controllers.eventAddEdit',
                         resolve: init
+                    });*/
+                   
+                   var editEventModal = $modal({
+                        "title": "Редагування події",
+                        "animation": "am-fade-and-slide-top",
+                        "placement": "center",
+                        "template": "eventEdit.html",
+                        scope: $scope,
+                        show: true
                     });
                 }
 
                 $scope.addEditPerson = function (person) {
 
-                    var init = {};
+                    /*var init = {};
                     if (person){
                         init = {};
                     }
@@ -112,6 +224,13 @@
                         templateUrl: 'partials/personAddEdit',
                         controller: 'controllers.personAddEdit',
                         resolve: init
+                    });*/
+                   var editPersonModal = $modal({
+                        "title": "Редагування персони",
+                        "animation": "am-fade-and-slide-top",
+                        "placement": "center",
+                        "template": "personEdit.html",
+                        show: true
                     });
                 }
 

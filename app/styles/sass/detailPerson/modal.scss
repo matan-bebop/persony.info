@@ -39,6 +39,16 @@
     width: 90%;
     @include easings;
   }
+  .radio label{
+    display: block;
+    text-align: left;
+  }
+  .date-time-input{
+    width: 80%;
+  }
+  #image_output{
+    width: 180px;
+  }
 }
 
 .modal-body, .modal-header{
