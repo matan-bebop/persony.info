@@ -217,13 +217,15 @@
 		                <div class="form-group">
 		                    <label for="inputImage" class="col-sm-4 control-label">Зображення</label>
 		                    <div class="col-sm-8">
-		                    	<p ng-if="forms.editEvent.image">
+		                    	<!-- angular.element(this).scope().$parent.updateImage(event) -->
+		                        <input type="file" ng-model="forms.editEvent.image" class="form-control ng-pristine ng-valid" id="inputImage" name="file1" class="input-file" ng-change="modals.updateImage(event)">
+		                        <p ng-show="modals.imageAdded === true">
 			                    	<h5>Вихідне зображення</h5>
-									<img id="image_input"/>
+									<div id="image_input"></div>
 									<h5>Результат</h5>
 									<img id="image_output" style="border:1px solid #000"/>
+									{{modals.imageAdded}}
 								</p>
-		                        <input type="file" ng-model="forms.editEvent.image" class="form-control ng-pristine ng-valid" id="inputImage" name="file1" class="input-file" onchange="angular.element(this).scope().$parent.updateImage(event)">
 		                    </div>
 		                </div>
 		                <div class="form-group">
