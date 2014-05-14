@@ -1,5 +1,14 @@
 .about{
-  h4{
+  .about_progect{
+    min-height:295px;
+    display: block;
+  }
+  .img_about_progect{
+    float:right;
+    margin:10px;
+    max-width:50%;
+  }
+  h4,h5{
     padding-top:15px;
     color: $h4color;
     font-weight:  300 !important;
