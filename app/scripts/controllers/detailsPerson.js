@@ -11,7 +11,55 @@
                     eventId = match ? match[2] : null;
             	
             	$scope.contentLoaded = false;
-            	$scope.imageAdded = false;
+            	$scope.modals = { 
+            		imageAdded: false,
+            		updateImage: function(evt) {
+            			console.log('updateImage launched');
+	                	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
+	                	imageAdded = true;
+	                	var reader = new FileReader();
+	                	var jcrop_api, boundx, boundy, xratio, yratio;
+	                	reader.onload = (function(theFile) {
+							return function(e) {
+								var image = new Image();
+								image.src = e.target.result;
+								image.onload = function() {
+									var canvas = document.createElement('canvas');
+									canvas.width = image.naturalWidth;
+									canvas.height = image.naturalHeight;
+									var ctx = canvas.getContext('2d');
+									ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+									
+									$('#image_input').html('');
+									$('#image_input').html('<img src="' + canvas.toDataURL() + '"/>');
+							
+									var img = $('#image_input img')[0];
+									var canvas = document.createElement('canvas');
+									canvas.width = canvas.height = 180;
+									xratio = image.naturalWidth / $('#image_input img').width();
+									yratio = image.naturalHeight / $('#image_input img').height();
+							
+									$('#image_input img').Jcrop({
+										bgColor: 'black',
+										bgOpacity: .6,
+										setSelect: [0, 0, 100, 100],
+										aspectRatio: 1,
+										onSelect: imgSelect,
+										onChange: imgSelect
+									});
+							
+									function imgSelect(selection) {						
+										var ctx = canvas.getContext('2d');
+										ctx.drawImage(img, selection.x * xratio, selection.y * yratio, selection.w * xratio, selection.h * yratio, 0, 0, canvas.width, canvas.height);
+									
+										$('#image_output').attr('src', canvas.toDataURL());
+									}
+								}
+							}
+						})(file);
+						reader.readAsDataURL(file);
+	                }
+            	};
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
@@ -120,75 +168,6 @@
 	                        result('$error');
 	                    });
              	};
-             	
-             	$scope.updateImage = function(evt) {
-                	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
-                	var reader = new FileReader();
-                	var jcrop_api, boundx, boundy, xratio, yratio;
-                	reader.onload = (function(theFile) {
-						return function(e) {
-							$scope.imageAdded = true;
-							var image = new Image();
-							image.src = e.target.result;
-							image.onload = function() {
-								var canvas = document.createElement('canvas');
-								canvas.width = image.naturalWidth;
-								canvas.height = image.naturalHeight;
-								var ctx = canvas.getContext('2d');
-								ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-						
-								$('#image_input').attr('src', canvas.toDataURL());
-						
-								var img = $('#image_input')[0];
-								var canvas = document.createElement('canvas');
-								canvas.width = canvas.height = 180;
-								xratio = image.naturalWidth / $('#image_input').width();
-								yratio = image.naturalHeight / $('#image_input').height();
-						
-								/*$('#image_input').Jcrop({
-									bgColor: 'black',
-									bgOpacity: .6,
-									setSelect: [0, 0, 100, 100],
-									aspectRatio: 1,
-									onSelect: imgSelect,
-									onChange: imgSelect
-								});*/
-								
-								if (typeof jcrop_api != 'undefined') {
-					                jcrop_api.destroy();
-					                jcrop_api = null;
-					            }
-
-								
-								$('#image_input').Jcrop({
-				                    minSize: [32, 32],
-				                    aspectRatio : 1,
-				                    bgFade: true,
-				                    bgOpacity: .3,
-				                    onSelect: imgSelect,
-									onChange: imgSelect
-				                }, function(){
-				 
-				                    // use the Jcrop API to get the real image size
-				                    var bounds = this.getBounds();
-				                    boundx = bounds[0];
-				                    boundy = bounds[1];
-	
-				                    // Store the Jcrop API in the jcrop_api variable
-				                    jcrop_api = this;
-				                });
-						
-								function imgSelect(selection) {						
-									var ctx = canvas.getContext('2d');
-									ctx.drawImage(img, selection.x * xratio, selection.y * yratio, selection.w * xratio, selection.h * yratio, 0, 0, canvas.width, canvas.height);
-								
-									$('#image_output').attr('src', canvas.toDataURL());
-								}
-							}
-						}
-					})(file);
-					reader.readAsDataURL(file);
-                }
 
                 $scope.addEditEvent = function (event) {
 
