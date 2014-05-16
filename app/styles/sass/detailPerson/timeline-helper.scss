@@ -86,9 +86,9 @@ a.timeline-anchor{
 @media screen and (max-width: 992px) {
   .timeline-helper{
     top: $personHeaderSmallDisplayHeight + $navbarHeight + 10px;
-    right: calc((100% - 750px) / 2);
-    right: -moz-calc((100% - 750px) / 2);
-    right: -webkit-calc((100% - 750px) / 2);
+    right: calc((100% - 850px) / 2);
+    right: -moz-calc((100% - 850px) / 2);
+    right: -webkit-calc((100% - 850px) / 2);
 
     .helper-year {
       margin-left: -12px;
@@ -100,6 +100,19 @@ a.timeline-anchor{
   }
 }
 
+@media screen and (max-width: 881px){
+  .timeline-helper{
+    top: $personHeaderSmallDisplayHeight + $navbarHeight + 10px;
+    right: calc((100% - 750px) / 2);
+    right: -moz-calc((100% - 750px) / 2);
+    right: -webkit-calc((100% - 750px) / 2);
+
+    .helper-year {
+      margin-left: -12px;
+    }
+  }
+
+}
 //For mobile
 @media screen and (max-width: 768px) {
   .timeline-helper{
