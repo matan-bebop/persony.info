@@ -371,13 +371,13 @@
                             <li ng-repeat="event in eventYears[year][month]">
                                 <input class='radio' id='#event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == event.id">
                                 <a id="event{{event.id}}"></a>
-                                <div class="relative">
-                                    <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
-                                    <label for='#event{{event.id}}' ng-click='eventLabelClick(event.id, $event)'>{{event.title}}</label>
-                                    <div class="event-date" ng-bind-html="event.day"></div>
-                                    <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
-                                </div>
                                 <div class='content'>
+                                	<div class="relative">
+	                                    <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
+	                                    <label for='#event{{event.id}}' ng-click='eventLabelClick(event.id, $event)'>{{event.title}}</label>
+	                                    <div class="event-date" ng-bind-html="event.day"></div>
+	                                    <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
+	                                </div>
                                     <div class="event-header">
                                         <div class="event-detail-date">
                                         	<span ng-if="event.displayDate"><span ng-bind-html="event.day"></span>&nbsp;{{event.start | date:"MMMM"}}</span>
