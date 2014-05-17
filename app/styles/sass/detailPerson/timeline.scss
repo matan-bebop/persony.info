@@ -20,17 +20,28 @@
       margin: 0;
     }
   }
+  
+  > li {
+    margin: 0;
+  }
+  
+  .events-list li:first-of-type {
+    margin-top: 0;
+  }
+  
+  .events-list li:last-of-type {
+    min-height: 34px;
+    margin-bottom: 50px;
+  }
 
   label {
     font-size: 16px;
     font-weight: 400;
-    margin: -5px 20px 10px 20px;
-    padding:0px 100px 0px 0px !important;
+    margin: -5px 20px 10px 0px;
+    padding: 0px 100px 0px 0px !important;
     text-decoration: underline;
-    position: absolute;
     z-index: 100;
     cursor: pointer;
-   top: 13px;
     word-wrap:break-word;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
@@ -164,29 +175,29 @@
   line-height: 32px;
   font-weight: 600;
   position: absolute;
-  padding-bottom: 17px;
+  padding-bottom: 29px;
   border-bottom: 1px solid $timelineDedicatedAxisColour;
 
-  @include calc( top, '100% - 32px');
+  @include calc( top, '100% - 54px');
 }
 
 .event-month{
   margin: 10px;
-  left: -200px;
+  left: -210px;
   width: 80%;
   font-size: 24px;
   line-height: 24px;
   font-weight: 300;
   position: absolute;
-  padding-bottom: 20px;
+  padding-bottom: 32px;
   border-bottom: 1px dashed $timelineDedicatedAxisColour;
 
-  @include calc( top, '100% - 24px');
+  @include calc( top, '100% - 36px');
 }
 
 .event-date {
   top: 50%;
-  left: -80px;
+  left: -97px;
   font-size: 15px;
   line-height: 20px;
   position: absolute;
@@ -209,7 +220,7 @@
 .event-icon {
   margin-top: -10px;
   top: 50%;
-  left: -51px;
+  left: -58px;
   width: 40px;
   height: 40px;
   background: $timelineAxisColour;
