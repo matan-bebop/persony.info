@@ -1,8 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('personyApp', ['ngRoute', 'ngResource', 'ngSanitize', 'rzModule',
-        'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip', 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy', 'mgcrea.ngStrap.helpers.dimensions', 'ui.bootstrap.datetimepicker', 'ui.select2' ])
+    angular.module(
+            'personyApp',
+            [
+                'ngRoute', 'ngResource', 'ngSanitize', 'rzModule',
+                'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip',
+                'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy',
+                'mgcrea.ngStrap.helpers.dimensions',
+                'ui.bootstrap.datetimepicker', 'ui.select2', 'ngSocial'
+            ]
+        )
         .config(function ($routeProvider, $locationProvider) {
 
             $routeProvider

@@ -315,8 +315,23 @@
                     <div class="twitter" title="Твітнути">Twitter</div>
                     <div class="vkontakte" title="Поширити у Вконтакті">Вконтакте</div>
                     <div class="plusone" title="Поширити за допомогою Гугл">Google+</div>
-                </div-->
+                </div>
+                <div class="clearfix"></div-->
+                <!-- wk -->
+                <ul ng-social-buttons
+                     data-url="HOST_URL + '/persons/' + person.id"
+                     data-title="person.name"
+                     data-description="person.description"
+                     data-image="person.getPhotoSrc()">
+                    <!--li>Пошир серед друзів:</li-->
+                    <li class="ng-social-facebook">Facebook</li>
+                    <li class="ng-social-google-plus">Google+</li>
+                    <li class="ng-social-twitter">Twitter</li>
+                    <li class="ng-social-vk">Вконтактi</li>
+                </ul>
+
                 <div class="clearfix"></div>
+                <!-- /wk -->
 
                 <div class="person-info">{{person.info}}</div>
 
@@ -409,6 +424,22 @@
                                                 <span ng-repeat="source in event.sources">{{$index === 0 ? '' : ', '}}<a
                                                     ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                                             </p>
+
+                                            <!-- wk -->
+                                            <ul ng-social-buttons
+                                                 data-url="HOST_URL + '/persons/' + person.id + '#' + event.id"
+                                                 data-title="event.title"
+                                                 data-description="event.description"
+                                                 data-image="event.getImageSrc()">
+                                                <li>Поширити:</li>
+                                                <li class="ng-social-facebook">Facebook</li>
+                                                <li class="ng-social-google-plus">Google+</li>
+                                                <li class="ng-social-twitter">Twitter</li>
+                                                <li class="ng-social-vk">Вконтактi</li>
+                                            </ul>
+
+                                            <div class="clearfix"></div>
+                                            <!-- /wk -->
 
                                             <div class="share" id="share_{{event.id}}" data-url="{{HOST_URL}}/persons/{{person.id}}#{{event.id}}" data-title="{{event.title}}">
                                                 <div class="facebook" title="Поділитись у Фейсбуці">Facebook</div>
