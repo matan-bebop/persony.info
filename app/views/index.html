@@ -4,14 +4,14 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
 <!--[if gt IE 8]><!--> <html  class="no-js" ng-app="personyApp" ng-controller="PageCtrl"> <!--<![endif]-->
 <head lang="uk">
-  <title>Біографії кандидатів в президенти України. Докладні життєпиписи політичних персон України</title>
+  <title>{{Page.getTitle()}}</title>
 
   <base href="/">
   <meta name="url" content="http://persony.info/">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="title" content="<Біографії кандидатів в президенти України. Докладні життєпиписи політичних персон України" />
+  <meta name="title" content="{{Page.getTitle()}}" />
   <meta name="viewport" content="width=device-width"/>
   <meta name="language" content="uk"/>
   <meta http-equiv="Content-Language" content="uk"/>
@@ -24,15 +24,15 @@
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 
   <meta name="classification" content="Інформаційний ресурс"/>
-  <meta name="categories" content="Біографія політиків, життепис депутатів, иття можновладців, правда про політику"/>
-  <meta name="keywords" content="Біографія політиків, життепис депутатів, иття можновладців, правда про політику "/>
-  <meta http-equiv="keywords" content="Біографія політиків, життепис депутатів, иття можновладців, правда про політику "/>
-  <meta name="description" content="При владі мають бути люди, що відповідають за свої вчинки і слова. Давайте разом слідкувати за обранцями."/>
-  <meta http-equiv="description" content="При владі мають бути люди, що відповідають за свої вчинки і слова. Давайте разом слідкувати за обранцями."/>
+  <meta name="categories" content="Біографія політиків, життепис депутатів, життя можновладців, правда про політику"/>
+  <meta name="keywords" content="Біографія політиків, життепис депутатів, життя можновладців, правда про політику "/>
+  <meta http-equiv="keywords" content="{{Page.getKeywords()}}"/>
+  <meta name="description" content="{{Page.getDescription()}}"/>
+  <meta http-equiv="description" content="{{Page.getDescription()}}"/>
 
   <meta property="og:url" content="http://persony.info/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Боротьба за суверенність України. Ми Єдині" />
+  <meta property="og:title" content="{{Page.getTitle()}}" />
   <meta property="og:description" content="{{Page.getDescription()}}" />
   <meta property="og:image" content="{{Page.getImage()}}" />
 
@@ -237,10 +237,10 @@
             <div class="col-sm-4">
                 <div class="social">
 
-                    <div class="social-icon facebook"><a href="https://www.facebook.com/persony.persony"><i class="fa fa-facebook fa-2x"></i></a></div>
-                    <div class="social-icon twitter"><a href="https://twitter.com/PersonyProject"><i class="fa fa-twitter fa-2x"></i></a></div>
-                    <div class="social-icon gplus"><a href="https://plus.google.com/107673314003532823384/posts"><i class="fa fa-google-plus fa-2x"></i></a></div>
-                    <div class="social-icon vk"><a href="http://vk.com/persony_info"><i class="fa fa-vk fa-2x"></i></a></div>
+                    <div class="social-icon facebook"><a href="https://www.facebook.com/persony.persony" external-link><i class="fa fa-facebook fa-2x"></i></a></div>
+                    <div class="social-icon twitter"><a href="https://twitter.com/PersonyProject" external-link><i class="fa fa-twitter fa-2x"></i></a></div>
+                    <div class="social-icon gplus"><a href="https://plus.google.com/107673314003532823384/posts" external-link><i class="fa fa-google-plus fa-2x"></i></a></div>
+                    <div class="social-icon vk"><a href="http://vk.com/persony_info" external-link><i class="fa fa-vk fa-2x"></i></a></div>
 
                 </div>
             </div>

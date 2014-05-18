@@ -1,6 +1,8 @@
 <div class="container about">
 <div class="about_progect">
-<div class="img_about_progect"><img src="images/info_about.PNG"/></div>
+<div class="img_about_progect">
+    <img src="images/info_about.png"/>
+</div>
 <h4>Про проект: </h4>
         <p>«Персони» — це проект ініціативних українців, які хочуть аби життєписи відомих людей і організацій були відомі
         кожному. </p>
@@ -94,10 +96,10 @@
     <p>Із вашою допомогою ми зможемо збільшити штат модераторів, покращити обладнання, розширити функціонал
         нашого сервісу.
     </p>
-    <p>Про те, як ми використали ваші гроші, ми зобов’язуємся звітувати кожні три місяці.
+    <p ng-if="false">Про те, як ми використали ваші гроші, ми зобов’язуємся звітувати кожні три місяці.
     </p>
 
-    <div class="class_pay_list">
+    <div class="class_pay_list" ng-if="false">
         <ul class="pay-list pay-list1 center-block" >
             <li ng-repeat="payList in payLists" >
                 <button type="button" class="btn btn-default" ng-click="groupCollapse($index)"> <img ng-src="{{payList.image}}"></button>
@@ -112,7 +114,7 @@
     <h4>Наша команда: </h4>
     <div id="founders">
         <div class="container">
-            <div class="founders col-sm-4">
+            <div class="founders col-sm-6">
                 <div class="comment">
                     <p>Тоталітарна держава конролює всі сфери життя громадян, які тільки може.
                         Нам же необхідно зворотнє.
@@ -127,7 +129,7 @@
                     <a href="mailto:andriy@persony.info">andriy@persony.info</a>
                 </div>
             </div>
-            <div class="founders col-sm-4">
+            <div class="founders col-sm-6">
                 <div class="comment">
                     <p>Основою для Країни 2.0 мають стати ЧЕСТЬ, РОЗУМ І ПРАЦЯ. А ще окрім нас самих ніхто не вирішить наші проблеми. Тому САМІ мусимо дізнаватись з ким маємо справу!</p>
                     <span></span>
@@ -140,19 +142,6 @@
                     <a href="mailto:oleg@persony.info">oleg@persony.info</a>
                  </div>
             </div>
-            <div class="founders col-sm-4">
-                <div class="comment">
-                    <p>Отримуючи інформацію пам’ятайте її аналізувати. Лише критичне мислення дозволить вибудувати свідому точку зору.</p>
-                    <span></span>
-                </div>
-
-                <div class="author">
-                    <img src="images/yurko.jpg" />
-                    <b>Юрій</b>,
-                    <span>інженер</span>
-                    <a href="mailto:yurko@persony.info">yurko@persony.info</a>
-                </div>
-            </div>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -164,6 +153,14 @@
     <div class="row">
         <div class="about-item col-sm-6">
             <h3 class="about-heading">Девелопери-ентузіасти:</h3>
+            <div class="author_mini">
+                <img src="images/yurko.jpg" />
+                <p> <b>Юрій <br/> Федорів</b>
+                    <span>інженер, архітектор</span>
+                    <span><a href="mailto:yurko@persony.info">yurko@persony.info</a></span>
+                </p>
+
+            </div>
             <div class="author_mini">
                 <img src="images/developers/Serhiy_Baryshniev.png" />
                 <p> <b>Сергій <br/> Баришнєв</b>

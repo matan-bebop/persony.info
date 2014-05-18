@@ -16,7 +16,7 @@
             		updateImage: function(evt) {
             			console.log('updateImage launched');
 	                	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
-	                	imageAdded = true;
+	                	var imageAdded = true;
 	                	var reader = new FileReader();
 	                	var jcrop_api, boundx, boundy, xratio, yratio;
 	                	reader.onload = (function(theFile) {
@@ -69,7 +69,10 @@
                     if (!person){
                         $location.path('/error');
                     }
-                    Page.setTitle('Персони | ' + $scope.person.name);
+
+                    Page.setTitle('Персони — ' + $scope.person.name);
+                    Page.setDescription('Персона ' + $scope.person.name + '. ' + $scope.person.info);
+                    Page.setKeywords('персони, персони інфо, що зробив' + $scope.person.name + ', чим відомий' + $scope.person.name + ', вчинки' + $scope.person.name + ', біографія' + $scope.person.name);
 
                     $scope.dropdownPersonTools = [
                         {

@@ -269,7 +269,7 @@
 <div class="container" person-details>
     <div class="page-header">
 
-        <div class="timeline-zoom">
+        <div class="timeline-zoom" ng-if="false">
             <div class="zoom-tip">
                 Маштаб часу:
             </div>
@@ -325,13 +325,13 @@
         </div>
 
         <div class="pull-right">
-            <div class="person-tools">
+            <div class="person-tools" ng-if="false">
                 <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownPersonTools" data-html="true">
                     <i class="fa fa-cog fa-2x"></i>
                 </a>
             </div>
 
-            <div class="event-filter">
+            <div class="event-filter" ng-if="false">
                 <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventFilters" data-html="true">
                     <i class="fa fa-filter fa-lg"></i><span>Фільтрувати події</span>
                 </a>
@@ -384,7 +384,7 @@
                                         	<span ng-if="!event.displayDate && month > -1" ng-bind-html="month | monthName"></span>
                                             <span>{{year}}</span>
                                         </div>
-                                        <div class="event-tools">
+                                        <div class="event-tools" ng-if="false">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventTools" data-html="true">
                                                     <i class="fa fa-cog fa-2x"></i>
