@@ -22,7 +22,7 @@
 @mixin personBlock {
   text-align: center;
   padding: 10px;
-  border: 1px solid $mainBackgroundColour;
+  border: 1px solid $mainBackgroundColour1;
 
   @include easings;
 }
