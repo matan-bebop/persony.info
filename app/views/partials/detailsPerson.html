@@ -311,8 +311,12 @@
 
                 <div class="person-info">{{person.info}}</div>
 
-                <div ng-include="'partials/socialButtons.html'" ng-init="title=person.name; url = HOST_URL + '/persons/' + person.id; desc = person.description; img = person.getPhotoSrc()"></div>
+                <!--div ng-include="'partials/socialButtons.html'" ng-init="title=person.name; url = HOST_URL + '/persons/' + person.id; desc = person.description; img = person.getPhotoSrc()"></div-->
 
+            </div>
+
+            <div class="person-socials pull-left">
+                <div ng-include="'partials/socialButtons.html'" ng-init="title=person.name; url = HOST_URL + '/persons/' + person.id; desc = person.description; img = person.getPhotoSrc()"></div>
             </div>
 
         </div>
