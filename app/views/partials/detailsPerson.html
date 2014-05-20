@@ -407,7 +407,7 @@
                                                     ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
                                             </p>
 
-                                            <div ng-include="'partials/socialButtons.html'" ng-init="title=event.title; url=HOST_URL + '/persons/' + person.id + '#' + event.id; desc = event.description; img = event.getImageSrc(); pre = 'Поширити'"></div>
+                                            <div ng-include="'partials/socialButtons.html'" ng-init="title=event.title; url=HOST_URL + '/persons/' + person.id + '#event' + event.id; desc = event.description; img = event.getImageSrc(); pre = 'Поширити'"></div>
                                         </div>
                                     </div>
                                 </div>
