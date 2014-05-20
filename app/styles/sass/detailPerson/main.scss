@@ -13,7 +13,7 @@ $personHeaderSmallDisplayHeight: 80px;
 $personPageHeaderBigMarginTopBottom: 20px;
 $personPageHeaderSmallMarginTopBottom: 10px;
 
-$personHeaderDataDisplayWidth: 500px;
+$personHeaderDataDisplayWidth: 550px;
 $personHeaderDataTabletWidth: 380px;
 $personHeaderDataMobileWidth: 300px;
 $personHeaderDataMicroWidth: 230px;
@@ -88,7 +88,7 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
       position: relative;
       z-index: 103;
       font-size: 14px;
-      border-left: 2px solid $timelineAxisColour;
+       border-left: 2px solid $timelineAxisColour;
 
       @include easings;
     }
@@ -150,7 +150,7 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
 
       .person-data {
         margin-left: -$personPhotoSmallRadius;
-        padding: 15px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
+        padding: 5px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
         width: $personHeaderDataDisplayWidth - $personPhotoSmallRadius;
       }
 
@@ -187,8 +187,8 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
 
       .person-data {
         margin-left: -$personPhotoSmallRadius;
-        padding: 15px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
-        width: $personHeaderDataTabletWidth - $personPhotoSmallRadius;
+        padding: 0px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
+        width:410px; /*$personHeaderDataTabletWidth - $personPhotoSmallRadius*/;
       }
 
       .person-name{
@@ -217,6 +217,7 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
 
       .person-data {
         width: $personHeaderDataMobileWidth - $personPhotoSmallRadius;
+        padding: 0px 0 18px $personPhotoSmallRadius + $personHeaderTextLeftPadding;
       }
 
       .person-name{

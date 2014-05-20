@@ -1,0 +1,83 @@
+  .ng-social {
+    margin: 0;
+    line-height: 20px;
+    list-style: none;
+  }
+  .ng-social, .ng-social-_widget {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+    text-indent: 0;
+    padding: 0;
+    border: 0;
+    margin-top: 2px;
+    word-spacing: 0;
+    font-size: 12px;
+  }
+  .ng-social li {
+    display: inline-block;
+    margin: 0 2px 3px !important;
+  }
+  .ng-social-facebook .ng-social-button,.ng-social-google-plus .ng-social-button,.ng-social-twitter .ng-social-button,.ng-social-vk .ng-social-button {
+    padding-left: 19px;
+    background: #fff;
+   /* background-color: #4567ac;
+    background-image: -moz-linear-gradient(#4c70ba,#3b5998);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#4c70ba),to(#3b5998));
+    background-image: -webkit-linear-gradient(#4c70ba,#3b5998);
+    background-image: -o-linear-gradient(#4c70ba,#3b5998);
+    background-image: linear-gradient(to bottom,#4c70ba,#3b5998);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4c70ba',endColorstr='#ff3b5998',GradientType=0);*/
+    color: #000;
+    border-color: #ccc;
+    cursor: pointer;
+  }
+  .ng-social-button {
+    position: relative;
+    padding: 1px 10px 1px 20px;
+    font-weight: 300;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    transition: border .1s ease-in-out,color .2s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ng-social-button:hover{
+    color:#282828;
+    border-color: #8e8e8e;
+    background: #f7f7f7;
+
+  }
+  .ng-social-button, .ng-social-counter {
+    display: inline-block;
+    margin: 0;
+    line-height: 18px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    outline: 0;
+  }
+  .ng-social-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+  }
+  .ng-social-google-plus .ng-social-icon {
+    background-image: url(../../images/g.png);
+    background-position: 3px 3px;
+  }
+  .ng-social-facebook .ng-social-icon {
+    background-image: url(../../images/f.png);
+    background-position: 3px 3px;
+  }
+  .ng-social-twitter .ng-social-icon {
+    background-image: url(../../images/t.png);
+    background-position: 3px 3px;
+  }
+  .ng-social-vk .ng-social-icon {
+    background-image: url(../../images/v.png);
+    background-position: 3px 3px;
+  }
