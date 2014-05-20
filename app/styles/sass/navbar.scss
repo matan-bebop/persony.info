@@ -23,7 +23,7 @@ $navbarSearchDisplayWidth: 200px;
   }
 
   a {
-    color: $textOnDarkBkg;
+    color: $textOnDarkBkg !important;
     text-decoration: none;
     font-weight: 500;
     line-height: 14px !important;
@@ -77,7 +77,11 @@ $navbarSearchDisplayWidth: 200px;
   background: $backgroundHeaderFooter;
 
   .navbar-nav > .active{
-    border-bottom: 4px solid $selectedMenu;
+    border-bottom: 4px solid $selectedTextOnDarkBkg;
+
+    a{
+      color: $selectedTextOnDarkBkg !important;
+    }
   }
 
   .navbar-nav > .active > a{

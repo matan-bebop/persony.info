@@ -1,7 +1,7 @@
 .person-bio{
   margin: 0px 0 30px $timelineVerticalAxisLeftMarginDesktop;
   padding-top: 20px;
-  border-left: 2px solid $timelineAxisColour;
+  border-left: 2px solid $timelineAxisColor;
   z-index: 110;
 }
 
@@ -46,12 +46,12 @@
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
-    color: $timelineLink;
+    color: $timelineTitleColor;
 
     @include easings;
 
     &:hover{
-      color: $timelineLinkHover;
+      color: $timelineTitleHoverColor;
     }
   }
 
@@ -69,7 +69,7 @@
         @include easings;
 
         &:hover{
-          color: $timelineLink;
+          color: $linkColorOnLightBkg;
         }
       }
     }
@@ -77,8 +77,8 @@
     & ~ .content {
       max-height: 1000px !important;
       min-height: 180px;
-      border-color: $timelineEventBgColour;
-      background: $timelineEventBgColour;
+      border-color: $selectedBackground;
+      background: $selectedBackground;
       margin-right: 20px;
 
       .detail-info, .event-header{
@@ -144,7 +144,7 @@
       &.source{
         font-weight: 600;
         font-size: 14px;
-        color: $timelineDedicatedAxisColour;
+        color: $selectTextOnMiddleGrayBkg;
       }
     }
 
@@ -177,7 +177,7 @@
   position: absolute;
   padding-bottom: 29px;
   color: $selectTextOnLightBkg;
-  border-bottom: 1px solid $timelineDedicatedAxisColour;
+  border-bottom: 1px solid $timelineAxisColor;
 
   @include calc( top, '100% - 54px');
 }
@@ -192,7 +192,7 @@
   position: absolute;
   padding-bottom: 32px;
   color: $selectTextOnLightBkg;
-  border-bottom: 1px dashed $timelineDedicatedAxisColour;
+  border-bottom: 1px dashed $timelineAxisColor;
 
   @include calc( top, '100% - 36px');
 }
@@ -203,7 +203,7 @@
   font-size: 15px;
   line-height: 20px;
   position: absolute;
-  color: $timelineDedicatedAxisColour;
+  color: $selectTextOnLightBkg;
   font-weight: 600;
 }
 
@@ -216,7 +216,7 @@
   position:relative;
   font-weight: 600;
   font-size: 14px;
-  color: $timelineDedicatedAxisColour;
+  color: $selectTextOnMiddleGrayBkg;
 }
 
 .event-icon {
@@ -225,7 +225,7 @@
   left: -58px;
   width: 40px;
   height: 40px;
-  background: $timelineAxisColour;
+  background: $timelineAxisColor;
   border-radius: 50%;
   display: block;
   position: absolute;

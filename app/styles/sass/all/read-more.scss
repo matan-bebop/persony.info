@@ -10,26 +10,6 @@
 
     @include lin-gradient(rgba(242,242,242,0), rgba(242,242,242,1));
     @include border-radius(5px);
-
-    .button{
-      margin-top: 100px;
-      border: 2px solid $regularAllPageButtonBorderColour;
-      background: $regularAllPageButtonColour;
-      padding: 2px 5px;
-      color: $textOnLightBkg;
-      font-weight: 500;
-      font-size: 13px;
-      text-decoration: none;
-      vertical-align: middle;
-
-      @include border-radius(3px);
-
-      &:hover{
-        border-color: $hoverAllPageButtonBorderColour;
-        background: $hoverAllPageButtonColour;
-        color: $blockBackground;
-      }
-    }
   }
 
   &:hover{

@@ -1,78 +1,43 @@
-//Color Scheme
-$backgroundHeaderFooter:#222;
-$textOnLightBkg:#222;
+$backgroundHeaderFooter: #2d0608;
 $mainBackground: #f2f2f2;
-$selectTextOnLightBkg:#999;
-$linkColorOnLightBkg: #3e8ffd;
+$selectedBackground: #e9e9e9;
+
+$selectedBorder: #97C1D2;
+
+$textOnLightBkg:#222;
+$textOnDarkBkg: #f7f7f7;
+$selectTextOnLightBkg: #12022E;
+$selectTextOnMiddleGrayBkg: #5e7582;
+$selectedTextOnDarkBkg:#f98262;
+
+$linkColorOnLightBkg: #3d79e5;
 $linkColorOnLightBkgHover: #005580;
-$textOnDarkBkg:#fff;
-$selectedMenu:#f98262;
+$linkOnDarkBkg: #b7ebfc;
+$linkOnDarkBkgHover: #9cc9da;
+
+//PersonBlock
 $blockBackground:#fff;
 $blockBorder:#ccc;
+
+// Navigation Search
 $inputBkg:#ebebeb;
 
-$selectedTextOnDarkBkg:#fff;
-$LinkOnDarkFon:#3e8ffd;
-$HoverLinkOnDarkFon:#005580;
+// Timeline
+$timelineTitleColor: #090397;
+$timelineTitleHoverColor: #090345;
+$timelineAxisColor: #cfcecd;
+$timelinePersonBgColor: #f1f0ef;
+$timelinePersonBgColorRGBA02: rgba(241,240,239, 0.2);
+$metallicSilver: #8f999f;
 
-$TextOnInput:#b2b2b2;
-$ColorTimeline:#ddd;
-$ToolsButton:#222;
-$HoverToolsButton:#000;
-$BackgrounPerson:#eee;
+$toolsButtonColor: #777;
+$toolsButtonHover: #000;
 
-// Main
+// Buttons and tips
 $danger: #b87582;
 $primary: #428bca;
 $warning: #b6a87f;
 $success: #47a447;
-
-// Links
-$linkColorOnLightBkg: #3e8ffd;
-$linkColorOnLightBkgHover: #005580;
-
-// Navigation
-$textOnDarkBkg: #fff;
-$selectedMenu: #f98262;
-
-// Navigation Search
-$inputBkg: #ebebeb;
-
-//PersonBlock
-$blockBackground: #fff;
-$blockBorder: #ccc;
-
-//Button on All page
-$regularAllPageButtonBorderColour: #0266ec;
-$regularAllPageButtonColour: #8abbfe;
-$hoverAllPageButtonBorderColour: #28597a;
-$hoverAllPageButtonColour: #28597a;
-
-// Timeline
-$timelineAxisColour: #DDD;
-$timelineDedicatedAxisColour: #999;
-$timelinePersonBgColour: #eee;
-$timelinePersonBgColourRGBA02: rgba(238,238,238, 0.2);
-$timelineLink: #00669a;
-$timelineLinkHover: #00409a;
-$timelineHelperActive: #003070;
-$timelineEventBgColour: #e0e0e0;
-$metallicSilver: #8f999f;
-
-// Timeline zoom control
-$zoomActiveColor: #6d6d6d;
-$zoomHoverColor: #9e9e9e;
-$zoomLabelTextColor: #fff;
-$zoomLabelBkgColor: #000;
-$zoomAxisColor: #9e9e9e;
-$zoomLimitLabelTextColor: $zoomLabelTextColor;
-
-//detailPerson page
-$toolsButtonColor: #777;
-
-//About
-$inactiveTabTextColour: #696969;
-$inactiveTabBgColour: #e9e9e9;
 
 //Social Colours
 $FacebookBlue: #3B5998;

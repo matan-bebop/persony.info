@@ -27,7 +27,7 @@ blockquote.twitter{
 
     img{
       @include border-radius(50%);
-      border: 3px solid $timelineAxisColour;
+      border: 3px solid $timelineAxisColor;
       width: 62px;
       height: 62px;
       margin: 5px;

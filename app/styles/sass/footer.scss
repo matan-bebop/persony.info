@@ -13,6 +13,14 @@
   padding: 20px;
   text-align: center;
 
+  a{
+    color: $linkOnDarkBkg;
+
+    &:hover{
+      color: $linkOnDarkBkgHover;
+    }
+  }
+
   .social {
 
     .social-icon {
@@ -23,9 +31,9 @@
       border-radius: 100%;
       transition: .5s;
       text-align:center !important;
-      opacity:0.5;
-      filter:alpha(opacity=50);
-      -moz-opacity:0.5;
+      opacity:0.8;
+      filter:alpha(opacity=80);
+      -moz-opacity:0.8;
       margin-left:10px;
 
       &:hover{
@@ -60,24 +68,28 @@
     a{
       text-decoration: none;
       }
-    }
-   button{
-     opacity:0.7;
-     filter:alpha(opacity=70);
-     -moz-opacity:0.7;
-     font-size:1.2em;
-     margin-left:8px;
-     margin-top:3px;
-     margin-bottom: 10px;
+  }
 
-   }
+  button{
+    opacity:0.7;
+    filter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    font-size:1.2em;
+    margin-left:8px;
+    margin-top:3px;
+    margin-bottom: 10px;
+  }
 
+  a.btn{
+    color: $textOnDarkBkg;
+  }
   .copyright {
     color: $mainBackground;
     font-style: italic;
     margin-top: 10px;
   }
+
   .fotter_mail{
     margin-top: 15px !important;
-      }
+  }
 }

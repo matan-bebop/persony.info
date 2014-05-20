@@ -94,7 +94,7 @@ span.pop-warning {
   @include border-radius(3px);
 
   a{
-    color: $timelineLink;
+    color: $linkColorOnLightBkg;
     font-weight: 500;
   }
 
@@ -104,7 +104,7 @@ span.pop-warning {
 
   &:hover{
     a{
-      color: $timelineLinkHover;
+      color: $linkColorOnLightBkgHover;
     }
 
     i{

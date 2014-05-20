@@ -25,14 +25,14 @@ $personHeaderSocialsDisplayWidth: 145px + $personPhotoBigDiameter;
 $personHeaderSmallSocialsDisplayWidth: 440px + $personPhotoSmallDiameter;
 
 .person-header-die{
-  background: $timelinePersonBgColour;
+  background: $timelinePersonBgColor;
   position: fixed;
   left: 0;
   z-index: 101;
   top: $navbarHeight;
   width: 100%;
   height: $personHeaderBigDisplayHeight;
-  border-bottom: 2px solid $timelineAxisColour;
+  border-bottom: 2px solid $timelineAxisColor;
 
   @include easings;
 
@@ -46,7 +46,7 @@ $personHeaderSmallSocialsDisplayWidth: 440px + $personPhotoSmallDiameter;
   height: $personPhotoBigDiameter;
   text-align: center;
   background: white;
-  border: 5px solid $timelineAxisColour;
+  border: 5px solid $timelineAxisColor;
   font-size: 24px;
   z-index: 104;
   position: relative;
@@ -104,7 +104,7 @@ $personHeaderSmallSocialsDisplayWidth: 440px + $personPhotoSmallDiameter;
       position: relative;
       z-index: 103;
       font-size: 14px;
-       border-left: 2px solid $timelineAxisColour;
+       border-left: 2px solid $timelineAxisColor;
 
       @include easings;
     }
@@ -136,7 +136,7 @@ $personHeaderSmallSocialsDisplayWidth: 440px + $personPhotoSmallDiameter;
         width: 20px;
         height: 90%;
 
-        @include left-lin-gradient($timelinePersonBgColourRGBA02, $timelinePersonBgColour 100%);
+        @include left-lin-gradient($timelinePersonBgColorRGBA02, $timelinePersonBgColor 100%);
       }
     }
 

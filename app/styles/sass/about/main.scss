@@ -25,7 +25,7 @@
     display: inline-block;
     line-height: 45px;
     font-size: 2em;
-    background: $regularAllPageButtonColour;
+    background: $selectedBorder;
     width: 45px;
     height: 45px;
     text-align:center !important;
@@ -53,7 +53,7 @@
 
 
     .comment{
-      border:2px solid $regularAllPageButtonColour;
+      border:2px solid $selectedBorder;
       background: white;
       max-width:331px;
       height:auto;
@@ -77,7 +77,7 @@
       left: 12px;
       bottom:-24px;
       border: 12px solid;
-      border-color: $regularAllPageButtonColour transparent transparent $regularAllPageButtonColour;
+      border-color: $selectedBorder transparent transparent $selectedBorder;
     }
     .comment:after
     {
@@ -149,13 +149,13 @@
 
   #tabs{
     li {
-      border: 2px solid $inactiveTabBgColour;
-      border-bottom-color: $regularAllPageButtonColour;
+      border: 2px solid $selectedBackground;
+      border-bottom-color: $selectedBorder;
       float: left;
       margin: 3px 10px -2px 0px;
       padding: 15px 5px;
-      background-color: $inactiveTabBgColour;
-      color: $inactiveTabTextColour;
+      background-color: $selectedBackground;
+      color: $selectTextOnLightBkg;
       text-align: center;
 
       width: calc((100% - 20px)/3);
@@ -168,7 +168,7 @@
         cursor: pointer;
         background-color: #FFF;
         border-bottom-color:#FFF !important;
-        border: 2px solid $regularAllPageButtonColour;
+        border: 2px solid $selectedBorder;
 
       }
 
@@ -182,12 +182,12 @@
       background-color: white;
       color: black;
       border-bottom-color: white !important;
-      border: 2px solid $regularAllPageButtonColour;
+      border: 2px solid $selectedBorder;
     }
   }
 
   #mainView {
-    border: 2px solid $regularAllPageButtonColour;
+    border: 2px solid $selectedBorder;
     clear: both;
     padding: 1em;
     background-color: white;
@@ -246,7 +246,7 @@
       font-size:20px;
       display: block;
       height: 50px;
-      color: $selectedMenu;
+      color: $selectedTextOnDarkBkg;
       text-align: center;
       background: $backgroundHeaderFooter;
       padding-top: 10px;
@@ -257,7 +257,7 @@
     }
 
     ul{
-      border:1px solid $textOnDarkBkg;
+      border:1px solid $backgroundHeaderFooter;
       padding: 10px 0 10px 20px;
 
       @include border-bottom-radius(5px);
@@ -267,7 +267,7 @@
         padding: 4px;
 
         i{
-          color:$success;
+          color: $success;
         }
       }
     }
@@ -293,7 +293,7 @@
 
       &.panel{
         margin-bottom: 20px;
-        border: 1px solid $timelineAxisColour;
+        border: 1px solid $inputBkg;
 
         &.form1{
           min-height: 380px;
