@@ -137,7 +137,7 @@
 
     p{
       &.description{
-        color: $mainTextColour;
+        color: $textOnLightBkg;
         font-weight: 500;
       }
 
@@ -176,6 +176,7 @@
   font-weight: 600;
   position: absolute;
   padding-bottom: 29px;
+  color: $selectTextOnLightBkg;
   border-bottom: 1px solid $timelineDedicatedAxisColour;
 
   @include calc( top, '100% - 54px');
@@ -190,6 +191,7 @@
   font-weight: 300;
   position: absolute;
   padding-bottom: 32px;
+  color: $selectTextOnLightBkg;
   border-bottom: 1px dashed $timelineDedicatedAxisColour;
 
   @include calc( top, '100% - 36px');

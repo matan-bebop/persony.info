@@ -16,7 +16,7 @@
       border: 2px solid $regularAllPageButtonBorderColour;
       background: $regularAllPageButtonColour;
       padding: 2px 5px;
-      color: $mainTextColour;
+      color: $textOnLightBkg;
       font-weight: 500;
       font-size: 13px;
       text-decoration: none;
@@ -27,7 +27,7 @@
       &:hover{
         border-color: $hoverAllPageButtonBorderColour;
         background: $hoverAllPageButtonColour;
-        color: $personBlockBackgroundColour;
+        color: $blockBackground;
       }
     }
   }

@@ -13,31 +13,31 @@ $navbarSearchDisplayWidth: 200px;
     @include easings;
 
     &:hover{
-      border-bottom: 4px solid $regularLinkColour;
+      border-bottom: 4px solid $linkColorOnLightBkg;
 
       a{
-        color: $regularLinkColour !important;
+        color: $linkColorOnLightBkg !important;
         text-decoration: none;
       }
     }
   }
 
   a {
-    color: $mainMenuColour;
+    color: $textOnDarkBkg;
     text-decoration: none;
     font-weight: 500;
     line-height: 14px !important;
     display: block;
 
     &:hover{
-      color: $regularLinkColour !important;
+      color: $linkColorOnLightBkg !important;
       text-decoration: none;
     }
   }
 }
 
 .navbar-nav>.active>a:hover{
-  color: $regularLinkColour !important;
+  color: $linkColorOnLightBkg !important;
   text-decoration: none;
 }
 
@@ -58,7 +58,7 @@ $navbarSearchDisplayWidth: 200px;
   .search-input, .input-group-addon{
     border: 0;
     height: 27px;
-    background: $mainSearchNavBgColour;
+    background: $inputBkg;
 
     @include border-left-radius(2px);
   }
@@ -74,14 +74,14 @@ $navbarSearchDisplayWidth: 200px;
 }
 
 .navbar-inverse{
-  background: $mainTextColour;
+  background: $backgroundHeaderFooter;
 
   .navbar-nav > .active{
-    border-bottom: 4px solid $mainMenuActiveColour;
+    border-bottom: 4px solid $selectedMenu;
   }
 
   .navbar-nav > .active > a{
-    background: $mainTextColour !important;
+    background: $backgroundHeaderFooter !important;
   }
 }
 

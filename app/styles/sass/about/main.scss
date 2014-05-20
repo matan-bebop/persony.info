@@ -11,7 +11,7 @@
   }
   h4,h5{
     padding-top:15px;
-    color: $h4color;
+    color: $selectTextOnLightBkg;
     font-weight:  300 !important;
   }
    p{
@@ -41,7 +41,7 @@
   }
   .separator{
     margin:20px 0px;
-    border-top: 1px dashed $personBlockBorderColour;
+    border-top: 1px dashed $blockBorder;
     height: 1px;
     width:100%;
   }
@@ -63,7 +63,7 @@
       @include border-radius(10px);
 
       p{
-        color: $mainTextColour;
+        color: $textOnLightBkg;
         font-size:16px;
         line-height:22px;
         margin:0;
@@ -110,13 +110,13 @@
       margin:0;
       padding:6px 0 0 0;
       font-size:16px;
-      color: $mainTextColour;
+      color: $textOnLightBkg;
       line-height:22px;
     }
 
     span{
       font-size:16px;
-      color: $mainTextColour;
+      color: $textOnLightBkg;
     }
     a{
       display: block;
@@ -246,9 +246,9 @@
       font-size:20px;
       display: block;
       height: 50px;
-      color: $mainMenuActiveColour;
+      color: $selectedMenu;
       text-align: center;
-      background: $mainTextColour;
+      background: $backgroundHeaderFooter;
       padding-top: 10px;
       font-weight: 500;
       margin-bottom: 0;
@@ -257,7 +257,7 @@
     }
 
     ul{
-      border:1px solid $mainMenuColour;
+      border:1px solid $textOnDarkBkg;
       padding: 10px 0 10px 20px;
 
       @include border-bottom-radius(5px);

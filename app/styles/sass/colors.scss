@@ -1,46 +1,46 @@
 //Color Scheme
-$BackgroundHeaderFooter:#222;
-$TextOnLightFon:#222;
-$SelectTextOnLightFon:#999;
-$LinkOnLightFon:#00409a;
-$HoverLinkOnLightFon:#00669a;
-$TextOnDarkFon:#fff;
-$SelectTextOnDarkFon:#fff;
+$backgroundHeaderFooter:#222;
+$textOnLightBkg:#222;
+$mainBackground: #f2f2f2;
+$selectTextOnLightBkg:#999;
+$linkColorOnLightBkg: #3e8ffd;
+$linkColorOnLightBkgHover: #005580;
+$textOnDarkBkg:#fff;
+$selectedMenu:#f98262;
+$blockBackground:#fff;
+$blockBorder:#ccc;
+$inputBkg:#ebebeb;
+
+$selectedTextOnDarkBkg:#fff;
 $LinkOnDarkFon:#3e8ffd;
 $HoverLinkOnDarkFon:#005580;
+
 $TextOnInput:#b2b2b2;
-$MainBackground:#f2f2f2;
-$BlockBackground:#fff;
-$BlockBorder:#ccc;
 $ColorTimeline:#ddd;
 $ToolsButton:#222;
 $HoverToolsButton:#000;
-$SelectedMenu:#f98262;
 $BackgrounPerson:#eee;
 
-
 // Main
-$mainBackgroundColour1: #f2f2f2;
-$mainTextColour: #222;
 $danger: #b87582;
 $primary: #428bca;
 $warning: #b6a87f;
 $success: #47a447;
 
 // Links
-$regularLinkColour: #3e8ffd;
-$hoverLinkColour: #005580;
+$linkColorOnLightBkg: #3e8ffd;
+$linkColorOnLightBkgHover: #005580;
 
 // Navigation
-$mainMenuColour: #b2b2b2;
-$mainMenuActiveColour: #f98262;
+$textOnDarkBkg: #fff;
+$selectedMenu: #f98262;
 
 // Navigation Search
-$mainSearchNavBgColour: #666;
+$inputBkg: #ebebeb;
 
 //PersonBlock
-$personBlockBackgroundColour: #fff;
-$personBlockBorderColour: #ccc;
+$blockBackground: #fff;
+$blockBorder: #ccc;
 
 //Button on All page
 $regularAllPageButtonBorderColour: #0266ec;
@@ -73,7 +73,6 @@ $toolsButtonColor: #777;
 //About
 $inactiveTabTextColour: #696969;
 $inactiveTabBgColour: #e9e9e9;
-$h4color: #013f93;
 
 //Social Colours
 $FacebookBlue: #3B5998;

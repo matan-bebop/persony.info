@@ -1,9 +1,9 @@
 
 .caption_info{
-  padding:35px;
+  padding:35px !important;
   font-size: 32px;
   font-weight: 100;
-  text-align: center;
+  text-align: center !important;
 }
 
 blockquote.twitter{
@@ -16,7 +16,7 @@ blockquote.twitter{
   .fa{
     width: 100%;
     text-align: center;
-    color: $personBlockBorderColour;
+    color: $blockBorder;
   }
 
   .user{
@@ -37,11 +37,11 @@ blockquote.twitter{
     span{
       &:first-child{
         font-size:20px !important;
-        color: $mainTextColour !important;
+        color: $textOnLightBkg !important;
         text-decoration: none !important;
 
         &:before{
-          content: " \2013 " !important;
+          content: " \2013  " !important;
         }
 
         &:after{
@@ -50,18 +50,18 @@ blockquote.twitter{
       }
 
       &:last-child{
-        color: $regularLinkColour;
+        color: $linkColorOnLightBkg;
         text-decoration: underline;
         font-size:18px;
 
         &:before{
-          color: $mainTextColour !important;
+          color: $textOnLightBkg !important;
           text-decoration: none !important;
           content: "(";
         }
 
         &:after{
-          color: $mainTextColour !important;
+          color: $textOnLightBkg !important;
           text-decoration: none !important;
           content: ")";
         }

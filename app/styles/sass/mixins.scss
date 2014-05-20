@@ -22,14 +22,14 @@
 @mixin personBlock {
   text-align: center;
   padding: 10px;
-  border: 1px solid $mainBackgroundColour1;
+  border: 1px solid $mainBackground;
 
   @include easings;
 }
 
 @mixin personBlockHover {
-  border: 1px solid $personBlockBorderColour;
-  background: $personBlockBackgroundColour;
+  border: 1px solid $blockBorder;
+  background: $blockBackground;
 
   @include border-radius(5px);
 }

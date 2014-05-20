@@ -18,6 +18,7 @@ $zoomTitleDisplayHeight: 60px;
     margin-left: 10px;
     font-size: 24px;
     font-weight: 500;
+    color: $selectTextOnLightBkg;
     height: $zoomTitleDisplayHeight;
 
     @include easings;

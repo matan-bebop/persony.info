@@ -6,7 +6,7 @@
 
 #footer {
   min-height: 120px;
-  background: $mainTextColour;
+  background: $backgroundHeaderFooter;
   color: white;
   max-width: 1260px;
   border-radius: 10px 10px 0 0;
@@ -73,7 +73,7 @@
    }
 
   .copyright {
-    color: $mainBackgroundColour1;
+    color: $mainBackground;
     font-style: italic;
     margin-top: 10px;
   }
