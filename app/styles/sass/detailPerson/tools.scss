@@ -56,9 +56,11 @@ span.pop-warning {
 
 .person-tools{
   float: right;
-  margin-right: 20px;
+  right: 15px;
   height: 24px;
   width: 28px;
+  top:0px;
+  position: absolute;
 }
 
 .event-tools{
@@ -88,8 +90,9 @@ span.pop-warning {
 
 .event-filter{
   cursor: pointer;
-  margin-right: 20px;
-  margin-top: $personHeaderBigDisplayHeight - $personPageHeaderBigMarginTopBottom * 2 - 30px;
+  right: 15px;
+  top:30px;
+  position: absolute;
 
   @include border-radius(3px);
 
@@ -114,18 +117,44 @@ span.pop-warning {
 }
 
 .page-header.shrink .event-filter{
-  margin-top: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom * 2 - 30px;
-}
 
+}
+//For tablet
+@media screen and (max-width: 1200px) {
+ .event-tools {
+   right: 0px !important;
+ }
+  .event-filter {
+    right: 15px !important;
+    i.fa-filter{
+      font-size: 2em;
+    }
+
+    span{
+      display: none;
+    }
+  }
+}/*
 //For tablet
 @media screen and (max-width: 995px) {
   .page-header, .page-header.shrink{
-    .event-filter {
-      margin-top: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom * 2 - 30px;
+    .event-tools,.event-filter {
+      right: 0px !important;
+      position: absolute;
     }
 
     .event-filter, .person-tools{
-      margin-right: 20px;
+      right: 0px !important;
+      position: absolute;
+    }
+  }
+  .event-filter {
+    i.fa-filter{
+      font-size: 2em;
+    }
+
+    span{
+      display: none;
     }
   }
 }
@@ -143,3 +172,4 @@ span.pop-warning {
   }
 }
 
+*/
