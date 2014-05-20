@@ -21,6 +21,9 @@ $personHeaderTextLeftPadding: 10px;
 $personHeaderSmallMarginLeft: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
 $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter;
 
+$personHeaderSocialsDisplayWidth: 145px + $personPhotoBigDiameter;
+$personHeaderSmallSocialsDisplayWidth: 440px + $personPhotoSmallDiameter;
+
 .person-header-die{
   background: $timelinePersonBgColour;
   position: fixed;
@@ -78,8 +81,21 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
 
   .person-header {
     z-index: 102;
-    width: $personHeaderDataDisplayWidth + $personPhotoBigDiameter;
+    width: $personHeaderDataDisplayWidth + $personPhotoBigDiameter + $personHeaderSocialsDisplayWidth;
     margin-left: $timelineVerticalAxisLeftMarginDesktop - $personPhotoBigRadius;
+
+    .person-socials {
+      width: $personHeaderSocialsDisplayWidth;
+      margin-left: -$personPhotoBigRadius;
+      padding: 4px 0 0 $personPhotoBigRadius + $personHeaderTextLeftPadding;
+      z-index: 103;
+
+      @include easings;
+
+      li {
+          display: list-item;
+      }
+    }
 
     .person-data {
       width: $personHeaderDataDisplayWidth;
@@ -135,8 +151,21 @@ $personHeaderSmallDisplayWidth: $personHeaderDataDisplayWidth + $personPhotoSmal
     height: $personHeaderSmallDisplayHeight - $personPageHeaderSmallMarginTopBottom;
 
     .person-header {
-      width: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter;
+      width: $personHeaderDataDisplayWidth + $personPhotoSmallDiameter + $personHeaderSmallSocialsDisplayWidth;
       margin-left: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
+
+      .person-socials {
+        width: $personHeaderSmallSocialsDisplayWidth;
+        margin-left: -$personPhotoSmallRadius;
+        padding: 15px 0 0 $personPhotoSmallRadius + $personHeaderTextLeftPadding;
+        z-index: 103;
+
+        @include easings;
+
+        li {
+            display: inline-block;
+        }
+      }
 
       .person-photo {
         width: $personPhotoSmallDiameter;
