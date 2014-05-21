@@ -1,0 +1,101 @@
+#!/usr/bin/python3
+
+import sys
+import json
+
+from person import Person
+
+class Date(object):
+    def __init__(self, strdate):
+        self.year = None
+        self.month = None
+        self.day = None
+        l = strdate.split('.')
+        self.year = int(l.pop())
+        if l:
+            self.month = int(l.pop())
+            if l:
+                self.day = int(l.pop())
+
+
+def date_start(strdate):
+    d = Date(strdate)
+    if d.month is None:
+        d.month = 1
+    if d.day is None:
+        d.day = 1
+    return d
+
+
+def month_days(month, year=None):
+    days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    if month != 2:
+        return days[month-1]
+    elif year % 4:
+        return 28
+    else:
+        return 29 
+
+
+def date_end(strdate):
+    d = Date(strdate)
+    if d.month is None:
+        d.month = 12
+    if d.day is None:
+        d.day = month_days(d.month, d.year)
+    return d
+
+
+def JSON_date(date):
+    def trailing_zero(month):
+        if month < 10:
+            return '0'
+        else:
+            return ""
+
+    return str(date.year) \
+        + '-' + trailing_zero(date.month) + str(date.month) \
+        + '-' + str(date.day) + ' 00:00:00'
+
+
+def cat_dicts(d1, d2):
+    d = dict(d1)
+    d.update(d2)
+    return d
+
+
+def source_icon(source):
+    return "info"
+
+
+class JSONEvent(object):
+    def __init__(self, ev):
+        self.start = JSON_date(date_start(ev.start))
+        self.end = JSON_date(date_end(ev.start))
+        self.title = ev.title
+        self.description = ev.body
+
+        if ev.images:
+            self.image = ev.images[0]
+        else:
+            self.image = None
+        
+        self.sources = [cat_dicts(s, {"icon": source_icon(s)})
+                        for s in ev.sources]
+
+class JSON(object):
+    def __init__(self, person):
+        self.name = person.full_name()
+        self.info = person.brief
+        self.photo = person.photo
+        self.facebook = ""
+        self.twitter = ""
+        self.events = [JSONEvent(ev).__dict__ for ev in person.events]
+
+
+p = Person()
+p.read_descrition(sys.stdin)
+p.read_events(sys.stdin)
+
+print(json.dumps(JSON(p).__dict__, ensure_ascii=False))
