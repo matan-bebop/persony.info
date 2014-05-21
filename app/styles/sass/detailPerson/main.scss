@@ -156,10 +156,10 @@ $personHeaderSmallSocialsDisplayWidth: 440px + $personPhotoSmallDiameter;
       margin-left: $timelineVerticalAxisLeftMarginDesktop - $personPhotoSmallRadius;
 
       .person-socials {
-        width: $personHeaderSmallSocialsDisplayWidth;
+       /* width: $personHeaderSmallSocialsDisplayWidth;
         margin-left: -$personPhotoSmallRadius;
         padding: 15px 0 0 $personPhotoSmallRadius + $personHeaderTextLeftPadding;
-        z-index: 103;
+        z-index: 103;*/
 
         @include easings;
 

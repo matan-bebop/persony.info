@@ -17,7 +17,12 @@
   .ng-social li {
     display: inline-block;
     margin: 0 2px 3px !important;
+    min-height:20px !important;
   }
+  .ng-social-vk .ng-scope{
+    max-height:20px !important;
+  }
+
   .ng-social-facebook,.ng-social-google-plus,.ng-social-twitter,.ng-social-vk {
     background: #fff;
     color: #000;
@@ -27,6 +32,7 @@
     font-weight: 300;
     cursor: pointer;
     user-select: none;
+    max-height: 20px !important;
   }
   .ng-social-button {
     position: relative;
@@ -48,15 +54,15 @@
 
   }
   .ng-social-facebook:hover,.ng-social-facebook:hover i{background:#3B5998;color:#fff !important; border-radius: 3px;}
-  .ng-social-google-plus:hover,.ng-social-google-plus :hover i{background:#dd4b39;color:#fff !important;border-radius: 3px;}
-  .ng-social-twitter:hover,.ng-social-twitter :hover i{background:#00aced;color:#fff !important;border-radius: 3px;}
-  .ng-social-vk:hover,.ng-social-vk:hover i{background:#45668e;color:#fff !important;border-radius: 3px;}
+  .ng-social-google-plus:hover,.ng-social-google-plus:hover i{background:#dd4b39;color:#fff !important;border-radius: 3px;}
+  .ng-social-twitter:hover,.ng-social-twitter:hover i{background:#00aced;color:#fff !important;border-radius: 3px;}
+  .ng-social-vk:hover,.ng-social-vk:hover i {background:#45668e;color:#fff !important;border-radius: 3px;}
 .ng-scope b{
   font-weight:300;
   text-decoration: none !important;
   color: #000;
 }
-  .ng-scope b:hover{
+  .ng-social-vk:hover b,,.ng-social-twitter :hover b,.ng-social-google-plus:hover b,.ng-social-facebook:hover b  {
     color:#fff !important;
     text-decoration: none !important;
   }
@@ -85,3 +91,10 @@
       display: none;
     }
   }
+
+ //shrink
+  @media screen and (min-width: 995px){
+.shrink .ng-social-text b{
+  display: none !important;
+}
+}
