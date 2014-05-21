@@ -1,17 +1,41 @@
 persony.info
 ============
 
-main repo for persony.info
-Basic requirements:
+main repo for persony.info project
 
-Node (+npm, bower [npm install bower], grunt [npm install grunt])
+Basic requirements
+------------------
 
-Mysql
+* Node
+    * npm
+    * bower [npm install bower]
+    * grunt [npm install grunt]
+* Ruby
+    * compass
+* Mysql
 
-Local deploy:
+Local deploy
+------------
 
-Create database and set appropriate settings in ./conf/settings.js database section
+Working environment can be created with [Vagrant](http://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)
+Install them and then run the following commands in project home directory
 
+> git submodule update --init
+> vagrant up
+
+You can get inside VM running following command under the project home directory
+> vagrant ssh
+
+Project will be mounted inside VM at the */vagrant* directory
+> cd /vagrant
+
+Database is created by puppet, and default credentials are root:mysql, which corresponds with config stored in git.
+
+Application configuration is stored in **[project_root]/config/settings.js** file.
+It also has an information of how to override any of the settings with **[project_root]/config/settings.local.js** file
+
+Please make sure you are inside project home directory of the run environment
+(if you are using development VM, this will be /vagrant directory inside it)
 
 > npm install
 
@@ -20,24 +44,26 @@ Create database and set appropriate settings in ./conf/settings.js database sect
 > node ./utils/syncdb
 
 
-Run
+*Run*
 
-for development (inside vm will fail on xdg-open, so force should be used)
-> grunt serve --force
+for development you may use one of the options of your choice
+* ./devrun.sh
+* npm start
+* grunt serve --force
 
-for production
-> npm start
+for production (environment variable should be somehow defined: export NODE_ENV="production")
+> node server.js
 
-Build
+*Build*
 
 > grunt build
 
-Test
+*Test*
 
 > grunt test
 
 
-Import Fake data
+*Import Fake data*
 
 - Set DEBUG to true inside settings(or settings.local)
 
@@ -48,3 +74,15 @@ To import Persons, Events, Sources:
 To generate relations between models
 
 - Open http://localhost:3000/related
+
+
+SASS
+-----
+
+*.scss files should be located in **[project root]/app/styles/sass/** directory
+and they will be served as **/app/styles/compiled/\*.css**
+
+Database
+--------
+
+Inside development environment PhpMyAdmin will be available on *http://localhost:8000/*

@@ -1,0 +1,20 @@
+.post_pers{
+  .read-more {
+    position: absolute;
+    bottom: -10px;
+    padding-top: 35px;
+    left: 0px;
+    height: 65px;
+    width: 100%;
+    text-align: center;
+
+    @include lin-gradient(rgba(242,242,242,0), rgba(242,242,242,1));
+    @include border-radius(5px);
+  }
+
+  &:hover{
+    .read-more{
+      @include lin-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+    }
+  }
+}

@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+
+import sys
+import json
+
+from person import Person
+
+
+def print_usage():
+	print("Usage:\n"
+             + sys.argv[0] + "-name | -name-url | -brief | -photo")
+
+
+p = Person()
+p.read_descrition(sys.stdin)
+
+if len(sys.argv) < 2:
+	print_usage()
+elif sys.argv[1] == "-name-url":
+	from translit.cyr2file import Cyr2File
+	print(Cyr2File().code(p.name).lower())
+elif sys.argv[1] == "-name":
+	print(p.name)
+elif sys.argv[1] == "-photo":
+	print(p.photo)
+elif sys.argv[1] == "-brief":
+	print(p.brief)
+else:
+	print_usage()

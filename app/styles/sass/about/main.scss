@@ -1,0 +1,316 @@
+.about{
+  .about_progect{
+    min-height:295px;
+    display: block;
+  }
+  .img_about_progect{
+    float:right;
+    margin:10px;
+    padding-top:50px;
+    max-width:50%;
+  }
+  h4,h5{
+    padding-top:15px;
+    color: $selectTextOnLightBkg;
+    font-weight:  300 !important;
+  }
+   p{
+   /* text-indent: 1.5em;*/
+  }
+  p:first-letter{
+    font-weight:  600 !important;
+    font-size: 15px;
+  }
+  .about-icon {
+    display: inline-block;
+    line-height: 45px;
+    font-size: 2em;
+    background: $selectedBorder;
+    width: 45px;
+    height: 45px;
+    text-align:center !important;
+
+    @include easings(.5s);
+    @include border-radius(100%);
+  }
+  .about_pri{
+    display: inline-block;
+    font-size: 20px;
+    padding-left: 10px;
+
+  }
+  .separator{
+    margin:20px 0px;
+    border-top: 1px dashed $blockBorder;
+    height: 1px;
+    width:100%;
+  }
+
+  #founders{
+    width:100%;
+    height:auto;
+    padding:0;
+
+
+    .comment{
+      border:2px solid $selectedBorder;
+      background: white;
+      max-width:331px;
+      height:auto;
+      padding:17px 15px;
+      position:relative;
+
+      @include border-radius(10px);
+
+      p{
+        color: $textOnLightBkg;
+        font-size:16px;
+        line-height:22px;
+        margin:0;
+      }
+    }
+    .comment:before{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 12px;
+      bottom:-24px;
+      border: 12px solid;
+      border-color: $selectedBorder transparent transparent $selectedBorder;
+    }
+    .comment:after
+    {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 14px;
+      bottom:-19px;
+      border: 12px solid;
+      border-color: white transparent transparent white;
+    }
+  }
+
+  .founders{
+     margin:20px 0px;
+  }
+
+
+  .author{
+    display:block;
+    padding:30px 0 0 0;
+
+    img{
+      float:left;
+      margin:0 13px 0 0;
+    }
+
+    p{
+      margin:0;
+      padding:6px 0 0 0;
+      font-size:16px;
+      color: $textOnLightBkg;
+      line-height:22px;
+    }
+
+    span{
+      font-size:16px;
+      color: $textOnLightBkg;
+    }
+    a{
+      display: block;
+    }
+  }
+
+  .author_mini {
+    display: inline-block;
+    padding: 20px 0px 0 0;
+    min-width: 120px;
+    max-width:140px;
+    text-align: center;
+
+    img {
+      max-height: 50px;
+      max-width: 50px;
+      text-align: center;
+
+    }
+    span{
+      display: block;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #tabs{
+    li {
+      border: 2px solid $selectedBackground;
+      border-bottom-color: $selectedBorder;
+      float: left;
+      margin: 3px 10px -2px 0px;
+      padding: 15px 5px;
+      background-color: $selectedBackground;
+      color: $selectTextOnLightBkg;
+      text-align: center;
+
+      width: calc((100% - 20px)/3);
+      width: -moz-calc((100% - 20px)/3);
+      width: -webkit-calc((100% - 20px)/3);
+
+      @include border-top-radius(10px);
+
+      &:hover {
+        cursor: pointer;
+        background-color: #FFF;
+        border-bottom-color:#FFF !important;
+        border: 2px solid $selectedBorder;
+
+      }
+
+      &:last-child{
+        margin: 3px 0px -2px 0px;
+
+      }
+    }
+
+    .active {
+      background-color: white;
+      color: black;
+      border-bottom-color: white !important;
+      border: 2px solid $selectedBorder;
+    }
+  }
+
+  #mainView {
+    border: 2px solid $selectedBorder;
+    clear: both;
+    padding: 1em;
+    background-color: white;
+
+    @include border-bottom-radius(10px);
+  }
+
+  a.donate-anchor{
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
+  }
+
+  @media screen and (max-width: 700px){
+     .about_pri{
+      display: block;
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 500px){
+    .about_pri{
+      display: none;
+    }
+  }
+
+  .pay-list1 img{
+    max-height:70px;
+
+  }
+
+  .class_pay_list{
+    margin: 10px auto !important;
+    display: block;
+    max-width: 1000px;
+  }
+
+  .pay-list1 li{
+    display: inline-block;
+    margin: 7px;
+  }
+
+  .help_button button{
+    margin:0px 15px 5px 0px;
+  }
+
+  .help_button p{
+    font-size: 21px;
+  }
+
+  .join{
+    margin-top: 20px;
+
+    p{
+      font-size:20px;
+      display: block;
+      height: 50px;
+      color: $selectedTextOnDarkBkg;
+      text-align: center;
+      background: $backgroundHeaderFooter;
+      padding-top: 10px;
+      font-weight: 500;
+      margin-bottom: 0;
+
+      @include border-top-radius(5px);
+    }
+
+    ul{
+      border:1px solid $backgroundHeaderFooter;
+      padding: 10px 0 10px 20px;
+
+      @include border-bottom-radius(5px);
+
+      li{
+        font-weight: 500;
+        padding: 4px;
+
+        i{
+          color: $success;
+        }
+      }
+    }
+  }
+
+  .form-buttons{
+    margin-bottom: 20px;
+  }
+
+  .collapsable {
+    overflow: hidden;
+    position: relative;
+    height: 0;
+    max-height: 0;
+    margin-bottom: 0;
+
+    border: 0;
+
+    @include easings;
+
+    &.showMe {
+      min-height: 110px;
+
+      &.panel{
+        margin-bottom: 20px;
+        border: 1px solid $inputBkg;
+
+        &.form1{
+          min-height: 380px;
+        }
+
+        &.form2{
+          min-height: 300px;
+        }
+
+        &.form3{
+          min-height: 260px;
+        }
+
+        &.form4{
+          min-height: 250px;
+        }
+      }
+    }
+  }
+}

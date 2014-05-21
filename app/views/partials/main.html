@@ -1,22 +1,27 @@
 <div class="container">
 
+    <div class="container" external-all-inside-link>
+        <h4><p class="caption_info">Останні висловлюваня в твіттері:</p></h4>
+        <div class="col-sm-6">
+            <blockquote class="twitter" id="tweet-left" lang="uk"><i class="fa fa-refresh fa-spin fa-4x"></i></blockquote>
+        </div>
+        <div class="col-sm-6">
+            <blockquote class="twitter" id="tweet-right" lang="uk"><i class="fa fa-refresh fa-spin fa-4x"></i></blockquote>
+        </div>
+        <button type="button" class="btn btn-info pull-right" ng-click="nextTwitterQuote()">Ще...</button>
+    </div>
 
+        <!--placeholder="Шукати можна за Ім'ям, Прізвищем, партією, або іншими ознаками"-->
     <div class="col-lg-9 main-search-block">
-        <h4>Для пошуку особистостей використовуйте поле нижче</h4>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
         <div class="input-group">
             <input type="text" class="input-lg form-control"
-                   placeholder="Шукати можна за Ім'ям, Прізвищем, партією, або іншими ознаками"
+                   placeholder="Шукати можна за Ім'ям або прізвищем"
                    ng-model="search.keyword"
                    on-enter="search.showResults()"
                     >
-      <span class="input-group-btn">
-        <button class="btn btn-lg btn-primary" type="button" ng-click="search.showResults()">Пошук персон</button>
-      </span>
+              <span class="input-group-btn">
+                <button class="btn btn-lg btn-primary" type="button" ng-click="search.showResults()">Пошук персон</button>
+              </span>
         </div>
         <!-- /input-group -->
     </div>
@@ -27,9 +32,9 @@
     <h4>Вас зацікавлять:</h4>
     <section>
         <div class="interest_person" ng-repeat="person in featured">
-            <a ng-href="/people/{{person.id}}">
+            <a ng-href="/persons/{{person.id}}">
                 <img
-                        ng-src="{{person.photo ? '/avatars/' + person.photo : '/images/apple-touch-icon.png'}}"
+                        ng-src="{{person.getPhotoSrc()}}"
                         title="{{person.name}}"
                         alt="{{person.name}}"
                         />

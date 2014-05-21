@@ -1,0 +1,13 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="event1ImageModalLabel">{{modal.modalName}} - {{modal.modalTitle}}</h4>
+    </div>
+    <div class="modal-body">
+        <img ng-src="{{modal.modalImage}}"/>
+    </div>
+    <div class="modal-footer">
+        {{modal.modalDescription}}
+    </div>
+</div>
