@@ -1,1 +1,599 @@
-<div class="container">About</div>
+<div class="container about">
+<div class="about_progect">
+<div class="img_about_progect">
+    <img src="images/info_about.png"/>
+</div>
+<h4>Про проект: </h4>
+        <p>«Персони» — це проект ініціативних українців, які хочуть аби життєписи відомих людей і організацій були відомі
+        кожному. </p>
+        <p> Наша мета — допомогти розібратися у політичному і громадському житті України людям, які мають до того бажання,
+        але не мають часу. </p>
+        <p>Ми думаємо, що це можливо зробити за допомогою <em>наглядного</em> відображення життєписів із
+        <em>достовірною</em> інформацією, яка є <em>відкритою</em> для змін та доповненнь спільноти.
+         </p>
+    <h5>Чиї життєписи розміщуються на «Персонах»?</h5>
+    <p>Ми висвітлюємо біографії відомих і впливових людей, які пов’язані з сучасною Україною.
+        Це можуть бути політики, державні і громадські діячі, журналісти, діячі культури, науковці та освітяни.
+        Хоча ресурс і називається «Персони», ми не обмежуємо себе життєписами, власне, людей. Ми
+        розміщуємо і «біографії» політичних партій, громадських організацій, навіть цілих країн.</p>
+</div>
+    <h4>Наші принципи: </h4>
+
+    <div id="tabs">
+        <ul>
+            <li ng-repeat="tab in tabs"
+                ng-class="{active:isActiveTab(tab.url)}"
+                ng-click="onClickTab(tab)"
+                ng-bind-html="tab.title"
+                    ></li>
+        </ul>
+        <div id="mainView">
+            <div ng-include="currentTab"></div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="one.tpl.html">
+        <div id="viewOne">
+
+            <p>Ми подаємо дії та вислови кожної представленої особи у
+                вигляді інтерактивної інфографіки, яку називаємо «візуальною біографією».</p>
+            <p>Візуальна біографія — це діаграма, де на осі часу показуються події. Причому, не тільки звичні для
+                біографії події: вивчився, одружився, працював президентом, але і дії та висловлювання персони: із ким
+                судився, які укази підписував; яку зробив заяву, що написав у фейсбук чи твітер. Крім того, ми вважаємо
+                що життєписи людей краще бачити в контексті подій, які відбуваються у світі. Тому ми показуємо і події
+                із біографій інших персон, які пов’язані із даною: вплинули на неї, або, навпаки, стали реакцією іншої
+                людини на дію даної. Такими подіями можуть бути і загальноукраїнські та загальносвітові події —
+                наприклад, здобуття незалежності, вибори до Верховної Ради, початок Другої світової війни.</p>
+            <p>Завдяки наочності та інтерактивності нашої діаграми, Ви зможете швидко і, сподіваємось, цікаво,
+                ознайомитись із життєписом тієї чи іншої особи. А отже, зрозуміти — ким насправді є ця персона.</p>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="two.tpl.html">
+        <div id="viewTwo">
+
+            <p>Вся інформація, яку подано
+                на «Персонах» підкріплюється посиланнями на авторитетні джерела: офіційні сторінки в інтернеті,
+                документи, фото, відео, публікації у пресі, статті у Вікіпедії.</p>
+            <p>Інформація ретельно і безупередженно відсіюватиметься. За відповідністю опису події наведеним
+                джерелам слідкуватимуть досвідченні дописувачі-модератори. У цій нелегкій задачі їм допомогатимуть
+                оригінальні комп’ютерні програми, які ми зараз розробляємо; а також, самі читачі і дописувачі сайту.</p>
+            <p>Ми не залежимо від політичних партій чи бізнес-імперій. Кожен із нас, природньо, має свої політичні
+                погляди. Проте, у кожного вони різні, аж до діаметрально протилежних. Ми контролюємо дописи одне одного,
+                слідкуючи, щоб вони не отримали певного політичного забарвлення.
+            <p>Ви можете покластись на нас. Наше підґрунтя — беззаперечні докази і незаангажованість.</p>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="three.tpl.html">
+        <div id="viewThree">
+
+            <p>Коли ми доведемо технічну реалізацію проекту, будь-хто із користувачів
+                «Персон» матиме змогу редагувати існуючі візуальні біографії діячів і створювати нові.</p>
+			<p>«Персони» все ще у розробці, але вже зараз Ви можете створювати життєписи цікавих Вам персон і змінювати існуючі за допомогою Google Docs. Для цього потрібно зв’язатися з нами за допомогою <a href="mailto:hurtom@persony.info"> електронної пошти </a> чи форми внизу цієї сторінки.</p>
+            <p>Пишіть нам, долучайтеся до спільноти — ми відкриті для активістів.</p>
+        </div>
+    </script>
+
+    <!--<p>Насправді, ми маємо лише дві вимоги до персони чи організації, життєпис якої може бути розміщений на сайті:
+        <ul>
+        <li>Ця особа (організація) має бути пов’язаною із Україною.</li>
+        <li>Вона має бути живою (існувати) на момент розміщення її життєпису.</li>
+        </ul>
+    </p>-->
+
+    <a class="donate-anchor" id="donate"></a>
+    <h4>Допомогти проекту:</h4>
+    <p>Ми — некомерційний і незалежний проект.
+        Наразі ми не заробляємо грошей.
+        Нас не фінансують політичні партії, олігархи чи держава.
+        Головним нашим рушієм є бажання змін на краще.
+    </p>
+    <p>Проте, це бажання не допоможе нам сплатити за надійний хостинг і не нагодує наші сім’ї.
+        Задля безпеки і надійності ми змушені тримати сервер закордоном. А деякі технічні, організаційні, і задачі
+        роботи із наповненням вимагають часу більше, ніж хобі на вихідні і вечори після роботи.
+    </p>
+    <p>Із вашою допомогою ми зможемо збільшити штат модераторів, покращити обладнання, розширити функціонал
+        нашого сервісу.
+    </p>
+    <p ng-if="false">Про те, як ми використали ваші гроші, ми зобов’язуємся звітувати кожні три місяці.
+    </p>
+
+    <div class="class_pay_list" ng-if="false">
+        <ul class="pay-list pay-list1 center-block" >
+            <li ng-repeat="payList in payLists" >
+                <button type="button" class="btn btn-default" ng-click="groupCollapse($index)"> <img ng-src="{{payList.image}}"></button>
+            </li>
+        </ul>
+    </div>
+        <div ng-repeat="payList in payLists" ng-class="{ showMe: !payList.collapsed }" class="collapsable">
+            <div class="well well-lg" ng-bind-html="payList.description"></div>
+        </div>
+    </p>
+    <div class="separator"></div>
+    <h4>Наша команда: </h4>
+    <div id="founders">
+        <div class="container">
+            <div class="founders col-sm-6">
+                <div class="comment">
+                    <p>Тоталітарна держава конролює всі сфери життя громадян, які тільки може.
+                        Нам же необхідно зворотнє.
+                        Ми, вільні громадяни, маємо встановити тотальний контроль над державою ;)</p>
+                    <span></span>
+                </div>
+
+                <div class="author">
+                    <img src="images/andriy.jpg" />
+                    <b>Андрій</b>,
+                    <span>ідеолог</span>
+                    <a href="mailto:andriy@persony.info">andriy@persony.info</a>
+                </div>
+            </div>
+            <div class="founders col-sm-6">
+                <div class="comment">
+                    <p>Основою для Країни 2.0 мають стати ЧЕСТЬ, РОЗУМ І ПРАЦЯ. А ще окрім нас самих ніхто не вирішить наші проблеми. Тому САМІ мусимо дізнаватись з ким маємо справу!</p>
+                    <span></span>
+                </div>
+
+                <div class="author">
+                    <img src="images/oleg.jpg" />
+                    <b>Олег</b>,
+                    <span>організатор</span>
+                    <a href="mailto:oleg@persony.info">oleg@persony.info</a>
+                 </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div id="video-about" ng-if="false">
+        <iframe type="text/html" width="520" height="390" src="http://tvi.ua/embed.php?video=38523" frameborder="0"></iframe>
+    </div>
+
+    <div class="row">
+        <div class="about-item col-sm-6">
+            <h3 class="about-heading">Девелопери-ентузіасти:</h3>
+            <div class="author_mini">
+                <img src="images/yurko.jpg" />
+                <p> <b>Юрій <br/> Федорів</b>
+                    <span>інженер, архітектор</span>
+                    <span><a href="mailto:yurko@persony.info">yurko@persony.info</a></span>
+                </p>
+
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/Serhiy_Baryshniev.png" />
+                <p> <b>Сергій <br/> Баришнєв</b>
+                    <span>Дизайнер</span>
+                </p>
+
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/OBugaenko.jpg" />
+                <p> <b>Ольга<br/>  Бугаєнко</b>
+                    <span>Дизайнер</span>
+                </p>
+
+            </div>
+            <div class="author_mini">
+                <img src="images/volunteer.png" />
+                <p> <b>Гавриленко<br/> Микола</b>
+                    <span>Дизайнер</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/volunteer.png" />
+                <p><b>Олексій <br/> Вагін</b>
+                    <span>Backend</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/volunteer.png" />
+                <p> <b>Сергій <br/> Андріященко</b>
+                    <span>Backend</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/Kobelyaskiy.jpg" />
+                <p> <b>Володимир <br/>Кобеляцький</b>
+                    <span>Front</span>
+                </p>
+
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/dkulichkin.jpg" />
+                <p> <b>Дмитро <br/> Кулічкін</b>
+                    <span>Front</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/svyatoslav.jpg" />
+                <p> <b>Святослав<br/>  Сидоренко</b>
+                    <span>Front</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/ADumov.jpg" />
+                <p> <b>Андрій<br/>  Димов</b>
+                    <span>Front</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/OTereshyk.jpg" />
+                <p> <b>Олександр <br/> Терещук</b>
+                    <span>Android, Front</span>
+                </p>
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/ADragan.jpg" />
+                <p> <b>Андрій <br/> Драган</b>
+                    <span>Android, Front</span>
+                </p>
+            </div>
+        </div>
+        <div class="about-item col-sm-6">
+            <h3 class="about-heading">Дописувачі-ентузіасти:</h3>
+            <div class="author_mini">
+                <img src="images/olesya.jpg" />
+                <p> <b>Олеся</b></p>
+                <span></span>
+            </div>
+            <div class="author_mini">
+                <img src="images/volunteer.png" />
+                <p>  <b>Лілія</b></p>
+                <span></span>
+            </div>
+            <div class="author_mini">
+                <img src="images/volunteer.png" />
+                <p><b>Водянський Юрій</b></p>
+                <span></span>
+            </div>
+            <div class="author_mini">
+                <img src="images/developers/VTsar.jpg" />
+                <p>  <b>Віктор Цар</b></p>
+                <span></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="separator"></div>
+
+    <h4 id="join">Долучитись до розвитку проекту може кожен, хто має бажання:</h4>
+    <div class="col-sm-4 join">
+        <p>Наші технології:</p>
+        <ul>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Node.js</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Angular</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Mysql</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;REST</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Redmine</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Github</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Agile</li>
+        </ul>
+    </div>
+
+    <div class="col-sm-4 join">
+        <p>Нам потрібні:</p>
+        <ul>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Журналісти</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Політологи</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Юристи</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Android розробники</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;iOS розробники</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Node.js розробники</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Angular  розробники</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Веб-тестувальники</li>
+        </ul>
+    </div>
+
+    <div class="col-sm-4 join">
+        <p>Можемо співпрацювати:</p>
+        <ul>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Ділитися нашими даними</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Надавати діаграми із життєписами для розміщення на Вашому сайті</li>
+            <li><i class="fa fa-check fa-lg"></i> &nbsp;Розміщувати доречні діаграми і дані Вашої організації на нашому сайті, із посиланням на Ваш сайт</li>
+            <!--li><i class="fa fa-check fa-lg"></i> &nbsp;Розміщувати контекстну рекламу Вашого видання у наших життєписах</li-->
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div><br/>
+        <p>Якщо є бажання, час та натхнення будемо дуже раді бачити Вас серед ентузіастів-розробників проекту. <br/>
+         Для того щоб співпрацювати з нами, будь-ласка заповніть форму наведену нижче в залежності від типу запиту. </p></div>
+
+    <div class="help_button">
+        <h4>Хочете дізнатись детальніше?</h4>
+
+        <div class="center-block form-buttons">
+            <button type="button" ng-click="formCollapse(0)" class="btn btn-primary"><i class="fa fa-wrench"></i> Хочу девелопити</button>
+            <button type="button" ng-click="formCollapse(1)" class="btn btn-info"><i class="fa fa-stack-exchange"></i> Маю що розповісти</button>
+            <button type="button" ng-click="formCollapse(2)" class="btn btn-success"><i class="fa fa-briefcase"></i> Хочем співпрацювати (для організацій)</button>
+            <button type="button" ng-click="formCollapse(3)" class="btn btn-warning"><i class="fa fa-question"></i> Просто є питання</button>
+        </div>
+
+    </div>
+    <div class="panel panel-default collapsable form1" ng-class="{ showMe: !formLists[0].collapsed }" ng-form name="developerForm">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail0" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="email"
+                                ng-model="forms.developer.email"
+                                class="form-control"
+                                id="inputEmail0"
+                                placeholder="Email"
+                                required
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName0" class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="text"
+                                ng-model="forms.developer.name"
+                                class="form-control"
+                                id="inputName0"
+                                placeholder="Ім’я">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="forms.developer.skills.nodejs"> Я знаю Node.js
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="forms.developer.skills.angularjs"> Я знаю Angular
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="forms.developer.skills.android"> Я програмую під Android
+                            </label>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="forms.developer.skills.ios"> Я програмую під iOS
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAdditional0" class="col-sm-2 control-label">Додаткова інформація</label>
+                    <div class="col-sm-10">
+                        <textarea
+                                class="form-control"
+                                id="inputAdditional0"
+                                placeholder="Опишіть що б ви хотіли робити"
+                                rows="3"
+                                ng-model="forms.developer.additional"
+                                ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'developer', 'btn-success': forms.$success == 'developer'}"
+                                ng-click="sendForm('developer')"
+                                ng-disabled="forms.$sending == 'developer' || developerForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'developer'"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default collapsable form2" ng-class="{ showMe: !formLists[1].collapsed }" ng-form name="authorForm">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail1" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="email"
+                                ng-model="forms.author.email"
+                                class="form-control"
+                                id="inputEmail1"
+                                placeholder="Email"
+                                required
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName1" class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="text"
+                                ng-model="forms.author.name"
+                                class="form-control"
+                                id="inputName1"
+                                placeholder="Ім’я"
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputProfession" class="col-sm-2 control-label">Професія</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="text"
+                                ng-model="forms.author.profession"
+                                class="form-control"
+                                id="inputProfession"
+                                placeholder="Професія"
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAdditional1" class="col-sm-2 control-label">Додаткова інформація</label>
+                    <div class="col-sm-10">
+                        <textarea
+                                ng-model="forms.author.additional"
+                                class="form-control"
+                                id="inputAdditional1"
+                                placeholder="Опишіть що б ви хотіли робити"
+                                rows="3"
+                                required
+                                ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'author', 'btn-success': forms.$success == 'author'}"
+                                ng-click="sendForm('author')"
+                                ng-disabled="forms.$sending == 'author' || authorForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'author'"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default collapsable form3" ng-class="{ showMe: !formLists[2].collapsed }" ng-form name="cooperatorForm">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail2" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="email"
+                                ng-model="forms.cooperator.email"
+                                class="form-control"
+                                id="inputEmail2"
+                                placeholder="Email"
+                                required
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputOrganization" class="col-sm-2 control-label">Організація</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="text"
+                                ng-model="forms.cooperator.organisation"
+                                class="form-control"
+                                id="inputOrganization"
+                                placeholder="Організація"
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAdditional2" class="col-sm-2 control-label">Предмет співпраці</label>
+                    <div class="col-sm-10">
+                        <textarea
+                                ng-model="forms.cooperator.subject"
+                                class="form-control"
+                                id="inputAdditional2"
+                                placeholder="Чим можемо бути вам корисні?"
+                                rows="3"
+                                required
+                                ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'cooperator', 'btn-success': forms.$success == 'cooperator'}"
+                                ng-click="sendForm('cooperator')"
+                                ng-disabled="forms.$sending == 'cooperator' || cooperatorForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'cooperator'"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default collapsable form4" ng-class="{ showMe: !formLists[3].collapsed }" ng-form name="questionerForm">
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Електронна пошта</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="email"
+                                ng-model="forms.questioner.email"
+                                class="form-control"
+                                id="inputEmail3"
+                                placeholder="Email"
+                                required
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName3" class="col-sm-2 control-label">Ім’я</label>
+                    <div class="col-sm-10">
+                        <input
+                                type="text"
+                                ng-model="forms.questioner.name"
+                                class="form-control"
+                                id="inputName3"
+                                placeholder="Ім’я"
+                                >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputAdditional3" class="col-sm-2 control-label">Питання</label>
+                    <div class="col-sm-10">
+                        <textarea
+                                ng-model="forms.questioner.question"
+                                class="form-control"
+                                id="inputAdditional3"
+                                placeholder="Чим можемо бути вам корисні?"
+                                rows="3"
+                                required
+                                ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button
+                                type="submit"
+                                class="btn btn-default"
+                                ng-class="{'btn-danger': forms.$error == 'questioner', 'btn-success': forms.$success == 'questioner'}"
+                                ng-click="sendForm('questioner')"
+                                ng-disabled="forms.$sending == 'questioner' || questionerForm.$invalid"
+                                >
+                            Надіслати
+                            <i class="fa fa-spinner fa-spin" ng-show="forms.$sending == 'questioner'"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="roadmap" ng-if="false">
+        <h4>Роадмап</h4>
+        http://almende.github.io/chap-links-library/js/timeline/examples/example15_mobile.html
+    </div>
+</div>

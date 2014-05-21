@@ -1,0 +1,44 @@
+<div class="container">
+    <h4>Всі персони</h4>
+    <input
+            type="text"
+            class="form-control search-query filter"
+            placeholder="Фільтр"
+            ng-model="filter.search"
+            ng-change="filter.exec()"
+            >
+
+    <div id="filters_container">
+        <ul id="filters">
+            <li>
+                <a href="" ng-click="sort.change('name')" ng-class="{active: sort.is('name')}">
+                    За абеткою
+                </a>
+            </li>
+            <li class="separator">/</li>
+            <li>
+                <a href="" ng-click="sort.change('lastEvent')" ng-class="{active: sort.is('lastEvent')}">
+                    За останньою подією
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div class="post_persons">
+        <div ng-repeat="person in persons" class="post_pers">
+            <a ng-href="/persons/{{person.id}}">
+                <img ng-src="{{person.getPhotoSrc()}}"
+                     alt="{{person.name}}"/>
+            </a>
+
+            <div class="text">
+                <h5><a ng-href="/persons/{{person.id}}">{{person.name}}</a></h5>
+
+                <p class="date">{{person.lastEvent | date:"dd MMM yyyy"}}</p>
+
+                <p ng-bind-html="person.info"></p>
+            </div>
+            <p class="read-more"><a ng-href="/persons/{{person.id}}" class="btn btn-primary btn-xs">Більше...</a></p>
+        </div>
+    </div>
+</div>

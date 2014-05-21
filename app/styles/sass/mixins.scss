@@ -1,0 +1,47 @@
+@mixin easings($speed: 0.3s) {
+  @include transition(all $speed cubic-bezier(0.215, 0.61, 0.355, 1));
+}
+
+@mixin lin-gradient($from, $to) {
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
+  background-image: -webkit-linear-gradient(top, $from, $to);
+  background-image: -moz-linear-gradient(top, $from, $to);
+  background-image: -ms-linear-gradient(top, $from, $to);
+  background-image: -o-linear-gradient(top, $from, $to);
+}
+
+@mixin left-lin-gradient($from, $to) {
+  background-image: -webkit-gradient(to right, $from, $to);
+  background-image: -webkit-linear-gradient(left, $from, $to);
+  background-image: -moz-linear-gradient(left, $from, $to);
+  background-image: -ms-linear-gradient(left, $from, $to);
+  background-image: -o-linear-gradient(left, $from, $to);
+}
+
+//PersonBlockMixin
+@mixin personBlock {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid $mainBackground;
+
+  @include easings;
+}
+
+@mixin personBlockHover {
+  border: 1px solid $blockBorder;
+  background: $blockBackground;
+
+  @include border-radius(5px);
+}
+
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin right-calc($expression) {
+  right: calc($expression);
+  right: -moz-calc($expression);
+  right: -webkit-calc($expression);
+}

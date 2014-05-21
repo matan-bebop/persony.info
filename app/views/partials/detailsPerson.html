@@ -1,57 +1,422 @@
-<div class="person-detail-header">
-  <div class="person-container">
 
-    <user-avatar src="{{person.photo}}" title="{{person.name}}"></user-avatar>
+<script type="text/ng-template" id="photoModal.html">
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">×</button>
+                    <h4 class="modal-title" id="event1ImageModalLabel" ng-bind-html="title"></h4>
+                </div>
+                <div class="modal-body" ng-bind-html="content"></div>
+            </div>
+        </div>
+    </div>
+</script>
 
-    <div class="person-data pull-left">
+<script type="text/ng-template" id="personModal.html">
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">×</button>
+                    <h4 class="modal-title" id="event1ImageModalLabel">{{person.name}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class='person-modal'>
 
-      <h3 class="pull-left person-name">{{person.name}}</h3>
+                        <div class="person-photo pull-left">
+                            <img
+                                    ng-src="{{person.getPhotoSrc()}}"
+                                    alt="{{person.name}}"
+                                    title="{{person.name}}"
+                                    ng-click="personPopup()"
+                                    ng-if="person.getPhotoSrc()"
+                                    />
 
-      <div class="pull-right">
-        <ul class="social-icons">
-          <li><i class="fa fa-facebook-square"></i> <span class="count">0</span></li>
-          <li><i class="fa fa-google-plus"></i> <span class="count">0</span></li>
-          <li><i class="fa fa-twitter-square"></i> <span class="count">0</span></li>
-        </ul>
-      </div>
+                            <img
+                                    src="/images/apple-touch-icon-114x114.png"
+                                    alt="Фотографії не існує"
+                                    title="{{person.name}}"
+                                    ng-click="personPopup()"
+                                    ng-if="!person.getPhotoSrc()"
+                                    />
+                        </div>
 
-      <div class="clearfix"></div>
+                        <div class="person-data pull-left">
 
-      <div class="person-info">{{person.info}}</div>
+                            <div class="person-info">{{person.info}}</div>
 
-      <web-presence></web-presence>
+                        </div>
 
-      <!--<ul class="person-tags">
-        <li><a href="#">Журналісти</a></li>
-        <li><a href="#">Громадське</a></li>
-        <li><a href="#">Публіцисти</a></li>
-        <li><a href="#">Майдан</a></li>
-      </ul>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="personEdit.html">
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">×</button>
+                    <h4 class="modal-title" id="editPersonModalLabel" ng-bind-html="title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required" role="form">
+		                <div class="form-group">
+		                    <label for="inputName" class="col-sm-4 control-label">Ім’я</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.personEdit.name" class="form-control ng-pristine ng-valid" id="inputName" placeholder="Ім’я">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputTags" class="col-sm-4 control-label">Тег(и)</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.personEdit.tags" class="form-control ng-pristine ng-valid" id="inputTags" placeholder="Тег(и)">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputDescription" class="col-sm-4 control-label">Опис</label>
+		                    <div class="col-sm-8">
+		                        <textarea class="form-control ng-pristine ng-valid" id="inputDescription" placeholder="Опис" rows="3" ng-model="forms.personEdit.description"></textarea>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputImage" class="col-sm-4 control-label">Зображення</label>
+		                    <div class="col-sm-8">
+		                        <input type="file" ng-model="forms.personEdit.image" class="form-control ng-pristine ng-valid" id="inputImage" name="file1" class="input-file">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputImageAlt" class="col-sm-4 control-label">Image alt text</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.personEdit.imageAlt" class="form-control ng-pristine ng-valid" id="inputImageAlt" placeholder="alt text">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputFacebook" class="col-sm-4 control-label">Facebook</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.personEdit.facebook" class="form-control ng-pristine ng-valid" id="inputFacebook" placeholder="Facebook">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputTwitter" class="col-sm-4 control-label">Twitter</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.personEdit.twitter" class="form-control ng-pristine ng-valid" id="inputTwitter" placeholder="Twitter">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputURLAlias" class="col-sm-4 control-label">URLAlias</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.personEdit.URLAlias" class="form-control ng-pristine ng-valid" id="inputURLAlias" placeholder="URLAlias">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <div class="col-sm-offset-2 col-sm-8">
+		                        <button type="submit" class="btn btn-default" ng-class="{'btn-danger': forms.$error == 'personEdit', 'btn-success': forms.$success == 'personEdit'}" ng-click="sendForm('personEdit')" ng-disabled="forms.$sending == 'personEdit' || developerForm.$invalid" disabled="disabled">
+		                            Надіслати
+		                            <i class="fa fa-spinner fa-spin ng-hide" ng-show="forms.$sending == 'personEdit'"></i>
+		                        </button>
+		                    </div>
+		                </div>
+            		</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="eventEdit.html">
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="$hide()">×</button>
+                    <h4 class="modal-title" id="editEventModalLabel" ng-bind-html="title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required" role="form">
+		                <div class="form-group">
+		                    <div class="col-sm-offset-4 col-sm-8">
+		                        <div class="radio">
+		                            <label>
+		                                <input name='types' type="radio" class="radio" ng-model="forms.editEvent.type" value="point" ng-checked="true">
+		                                <span>Точкова подія</span>
+		                            </label>
+		                        </div>
+		                        <div class="radio">
+		                            <label>
+		                                <input name='types' type="radio" class="radio" ng-model="forms.editEvent.type" value="state">
+		                                <span>Стан</span>
+		                            </label>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputName" class="col-sm-4 control-label">Назва події</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.editEvent.name" class="form-control ng-pristine ng-valid" id="inputName" placeholder="Назва події">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputName" class="col-sm-4 control-label">Дата події</label>
+		                    <div class="col-sm-8">
+		                        <div class="dropdown">
+								  <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown">
+								    <div class="input-group form-control">
+								    	<input type="text" class="ng-pristine ng-valid date-time-input" data-ng-model="forms.editEvent.startDate">
+								    	<span class="input-group-add-on">&nbsp;<i class="glyphicon glyphicon-calendar"></i></span>
+								    </div>
+								  </a>
+								  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								    <datetimepicker data-ng-model="forms.editEvent.startDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView: 'year', weekStart: 1, minuteStep: 1 }"/>
+								  </ul>
+								</div>
+		                    </div>
+		                </div>
+		                <div class="form-group" ng-if="forms.editEvent.type === 'state'">
+		                    <label for="inputName" class="col-sm-4 control-label">Дата закінчення</label>
+		                    <div class="col-sm-8">
+		                        <div class="dropdown">
+								  <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown">
+								    <div class="input-group form-control">
+								    	<input type="text" class="ng-pristine ng-valid date-time-input" data-ng-model="forms.editEvent.endDate">
+								    	<span class="input-group-add-on">&nbsp;<i class="glyphicon glyphicon-calendar"></i></span>
+								    </div>
+								  </a>
+								  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								    <datetimepicker data-ng-model="forms.editEvent.endDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView: 'year', weekStart: 1, minuteStep: 1 }"/>
+								  </ul>
+								</div>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputTags" class="col-sm-4 control-label">Тег(и)</label>
+		                    <div class="col-sm-8">
+				               <select ui-select2 multiple="" ng-model="forms.editEvent.tags" class="populate select2-offscreen" style="width: 100%;" tabindex="-1">
+				               <optgroup label="blah">
+				                   <option value="a1">blah1</option>
+				                   <option value="a2">blah2</option>
+				               </optgroup>
+				               <optgroup label="bleh">
+				                   <option value="e1">bleh1</option>
+				                   <option value="e2">bleh2</option>
+				                   <option value="e3">bleh3</option>
+				               </optgroup>
+				              </select>	                    	
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputDescription" class="col-sm-4 control-label">Опис</label>
+		                    <div class="col-sm-8">
+		                        <textarea class="form-control ng-pristine ng-valid" id="inputDescription" placeholder="Опис" rows="3" ng-model="forms.editEvent.description"></textarea>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputImage" class="col-sm-4 control-label">Зображення</label>
+		                    <div class="col-sm-8">
+		                    	<!-- angular.element(this).scope().$parent.updateImage(event) -->
+		                        <input type="file" ng-model="forms.editEvent.image" class="form-control ng-pristine ng-valid" id="inputImage" name="file1" class="input-file" ng-change="modals.updateImage(event)">
+		                        <p ng-show="modals.imageAdded === true">
+			                    	<h5>Вихідне зображення</h5>
+									<div id="image_input"></div>
+									<h5>Результат</h5>
+									<img id="image_output" style="border:1px solid #000"/>
+									{{modals.imageAdded}}
+								</p>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputImageAlt" class="col-sm-4 control-label">Image alt text</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" ng-model="forms.editEvent.imageAlt" class="form-control ng-pristine ng-valid" id="inputImageAlt" placeholder="alt text">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="inputURLAlias" class="col-sm-4 control-label">Зв’язки з іншими пордіями чи персонами</label>
+		                    <div class="col-sm-8">
+				               <select ui-select2 multiple="" ng-model="forms.editEvent.connections" class="populate select2-offscreen" style="width: 100%;" tabindex="-1">
+				               <optgroup label="blah">
+				                   <option value="a1">blah1</option>
+				                   <option value="a2">blah2</option>
+				               </optgroup>
+				               <optgroup label="bleh">
+				                   <option value="e1">bleh1</option>
+				                   <option value="e2">bleh2</option>
+				                   <option value="e3">bleh3</option>
+				               </optgroup>
+				              </select>	                    	
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <div class="col-sm-offset-2 col-sm-8">
+		                        <button type="submit" class="btn btn-default" ng-class="{'btn-danger': forms.$error == 'developer', 'btn-success': forms.$success == 'editEvent'}" ng-click="sendForm('editEvent')" ng-disabled="forms.$sending == 'editEvent' || developerForm.$invalid" disabled="disabled">
+		                            Надіслати
+		                            <i class="fa fa-spinner fa-spin ng-hide" ng-show="forms.$sending == 'editEvent'"></i>
+		                        </button>
+		                    </div>
+		                </div>
+            		</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="person-header-die"></div>
+<div class="container" person-details>
+    <div class="page-header">
+
+        <div class="timeline-zoom" ng-if="false">
+            <div class="zoom-tip">
+                Маштаб часу:
+            </div>
+            <div class="slider-instead">
+                Десятиріччя
+            </div>
+            <i class="fa fa-plus"></i>
+            <rzslider rz-slider-model="zoomSlider"
+                      rz-slider-floor="0"
+                      rz-slider-ceil="7"
+                      rz-slider-translate="translate">
+            </rzslider>
+            <i class="fa fa-minus"></i>
+        </div>
+
+        <div class='person-header'>
+
+            <div class="person-photo pull-left">
+                <img
+                        ng-src="{{person.getPhotoSrc()}}"
+                        alt="{{person.name}}"
+                        title="{{person.name}}"
+                        ng-click="personPopup()"
+                        ng-if="person.getPhotoSrc()"
+                        />
+
+                <img
+                        src="/images/apple-touch-icon-114x114.png"
+                        alt="Фотографії не існує"
+                        title="{{person.name}}"
+                        ng-click="personPopup()"
+                        ng-if="!person.getPhotoSrc()"
+                        />
+            </div>
+
+            <div class="person-data pull-left">
+
+                <h3 class="pull-left person-name" data-animation="am-fade-and-slide-top" data-placement="center" data-template="personModal.html" bs-modal="modal">{{person.name}}</h3>
+
+                <div class="person-info">{{person.info}}</div>
+
+                <!--div ng-include="'partials/socialButtons.html'" ng-init="title=person.name; url = HOST_URL + '/persons/' + person.id; desc = person.description; img = person.getPhotoSrc()"></div-->
+
+            </div>
+
+            <div class="person-socials pull-left">
+                <div ng-include="'partials/socialButtons.html'" ng-init="title=person.name; url = HOST_URL + '/persons/' + person.id; desc = person.description; img = person.getPhotoSrc()"></div>
+            </div>
+
+        </div>
+
+        <div class="pull-right">
+            <div class="person-tools" ng-if="false">
+                <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownPersonTools" data-html="true">
+                    <i class="fa fa-cog fa-2x"></i>
+                </a>
+            </div>
+
+            <div class="event-filter" ng-if="false">
+                <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventFilters" data-html="true">
+                    <i class="fa fa-filter fa-lg"></i><span>Фільтрувати події</span>
+                </a>
+            </div>
+        </div>
 
     </div>
 
-    <div class="clearfix"></div>
+    <div class="panel panel-default timeline-helper">
+        <div class="panel-body" role="complementary" bs-scrollspy-list>
+            <ul>
+                <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}" ng-repeat="year in eventYears.orders.years" class="helper-year">
+                    <a ng-href="/persons/{{person.id}}#year{{year}}" class="helper-year-link">{{year}}</a>
+                    <ul>
+                        <li bs-scrollspy data-offset="{{spyoffset}}" data-target="#year{{year}}month{{month}}" ng-repeat="month in eventYears.orders.months[year]" class="helper-month">
+                            <a ng-href="/persons/{{person.id}}#year{{year}}month{{month}}" class="helper-month-link" ng-bind-html="month | monthName" ng-if="month != -1"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-  </div>
-</div>
+	<div class="container loading" ng-hide="contentLoaded">
+	   	<i class="fa fa-spinner fa-spin fa-5x"></i>
+	</div>
 
-<div class="person-timeline">
-  <ul class="event-years-list">
-    <li ng-repeat="yearData in eventYears" class="li-year">
-      <div class="pull-left event-year">{{yearData.year}}</div>
-      <ul class="event-monthes-list">
-        <li ng-repeat="monthesData in yearData.monthes" class="li-month">
-          <div class="event-month">{{monthNames[monthesData.month]}}</div>
-          <ul class="events-list">
-            <li ng-repeat="event in monthesData.events">
-              <div class="event-date">{{event.start | date: "d"}}</div>
-              <div class="event-icon">{{event.sourses[0].icon}}</div>
-              <a class="event-link" href="#">{{event.title}}</a>
+    <div class="person-bio" ng-show="contentLoaded">
+        <ul id='timeline'>
+        	<input class='radio' id='#event0' name='events' type='radio' ng-checked="expandedEventId == event.id">
+            <li class="li-year" ng-repeat="year in eventYears.orders.years" id="year{{year}}" on-last-repeat>
+                <div class="event-year">{{year}}</div>
+                <ul class="event-monthes-list">
+                    <li class="li-month" ng-repeat="month in eventYears.orders.months[year]" id="year{{year}}month{{month}}">
+                        <div class="event-month" ng-bind-html="month | monthName"></div>
+                        <ul class="events-list">
+                            <li ng-repeat="event in eventYears[year][month]">
+                                <input class='radio' id='#event{{event.id}}' name='events' type='radio' ng-checked="expandedEventId == event.id">
+                                <a id="event{{event.id}}"></a>
+                                <div class='content'>
+                                	<div class="relative">
+	                                    <a class="timeline-anchor" id="event-ancor{{event.id}}"></a>
+	                                    <label for='#event{{event.id}}' ng-click='eventLabelClick(event.id, $event)'>{{event.title}}</label>
+	                                    <div class="event-date" ng-bind-html="event.day"></div>
+	                                    <div class="event-icon fa fa-lg fa-{{event.sources[0].icon || 'info'}}"></div>
+	                                </div>
+                                    <div class="event-header">
+                                        <div class="event-detail-date">
+                                        	<span ng-if="event.displayDate"><span ng-bind-html="event.day"></span>&nbsp;{{event.start | date:"MMMM"}}</span>
+                                        	<span ng-if="!event.displayDate && month > -1" ng-bind-html="month | monthName"></span>
+                                            <span>{{year}}</span>
+                                        </div>
+                                        <div class="event-tools" ng-if="false">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" data-animation="am-flip-x" bs-dropdown="dropdownEventTools" data-html="true">
+                                                    <i class="fa fa-cog fa-2x"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="detail-info">
+                                        <div class="info-wrap-img">
+                                            <img ng-src="{{event.getImageSrc()}}"
+                                                 alt="{{event.title}}"
+                                                 title="{{event.title}}"
+                                                 ng-click="popupEventPhoto(event)"
+                                                 ng-if="event.getImageSrc()"
+                                                    />
+                                        </div>
+                                        <div class="info-wrap">
+                                            <p class="description">{{event.description}}</p>
+
+                                            <p class="source">
+                                                Джерел{{event.sources.length > 1 ? 'а': 'о'}}: 
+                                                <span ng-repeat="source in event.sources">{{$index === 0 ? '' : ', '}}<a
+                                                    ng-href="{{source.link}}" external-link>{{source.title}}</a></span>
+                                            </p>
+
+                                            <div ng-include="'partials/socialButtons.html'" ng-init="title=event.title; url=HOST_URL + '/persons/' + person.id + '#event' + event.id; desc = event.description; img = event.getImageSrc(); pre = 'Поширити'"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
             </li>
-          </ul>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
-    </li>
-  </ul>
+        </ul>
+    </div>
 </div>

@@ -1,0 +1,145 @@
+//using
+@import "compass/css3/border-radius";
+@import "compass/css3/opacity";
+@import "compass/css3/transition";
+@import "mixins";
+@import "colors";
+@import "socialColors";
+@import "animate";
+@import "social_button";
+
+// U_N_S_O_R_T_E_D
+$bg: url(../../images/agsquare.png) repeat $mainBackground ! important;
+
+$navbarHeight: 50px;
+
+html, body {
+  color: $textOnLightBkg;
+  font-family: 'Roboto', Arial, Tahoma, sans-serif !important;
+  font-weight: 300 !important;
+  background: $bg;
+  height: calc(100% - 25px) !important;
+  height: -moz-calc(100% - 25px) !important;
+  height: -webkit-calc(100% - 25px) !important;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  min-height: 100%!important;
+  margin-bottom: -135px;
+
+}
+
+* html .page-wrapper {
+  height: 100%;
+}
+
+.page-buffer {
+  height: 135px;
+}
+
+a{
+  text-decoration: underline;
+  color: $linkColorOnLightBkg;
+
+  @include easings;
+
+  &:hover {
+    color: $linkColorOnLightBkgHover;
+  }
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+
+  li{
+    list-style: none;
+  }
+}
+
+h5 {
+  font-size: 22px;
+  font-weight: 300;
+  color: $selectTextOnLightBkg;
+}
+
+h4 {
+  font-size: 32px;
+  font-weight: 100;
+  color: $selectTextOnLightBkg;
+}
+
+.logo img {
+  margin: 4px 5px 0 0;
+}
+
+.main-container{
+  margin-top: $navbarHeight;
+}
+
+.help-tip{
+  height: 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  position: fixed;
+  top: $navbarHeight;
+  width: 100%;
+  z-index: 2000;
+
+  @include easings;
+
+  button, span{
+    display: none;
+  }
+}
+
+.help-tip.show-tip{
+  padding: 15px 35px 15px 15px;
+  border: 1px solid transparent;;
+  height: $navbarHeight;
+
+  button{
+    display: block;
+  }
+
+  span{
+    display: inline;
+
+    #help-tip-close-link{
+      border-bottom: 1px dashed;
+      cursor: pointer;
+    }
+  }
+}
+.info-wrap{
+  .social{
+    margin: 2em 0 0 0;
+    float: right;
+  }
+  .stButton .stButton_gradient,
+  .stButton .stFb,
+  .stButton .stTwbutton,
+  .stButton .stMainServices {
+    height: 22px;
+  }
+}
+
+.loading{
+  text-align: center;
+  padding: 200px 0;
+  color: $selectTextOnLightBkg;
+}
+
+
+//submodules
+@import "navbar";
+@import "all/main";
+@import "main/main";
+@import "about/main";
+@import "errors/main";
+@import "detailPerson/main";
+@import "footer";
+@import "plugins/main";

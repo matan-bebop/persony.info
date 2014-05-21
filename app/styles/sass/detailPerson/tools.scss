@@ -1,0 +1,175 @@
+span.pop-danger {
+  color: $danger;
+
+  i{
+    color: $danger;
+  }
+}
+
+span.pop-primary {
+  color: $primary;
+
+  i{
+    color: $primary;
+  }
+}
+
+span.pop-warning {
+  color: $warning;
+
+  i{
+    color: $warning;
+  }
+}
+
+.person-tools, .event-filter{
+  z-index: 102;
+
+  .dropdown-menu{
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  @include easings;
+
+  li{
+    list-style-type: none;
+    z-index: 102;
+  }
+
+  a{
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  i{
+    color: $toolsButtonColor;
+    cursor: pointer;
+
+    @include easings(0.6s);
+
+    &:hover{
+      color: black;
+    }
+  }
+}
+
+.person-tools{
+  float: right;
+  right: 15px;
+  height: 24px;
+  width: 28px;
+  top:0px;
+  position: absolute;
+}
+
+.event-tools{
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  .dropdown-menu{
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  a{
+    color: $toolsButtonColor;
+    text-decoration: none;
+
+    &:hover{
+      color: black;
+    }
+  }
+
+  li{
+    margin: 0 !important;
+  }
+}
+
+.event-filter{
+  cursor: pointer;
+  right: 15px;
+  top:30px;
+  position: absolute;
+
+  @include border-radius(3px);
+
+  a{
+    color: $linkColorOnLightBkg;
+    font-weight: 500;
+  }
+
+  i{
+    margin-right: 4px; //space
+  }
+
+  &:hover{
+    a{
+      color: $linkColorOnLightBkgHover;
+    }
+
+    i{
+      color: black;
+    }
+  }
+}
+
+.page-header.shrink .event-filter{
+
+}
+//For tablet
+@media screen and (max-width: 1200px) {
+ .event-tools {
+   right: 0px !important;
+ }
+  .event-filter {
+    right: 15px !important;
+    i.fa-filter{
+      font-size: 2em;
+    }
+
+    span{
+      display: none;
+    }
+  }
+}/*
+//For tablet
+@media screen and (max-width: 995px) {
+  .page-header, .page-header.shrink{
+    .event-tools,.event-filter {
+      right: 0px !important;
+      position: absolute;
+    }
+
+    .event-filter, .person-tools{
+      right: 0px !important;
+      position: absolute;
+    }
+  }
+  .event-filter {
+    i.fa-filter{
+      font-size: 2em;
+    }
+
+    span{
+      display: none;
+    }
+  }
+}
+
+//For mobile
+@media screen and (max-width: 767px) {
+  .event-filter {
+    i.fa-filter{
+      font-size: 2em;
+    }
+
+    span{
+      display: none;
+    }
+  }
+}
+
+*/

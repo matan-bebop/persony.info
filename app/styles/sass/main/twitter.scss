@@ -1,0 +1,86 @@
+
+.caption_info{
+  padding:35px !important;
+  font-size: 32px;
+  font-weight: 100;
+  text-align: center !important;
+}
+
+blockquote.twitter{
+  overflow: hidden;
+
+  .interact{
+    display: none;
+  }
+
+  .fa{
+    width: 100%;
+    text-align: center;
+    color: $blockBorder;
+  }
+
+  .user{
+
+    a{
+      text-decoration: none;
+    }
+
+    img{
+      @include border-radius(50%);
+      border: 3px solid $timelineAxisColor;
+      width: 62px;
+      height: 62px;
+      margin: 5px;
+      float: left;
+    }
+
+    span{
+      &:first-child{
+        font-size:20px !important;
+        color: $textOnLightBkg !important;
+        text-decoration: none !important;
+
+        &:before{
+          content: " \2013  " !important;
+        }
+
+        &:after{
+          content: "" !important;
+        }
+      }
+
+      &:last-child{
+        color: $linkColorOnLightBkg;
+        text-decoration: underline;
+        font-size:18px;
+
+        &:before{
+          color: $textOnLightBkg !important;
+          text-decoration: none !important;
+          content: "(";
+        }
+
+        &:after{
+          color: $textOnLightBkg !important;
+          text-decoration: none !important;
+          content: ")";
+        }
+      }
+
+    }
+  }
+
+
+  p{
+    &.tweet{
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    &.timePosted{
+      font-size: 10px;
+      text-align: right;
+      margin-bottom: 0;
+    }
+  }
+}

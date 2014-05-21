@@ -1,0 +1,54 @@
+.post_persons {
+  margin: 20px 0;
+  width:100%;
+}
+
+.post_pers {
+  max-width: 300px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  display: inline;
+  margin: 25px;
+
+  @include personBlock;
+
+  img{
+    display: block;
+    margin: 0 auto;
+    max-height:182px;
+    max-width: 243px;
+  }
+
+  &:hover{
+    @include personBlockHover;
+  }
+
+  h5{
+    margin: 10px 0;
+  }
+}
+
+//For tablet and mobile
+@media screen and (max-width: 995px) {
+  .post_pers {
+    max-width: 190px;
+    height: 280px;
+
+    img{
+      display: block;
+      margin: 0 auto;
+      max-height:172px;
+      max-width: 165px;
+    }
+
+    h5{
+      font-size: 18px;
+    }
+  }
+}
+
+//submodules
+@import "filter";
+@import "read-more";

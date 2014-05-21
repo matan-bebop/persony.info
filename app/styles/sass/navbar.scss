@@ -1,0 +1,150 @@
+$navbarSearchDisplayWidth: 200px;
+
+.navbar-static-top{
+  border-width: 0;
+}
+
+.nav{
+  li {
+    height: $navbarHeight !important;
+    cursor: pointer;
+    border-bottom: 4px solid transparent;
+
+    @include easings;
+
+    &:hover{
+      border-bottom: 4px solid $linkColorOnLightBkg;
+
+      a{
+        color: $linkColorOnLightBkg !important;
+        text-decoration: none;
+      }
+    }
+  }
+
+  a {
+    color: $textOnDarkBkg !important;
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 14px !important;
+    display: block;
+
+    &:hover{
+      color: $linkColorOnLightBkg !important;
+      text-decoration: none;
+    }
+  }
+}
+
+.navbar-nav>.active>a:hover{
+  color: $linkColorOnLightBkg !important;
+  text-decoration: none;
+}
+
+.navbar {
+  margin: 0;
+
+  @include opacity(0.9);
+
+  a{
+    text-decoration: none;
+  }
+}
+
+.search-form {
+  width: $navbarSearchDisplayWidth;
+  margin-top: 11px;
+
+  .search-input, .input-group-addon{
+    border: 0;
+    height: 27px;
+    background: $inputBkg;
+
+    @include border-left-radius(2px);
+  }
+
+  .search-input{
+    font-style: italic;
+    padding-left: 0;
+    font-size: 12px;
+    color: white;
+
+    @include border-right-radius(2px);
+  }
+}
+
+.navbar-inverse{
+  background: $backgroundHeaderFooter;
+
+  .navbar-nav > .active{
+    border-bottom: 4px solid $selectedTextOnDarkBkg;
+
+    a{
+      color: $selectedTextOnDarkBkg !important;
+    }
+  }
+
+  .navbar-nav > .active > a{
+    background: $backgroundHeaderFooter !important;
+  }
+}
+
+.collapse-btn.btn-navbar{
+  display: none;
+  margin-right: 10px;
+}
+
+//For tablet and mobile
+@media screen and (max-width: 767px){
+  .collapse-btn.btn-navbar{
+    display: inline-block;
+  }
+
+  .nav{
+    li {
+      border: 0 !important;
+      height: auto !important;
+    }
+  }
+
+  .navbar{
+    .logo{
+      width: 100%;
+
+      a{
+        margin-left: 38%;
+
+        &.btn-navbar{
+          margin-left: 0 !important;
+          margin-top: 8px;
+          float: right;
+        }
+      }
+    }
+
+    li{
+      a{
+        text-align: center;
+      }
+    }
+
+    ul{
+      .search-form{
+        width: 100%;
+        margin: 0 auto;
+
+        .input-group{
+          margin: 0 auto;
+          width: 380px;
+        }
+      }
+    }
+  }
+}
+
+//For a little mobile ;)
+@media screen and (max-width: 500px){
+  .navbar .logo a{
+        margin-left: 15%;
+    }
+}

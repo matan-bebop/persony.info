@@ -1,0 +1,198 @@
+$zoomControlDisplayWidth: 200px;
+$zoomControlTabletWidth: 130px;
+$zoomControlMobileWidth: 90px;
+$sliderControlDisplayWidth: 120px;
+$zoomTitleDisplayHeight: 60px;
+
+.slider-instead{
+  display: none;
+}
+
+.timeline-zoom{
+  width: $zoomControlDisplayWidth;
+  padding-top: 15px;
+  float: left;
+  z-index: 102;
+
+  .zoom-tip{
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    color: $selectTextOnLightBkg;
+    height: $zoomTitleDisplayHeight;
+
+    @include easings;
+  }
+
+  @include easings;
+
+  i{
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 5px 5px 10px;
+    width: 32px;
+    height: 32px;
+    color: $toolsButtonColor;
+    background: transparent;
+    border: 1px solid transparent;
+
+    @include border-radius(50%);
+    @include easings(0.6s);
+
+    &:hover{
+      background: white;
+      color: black;
+      border: 1px solid $toolsButtonColor;
+    }
+  }
+}
+
+.page-header.shrink{
+  rzslider{
+    margin: 22px 0 25px 0;
+  }
+
+  .zoom-tip{
+      height: 0px;
+      padding-top: 0px;
+      color: transparent;
+  }
+}
+
+rzslider {
+  display: inline-block;
+  position: relative;
+  height: 6px;
+  width: $sliderControlDisplayWidth;
+  margin: 22px 0 25px 0;
+  vertical-align: middle;
+
+  span {
+    white-space: nowrap;
+    position: absolute;
+    display: inline-block;
+
+
+    &.base {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+    }
+
+    &.bar {
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      border: 1px solid $toolsButtonColor;
+      background: white;
+
+      @include border-radius(2px);
+
+      &.selection {
+        width: 0%;
+        z-index: 1;
+        background: $toolsButtonColor;
+      }
+    }
+
+    &.pointer {
+
+      cursor: pointer;
+      width: 9px;
+      height: 26px;
+      top: -12px;
+      background-color: transparent;
+      z-index: 2;
+
+      @include transition(background 0.6s cubic-bezier(0.215, 0.61, 0.355, 1));
+
+      &:after {
+        content: '';
+        width: 9px;
+        height: 26px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: white;
+        border: 1px solid $toolsButtonColor;
+
+        @include border-radius(3px);
+        @include transition(background 0.6s cubic-bezier(0.215, 0.61, 0.355, 1));
+      }
+
+      &:hover:after {
+        background-color: $toolsButtonColor;
+      }
+
+      &.active:after {
+        background-color: $toolsButtonColor;
+      }
+    }
+
+    &.bubble {
+      cursor: default;
+      font-size: 12px;
+      top: -40px;
+      opacity: 0.8;
+      padding: 3px;
+      color: $textOnDarkBkg;
+      background: $toolsButtonColor;
+
+      @include border-radius(3px);
+
+      &:after{
+        content: '';
+        position: absolute;
+        border-top: 4px solid $toolsButtonColor;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        top: 100%;
+        left: 50%;
+        margin-left: -4px;
+        width: 0; height: 0;
+      }
+
+      &.limit {
+        color: transparent;
+        background: transparent;
+
+        &:after{
+          border: 0px transparent;
+        }
+      }
+    }
+  }
+}
+
+//For tablet
+@media screen and (max-width: 995px) {
+  .page-header, .page-header.shrink {
+    rzslider {
+      margin: 22px 0 25px 0;
+    }
+
+    .zoom-tip {
+      height: 0px;
+      padding-top: 0px;
+      color: transparent;
+    }
+  }
+}
+
+//For mobile
+@media screen and (max-width: 767px) {
+  .timeline-zoom {
+    width: $zoomControlMobileWidth;
+    padding-top: 0;
+  }
+  rzslider {
+    display: none;
+  }
+
+  .slider-instead{
+    display: block;
+    margin-left: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
