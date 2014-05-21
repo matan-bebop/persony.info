@@ -41,7 +41,7 @@
 }
 
 @mixin right-calc($expression) {
-  right: calc($expression);
-  right: -moz-calc($expression);
-  right: -webkit-calc($expression);
+  right: calc(#{$expression});
+  right: -moz-calc(#{$expression});
+  right: -webkit-calc(#{$expression});
 }
