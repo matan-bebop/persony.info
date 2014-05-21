@@ -18,6 +18,7 @@
     display: inline-block;
     margin: 0 2px 3px !important;
     min-height:20px !important;
+    border: 1px solid #cfcecd;
   }
   .ng-social-vk .ng-scope{
     max-height:20px !important;
@@ -45,6 +46,10 @@
     margin: 0;
     line-height: 18px;
     outline: 0;
+  }
+  .ng-social-counter{
+    border-left: 1px solid #cfcecd;
+    padding:0px 3px;
   }
   .ng-social-icon {
   display:none;
