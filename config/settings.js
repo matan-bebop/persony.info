@@ -25,7 +25,7 @@ var settings = {
         protocol: "mysql",
         query:    { pool: true },
         host:     "127.0.0.1",
-        database: "personDB",
+        database: "dev.persony_main",
         user:     "persony",
         password: "bxnSyEYDzjRCefzH"
     },
