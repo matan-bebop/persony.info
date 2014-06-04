@@ -22,8 +22,8 @@ return array(
 	'components'=>array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=127.0.0.1;dbname=personDB;port=3307',
-			'username' => 'root',
-			'password' => 'mysql',
+			'username' => 'persony',
+			'password' => 'bxnSyEYDzjRCefzH',
 			'charset' => 'utf8',
 		),
 
