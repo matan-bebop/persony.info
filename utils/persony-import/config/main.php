@@ -21,7 +21,7 @@ return array(
 	// application components
 	'components'=>array(
 		'db'=>array(
-			'connectionString' => 'mysql:host=127.0.0.1;dbname=dev.persony_main;port=3307',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=dev.persony_main',
 			'username' => 'persony',
 			'password' => 'bxnSyEYDzjRCefzH',
 			'charset' => 'utf8',
