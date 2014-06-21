@@ -63,26 +63,20 @@ for production (environment variable should be somehow defined: export NODE_ENV=
 > grunt test
 
 
-*Import Fake data*
-
-- Set DEBUG to true inside settings(or settings.local)
-
-To import Persons, Events, Sources:
-
-- Open http://localhost:3000/import
-
-To generate relations between models
-
-- Open http://localhost:3000/related
-
-
 SASS
 -----
 
-*.scss files should be located in **[project root]/app/styles/sass/** directory
+\*.scss files should be located in **[project root]/app/styles/sass/** directory
 and they will be served as **/app/styles/compiled/\*.css**
 
 Database
 --------
 
 Inside development environment PhpMyAdmin will be available on *http://localhost:8000/*
+
+Populate database
+-----------------
+
+Real-life data is stored in the **testdata/dump.sql**. To restore the dump, execute
+
+> mysql -u root -pmysql personDB < /vagrant/testdata/dump.sql
