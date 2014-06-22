@@ -399,7 +399,9 @@
                                                     />
                                         </div>
                                         <div class="info-wrap">
-                                            <p class="description">{{event.description}}</p>
+                                            <p class="description">
+												<span ng-bind-html="event.description | toTrusted"></span>
+											</p>
 
                                             <p class="source">
                                                 Джерел{{event.sources.length > 1 ? 'а': 'о'}}: 

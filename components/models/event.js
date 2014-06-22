@@ -1,6 +1,7 @@
 'use strict';
 
-var path = require("path");
+var path = require("path"),
+	Pml2html = require("../pml2html");
 
 module.exports = function (seq, DataTypes) {
     var Person = seq.getModel('Person'),
@@ -17,7 +18,14 @@ module.exports = function (seq, DataTypes) {
                         notEmpty: true
                     }
                 },
-                "description": { type: DataTypes.TEXT, allowNull: false },
+                "description": { 
+					type: DataTypes.TEXT, 
+					allowNull: false,
+					get: function() {
+						var tr = new Pml2html.Translator(seq)
+						return tr.translate(this.getDataValue("description"));
+					}
+				},
                 "published": { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
                 image: {type: DataTypes.STRING, unique: false},
                 "others": { type: DataTypes.TEXT, allowNull: true }

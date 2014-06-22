@@ -4,7 +4,7 @@
     angular.module('personyApp').controller(
         'controllers.personDetails',
         [
-            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window', '$anchorScroll',
+            'Page', '$location', '$routeParams', 'Person', 'Event', '$scope', '$modal','$window', '$anchorScroll', '$sce',
             function (Page, $location, $routeParams, Person, Event, $scope, $modal, $window, $anchorScroll) {
 
                 var match = $location.hash().match(/(event)([0-9]+)/),
