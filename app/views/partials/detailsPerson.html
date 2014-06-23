@@ -399,7 +399,7 @@
                                                     />
                                         </div>
                                         <div class="info-wrap">
-                                            <p class="description">{{event.description}}</p>
+                                            <p class="description" ng-bind-html="event.description"></p>
 
                                             <p class="source">
                                                 Джерел{{event.sources.length > 1 ? 'а': 'о'}}: 

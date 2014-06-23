@@ -19,6 +19,7 @@ var settings = {
         project: [__dirname, '..', 'app'].join('/'),
         sass:    'styles/sass',
         css:     'styles/compiled',
+        //config:  'styles/sass/config.rb',
         logging: true
     },
     database:     {

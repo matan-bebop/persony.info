@@ -226,7 +226,6 @@
                         show: true
                     });
                 }
-
                 Event.query({personId: $routeParams.id, order: 'start.desc'}, function (events) {
                     var data = {
                         orders: {

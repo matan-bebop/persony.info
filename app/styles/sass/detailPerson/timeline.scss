@@ -139,6 +139,30 @@
       &.description{
         color: $textOnLightBkg;
         font-weight: 500;
+
+        /*Quote in Description*/
+        /*
+        q{
+          &:before{
+          }
+
+          &:after{
+          }
+
+        }*/
+
+        blockquote {
+          border-left: 0;
+
+          &:before {
+            content: "\201C";
+            font-family: "Noto Serif", Serif;
+            font-size: 4em;
+            line-height: 0.1em;
+            margin-right: 0.15em;
+            vertical-align: -0.4em;
+          }
+        }
       }
 
       &.source{
