@@ -1,0 +1,4 @@
+{ 
+	"name" : "pml",
+	"main" : "./pml.js" 
+}

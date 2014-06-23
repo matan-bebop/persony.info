@@ -76,3 +76,6 @@ Translator : function() { // BEGIN Class Translator
 }; // End namespace PML public
 
 })(); // END Namespace PML
+
+// Declare what do we export for Node.js
+module.exports = PML;

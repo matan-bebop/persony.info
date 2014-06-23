@@ -26,9 +26,9 @@ var settings = {
         protocol: "mysql",
         query:    { pool: true },
         host:     "127.0.0.1",
-        database: "dev.persony_main",
-        user:     "persony",
-        password: "bxnSyEYDzjRCefzH"
+        database: "personDB",
+        user:     "root",
+        password: "mysql"
     },
     security_key: "GcDesWWD5cHcuN1TYJwv,dWW+IE7LNgS0UTRD4EAlSdo==",
     mail:         {
@@ -44,7 +44,7 @@ var settings = {
             service: "Zoho",
             auth:    {
                 user: "hurtom@persony.info",
-                pass: ",552fudupy"
+                pass: "strashnatajemnycja"
             }
         }
     }
