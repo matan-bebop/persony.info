@@ -140,16 +140,13 @@
         color: $textOnLightBkg;
         font-weight: 500;
 
-        /*Quote in Description*/
-        /*
         q{
-          &:before{
-          }
+		  font-style:italic
+        }
 
-          &:after{
-          }
-
-        }*/
+		b{
+		  font-weight: 600;
+	    }
 
         blockquote {
           border-left: 0;

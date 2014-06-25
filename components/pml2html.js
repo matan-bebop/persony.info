@@ -13,7 +13,7 @@ exports.Translator = function(seq) { // class Translator
 		return "<b>" + text + "</b>";
 	},
 	cytata_handler = function(text) {
-		return "<i>«" + text + "»</i>";
+		return "<q>" + text + "</q>";
 	};
 
 	var tr = new pml.Translator();
