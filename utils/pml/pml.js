@@ -77,5 +77,7 @@ Translator : function() { // BEGIN Class Translator
 
 })(); // END Namespace PML
 
-// Declare what do we export for Node.js
-module.exports = PML;
+if(typeof module !== "undefined") { // Check if we are being exported to Node
+	// Declare what do we export for Node.js
+ 	module.exports = PML;
+}
