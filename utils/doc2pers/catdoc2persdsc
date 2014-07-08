@@ -17,8 +17,8 @@ p.read_descrition(sys.stdin)
 if len(sys.argv) < 2:
 	print_usage()
 elif sys.argv[1] == "-name-url":
-	from translit.cyr2file import Cyr2File
-	print(Cyr2File().code(p.name).lower())
+	import translit.filename as tr
+	print(tr.code(p.name).lower())
 elif sys.argv[1] == "-name":
 	print(p.name)
 elif sys.argv[1] == "-photo":

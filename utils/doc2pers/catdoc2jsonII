@@ -4,7 +4,7 @@ import sys
 import json
 
 from person import Person
-from translit.cyr2file import Cyr2File
+import translit.filename
 from icon import source_icon
 
 class Date(object):
@@ -102,8 +102,8 @@ class JSON(object):
         self.name = person.name
         self.info = person.brief
         if local_photo:
-            self.photo = photos_path + Cyr2File().code(person.name).lower()
-            self.photo += '.jpg'
+            self.photo = photos_path 
+            self.photo += translit.filename.code(person.name).lower() + '.jpg'
         else:
             self.photo = person.photo
         self.facebook = ""

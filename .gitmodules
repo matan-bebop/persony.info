@@ -10,3 +10,6 @@
 [submodule "puppet/modules/mysql"]
 	path = puppet/modules/mysql
 	url = https://github.com/puppetlabs/puppetlabs-mysql.git
+[submodule "utils/translit"]
+	path = utils/translit
+	url = https://github.com/matan-bebop/translit.git
