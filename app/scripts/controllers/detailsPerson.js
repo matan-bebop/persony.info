@@ -14,7 +14,6 @@
             	$scope.modals = { 
             		imageAdded: false,
             		updateImage: function(evt) {
-            			console.log('updateImage launched');
 	                	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
 	                	var imageAdded = true;
 	                	var reader = new FileReader();
@@ -104,10 +103,60 @@
                             "click": "addEditEvent()"
                         }
                     ];
+
+					Event.query({personId: person.id, order: 'start.desc'}, function (events) {
+						var data = {
+							orders: {
+								years: [],
+								months: {}
+							}
+						};
+
+						var monthMaxDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+						angular.forEach(events, function (event) {
+							var date = new Date(event.start),
+								year = date.getFullYear(),
+								month = date.getMonth(),
+								endDate = new Date(event.end),
+								endMonth = endDate.getMonth(),
+								day = endDate.getDate() - date.getDate();
+
+							if  (day === monthMaxDays[month] - 1) {
+								event.day = '&nbsp;';
+								event.displayDate = false;                        	
+							}
+							else {
+								event.day = '<span>' + date.getDate() + '</span>';
+								event.displayDate = true;
+							}
+								
+							if (endMonth - month === 11) {
+								month = -1;
+							}
+
+							if (!data[year]) {
+								data.orders.years.push(year);
+								data.orders.months[year] = [];
+								data[year] = {};
+							}
+
+							if (!data[year][month]) {
+								data.orders.months[year].push(month);
+								data[year][month] = [];
+							}
+							
+							data[year][month].push(event);
+						});
+
+						$scope.eventYears = data;
+						$scope.contentLoaded = true;
+						$scope.scrollToEvent($scope.expandedEventId);
+					});
                 }
 
                 $scope.person = Person.get(
-                    {id: $routeParams.id},
+                    {name: Translit.Url.decode($routeParams.romanizedName)},
                     personCallback,
                     function () {
                         $location.path('/error');
@@ -226,56 +275,7 @@
                         show: true
                     });
                 }
-                Event.query({personId: $routeParams.id, order: 'start.desc'}, function (events) {
-                    var data = {
-                        orders: {
-                            years: [],
-                            months: {}
-                        }
-                    };
-
-					var monthMaxDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-                    angular.forEach(events, function (event) {
-                        var date = new Date(event.start),
-                            year = date.getFullYear(),
-                            month = date.getMonth(),
-                            endDate = new Date(event.end),
-                            endMonth = endDate.getMonth(),
-                            day = endDate.getDate() - date.getDate();
-
-                        if  (day === monthMaxDays[month] - 1) {
-                        	event.day = '&nbsp;';
-                        	event.displayDate = false;                        	
-                        }
-                        else {
-                        	event.day = '<span>' + date.getDate() + '</span>';
-                        	event.displayDate = true;
-                        }
-                            
-						if (endMonth - month === 11) {
-							month = -1;
-						}
-
-                        if (!data[year]) {
-                            data.orders.years.push(year);
-                            data.orders.months[year] = [];
-                            data[year] = {};
-                        }
-
-                        if (!data[year][month]) {
-                            data.orders.months[year].push(month);
-                            data[year][month] = [];
-                        }
-                        
-                        data[year][month].push(event);
-                    });
-
-                    $scope.eventYears = data;
-                    $scope.contentLoaded = true;
-                    $scope.scrollToEvent($scope.expandedEventId);
-                });
-
+                
                 $scope.translate = function (value) {
                     switch (value) {
                         case 0:

@@ -94,7 +94,7 @@
 
             <div class="navbar-collapse collapse navbar-responsive-collapse" collapse="Navbar.collapsed">
                 <ul class="nav navbar-left navbar-nav">
-                    <li ng-class="{'active':getClass('/persons')}" ng-click="Navbar.collapsed = true"><a ng-href="/persons" ng-click="search.clear(); search.showResults()">Всі</a></li>
+                    <li ng-class="{'active':getClass('/all')}" ng-click="Navbar.collapsed = true"><a ng-href="/all" ng-click="search.clear(); search.showResults()">Всі</a></li>
                     <li ng-if="false" ng-click="Navbar.collapsed = true" ><a href="#">Дуелі</a></li>
                     <li ng-class="{'active':getClass('/about')}" ng-click="Navbar.collapsed = true" ><a href="/about">Про проект</a></li>
                 </ul>
@@ -248,6 +248,7 @@
     <script src="scripts/directives/external-link.js"></script>
     <script src="scripts/filters/monthName.js"></script>
     <script src="scripts/filters/toTrusted.js"></script>
+    <script src="scripts/alien/translit.js"></script>
     <!-- endbuild -->
     <div class="page-buffer"></div>
 </div>

@@ -16,8 +16,8 @@ module.exports = function (app) {
                 });
         },
         "get": function (req, res, next) {
-            if (req.params.id) {
-                Person.find({ where: {id: req.params.id} }).
+            if (req.params.name) {
+                Person.find({ where: {name: unescape(req.params.name)} }).
                     success(function (entity) {
                         if (entity) {
                             res.end(JSON.stringify(entity));

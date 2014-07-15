@@ -18,11 +18,11 @@
                     templateUrl: 'partials/main',
                     controller: 'controllers.main'
                 })
-                .when('/persons', {
+                .when('/all', {
                     templateUrl: 'partials/persons',
                     controller: 'controllers.persons'
                 })
-                .when('/persons/:id', {
+                .when('/p/:romanizedName', {
                     templateUrl: 'partials/detailsPerson',
                     controller: 'controllers.personDetails',
                     reloadOnSearch: false

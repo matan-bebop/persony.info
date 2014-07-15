@@ -27,10 +27,10 @@
                     showResults: function () {
                         Navbar.collapsed = true;
 
-                        if ($location.path() === '/persons') {
+                        if ($location.path() === '/all') {
                             $route.reload();
                         } else {
-                            $location.path('/persons');
+                            $location.path('/all');
                         }
                     }
                 };

@@ -32,7 +32,7 @@
     <h4>Вас зацікавлять:</h4>
     <section>
         <div class="interest_person" ng-repeat="person in featured">
-            <a ng-href="/persons/{{person.id}}">
+            <a ng-href="{{person.getUrl()}}">
                 <img
                         ng-src="{{person.getPhotoSrc()}}"
                         title="{{person.name}}"
