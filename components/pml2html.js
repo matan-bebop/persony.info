@@ -1,4 +1,5 @@
-var pml = require("../utils/pml");
+var pml = require("../utils/pml"),
+	translit = require("../utils/translit/translit.js");
 
 exports.Translator = function(seq) { // class Translator
 
@@ -8,9 +9,9 @@ exports.Translator = function(seq) { // class Translator
 	dzherelo_handler = function(text, link) {
 		return posylannya_handler(text, link);
 	},
-	persona_handler = function(text, uid) {
-		//return "<a href=\"" + "/" + uid + "\">" + text + "</a>";
-		return "<b>" + text + "</b>";
+	persona_handler = function(text, name) {
+		romanized_name = translit.Url.code(name.replace(/_/g,'-')).toLowerCase(); // Ugly
+		return "<a href=\"" + "/p/" + romanized_name + "\">" + text + "</a>";
 	},
 	cytata_handler = function(text) {
 		return "<q>" + text + "</q>";
