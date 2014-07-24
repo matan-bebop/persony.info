@@ -151,7 +151,9 @@
 
 						$scope.eventYears = data;
 						$scope.contentLoaded = true;
-						$scope.scrollToEvent($scope.expandedEventId);
+						if($scope.expandedEventId !== null) {
+							$scope.scrollToEvent($scope.expandedEventId);
+						}
 					});
                 }
 
