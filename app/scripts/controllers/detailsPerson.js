@@ -159,7 +159,8 @@
                     {name: Translit.Url.decode($routeParams.romanizedName)},
                     personCallback,
                     function () {
-                        $location.path('/error');
+						$location.replace();
+                        $location.path('/unknown/' + $routeParams.romanizedName);
                     }
 
                 );

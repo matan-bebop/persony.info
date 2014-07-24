@@ -27,13 +27,18 @@
                     controller: 'controllers.personDetails',
                     reloadOnSearch: false
                 })
+                .when('/unknown/:romanizedName', {
+                    templateUrl: 'partials/noPerson',
+                    controller: 'controllers.noPerson',
+                    reloadOnSearch: false
+                })
                 .when('/about', {
                     templateUrl: 'partials/about',
                     controller: 'AboutCtrl'
                 })
                 .otherwise({
                     templateUrl: 'partials/error',
-                    controller: 'errorCtrl'
+                    controller: 'controllers.404'
                 });
 
             $locationProvider.html5Mode(true).hashPrefix('!');
