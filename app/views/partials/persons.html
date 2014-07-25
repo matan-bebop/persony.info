@@ -4,28 +4,16 @@
             type="text"
             class="form-control search-query filter"
             placeholder="Фільтр"
-            ng-model="filter.search"
-            ng-change="filter.exec()"
-            >
+            ng-model="search.keyword"
+	>
 
-    <div id="filters_container">
-        <ul id="filters">
-            <li>
-                <a href="" ng-click="sort.change('name')" ng-class="{active: sort.is('name')}">
-                    За абеткою
-                </a>
-            </li>
-            <li class="separator">/</li>
-            <li>
-                <a href="" ng-click="sort.change('lastEvent')" ng-class="{active: sort.is('lastEvent')}">
-                    За останньою подією
-                </a>
-            </li>
-        </ul>
-    </div>
+    <!--<div id="filters_container">
+		<input type="radio" ng-model="search.sortProp" value="name"> За абеткою
+		<input type="radio" ng-model="search.sortProp" value="lastEventDate" ng-disabled="determineLastEventsInProcess"> За останньою подією
+	</div>--!>
     <div class="clearfix"></div>
     <div class="post_persons">
-        <div ng-repeat="person in persons" class="post_pers">
+        <div ng-repeat="person in persons | filter:search.keyword | orderBy:search.sortProp" class="post_pers">
             <a ng-href="{{person.getUrl()}}">
                 <img ng-src="{{person.getPhotoSrc()}}"
                      alt="{{person.name}}"/>

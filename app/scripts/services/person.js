@@ -4,8 +4,8 @@
     angular.module('personyApp').factory(
         'Person',
         [
-            '$resource',
-            function ($resource) {
+            '$resource', 'Event',
+            function ($resource, Event) {
                 var Person = $resource("/api/persons/:name");
 
                 Person.prototype.getPhotoSrc = function () {
@@ -21,6 +21,13 @@
 				Person.prototype.getUrl = function() {
 					return "/p/" + Translit.Url.code(this.name).toLowerCase();
 				};
+
+				Person.prototype.getLastEvent = function(callback) {
+					console.log("omg", person.id);
+					Event.query({personId: person.id, order: 'start'}, function(events) {
+						callback(events[0]);
+					})
+				}
 
                 return Person;
             }

@@ -4,25 +4,14 @@
     angular.module('personyApp').factory(
         'Search',
         [
-            '$filter', '$location', '$route', 'Person', 'Navbar',
-            function ($filter, $location, $route, Person, Navbar) {
-                var persons = Person.query();
+            '$filter', '$location', '$route', 'Navbar',
+            function ($filter, $location, $route, Navbar) {
                 return {
-                    $promise: persons.$promise,
-                    mode: null,
                     keyword: "",
+					sortProp: "name",
                     clear: function () {
                         this.keyword = "";
-                    },
-                    find: function (mode) {
-                        switch (mode || this.mode) {
-                        case "featured":
-                            return $filter('filter')(persons, {isFeatured: true});
-                        case "name":
-                            return $filter('filter')(persons, {name: this.keyword});
-                        default:
-                            return $filter('filter')(persons, this.keyword);
-                        }
+						this.sortProp = "name";
                     },
                     showResults: function () {
                         Navbar.collapsed = true;

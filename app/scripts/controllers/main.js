@@ -86,10 +86,6 @@
              $scope.nextTwitterQuote = loadTweets;
 
              $scope.search = Search;
-
-             Search.$promise.then(function(){
-                 $scope.featured = Search.find('featured');
-             });
          }]
     );
 }());
