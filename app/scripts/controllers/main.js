@@ -3,8 +3,8 @@
 
     angular.module('personyApp').controller(
         'controllers.main',
-        ['$scope', 'Page', 'Search',
-         function ($scope, Page, Search) {
+        ['$scope', 'Page', 'Search', 'Person',
+         function ($scope, Page, Search, Person) {
              Page.setTitle('Персони — Головна');
              Page.setDescription('Проект «Персони» — це централізована достовірною база «візуального життєпису вчинків політиків». Оснований на трьох принципах: Наглядність, Достовірність, Відкритість');
              Page.setKeywords('персони, персони інфо, біографії політиків, життєписи відомих людей, вчинки політиків, достовірна інформація, наглядні біографії');
