@@ -85,6 +85,7 @@
 
              $scope.nextTwitterQuote = loadTweets;
 
+             $scope.persons = Person.query();
              $scope.search = Search;
          }]
     );
