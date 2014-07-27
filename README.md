@@ -21,7 +21,9 @@ Working environment can be created with [Vagrant](http://www.vagrantup.com/) and
 Install them and then run the following commands in project home directory
 
 > git submodule init 
+
 > git submodule update
+
 > vagrant up
 
 You can get inside VM running following command under the project home directory
