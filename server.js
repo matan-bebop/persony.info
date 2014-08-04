@@ -64,6 +64,10 @@ app.use(function (req, res, next) {
 
 app.require('/components/router')(app);
 
+// Set up Prerender middleware to serve prerendered pages to search engines etc.
+app.use(require('prerender-node')
+		.set('prerenderToken', settings.prerender.token));
+
 // Start server
 app.listen(
     settings.server.port,

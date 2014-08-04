@@ -13,7 +13,8 @@
     "node.extend": "~1.0.9",
     "node-compass": "~0.2.3",
     "connect-livereload": "~0.3.2",
-    "nodemailer": "^0.6.3"
+    "nodemailer": "^0.6.3",
+    "prerender-node": "^1.0.5"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

@@ -47,7 +47,10 @@ var settings = {
                 pass: "strashnatajemnycja"
             }
         }
-    }
+    },
+	prerender: {
+		token: '0a9cKZ84t4It5tvKfVzE'
+	}
 };
 
 var localConfigFile = __dirname + '/settings.local.js';
