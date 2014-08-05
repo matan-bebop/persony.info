@@ -51,6 +51,9 @@ app.configure(function () {
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.cookieSession({key: "_open_sid", secret: secret}));
+	// Set up Prerender.io middleware to serve prerendered pages for crawlers:
+	app.use(require('prerender-node')
+			.set('prerenderToken', settings.prerender.token));
 });
 
 /* Database setup !important to be before url & pass definition */
@@ -64,9 +67,6 @@ app.use(function (req, res, next) {
 
 app.require('/components/router')(app);
 
-// Set up Prerender middleware to serve prerendered pages to search engines etc.
-app.use(require('prerender-node')
-		.set('prerenderToken', settings.prerender.token));
 
 // Start server
 app.listen(
