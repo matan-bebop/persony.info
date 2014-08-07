@@ -17,7 +17,12 @@
   <meta http-equiv="Content-Language" content="uk"/>
   <meta name="distribution" content="global">
   <meta name="robots" content="index, follow"/>
-  <meta name="fragment" content="!">
+  <!-- Prerender's phantomjs can't handle our scripts, so no rendered html can be served for spiders yet.
+       Moreover, when a crawler tries to get a rendered page after seeing the fragment meta tag, 10s lag 
+       prerender is producing now can negatively alter our pages rank. I disable this as it don't work and 
+       can be harmful.
+  <meta name="fragment" content="!"> 
+  -->
   <meta name="resource-type" content="document"/>
   <meta name="revisit" content="15"/>
   <meta name="document-state" content="Dynamic"/>
