@@ -17,21 +17,17 @@
   <meta http-equiv="Content-Language" content="uk"/>
   <meta name="distribution" content="global">
   <meta name="robots" content="index, follow"/>
-  <!-- Prerender's phantomjs can't handle our scripts, so no rendered html can be served for spiders yet.
-       Moreover, when a crawler tries to get a rendered page after seeing the fragment meta tag, 10s lag 
-       prerender is producing now can negatively alter our pages rank. I disable this as it don't work and 
-       can be harmful.
+  <!-- Disable the ?_escaped_fragment_= trick as it don't work anyway yet
   <meta name="fragment" content="!"> 
   -->
   <meta name="resource-type" content="document"/>
   <meta name="revisit" content="15"/>
   <meta name="document-state" content="Dynamic"/>
-  <meta name="classification" content="Інформаційний ресурс"/>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 
   <meta name="classification" content="Інформаційний ресурс"/>
-  <meta name="categories" content="Біографія політиків, життепис депутатів, життя можновладців, правда про політику"/>
-  <meta name="keywords" content="Біографія політиків, життепис депутатів, життя можновладців, правда про політику "/>
+  <meta name="categories" content="Біографія політиків, життєпис депутатів, життя можновладців, правда про політику"/>
+  <meta name="keywords" content="Біографія політиків, життєпис депутатів, життя можновладців, правда про політику "/>
   <meta http-equiv="keywords" content="{{Page.getKeywords()}}"/>
   <meta name="description" content="{{Page.getDescription()}}"/>
   <meta http-equiv="description" content="{{Page.getDescription()}}"/>
@@ -101,7 +97,6 @@
             <div class="navbar-collapse collapse navbar-responsive-collapse" collapse="Navbar.collapsed">
                 <ul class="nav navbar-left navbar-nav">
                     <li ng-class="{'active':getClass('/all')}" ng-click="Navbar.collapsed = true"><a ng-href="/all" ng-click="search.clear(); search.showResults()">Всі</a></li>
-                    <li ng-if="false" ng-click="Navbar.collapsed = true" ><a href="#">Дуелі</a></li>
                     <li ng-class="{'active':getClass('/about')}" ng-click="Navbar.collapsed = true" ><a href="/about">Про проект</a></li>
                 </ul>
 
@@ -224,11 +219,11 @@
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
     <script src="bower_components/angularjs-slider/rzslider.js"></script>
     <script src="bower_components/moment/moment.js"></script>
-	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>	
-	<script src="bower_components/select2/select2.js"></script>
-	<script src="bower_components/angular-ui-select2/src/select2.js"></script>
-    <script src="bower_components/jcrop/js/jquery.Jcrop.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>    
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <!-- <script src="bower_components/jcrop/js/jquery.Jcrop.min.js"></script> --!>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -292,6 +287,7 @@
          </div>
     </footer>
 </div>
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (d, w, c) {
@@ -319,5 +315,6 @@
     </script>
     <noscript><div><img src="//mc.yandex.ru/watch/24100588" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+
 </body>
 </html>
