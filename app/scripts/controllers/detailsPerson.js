@@ -11,54 +11,6 @@
                     eventId = match ? match[2] : null;
             	
             	$scope.contentLoaded = false;
-            	$scope.modals = { 
-            		imageAdded: false,
-            		updateImage: function(evt) {
-	                	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
-	                	var imageAdded = true;
-	                	var reader = new FileReader();
-	                	var jcrop_api, boundx, boundy, xratio, yratio;
-	                	reader.onload = (function(theFile) {
-							return function(e) {
-								var image = new Image();
-								image.src = e.target.result;
-								image.onload = function() {
-									var canvas = document.createElement('canvas');
-									canvas.width = image.naturalWidth;
-									canvas.height = image.naturalHeight;
-									var ctx = canvas.getContext('2d');
-									ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-									
-									$('#image_input').html('');
-									$('#image_input').html('<img src="' + canvas.toDataURL() + '"/>');
-							
-									var img = $('#image_input img')[0];
-									var canvas = document.createElement('canvas');
-									canvas.width = canvas.height = 180;
-									xratio = image.naturalWidth / $('#image_input img').width();
-									yratio = image.naturalHeight / $('#image_input img').height();
-							
-									$('#image_input img').Jcrop({
-										bgColor: 'black',
-										bgOpacity: .6,
-										setSelect: [0, 0, 100, 100],
-										aspectRatio: 1,
-										onSelect: imgSelect,
-										onChange: imgSelect
-									});
-							
-									function imgSelect(selection) {						
-										var ctx = canvas.getContext('2d');
-										ctx.drawImage(img, selection.x * xratio, selection.y * yratio, selection.w * xratio, selection.h * yratio, 0, 0, canvas.width, canvas.height);
-									
-										$('#image_output').attr('src', canvas.toDataURL());
-									}
-								}
-							}
-						})(file);
-						reader.readAsDataURL(file);
-	                }
-            	};
 
                 $scope.spyoffset = ($window.innerWidth > 992) ? 240 : 160;
 
@@ -223,50 +175,6 @@
 	                        result('$error');
 	                    });
              	};
-
-                $scope.addEditEvent = function (event) {
-
-                    /*var init = {};
-                    if (event){
-                        init = {};
-                    };
-
-                    var modalInstance = $modal.open({
-                        templateUrl: 'partials/eventAddEdit',
-                        controller: 'controllers.eventAddEdit',
-                        resolve: init
-                    });*/
-                   
-                   var editEventModal = $modal({
-                        "title": "Редагування події",
-                        "animation": "am-fade-and-slide-top",
-                        "placement": "center",
-                        "template": "eventEdit.html",
-                        scope: $scope,
-                        show: true
-                    });
-                }
-
-                $scope.addEditPerson = function (person) {
-
-                    /*var init = {};
-                    if (person){
-                        init = {};
-                    }
-
-                    var modalInstance = $modal.open({
-                        templateUrl: 'partials/personAddEdit',
-                        controller: 'controllers.personAddEdit',
-                        resolve: init
-                    });*/
-                   var editPersonModal = $modal({
-                        "title": "Редагування персони",
-                        "animation": "am-fade-and-slide-top",
-                        "placement": "center",
-                        "template": "personEdit.html",
-                        show: true
-                    });
-                }
 
                 $scope.popupEventPhoto = function (event) {
                     var photoModal = $modal({

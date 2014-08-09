@@ -4,11 +4,14 @@
     angular.module(
             'personyApp',
             [
-                'ngRoute', 'ngResource', 'ngSanitize', 'rzModule',
-                'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip',
+                'ngRoute', 'ngResource', 'ngSanitize',
+			   
+				'rzModule',
+				'mgcrea.ngStrap.modal', 'mgcrea.ngStrap.tooltip',
                 'mgcrea.ngStrap.dropdown', 'mgcrea.ngStrap.scrollspy',
-                'mgcrea.ngStrap.helpers.dimensions',
-                'ui.bootstrap.datetimepicker', 'ui.select2', 'ngSocial'
+                'mgcrea.ngStrap.helpers.dimensions', 'mgcrea.ngStrap.navbar',
+				
+				'ngSocial'
             ]
         )
         .config(function ($routeProvider, $locationProvider) {
@@ -43,7 +46,7 @@
 
             $locationProvider.html5Mode(true).hashPrefix('!');
         }).run(function($rootScope, $location, $anchorScroll, $routeParams) {
-            //scroll to the hash spevified in scrollTo route parameter
+            // scroll to a hash specified in the scrollTo route parameter
             $rootScope.hashScroll = function(){
             	$anchorScroll($routeParams.scrollTo);
             }

@@ -1,8 +1,8 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="personyApp" ng-controller="PageCtrl"> <![endif]-->
-<!--[if gt IE 8]><!--> <html  class="no-js" ng-app="personyApp" ng-controller="PageCtrl"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="personyApp"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="personyApp"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="personyApp"> <![endif]-->
+<!--[if gt IE 8]><!--> <html  class="no-js" ng-app="personyApp"> <!--<![endif]-->
 <head lang="uk">
   <title>{{Page.getTitle()}}</title>
 
@@ -85,19 +85,19 @@
 
 <body scroll-up>
 <div class="page-wrapper">
-    <nav class="navbar navbar-static-top navbar-inverse navbar-fixed-top" role="navigation" ng-controller="controllers.navbar">
+    <nav class="navbar navbar-static-top navbar-inverse navbar-fixed-top" role="navigation" ng-controller="controllers.navbar" bs-navbar>
         <div class="container">
             <div class="logo pull-left">
-                <a href="/"><img src="images/logo.png" height="40px" ng-click="Navbar.collapsed = true"/></a>
-                <a ng-click="Navbar.collapsed = !Navbar.collapsed" class="btn btn-default btn-navbar collapse-btn">
+                <a href="/"><img src="images/logo.png" height="40px" ng-click="collapsed = true"/></a>
+                <button ng-init="collapsed = true" ng-click="collapsed = !collapsed" class="btn btn-default btn-navbar collapse-btn">
                     <i class="fa fa-bars fa-lg"></i>
-                </a>
+                </button>
             </div>
 
-            <div class="navbar-collapse collapse navbar-responsive-collapse" collapse="Navbar.collapsed">
+			<div class="navbar-collapse collapse" ng-class="{collapse: collapsed}">
                 <ul class="nav navbar-left navbar-nav">
-                    <li ng-class="{'active':getClass('/all')}" ng-click="Navbar.collapsed = true"><a ng-href="/all" ng-click="search.clear(); search.showResults()">Всі</a></li>
-                    <li ng-class="{'active':getClass('/about')}" ng-click="Navbar.collapsed = true" ><a href="/about">Про проект</a></li>
+                    <li data-match-route="/all" ng-click="collapsed = true"><a ng-href="/all" ng-click="search.keyword=''; search.showResults()">Всі</a></li>
+                    <li data-match-route="/about" ng-click="collapsed = true" ><a href="/about">Про проект</a></li>
                 </ul>
 
                 <ul class="nav navbar-right navbar-nav">
@@ -107,74 +107,15 @@
                             <input
                                     type="text" class="form-control search-input" placeholder="Шукати"
                                     ng-model="search.keyword"
-                                    on-enter="search.showResults()"
-                                    >
+									on-enter="collapsed = true; search.showResults()">
                         </div>
                     </form>
-                    <li class="dropdown navbar-right" ng-if="false">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up<b class="caret"></b></a>
-                        <div class="row dropdown-menu">
-                            <div class="col-md-12" style="padding: 15px;min-width: 250px;">
-                                <form class="form" role="form" method="post" action="/auth/signup" accept-charset="UTF-8" id="signup-nav">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="email_field_up">Email address</label>
-                                        <input type="email" class="form-control" name="email" id="email_field_up" placeholder="Email address" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="password">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="password_confirm">Password</label>
-                                        <input type="password" class="form-control" name="password_confirm" id="password_confirm" placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown" ng-if="false">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-                        <div class="row dropdown-menu" style="padding: 15px;min-width: 250px;">
-                            <div class="col-md-12">
-
-                                <form class="form" role="form" method="post" action="/auth/login" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="email_field">Email address</label>
-                                        <input type="email" class="form-control" id="email_field" name="email" placeholder="Email address" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="password_field">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password_field" placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block">Sign in</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown" ng-if="false">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Log out<b class="caret"></b></a>
-                        <div class="row dropdown-menu" style="padding: 15px;min-width: 250px;">
-                            <div class="col-md-12">
-                                <form class="form" role="form" method="post" action="/auth/logout" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block">Log Out</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
 
         </div>
 
-    </nav>
+	</nav>
 
     <!--<div class="help-tip alert alert-success alert-dismissable">
         <button type="button" class="close" id="help-tip-close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -218,12 +159,6 @@
     <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
     <script src="bower_components/angularjs-slider/rzslider.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>    
-    <script src="bower_components/select2/select2.js"></script>
-    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
-    <!-- <script src="bower_components/jcrop/js/jquery.Jcrop.min.js"></script> --!>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -238,9 +173,7 @@
     <script src="scripts/controllers/persons.js"></script>
     <script src="scripts/controllers/detailsPerson.js"></script>
     <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/page.js"></script>
     <script src="scripts/controllers/navbar.js"></script>
-    <script src="scripts/controllers/personCRUD.js"></script>
     <script src="scripts/directives/scrollUp.js"></script>
     <script src="scripts/directives/onEnter.js"></script>
     <script src="scripts/directives/socialLikes.js"></script>
