@@ -8,6 +8,9 @@
  */
 class ImportPersonCommand extends CConsoleCommand {
     public function actionIndex($dataDir, $clean = false) {
+        
+        Yii::app()->db->createCommand('SET FOREIGN_KEY_CHECKS=0')->execute();
+        
         if($clean){
             foreach (Yii::app()->db->createCommand('SHOW TABLES')->queryColumn() as $table) {
                 Yii::app()->db->createCommand("TRUNCATE TABLE `$table`")->execute();
@@ -100,6 +103,8 @@ class ImportPersonCommand extends CConsoleCommand {
                 }
             }
         }
+        
+        Yii::app()->db->createCommand('SET FOREIGN_KEY_CHECKS=1')->execute();
     }
 
     private function log($message){
