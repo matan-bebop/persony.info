@@ -54,8 +54,8 @@
 
              var loadTweets = function () {
                  //reset tweet inner
-                 $('#tweet-left').html('<i class="fa fa-refresh fa-spin fa-4x"></i>');
-                 $('#tweet-right').html('<i class="fa fa-refresh fa-spin fa-4x"></i>');
+                 angular.element('#tweet-left').html('<i class="fa fa-refresh fa-spin fa-4x"></i>');
+                 angular.element('#tweet-right').html('<i class="fa fa-refresh fa-spin fa-4x"></i>');
 
                  //randomise persons twitter
                  shuffle(twitterIds);

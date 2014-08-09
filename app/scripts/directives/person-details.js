@@ -7,16 +7,16 @@
             return function (scope, element, attrs) {
                 var shrinkHeader = 300;
 
-                $($window).scroll(function () {
+                angular.element($window).scroll(function () {
                     var scroll = $window.pageYOffset;
                     if (scroll >= shrinkHeader) {
-                        $('.page-header').addClass('shrink');
-                        $('.person-header-die').addClass('shrink');
-                        $('.timeline-helper').addClass('shrink');
+                        angular.element('.page-header').addClass('shrink');
+                        angular.element('.person-header-die').addClass('shrink');
+                        angular.element('.timeline-helper').addClass('shrink');
                     } else {
-                        $('.page-header').removeClass('shrink');
-                        $('.person-header-die').removeClass('shrink');
-                        $('.timeline-helper').removeClass('shrink');
+                        angular.element('.page-header').removeClass('shrink');
+                        angular.element('.person-header-die').removeClass('shrink');
+                        angular.element('.timeline-helper').removeClass('shrink');
                     }
                 });
             };
@@ -29,7 +29,7 @@
             return function (scope, element, attrs) {
                 if (scope.$last) {
                     setTimeout(function(){
-                        $("div.share").socialLikes();
+                        angular.element("div.share").socialLikes();
                     }, 1);
                 }
             };
